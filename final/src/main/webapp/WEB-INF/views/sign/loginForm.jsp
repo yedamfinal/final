@@ -7,6 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="loginForm.do">로그인</a>
+<div>
+	${person } <br>
+	<form action="login.do" method="post">
+		id : <input name="id"><br>
+		password : <input name="password"><br>
+		<button>로그인</button>
+	</form>
+</div>
 </body>
 </html>

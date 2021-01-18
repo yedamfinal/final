@@ -1,10 +1,10 @@
-package com.dbal.app.emp.service;
+package co.team.apt.emp.service;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.dbal.app.emp.EmpVO;
+import co.team.apt.emp.EmpVO;
 
 
 public interface EmpService {

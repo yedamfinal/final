@@ -1,4 +1,4 @@
-package com.dbal.app;
+package co.team.apt;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -37,8 +37,6 @@ public class HomeController {
 	public @ResponseBody List<String> test() {
 		List<String> list = new ArrayList<String>();
 		list.add("홍길동");
-		list.add("이순신");
-		list.add("을지문덕");
 		return list;
 	}
 

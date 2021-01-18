@@ -1,11 +1,12 @@
-package com.dbal.app.emp.mapper;
+package co.team.apt.mapper;
 
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import com.dbal.app.emp.EmpVO;
+
+import co.team.apt.emp.EmpVO;
 
 @Repository
 public class EmpDAO {

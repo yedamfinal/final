@@ -1,9 +1,9 @@
-package com.dbal.app.emp.mapper;
+package co.team.apt.mapper;
 
 import java.util.List;
 import java.util.Map;
 
-import com.dbal.app.emp.EmpVO;
+import co.team.apt.emp.EmpVO;
 
 public interface EmpMapper {
 

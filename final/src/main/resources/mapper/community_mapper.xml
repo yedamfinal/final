@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="co.team.apt.community.mapper.CommunityMapper">
+	<select id="boardList" resultType="board" parameterType="board">
+		select *
+		from board
+		where type=#{type}
+	</select>
+	
+	<select id="boardOne" resultType="board" parameterType="board">
+		select *
+		from board
+		where defno=#{defno}
+	</select>
+	
+	<insert id="boardInsert" parameterType="board">
+		insert into board(defno,
+					title,
+					content,
+					deffile,
+					defdate,
+					wirter,
+					type)
+		values(def_seq.nextval,
+				#{title},
+				#{content},
+				#{deffile},
+				sysdate,
+				#{wirter},
+				#{type})
+	</insert>
+	
+	<update id="boardUpdate" parameterType="board">
+		update board
+		set title=#{title},
+			content=#{content},
+			deffile=#{deffile},
+			defdate=sysdate
+		where defno = #{defno}
+	</update>
+
+	<delete id="boardDelete" parameterType="board">
+		delete from board
+		where defno = #{defno}
+	</delete>
+</mapper>

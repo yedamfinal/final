@@ -1,12 +1,12 @@
-package com.dbal.app.emp.web;
+package co.team.apt.emp.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.dbal.app.emp.EmpVO;
-import com.dbal.app.emp.service.EmpService;
+import co.team.apt.emp.EmpVO;
+import co.team.apt.emp.service.EmpService;
 
 @Controller
 public class EmpController  {
