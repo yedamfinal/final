@@ -12,6 +12,6 @@ public class BoardVo {
 	private String deffile;
 	private Date defdate;
 	private String state; //하자보수 게시판 처리상태
-	private String wirter; //글쓴이
+	private String writer; //글쓴이
 	private String type; //게시판종류
 }

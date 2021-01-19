@@ -17,8 +17,8 @@
 				<th>작성시간</th>
 				<th>파일첨부</th>
 			</tr>
-			<c:forEach var="vo" items="${boardList}">
-			<tr onclick="location.href='freeRead.do?defno=${vo.defno}'">
+			<c:forEach var="vo" items="${noticeList}">
+			<tr onclick="location.href='noticeRead.do?defno=${vo.defno}'">
 				<th>${vo.defno}</th>
 				<th>${vo.title}</th>
 				<th>${vo.writer}</th>
@@ -32,7 +32,7 @@
 			</tr> 
 			</c:forEach>
 		</table>
-		<a href="freeInsertForm.do">글쓰기</a>
+		<a href="noticeInsertForm.do">글쓰기</a>
 	</div>
 </body>
 </html>
