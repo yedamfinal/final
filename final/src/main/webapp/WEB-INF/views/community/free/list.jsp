@@ -21,7 +21,7 @@
 			<tr onclick="location.href='freeRead.do?defno=${vo.defno}'">
 				<th>${vo.defno}</th>
 				<th>${vo.title}</th>
-				<th>${vo.wirter}</th>
+				<th>${vo.writer}</th>
 				<th>${vo.defdate}</th>
 				<c:if test="${vo.deffile eq null }">
 					<th>N</th>
