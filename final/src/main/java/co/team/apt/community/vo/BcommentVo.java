@@ -11,5 +11,5 @@ public class BcommentVo {
 	private Date redate;
 	private String type;
 	private int no;
-	private String wirter;
+	private String writer;
 }

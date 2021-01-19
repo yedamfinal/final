@@ -21,14 +21,14 @@
 					content,
 					deffile,
 					defdate,
-					wirter,
+					writer,
 					type)
 		values(def_seq.nextval,
 				#{title},
 				#{content},
 				#{deffile},
 				sysdate,
-				#{wirter},
+				#{writer},
 				#{type})
 	</insert>
 	
