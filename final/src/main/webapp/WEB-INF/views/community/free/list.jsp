@@ -32,6 +32,22 @@
 			</tr> 
 			</c:forEach>
 		</table>
+		
+		<div>
+		<form>
+			<input name="search">
+			<button>검색</button> 
+		</form>
+		</div>
+		<div>
+		      <a class="page-link" href="#">&laquo;</a>
+		      <a class="page-link" href="#">1</a>
+		      <a class="page-link" href="#">2</a>
+		      <a class="page-link" href="#">3</a>
+		      <a class="page-link" href="#">4</a>
+		      <a class="page-link" href="#">5</a>
+		      <a class="page-link" href="#">&raquo;</a>
+		</div>
 		<a href="freeInsertForm.do">글쓰기</a>
 	</div>
 </body>

@@ -4,9 +4,22 @@
 
 <mapper namespace="co.team.apt.community.mapper.CommunityMapper">
 	<select id="boardList" resultType="board" parameterType="board">
-		select *
-		from board
-		where type=#{type}
+		
+		select b.*  from(  select a.*, rownum rn from(  
+                select *
+				from board
+				where type=#{type}
+				<if test="title != null and title != ''">
+					and title like '%' || #{title} || '%'
+				</if>
+				<if test="content != null and content != ''">
+					and content like '%' || #{content} || '%'
+				</if>
+				<if test="writer != null and writer != ''">
+					and writer = #{writer}
+				</if>
+				order by 1 desc
+        ) a ) b where rn between #{start} and #{end}
 	</select>
 	
 	<select id="boardOne" resultType="board" parameterType="board">

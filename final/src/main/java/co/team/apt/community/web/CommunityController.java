@@ -49,8 +49,40 @@ public class CommunityController {
 	//글내용보기
 	@RequestMapping("freeRead.do")
 	public String read(BoardVo vo, Model model) {
-		
+		vo = communityService.boardOne(vo);
 		model.addAttribute("vo",vo);
 		return "community/free/read";
+	}
+	
+	//글수정폼으로 이동
+	@RequestMapping("freeUpdateForm.do")
+	public String updateForm(BoardVo vo, Model model) {
+		vo = communityService.boardOne(vo);
+		model.addAttribute("vo",vo);
+		return "community/free/updateForm";
+	}
+	
+	//글 삭제
+	@RequestMapping("freeDelete.do")
+	public String delete(BoardVo vo, Model model) {
+		int n = communityService.boardDelete(vo);
+		
+		if(n != 0) {		
+			return "redirect:freeList.do?type=free";
+		}else {
+			return null;//에러처리
+		}
+	}
+	
+	//업데이트
+	@RequestMapping("freeUpdate.do")
+	public String update(BoardVo vo, Model model) {
+		int n = communityService.boardUpdate(vo);
+		
+		if(n != 0) {		
+			return "redirect:freeList.do?type=free";
+		}else {
+			return null;//에러처리
+		}
 	}
 }
