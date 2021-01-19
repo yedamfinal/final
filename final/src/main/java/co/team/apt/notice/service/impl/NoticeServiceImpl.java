@@ -27,19 +27,19 @@ public class NoticeServiceImpl implements NoticeService{
 	}
 
 	@Override
-	public int NoticeInsert(BoardVo vo) {
+	public int noticeInsert(BoardVo vo) {
 		// TODO Auto-generated method stub
 		return dao.noticeInsert(vo);
 	}
 
 	@Override
-	public int NoticeUpdate(BoardVo vo) {
+	public int noticeUpdate(BoardVo vo) {
 		// TODO Auto-generated method stub
 		return dao.noticeUpdate(vo);
 	}
 
 	@Override
-	public int NoticeDelete(BoardVo vo) {
+	public int noticeDelete(BoardVo vo) {
 		// TODO Auto-generated method stub
 		return dao.noticeDelete(vo);
 	}

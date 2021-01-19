@@ -34,7 +34,7 @@ public class NoticeController {
 	@RequestMapping("noticeInsert.do")
 	public String insert(Model model, BoardVo vo) {
 		
-		int n = noticeService.NoticeInsert(vo);
+		int n = noticeService.noticeInsert(vo);
 		model.addAttribute("type", vo.getType());
 		
 		if(n != 0) {
@@ -47,7 +47,40 @@ public class NoticeController {
 	//글내용보기
 	@RequestMapping("noticeRead.do")
 	public String read(BoardVo vo, Model model) {
+		vo = noticeService.noticeOne(vo);
 		model.addAttribute("vo", vo);
 		return "notice/read";		
+	}
+	
+	@RequestMapping("noticeUpdateForm.do")
+	public String updateForm(BoardVo vo, Model model) {
+		vo = noticeService.noticeOne(vo);
+		model.addAttribute("vo", vo);
+		return "notice/updateForm";
+	}
+	
+	@RequestMapping("noticeUpdate.do")
+	public String update(Model model, BoardVo vo) {
+		
+		int n = noticeService.noticeUpdate(vo);
+		model.addAttribute("type", vo.getType());
+		
+		if(n != 0) {
+			return "redirect:noticeList.do";	//return "redirect:noticeList.do?type=notice"; type값 리턴
+		}else {
+			return null;//에러처리 필요
+		}
+	}
+	
+	@RequestMapping("noticeDelete.do")
+	public String delete(BoardVo vo, Model model) {
+		int n = noticeService.noticeDelete(vo);		
+				
+		if(n != 0) {
+			return "redirect:noticeList.do?type=notice";
+		}else {
+			return null;//에러처리 필요
+		}		
+		
 	}
 }
