@@ -8,9 +8,9 @@ import co.team.apt.community.vo.BoardVo;
 
 @Service
 public interface NoticeService {
-	public List<BoardVo> noticeList(BoardVo vo);
-	public BoardVo noticeOne(BoardVo vo);
-	public int NoticeInsert(BoardVo vo);
-	public int NoticeUpdate(BoardVo vo);
-	public int NoticeDelete(BoardVo vo);
+	public List<BoardVo> noticeList(BoardVo vo);	//목록
+	public BoardVo noticeOne(BoardVo vo);	//한건 조회
+	public int noticeInsert(BoardVo vo);
+	public int noticeUpdate(BoardVo vo);
+	public int noticeDelete(BoardVo vo);
 }
