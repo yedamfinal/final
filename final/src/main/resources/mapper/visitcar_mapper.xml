@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="co.team.apt.esey.mapper.VisitCarMapper">
+  	<insert id="visitCarInsert" parameterType="vCar">
+  		INSERT INTO VISITCAR (	CARNUM, 
+								PURPOSE, 
+								STARTDATE,
+								ENDDATE,
+								Id
+								)
+	 	                VALUES(
+	 	               			#{carNum},
+	 	               			#{purpose},
+	 	               			#{startDate},
+	 	               			#{endDate},
+	 	               			#{Id})
+  	
+  	</insert>
+  </mapper>

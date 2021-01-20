@@ -5,7 +5,7 @@ import java.sql.Date;
 import lombok.Data;
 
 @Data
-public class ResidentVo implements Person{
+public class ResidentVo {
 	private String id;
 	private String password;
 	private String name;
@@ -16,4 +16,6 @@ public class ResidentVo implements Person{
 	private String dong;
 	private String ho;
 	private String del;
+	private String type;
+	
 }
