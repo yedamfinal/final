@@ -16,18 +16,18 @@
 			<table class="table">
 				<thead>
 					<tr>
-						<th scope="col" style="width: 10%"></th>
-						<th scope="col" style="width: 60%">투표 제목</th>
+						<th scope="col" style="width: 10%">no</th>
+						<th scope="col" style="width: 60%">선거제목</th>
 						<th scope="col" style="width: 15%">투표 시작일</th>
 						<th scope="col" style="width: 15%">투표 종료일</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td>1</td>
-						<td>20년도 주민투표함</td>
-						<td>21/01/01</td>
-						<td>21/1/20</td>
+						<td>"${boardVoteVo.seq}"</td>
+						<td>"${boardVoteVo.title}"</td>
+						<td>"${boardVoteVo.title}"</td>
+						<td>"${boardVoteVo.title}"</td>
 					</tr>
 				</tbody>
 			</table>
