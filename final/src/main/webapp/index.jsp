@@ -165,7 +165,7 @@
                   <p class="loginGreetingt">
                      <span>APT4U 에 오신 것을 환영합니다.</span>
                   </p>
-                  <div class="loginBox">
+                  <form class="loginBox" action="login.do" method="post" >
                      <p>
                         <input type="text" class="login_input_text" id="member_id"
                            value="" placeholder="아이디" style="width: 100%">
@@ -176,9 +176,9 @@
 
                      </p>
 
-                     <button type="button" class="loginBtn" onclick="#"
+                     <button type="submit" class="loginBtn" 
                         style="width: 100%">로그인</button>
-                  </div>
+                  </form>
                   <div class="loginHelp">
                      <ul>
                         <li><span>아이디또는 비밀번호를 잊으셨나요?</span> <a

@@ -24,7 +24,8 @@ public class PersonController {
 		Person person = personService.login(vo);
 		HttpSession session = request.getSession(false);
 		session.setAttribute("person", person);
-		return "sign/loginResult";
+		//return "sign/loginResult";
+		return "redirect:/";
 	}
 	
 	//로그인폼이동
@@ -32,6 +33,7 @@ public class PersonController {
 	public String loginForm(Model model) {
 		
 		return "sign/loginForm";
+		
 	}
 	
 	//로그아웃
@@ -40,6 +42,7 @@ public class PersonController {
 		HttpSession session = request.getSession();
 		//session.removeAttribute("person"); //세션에서 person정보만 삭제
 		session.invalidate();
-		return "sign/loginForm";
+		//return "sign/loginForm";
+		return "redirect:/";
 	}
 }
