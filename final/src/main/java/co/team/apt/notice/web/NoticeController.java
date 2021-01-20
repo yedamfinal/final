@@ -36,8 +36,8 @@ public class NoticeController {
 				vo.setStart(paging.getFirst());
 				vo.setEnd(paging.getLast());		
 				// 전체 건수
-//				paging.setTotalRecord(dao.pagingCount(vo));		//전체레코드건수
-				paging.setTotalRecord(20);	
+				paging.setTotalRecord(dao.pagingCount(vo));		//전체레코드건수
+	
 				model.addAttribute("paging", paging);	//JSP -> <my:paging paging="${paging}" />
 		
 		List<BoardVo> list = noticeService.noticeList(vo);
