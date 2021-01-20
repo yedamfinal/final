@@ -1,5 +1,5 @@
 ﻿<%@ tag language="java" pageEncoding="UTF-8"%>
-<%@ attribute name="paging" type="co.ho.spex.main.common.Paging" %>
+<%@ attribute name="paging" type="co.team.apt.common.Paging" %>
 <%@ attribute name="jsFunc" required="false" type="java.lang.String" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:if test="${empty jsFunc}">
