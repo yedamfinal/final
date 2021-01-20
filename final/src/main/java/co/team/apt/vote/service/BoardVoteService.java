@@ -1,10 +1,10 @@
-package co.team.apt.vote.mapper;
+package co.team.apt.vote.service;
 
 import java.util.List;
 
 import co.team.apt.vote.vo.BoardVoteVo;
 
-public interface VoteMapper {
+public interface BoardVoteService {
 	List<BoardVoteVo> voteList(BoardVoteVo vo);
 	BoardVoteVo selectOne(BoardVoteVo vo);
 	
@@ -12,4 +12,3 @@ public interface VoteMapper {
 	int voteUpdate(BoardVoteVo vo);
 	int voteDelete(BoardVoteVo vo);
 }
-
