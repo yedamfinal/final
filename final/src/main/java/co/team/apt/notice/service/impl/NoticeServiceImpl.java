@@ -9,7 +9,7 @@ import co.team.apt.community.vo.BoardVo;
 import co.team.apt.notice.mapper.NoticeMapper;
 import co.team.apt.notice.service.NoticeService;
 
-@Service
+//@Service
 public class NoticeServiceImpl implements NoticeService{
 
 	@Autowired NoticeMapper dao;

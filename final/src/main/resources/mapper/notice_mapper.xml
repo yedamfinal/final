@@ -4,10 +4,23 @@
 
 <mapper namespace="co.team.apt.notice.mapper.NoticeMapper">
 	<select id="noticeList" resultType="board" parameterType="board">
-		select *
-		from board
-		where type=#{type}
+		select a.* from( select b.*, rownum rn from (
+		SELECT * 
+		FROM BOARD
+		<where>
+			type = 'notice'			
+		</where>
+		order by defno
+	) b ) a where rn between #{start} and #{end}
 	</select>
+	
+	<select id="pagingCount" resultType="int">
+	SELECT count(*) 
+		FROM BOARD
+		<where>
+			type = 'notice'
+		</where>
+	</select>	
 	
 	<select id="noticeOne" resultType="board" parameterType="board">
 		select *
