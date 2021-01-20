@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import co.team.apt.person.service.PersonService;
-import co.team.apt.person.vo.Person;
 import co.team.apt.person.vo.ResidentVo;
 
 @Controller
@@ -21,9 +20,12 @@ public class PersonController {
 	//로그인
 	@RequestMapping("login.do")
 	public String login(Model model, HttpServletRequest request, ResidentVo vo) {
-		Person person = personService.login(vo);
+		ResidentVo person = personService.login(vo);
 		HttpSession session = request.getSession(false);
-		session.setAttribute("person", person);
+		//체크로직
+		if( person != null) {			
+			session.setAttribute("person", person);
+		}
 		//return "sign/loginResult";
 		return "redirect:/";
 	}

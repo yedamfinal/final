@@ -6,26 +6,24 @@
 	<select id="loginCheck" resultType="resident" parameterType="resident">
 		select *
 		from(
-		select id,password,owner from resident
+		select 'r' type, id, name, password,owner from resident
 		union all
-		select id, password,king from manager
+		select 'm' type, id, name, password,king from manager
 		)
 		where id=#{id}
 		and password=#{password}
 	</select>
 	
 	<select id="loginResident" resultType="resident" parameterType="resident">
-		select * 
-		from resident
+		select a.*, 'r' type 
+		from resident a
 		where id=#{id}
-		and password=#{password}
 	</select>
 	
 	<select id="loginManager" resultType="manager" parameterType="resident">
 		select * 
 		from manager
 		where id=#{id}
-		and password=#{password}
 	</select>
 	
 
