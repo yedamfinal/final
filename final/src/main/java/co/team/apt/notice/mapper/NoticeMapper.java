@@ -10,4 +10,5 @@ public interface NoticeMapper {
 	public int noticeInsert(BoardVo vo);
 	public int noticeUpdate(BoardVo vo);
 	public int noticeDelete(BoardVo vo);
+//	public int pagingCount(BoardVo vo);
 }

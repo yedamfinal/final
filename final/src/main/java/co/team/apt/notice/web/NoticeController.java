@@ -7,7 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+
+import co.team.apt.common.Paging;
 import co.team.apt.community.vo.BoardVo;
+import co.team.apt.notice.mapper.NoticeMapper;
 import co.team.apt.notice.service.NoticeService;
 
 @Controller
@@ -15,9 +18,28 @@ public class NoticeController {
 	@Autowired
 	NoticeService noticeService;
 	
+	@Autowired
+	NoticeMapper dao;
+	
 	//공지사항
 	@RequestMapping("noticeList.do")
-	public String noticeList(Model model, BoardVo vo) {
+	public String noticeList(Model model, BoardVo vo, Paging paging) {
+		
+		//페이징처리
+				paging.setPageUnit(10);
+				paging.setPageSize(10);	//페이지넘버 자체를 지정
+				// 페이지번호 파라미터
+				if( paging.getPage() == null) {
+					paging.setPage(1); 
+				}		
+				// 시작/마지막 레코드 번호
+				vo.setStart(paging.getFirst());
+				vo.setEnd(paging.getLast());		
+				// 전체 건수
+//				paging.setTotalRecord(dao.pagingCount(vo));		//전체레코드건수
+				paging.setTotalRecord(20);	
+				model.addAttribute("paging", paging);	//JSP -> <my:paging paging="${paging}" />
+		
 		List<BoardVo> list = noticeService.noticeList(vo);
 		model.addAttribute("noticeList", list);
 		
