@@ -106,7 +106,7 @@
                               aria-haspopup="true" aria-expanded="false"> 공지사항 </a>
                               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                  <a class="dropdown-item" href="#">일정표</a> <a
-                                    class="dropdown-item" href="#">공지사항</a> <a
+                                    class="dropdown-item" href="noticeList.do?type=notice">공지사항</a> <a
                                     class="dropdown-item" href="#">Q&A</a>
                               </div></li>
                            <li class="nav-item dropdown"><a
