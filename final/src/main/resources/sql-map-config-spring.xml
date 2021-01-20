@@ -13,7 +13,7 @@
 		<typeAlias type="co.team.apt.person.vo.ResidentVo" alias="resident"/>
 		<typeAlias type="co.team.apt.community.vo.BcommentVo" alias="bcomment"/>
 		<typeAlias type="co.team.apt.community.vo.BoardVo" alias="board"/>
-		<typeAlias type="co.team.apt.payment.vo.paymentVo" alias="payment"/>
+		<typeAlias type="co.team.apt.payment.vo.PaymentVo" alias="payment"/>
 	</typeAliases>
 
 </configuration>

@@ -20,6 +20,7 @@ public class CommunityController {
 	@RequestMapping("freeList.do")
 	public String freeList(Model model,BoardVo vo) {
 		
+		vo.setType("free");
 		List<BoardVo> list = communityService.boardList(vo);
 		model.addAttribute("boardList", list);
 		
@@ -37,7 +38,7 @@ public class CommunityController {
 	public String insert(Model model,BoardVo vo) {
 		
 		int n = communityService.boardInsert(vo);
-		model.addAttribute("type",vo.getType());
+		
 		
 		if(n != 0) {
 			return "redirect:freeList.do";			
@@ -68,7 +69,7 @@ public class CommunityController {
 		int n = communityService.boardDelete(vo);
 		
 		if(n != 0) {		
-			return "redirect:freeList.do?type=free";
+			return "redirect:freeList.do";
 		}else {
 			return null;//에러처리
 		}
@@ -80,7 +81,7 @@ public class CommunityController {
 		int n = communityService.boardUpdate(vo);
 		
 		if(n != 0) {		
-			return "redirect:freeList.do?type=free";
+			return "redirect:freeList.do";
 		}else {
 			return null;//에러처리
 		}
