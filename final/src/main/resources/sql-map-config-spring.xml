@@ -14,6 +14,8 @@
 		<typeAlias type="co.team.apt.community.vo.BcommentVo" alias="bcomment"/>
 		<typeAlias type="co.team.apt.community.vo.BoardVo" alias="board"/>
 		<typeAlias type="co.team.apt.payment.vo.paymentVo" alias="payment"/>
+		<typeAlias type="co.team.apt.vote.vo.BoardVoteVo" alias="vote"/>
+		<typeAlias type="co.team.apt.vote.vo.CandidateVo" alias="candidate"/>
 	</typeAliases>
 
 </configuration>
