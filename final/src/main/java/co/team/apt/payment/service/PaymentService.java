@@ -1,5 +1,7 @@
 package co.team.apt.payment.service;
 
-public interface PaymentService {
+import co.team.apt.payment.vo.PaymentVo;
 
+public interface PaymentService {
+	public int payInsert(PaymentVo vo);
 }

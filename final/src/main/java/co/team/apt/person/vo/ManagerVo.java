@@ -5,7 +5,7 @@ import java.sql.Date;
 import lombok.Data;
 
 @Data
-public class ManagerVo implements Person{
+public class ManagerVo {
 	private String id;
 	private String password;
 	private String name;
