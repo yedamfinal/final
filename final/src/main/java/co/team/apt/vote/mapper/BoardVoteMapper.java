@@ -5,7 +5,7 @@ import java.util.List;
 import co.team.apt.common.vo.BoardVoteVo;
 
 public interface BoardVoteMapper {
-	List<BoardVoteVo> voteList(BoardVoteVo vo);
+	List<BoardVoteVo> boardVoteList(BoardVoteVo vo);
 	BoardVoteVo selectOne(BoardVoteVo vo);
 	
 	int voteInsert(BoardVoteVo vo);
