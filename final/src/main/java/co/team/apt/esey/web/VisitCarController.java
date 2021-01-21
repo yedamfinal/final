@@ -13,7 +13,7 @@ public class VisitCarController {
 	@Autowired
 	VisitCarService visitCarService;
 	
-	@RequestMapping("visitCarInsert")
+	@RequestMapping("visitCar.do")
 	public String visitCarInsert(VisitCarVo vo) {
 		return "esey/visitCarInsert";
 	}
