@@ -19,7 +19,6 @@
 				<th scope="col">제목</th>
 				<th scope="col">작성자</th>
 				<th scope="col">작성시간</th>
-				<th scope="col">파일첨부</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -29,20 +28,14 @@
 				<th scope="col">${vo.title}</th>
 				<th scope="col">${vo.writer}</th>
 				<th scope="col">${vo.defdate}</th>
-				<c:if test="${vo.deffile eq null }">
-					<th scope="col">N</th>
-				</c:if>
-				<c:if test="${vo.deffile ne null }">
-					<th scope="col">Y</th>
-				</c:if>
 			</tr> 
 			</c:forEach>
 		</tbody>
 		</table>
-		<my:paging paging="${paging}"/>	
+		<my:paging paging="${paging}" jsFunc="goList"/>	
 		<script>
-		function goList{
-			location.href="memberList.do?page=notice";
+		function goList(p){
+			location.href="noticeList.do?page="+p;
 		}
 		
 		</script>
