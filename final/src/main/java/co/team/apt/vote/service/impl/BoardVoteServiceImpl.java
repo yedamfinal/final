@@ -6,19 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import co.team.apt.common.vo.BoardVoteVo;
-import co.team.apt.vote.mapper.VoteMapper;
+import co.team.apt.vote.mapper.BoardVoteMapper;
 import co.team.apt.vote.service.BoardVoteService;
 
-@Service("VoteService")
+@Service("boardVoteService")
 public class BoardVoteServiceImpl implements BoardVoteService {
-	
 	@Autowired
-	private VoteMapper dao;
-
+	private BoardVoteMapper dao;
 	
-	public List<BoardVoteVo> voteList(BoardVoteVo vo) {
+	@Override
+	public List<BoardVoteVo> boardVoteList(BoardVoteVo vo) {
 		// TODO Auto-generated method stub
-		return dao.voteList(vo);
+		return dao.boardVoteList(vo);
 	}
 
 	@Override
@@ -44,7 +43,5 @@ public class BoardVoteServiceImpl implements BoardVoteService {
 		// TODO Auto-generated method stub
 		return dao.voteDelete(vo);
 	}
-	
-	
-		
+
 }

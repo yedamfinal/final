@@ -87,7 +87,7 @@ pageEncoding="UTF-8" %>
 											<a class="dropdown-item" href="#">택배조회</a> <a
 												class="dropdown-item" href="#">관리자 택배관리</a> <a
 												class="dropdown-item" href="#">입주자 차량등록</a> <a
-												class="dropdown-item" href="#">방문자 차량등록</a> <a
+												class="dropdown-item" href="visitList.do">방문자 차량등록</a> <a
 												class="dropdown-item" href="#">관리자 차량관리</a> <a
 												class="dropdown-item" href="#">CCTV</a>
 										</div></li>

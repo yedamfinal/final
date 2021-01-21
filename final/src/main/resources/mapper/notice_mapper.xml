@@ -7,19 +7,34 @@
 		select a.* from( select b.*, rownum rn from (
 		SELECT * 
 		FROM BOARD
-		<where>
-			type = 'notice'			
-		</where>
+		<include refid="searchQuery"/>
 		order by defno
 	) b ) a where rn between #{start} and #{end}
 	</select>
 	
+	<sql id = "searchQuery">
+		<choose>
+			<when test="searchType == 'all' ">
+				where 
+				type = 'notice'
+				and (title like '%' || #{search} || '%'
+				or content like '%' || #{search} || '%'
+				or writer like '%' || #{search} || '%')
+			</when>
+			<otherwise>
+				where
+				type = 'notice'
+			<if test="search != null and search != ''">
+				and ${searchType} like '%' || #{search} || '%'
+			</if>
+			</otherwise>
+		</choose>
+	</sql>
+		
 	<select id="pagingCount" resultType="int">
 	SELECT count(*) 
 		FROM BOARD
-		<where>
-			type = 'notice'
-		</where>
+		<include refid="searchQuery"></include>
 	</select>	
 	
 	<select id="noticeOne" resultType="BoardVo" parameterType="BoardVo">
@@ -32,14 +47,14 @@
 		insert into board(defno,
 					title,
 					content,
-					deffile,
+					<!-- deffile, -->
 					defdate,
 					writer,
 					type)
 		values(def_seq.nextval,
 				#{title},
 				#{content},
-				#{deffile},
+				<!-- #{deffile}, -->
 				sysdate,
 				#{writer},
 				#{type})
