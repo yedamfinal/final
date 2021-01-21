@@ -8,8 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import co.team.apt.common.vo.ResidentVo;
 import co.team.apt.person.service.PersonService;
-import co.team.apt.person.vo.ResidentVo;
 
 @Controller
 public class PersonController {

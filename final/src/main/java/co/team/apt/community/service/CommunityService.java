@@ -2,8 +2,7 @@ package co.team.apt.community.service;
 
 import java.util.List;
 
-
-import co.team.apt.community.vo.BoardVo;
+import co.team.apt.common.vo.BoardVo;
 
 
 public interface CommunityService {

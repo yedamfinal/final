@@ -7,8 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import co.team.apt.common.vo.BoardVo;
 import co.team.apt.community.service.CommunityService;
-import co.team.apt.community.vo.BoardVo;
 
 @Controller
 public class CommunityController {

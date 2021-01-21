@@ -3,7 +3,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="co.team.apt.person.mapper.PersonMapper">
-	<select id="loginCheck" resultType="resident" parameterType="resident">
+	<select id="loginCheck" resultType="ResidentVo" parameterType="ResidentVo">
 		select *
 		from(
 		select 'r' type, id, name, password,owner from resident
@@ -14,13 +14,13 @@
 		and password=#{password}
 	</select>
 	
-	<select id="loginResident" resultType="resident" parameterType="resident">
+	<select id="loginResident" resultType="ResidentVo" parameterType="ResidentVo">
 		select a.*, 'r' type 
 		from resident a
 		where id=#{id}
 	</select>
 	
-	<select id="loginManager" resultType="manager" parameterType="resident">
+	<select id="loginManager" resultType="ManagerVo" parameterType="ResidentVo">
 		select * 
 		from manager
 		where id=#{id}

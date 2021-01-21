@@ -3,7 +3,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="co.team.apt.community.mapper.CommunityMapper">
-	<select id="boardList" resultType="board" parameterType="board">
+	<select id="boardList" resultType="BoardVo" parameterType="BoardVo">
 		
 		select b.*  from(  select a.*, rownum rn from(  
                 select *
@@ -22,13 +22,13 @@
         ) a ) b where rn between #{start} and #{end}
 	</select>
 	
-	<select id="boardOne" resultType="board" parameterType="board">
+	<select id="boardOne" resultType="BoardVo" parameterType="BoardVo">
 		select *
 		from board
 		where defno=#{defno}
 	</select>
 	
-	<insert id="boardInsert" parameterType="board">
+	<insert id="boardInsert" parameterType="BoardVo">
 		insert into board(defno,
 					title,
 					content,
@@ -45,7 +45,7 @@
 				#{type})
 	</insert>
 	
-	<update id="boardUpdate" parameterType="board">
+	<update id="boardUpdate" parameterType="BoardVo">
 		update board
 		set title=#{title},
 			content=#{content},
@@ -54,7 +54,7 @@
 		where defno = #{defno}
 	</update>
 
-	<delete id="boardDelete" parameterType="board">
+	<delete id="boardDelete" parameterType="BoardVo">
 		delete from board
 		where defno = #{defno}
 	</delete>

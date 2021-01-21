@@ -5,8 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import co.team.apt.common.vo.PaymentVo;
 import co.team.apt.payment.service.PaymentService;
-import co.team.apt.payment.vo.PaymentVo;
 
 @Controller
 public class PaymentController {

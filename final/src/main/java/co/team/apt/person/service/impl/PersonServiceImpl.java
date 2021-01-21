@@ -5,10 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import co.team.apt.common.vo.ManagerVo;
+import co.team.apt.common.vo.ResidentVo;
 import co.team.apt.person.mapper.PersonMapper;
 import co.team.apt.person.service.PersonService;
-import co.team.apt.person.vo.ManagerVo;
-import co.team.apt.person.vo.ResidentVo;
 
 @Service
 public class PersonServiceImpl implements PersonService {

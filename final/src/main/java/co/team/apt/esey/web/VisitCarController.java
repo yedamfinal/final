@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import co.team.apt.common.vo.VisitCarVo;
 import co.team.apt.esey.service.VisitCarService;
-import co.team.apt.esey.vo.VisitCarVo;
 
 @Controller
 public class VisitCarController {

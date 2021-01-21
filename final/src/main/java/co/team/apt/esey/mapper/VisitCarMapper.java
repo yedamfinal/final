@@ -1,6 +1,6 @@
 package co.team.apt.esey.mapper;
 
-import co.team.apt.esey.vo.VisitCarVo;
+import co.team.apt.common.vo.VisitCarVo;
 
 public interface VisitCarMapper {
 	

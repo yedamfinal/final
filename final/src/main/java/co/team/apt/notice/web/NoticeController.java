@@ -7,8 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import co.team.apt.common.vo.BoardVo;
 import co.team.apt.common.vo.Paging;
-import co.team.apt.community.vo.BoardVo;
 import co.team.apt.notice.mapper.NoticeMapper;
 import co.team.apt.notice.service.NoticeService;
 

@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import co.team.apt.community.vo.BoardVo;
+import co.team.apt.common.vo.BoardVo;
 import co.team.apt.notice.mapper.NoticeMapper;
 import co.team.apt.notice.service.NoticeService;
 
