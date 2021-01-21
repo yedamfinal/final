@@ -16,6 +16,7 @@
 		<typeAlias type="co.team.apt.payment.vo.PaymentVo" alias="payment"/>
 		<typeAlias type="co.team.apt.vote.vo.BoardVoteVo" alias="vote"/>
 		<typeAlias type="co.team.apt.vote.vo.CandidateVo" alias="candidate"/>
+		<typeAlias type="co.team.apt.esey.vo.VisitCarVo" alias="vCar"/>
 	</typeAliases>
 
 </configuration>
