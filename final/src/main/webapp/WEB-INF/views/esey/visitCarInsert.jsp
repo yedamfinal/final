@@ -13,11 +13,8 @@
         </style>
         <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
         <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-        <!-- datepicker 한국어로 -->
-        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/i18n/datepicker-ko.js"></script>
         <script>
         $(function() {
-            
             
             //오늘 날짜를 출력
             $("#today").text(new Date().toLocaleDateString());
@@ -69,37 +66,28 @@
   <fieldset >
     <legend>방문자 차량등록</legend>
     <div class="form-group row">
-      <label for="staticEmail" class="">동</label>
+      <label>동</label>
         <input type="text" class="form-control-plaintext" id="dong" placeholder="Ex)101">
       </div>
       <div>
-    <label for="staticEmail" class="">호수</label>
+    <label>호수</label>
         <input type="text" class="form-control-plaintext" id="ho" placeholder="Ex)1015">
       </div> 
-   
     <div class="form-group">
-      <label for="exampleInputEmail1">차량번호</label>
-      <input type="email" class="form-control" id="carNum" aria-describedby="emailHelp" placeholder="Ex)24거 2567">
-      <small id="emailHelp" class="form-text text-muted">차량번호를 정확히 등록하세요 ! </small>
+      <label>차량번호</label>
+      <input type="text" class="form-control" id="carNum" placeholder="Ex)24거 2567">
+      <small>차량번호를 정확히 등록하세요 ! </small>
     </div>
      <div class="form-group">
           <label for="startDate">시작일</label>
           <input type="text" name="startDate" id="startDate">
-          ~
           <label for="endDate">종료일</label>
           <input type="text" name="endDate" id="endDate">
        </div>   
     <div class="form-group">
-      <label for="exampleSelect1">방문차량수</label>
-      <select class="form-control" id="exampleSe">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>      
-      </select>
     </div>
     <div class="form-group">
-      <label for="exampleTextarea">방문목적</label>
+      <label >방문목적</label>
       <div>
       <textarea class="form-control" id="exampleTextarea" cols="100" rows="3"></textarea>
       </div>

@@ -3,12 +3,20 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="co.team.apt.esey.mapper.VisitCarMapper">
+  
+  
+  	<select id="visitList" resultType="VisitCarVo" parameterType="VisitCarVo">
+		SELECT * FROM VISITCAR
+	</select>
+  	
+  	
+  	
   	<insert id="visitCarInsert" parameterType="VisitCarVo" >
   		INSERT INTO VISITCAR (	CARNUM, 
 								PURPOSE, 
 								STARTDATE,
 								ENDDATE,
-								Id
+								ID
 								)
 	 	                VALUES(
 	 	               			#{carNum},
