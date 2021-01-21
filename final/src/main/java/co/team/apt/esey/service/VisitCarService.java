@@ -1,11 +1,15 @@
 package co.team.apt.esey.service;
 
 
+import java.util.List;
+
 import co.team.apt.common.vo.VisitCarVo;
 
 
 public interface VisitCarService {
 		
-	public void visitCarInsert(VisitCarVo vo);
+	public List<VisitCarVo> visitList(VisitCarVo vo);
+	public String visitCarInsert(VisitCarVo vo);
+	
 		
 }
