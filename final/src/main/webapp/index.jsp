@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Martine</title>
+<title>APT 4 U 홈페이지입니다.</title>
 <link rel="icon" href="resources/img/favicon.png">
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="resources/css/bootstrap.min.css">
@@ -132,7 +132,7 @@
 										</div></li>
 									<li class="nav-item"><a class="nav-link" href="#">관리비조회</a>
 									</li>
-									<li class="nav-item"><a class="nav-link" href="#">전자투표</a>
+									<li class="nav-item"><a class="nav-link" href="boardVoteList.do">전자투표</a>
 									</li>
 									<li class="nav-item dropdown"><a
 										class="nav-link dropdown-toggle" href="blog.html"

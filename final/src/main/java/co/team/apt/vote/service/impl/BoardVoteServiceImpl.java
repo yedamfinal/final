@@ -2,49 +2,39 @@ package co.team.apt.vote.service.impl;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import co.team.apt.common.vo.BoardVoteVo;
-import co.team.apt.vote.mapper.VoteMapper;
 import co.team.apt.vote.service.BoardVoteService;
 
-@Service("VoteService")
 public class BoardVoteServiceImpl implements BoardVoteService {
-	
-	@Autowired
-	private VoteMapper dao;
 
-	
-	public List<BoardVoteVo> voteList(BoardVoteVo vo) {
+	@Override
+	public List<BoardVoteVo> boardVoteList(BoardVoteVo vo) {
 		// TODO Auto-generated method stub
-		return dao.voteList(vo);
+		return null;
 	}
 
 	@Override
 	public BoardVoteVo selectOne(BoardVoteVo vo) {
 		// TODO Auto-generated method stub
-		return dao.selectOne(vo);
+		return null;
 	}
 
 	@Override
 	public int voteInsert(BoardVoteVo vo) {
 		// TODO Auto-generated method stub
-		return dao.voteInsert(vo);
+		return 0;
 	}
 
 	@Override
 	public int voteUpdate(BoardVoteVo vo) {
 		// TODO Auto-generated method stub
-		return dao.voteUpdate(vo);
+		return 0;
 	}
 
 	@Override
 	public int voteDelete(BoardVoteVo vo) {
 		// TODO Auto-generated method stub
-		return dao.voteDelete(vo);
+		return 0;
 	}
-	
-	
-		
+
 }
