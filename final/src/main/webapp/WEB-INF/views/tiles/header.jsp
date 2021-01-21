@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="sub_menu">
 			<div class="container">
 				<div class="row">
@@ -15,11 +16,9 @@ pageEncoding="UTF-8" %>
 								<span><a href="#">Login </a></span>
 							</c:if>
 							<c:if test="${not empty person }">
-							
-							<c:if test="${person.type == 'm'}">
-								<span><a href="#">Register </a></span>
-							</c:if>
-							
+								<c:if test="${person.type == 'm'}">
+									<span><a href="#">Register </a></span>
+								</c:if>
 								<span><a href="logout.do">Logout</a></span>
 							</c:if>
 							

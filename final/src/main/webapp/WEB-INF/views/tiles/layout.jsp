@@ -60,19 +60,14 @@
 </head>
 
 <body>
-	<div class="container">
-		<header class="main_menu">
-			<tiles:insertAttribute name="header" />
-		</header>
-		<nav>
-		</nav>
-		<article>
-			<tiles:insertAttribute name="content"/>
-		</article>
-		<footer>
-			copyright
-		</footer>
-		
-	</div>
+	<header class="main_menu">
+		<tiles:insertAttribute name="header" />
+	</header>
+	<article>
+		<tiles:insertAttribute name="content"/>
+	</article>
+	<footer class="footer-area">
+		<tiles:insertAttribute name="footer" />
+	</footer>
 </body>
 </html>
