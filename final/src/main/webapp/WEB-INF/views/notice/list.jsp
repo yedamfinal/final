@@ -41,8 +41,8 @@
 		</table>
 		<my:paging paging="${paging}"/>	
 		<script>
-		function goList(p){
-			location.href="memberList.do?page="+p;
+		function goList{
+			location.href="memberList.do?page=notice";
 		}
 		
 		</script>

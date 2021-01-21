@@ -2,7 +2,7 @@ package co.team.apt.notice.mapper;
 
 import java.util.List;
 
-import co.team.apt.community.vo.BoardVo;
+import co.team.apt.common.vo.BoardVo;
 
 public interface NoticeMapper {
 	public List<BoardVo> noticeList(BoardVo vo);

@@ -1,4 +1,4 @@
-package co.team.apt.vote.vo;
+package co.team.apt.common.vo;
 
 public class CandidateVo {
 

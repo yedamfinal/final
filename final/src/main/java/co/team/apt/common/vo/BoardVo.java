@@ -1,4 +1,4 @@
-package co.team.apt.community.vo;
+package co.team.apt.common.vo;
 
 import java.sql.Date;
 

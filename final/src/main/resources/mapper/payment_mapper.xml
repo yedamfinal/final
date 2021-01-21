@@ -4,7 +4,7 @@
 
 <mapper namespace="co.team.apt.payment.mapper.PaymentMapper">
 	<!-- 관리인이 관리비 등록 개인 -->
-	<insert id="insertPayment" parameterType="payment">
+	<insert id="insertPayment" parameterType="PaymentVo">
 		insert into payment(
 			payid,
 			id,
@@ -47,7 +47,7 @@
 		)
 	</insert>
 	<!-- 관리인이 관리비 등록 공통 -->
-	<insert id="insertPayPublic" parameterType="payment">
+	<insert id="insertPayPublic" parameterType="PaymentVo">
 		insert into paypublic(
 			paymonth,
 			people

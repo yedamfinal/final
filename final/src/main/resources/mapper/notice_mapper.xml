@@ -3,7 +3,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="co.team.apt.notice.mapper.NoticeMapper">
-	<select id="noticeList" resultType="board" parameterType="board">
+	<select id="noticeList" resultType="BoardVo" parameterType="BoardVo">
 		select a.* from( select b.*, rownum rn from (
 		SELECT * 
 		FROM BOARD
@@ -22,13 +22,13 @@
 		</where>
 	</select>	
 	
-	<select id="noticeOne" resultType="board" parameterType="board">
+	<select id="noticeOne" resultType="BoardVo" parameterType="BoardVo">
 		select *
 		from board
 		where defno=#{defno}
 	</select>
 	
-	<insert id="noticeInsert" parameterType="board">
+	<insert id="noticeInsert" parameterType="BoardVo">
 		insert into board(defno,
 					title,
 					content,
@@ -45,7 +45,7 @@
 				#{type})
 	</insert>
 	
-	<update id="noticeUpdate" parameterType="board">
+	<update id="noticeUpdate" parameterType="BoardVo">
 		update board
 		set title=#{title},
 			content=#{content},
@@ -53,7 +53,7 @@
 		where defno = #{defno}
 	</update>
 
-	<delete id="noticeDelete" parameterType="board">
+	<delete id="noticeDelete" parameterType="BoardVo">
 		delete from board
 		where defno = #{defno}
 	</delete>

@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import co.team.apt.common.vo.BoardVoteVo;
 import co.team.apt.vote.mapper.VoteMapper;
 import co.team.apt.vote.service.BoardVoteService;
-import co.team.apt.vote.vo.BoardVoteVo;
 
 @Service("VoteService")
 public class BoardVoteServiceImpl implements BoardVoteService {

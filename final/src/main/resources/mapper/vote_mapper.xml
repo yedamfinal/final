@@ -5,19 +5,19 @@
 <mapper namespace="co.team.apt.vote.mapper.VoteMapper">
 	
 	
-	<select id="voteList" resultType="vote" parameterType="vote">
+	<select id="voteList" resultType="BoardVoteVo" parameterType="BoardVoteVo">
 		select *
 		from boardvote
 		order by seq
 	</select>
 	
-	<select id="selectOne" resultType="vote" parameterType="vote">
+	<select id="selectOne" resultType="BoardVoteVo" parameterType="BoardVoteVo">
 		select *
 		from boardvote
 		where seq=#{seq}
 	</select>
 	
-	<insert id="voteInsert" parameterType="vote">
+	<insert id="voteInsert" parameterType="BoardVoteVo">
 		insert into boardvote(
 								seq,
 								title,
@@ -30,7 +30,7 @@
 				#{enddate} )
 	</insert>
 	
-	<update id="voteUpdate" parameterType="vote">
+	<update id="voteUpdate" parameterType="BoardVoteVo">
 		update board
 		set title=#{title},
 			content=#{content},
@@ -39,7 +39,7 @@
 		where seq = #{seq}
 	</update>
 
-	<delete id="voteDelete" parameterType="vote">
+	<delete id="voteDelete" parameterType="BoardVoteVo">
 		delete from board
 		where seq = #{seq}
 	</delete>

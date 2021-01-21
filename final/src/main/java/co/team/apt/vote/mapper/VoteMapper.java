@@ -2,7 +2,7 @@ package co.team.apt.vote.mapper;
 
 import java.util.List;
 
-import co.team.apt.vote.vo.BoardVoteVo;
+import co.team.apt.common.vo.BoardVoteVo;
 
 public interface VoteMapper {
 	List<BoardVoteVo> voteList(BoardVoteVo vo);

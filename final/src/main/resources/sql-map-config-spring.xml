@@ -9,13 +9,7 @@
 	</settings>
 	<typeAliases>
 		<typeAlias type="co.team.apt.emp.EmpVO" alias="emp"/> 
-		<typeAlias type="co.team.apt.person.vo.ManagerVo" alias="manager"/>
-		<typeAlias type="co.team.apt.person.vo.ResidentVo" alias="resident"/>
-		<typeAlias type="co.team.apt.community.vo.BcommentVo" alias="bcomment"/>
-		<typeAlias type="co.team.apt.community.vo.BoardVo" alias="board"/>
-		<typeAlias type="co.team.apt.payment.vo.PaymentVo" alias="payment"/>
-		<typeAlias type="co.team.apt.vote.vo.BoardVoteVo" alias="vote"/>
-		<typeAlias type="co.team.apt.vote.vo.CandidateVo" alias="candidate"/>
+		<package name="co.team.apt.common.vo"/> 
 	</typeAliases>
 
 </configuration>

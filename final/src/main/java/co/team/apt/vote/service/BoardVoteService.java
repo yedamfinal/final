@@ -2,7 +2,7 @@ package co.team.apt.vote.service;
 
 import java.util.List;
 
-import co.team.apt.vote.vo.BoardVoteVo;
+import co.team.apt.common.vo.BoardVoteVo;
 
 public interface BoardVoteService {
 	List<BoardVoteVo> voteList(BoardVoteVo vo);
