@@ -57,7 +57,7 @@
 <script src="resources/js/custom.js"></script>
 </head>
 <body>
-<section class="top_place section_padding">
+<div class="top_place section_padding">
 	<div class="container">
 			<div class="row">
 				<div class="col-sm-8">
@@ -210,6 +210,6 @@
 				</div>
 			</div>
 		</div>
-</section>
+</div>
 </body>
 </html>

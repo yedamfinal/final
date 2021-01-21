@@ -27,7 +27,7 @@ public class PersonController {
 			session.setAttribute("person", person);
 		}
 		//return "sign/loginResult";
-		return "redirect:/";
+		return "redirect:/home";
 	}
 	
 	//로그인폼이동
@@ -45,6 +45,6 @@ public class PersonController {
 		//session.removeAttribute("person"); //세션에서 person정보만 삭제
 		session.invalidate();
 		//return "sign/loginForm";
-		return "redirect:/";
+		return "redirect:/home";
 	}
 }
