@@ -25,7 +25,7 @@ public class PaymentVo {
 	private String guard;
 	private String disinfection;
 	private String elevator;
-	private String pElectic;
+	private String pElectric;
 	private String pWater;
 	private String repair;
 	private String lRepair;

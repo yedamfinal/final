@@ -3,6 +3,118 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="co.team.apt.payment.mapper.PaymentMapper">
-	<select id="insertPayment" resultType="payment"></select>
-	<select id="insertPayPublic"></select>
+	<!-- 관리인이 관리비 등록 개인 -->
+	<insert id="insertPayment" parameterType="payment">
+		insert into payment(
+			payid,
+			id,
+			paymonth
+			<if test="heating != null and heating != ''">
+				,heating
+			</if>
+			<if test="water != null and water != ''">
+				,water
+			</if>
+			<if test="hatWater != null and hatWater != ''">
+				,hatWater
+			</if>
+			<if test="electric != null and electric != ''">
+				,electric
+			</if>
+			<if test="etc != null and etc != ''">
+				,etc
+			</if>
+			)
+		values(
+			payment_seq.nextval,
+			#{id},
+			#{payMonth}
+			<if test="heating != null and heating != ''">
+				,#{heating}
+			</if>
+			<if test="water != null and water != ''">
+				,#{water}
+			</if>
+			<if test="hatWater != null and hatWater != ''">
+				,#{hatWater}
+			</if>
+			<if test="electric != null and electric != ''">
+				,#{electric}
+			</if>
+			<if test="etc != null and etc != ''">
+				,#{etc}
+			</if>
+		)
+	</insert>
+	<!-- 관리인이 관리비 등록 공통 -->
+	<insert id="insertPayPublic" parameterType="payment">
+		insert into paypublic(
+			paymonth,
+			people
+			<if test="nomal != null and nomal != ''">
+				,nomal
+			</if>
+			<if test="clean != null and clean != ''">
+				,clean
+			</if>
+			<if test="guard != null and guard != ''">
+				,guard
+			</if>
+			<if test="disinfection != null and disinfection != ''">
+				,disinfection
+			</if>
+			<if test="elevator != null and elevator != ''">
+				,elevator
+			</if>
+			<if test="pElectric != null and pElectric != ''">
+				,pElectric
+			</if>
+			<if test="pWater != null and pWater != ''">
+				,pWater
+			</if>
+			<if test="repair != null and repair != ''">
+				,repair
+			</if>
+			<if test="lRepair != null and lRepair != ''">
+				,lRepair
+			</if>
+			<if test="representative != null and representative != ''">
+				,representative
+			</if>
+			)
+		values(
+			#{payMonth},
+			(select count(*) from resident where del = 0) <!-- 저장시점 주민숫자 -->
+			<if test="nomal != null and nomal != ''">
+				,#{nomal}
+			</if>
+			<if test="clean != null and clean != ''">
+				,#{clean}
+			</if>
+			<if test="guard != null and guard != ''">
+				,#{guard}
+			</if>
+			<if test="disinfection != null and disinfection != ''">
+				,#{disinfection}
+			</if>
+			<if test="elevator != null and elevator != ''">
+				,#{elevator}
+			</if>
+			<if test="pElectric != null and pElectric != ''">
+				,#{pElectric}
+			</if>
+			<if test="pWater != null and pWater != ''">
+				,#{pWater}
+			</if>
+			<if test="repair != null and repair != ''">
+				,#{repair}
+			</if>
+			<if test="lRepair != null and lRepair != ''">
+				,#{lRepair}
+			</if>
+			<if test="representative != null and representative != ''">
+				,#{representative}
+			</if>
+		)
+	</insert>
 </mapper>
