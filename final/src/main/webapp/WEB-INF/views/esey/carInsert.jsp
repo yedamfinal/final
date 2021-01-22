@@ -18,18 +18,18 @@
           <form action="userJoinAction.reservation" method="POST" class="pt-3" style="max-width:720px;">
 		    <div>
 		   		<label>동</label>
-		   		<input type="text" class="form-control-plaintext" id="dong" placeholder="Ex)101">
+		   		<input type="text" class="form-control-plaintext" id="dong" value ="${person.dong}">
 		    </div>
 		    <div>
 		      <label>호수</label>
-		     <input type="text" class="form-control-plaintext" id="ho" placeholder="Ex)1015">
+		     <input type="text" class="form-control-plaintext" id="ho" value ="${person.ho}">
 		     </div> 
             <div class="form-group">
               <label>차량번호</label>
               <input name="carNum" type="text" id="carNum" placeholder="차량번호를 입력하세요.">
             </div>
             <div class="form-group">
-              <label>성명</label>
+              <label>차종</label>
               <select class="form-control" id="carType">
               		<option>소형</option>
         			<option>중형</option>

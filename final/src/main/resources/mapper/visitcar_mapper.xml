@@ -12,18 +12,24 @@
   	
   	
   	<insert id="visitCarInsert" parameterType="VisitCarVo" >
-  		INSERT INTO VISITCAR (	CARNUM, 
+  		INSERT INTO VISITCAR (
 								PURPOSE, 
 								STARTDATE,
 								ENDDATE,
-								ID
+								ID,
+								CARNUM
 								)
 	 	                VALUES(
-	 	               			#{carNum},
 	 	               			#{purpose},
 	 	               			#{startDate},
 	 	               			#{endDate},
-	 	               			#{Id})
+	 	               			#{Id},
+	 	               			#{carNum})
   	
   	</insert>
+  	
+
   </mapper>
+  
+  
+  

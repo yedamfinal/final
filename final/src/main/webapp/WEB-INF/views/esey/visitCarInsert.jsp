@@ -67,9 +67,9 @@
     <legend>방문자 차량등록</legend>
     <div class="form-group row">
       <label>동</label>
-        <input type="text" class="form-control-plaintext" id="dong" placeholder="Ex)101">
-    <label>호수</label>
-        <input type="text" class="form-control-plaintext" id="ho" placeholder="Ex)1015">
+        <input type="text" class="form-control-plaintext" id="dong" value = "${person.dong}">
+      <label>호수</label>
+        <input type="text" class="form-control-plaintext" id="ho" value = "${person.ho}">
      
       <label>차량번호</label>
       <input type="text" class="form-control" id="carNum" placeholder="Ex)24거 2567">
@@ -86,10 +86,11 @@
     <div class="form-group">
       <label >방문목적</label>
       <div>
-      <textarea class="form-control" id="exampleTextarea" cols="100" rows="3"></textarea>
+      <textarea class="form-control" id="purpose" name="purpose" cols="100" rows="3"></textarea>
       </div>
     </div>
     </fieldset>
+    <button type="submit" >등록</button>
 </form>
 </div>
 </body>
