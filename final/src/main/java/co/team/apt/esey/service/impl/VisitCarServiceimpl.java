@@ -14,7 +14,7 @@ public class VisitCarServiceimpl implements VisitCarService {
 	@Autowired VisitCarMapper dao;
 
 	@Override
-	public String visitCarInsert(VisitCarVo vo) {
+	public int visitCarInsert(VisitCarVo vo) {
 		return dao.visitCarInsert(vo);
 		// TODO Auto-generated method stub
 		
@@ -24,7 +24,6 @@ public class VisitCarServiceimpl implements VisitCarService {
 		// TODO Auto-generated method stub
 		return dao.visitList(vo);
 	}
-	
-	
 
 }
+
