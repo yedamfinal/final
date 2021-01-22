@@ -10,6 +10,7 @@ pageEncoding="UTF-8" %>
 
 						</div>
 					</div>
+					
 					<div class="col-lg-6 col-sm-12 col-md-6">
 						<div class="sub_menu_social_icon">
 							<c:if test="${empty person  }">
