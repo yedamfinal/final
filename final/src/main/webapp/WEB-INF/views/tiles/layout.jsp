@@ -56,7 +56,11 @@
 <script src="resources/js/contact.js"></script>
 <!-- custom js -->
 <script src="resources/js/custom.js"></script>
-
+<style>
+article{
+	min-height: 500px;
+}
+</style>
 </head>
 
 <body>

@@ -117,4 +117,24 @@
 			</if>
 		)
 	</insert>
+	<select id="payTotal" resultType="PaymentVo" parameterType="PaymentVo">
+		select to_char(a.paymonth,'mm') paymonth, 
+			   b.heating+b.water+b.hatwater+b.electric+b.etc+(a.nomal+a.clean+a.guard+a.disinfection+a.elevator+a.pelectric+a.pwater+a.repair+a.lrepair+a.representative)/people cost, 
+			   a.nomal/people nomal,
+			   a.clean/people clean,
+			   a.guard/people guard,
+			   a.disinfection/people disinfection,
+			   a.elevator/people elevator,
+			   a.pelectric/people pelectric,
+			   a.pwater/people pwater,
+			   a.repair/people repair,
+			   a.lrepair/people lrepair,
+			   a.representative/people representative, 
+			   b.*
+		from paypublic a, (select * 
+						   from payment 
+						   where id='test' 
+						   and to_char(paymonth,'yy-mm')=#{payMonth}) b
+		where to_char(a.paymonth,'yy-mm') = to_char(b.paymonth,'yy-mm')
+	</select>
 </mapper>

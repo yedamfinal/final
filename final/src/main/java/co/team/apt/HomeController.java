@@ -24,14 +24,7 @@ public class HomeController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
 
-		model.addAttribute("serverTime", new Date());
-
-		return "home";
-	}
 
 	@RequestMapping("/ajaxTest.do")
 	public @ResponseBody List<String> test() {

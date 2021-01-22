@@ -16,6 +16,11 @@ public class PaymentController {
 	
 	@RequestMapping("payRead.do")
 	public String payRead(Model model, PaymentVo vo) {
+		
+		vo = paymentService.payRead(vo);
+		
+		model.addAttribute("pay",vo);
+		
 		return "payment/read";
 	}
 	
@@ -30,5 +35,11 @@ public class PaymentController {
 		paymentService.payInsert(vo);
 		
 		return "payment/test";
+	}
+	
+	@RequestMapping("payTotal.do")
+	public String payTotal(Model model, PaymentVo vo) {
+		
+		return "";
 	}
 }
