@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
         <style>
             /*datepicker에서 사용한 이미지 버튼 style적용*/
@@ -58,26 +59,22 @@
             });
         });
     </script>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 </head>
 <body>
+<div class="container">
 <form>
   <fieldset >
     <legend>방문자 차량등록</legend>
     <div class="form-group row">
       <label>동</label>
         <input type="text" class="form-control-plaintext" id="dong" placeholder="Ex)101">
-      </div>
-      <div>
     <label>호수</label>
         <input type="text" class="form-control-plaintext" id="ho" placeholder="Ex)1015">
-      </div> 
-    <div class="form-group">
+     
       <label>차량번호</label>
       <input type="text" class="form-control" id="carNum" placeholder="Ex)24거 2567">
       <small>차량번호를 정확히 등록하세요 ! </small>
-    </div>
+     
      <div class="form-group">
           <label for="startDate">시작일</label>
           <input type="text" name="startDate" id="startDate">
@@ -94,5 +91,6 @@
     </div>
     </fieldset>
 </form>
+</div>
 </body>
 </html>
