@@ -3,6 +3,7 @@ package co.team.apt.payment.service.impl;
 import java.text.SimpleDateFormat;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import co.team.apt.common.vo.PaymentVo;
@@ -35,5 +36,6 @@ public class PaymentServiceImpl implements PaymentService{
 		
 		return vo;
 	}
+	
 
 }
