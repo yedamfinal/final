@@ -37,7 +37,9 @@ public class NoticeController {
 				// 전체 건수
 				paging.setTotalRecord(dao.pagingCount(vo));		//전체레코드건수
 	
+	
 				model.addAttribute("paging", paging);	//JSP -> <my:paging paging="${paging}" />
+				
 		
 		List<BoardVo> list = noticeService.noticeList(vo);
 		model.addAttribute("noticeList", list);

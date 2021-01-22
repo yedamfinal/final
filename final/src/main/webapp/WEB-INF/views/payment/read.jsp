@@ -37,12 +37,13 @@
 </style>
 </head>
 <body>
+${pay }
 <div class="container" >
     <div class="top row">
         <div class="col-sm row">
         	<div class="col-4 center">
         		<span class="border border-primary rounded-circle mon center">
-        			07
+        			${pay.payMonth }
         		</span>
         	</div>
         	<div class="col-8 center">
@@ -57,7 +58,7 @@
                         납기내
                     </div>
                     <div class="card-body">
-                        115,120원
+                        ${pay.cost }원
                     </div>
                 </div>
                 <div class="card">
@@ -65,7 +66,7 @@
                         납기후
                     </div>
                     <div class="card-body">
-                       117,420원
+                       ${pay.cost*1.02 - (pay.cost * 1.02)%1 }원
                     </div>
                 </div>
             </div>
@@ -89,7 +90,7 @@
 			  <tbody>
 			    <tr>
 			      <th scope="row">당월부과액</th>
-			      <td>115,120</td>
+			      <td>${pay.cost }</td>
 			    </tr>
 			    <tr>
 			      <th scope="row">미납액</th>
@@ -101,15 +102,15 @@
 			    </tr>
 			    <tr>
 			      <th scope="row">납기내 금액</th>
-			      <td>115,120</td>
+			      <td>${pay.cost }</td>
 			    </tr>
 			    <tr>
 			      <th scope="row">납기후 연체료</th>
-			      <td>2,300</td>
+			      <td>${pay.cost * 0.02 - (pay.cost * 0.02)%1 }</td>
 			    </tr>
 			    <tr>
 			      <th scope="row">납기후 금액</th>
-			      <td>117,420</td>
+			      <td>${pay.cost * 1.02 - (pay.cost * 1.02)%1 }</td>
 			    </tr>
 			  </tbody>
 			</table>
@@ -139,38 +140,73 @@
         </button>
       </div>
       <div class="modal-body">
-        <table class="table">
+         <table class="table">
 			  <tbody>
 			    <tr>
-			      <th scope="row">당월부과액</th>
-			      <td>115,120</td>
+			      <th scope="row">일반관리비</th>
+			      <td>${pay.nomal }</td>
 			    </tr>
 			    <tr>
-			      <th scope="row">미납액</th>
-			      <td>0</td>
+			      <th scope="row">청소비</th>
+			      <td>${pay.clean }</td>
 			    </tr>
 			    <tr>
-			      <th scope="row">연체료</th>
-			      <td>0</td>
+			      <th scope="row">경비비</th>
+			      <td>${pay.guard }</td>
 			    </tr>
 			    <tr>
-			      <th scope="row">납기내 금액</th>
-			      <td>115,120</td>
+			      <th scope="row">소독비</th>
+			      <td>${pay.disinfection }</td>
 			    </tr>
 			    <tr>
-			      <th scope="row">납기후 연체료</th>
-			      <td>2,300</td>
+			      <th scope="row">승강기사용료</th>
+			      <td>${pay.elevator }</td>
 			    </tr>
 			    <tr>
-			      <th scope="row">납기후 금액</th>
-			      <td>117,420</td>
+			      <th scope="row">공용전기세</th>
+			      <td>${pay.PElectric }</td>
+			    </tr>
+			    <tr>
+			      <th scope="row">공용수도세</th>
+			      <td>${pay.PWater }</td>
+			    </tr>
+			    <tr>
+			      <th scope="row">수선 유지비</th>
+			      <td>${pay.repair }</td>
+			    </tr>
+			    <tr>
+			      <th scope="row">장기수선 충당금</th>
+			      <td>${pay.LRepair }</td>
+			    </tr>
+			    <tr>
+			      <th scope="row">입주자 대표회의 운영비</th>
+			      <td>${pay.representative }</td>
+			    </tr>
+			    <tr>
+			      <th scope="row">난방비</th>
+			      <td>${pay.heating }</td>
+			    </tr>
+			    <tr>
+			      <th scope="row">수도세</th>
+			      <td>${pay.water }</td>
+			    </tr>
+			    <tr>
+			      <th scope="row">급탕비</th>
+			      <td>${pay.hatWater }</td>
+			    </tr>
+			    <tr>
+			      <th scope="row">전기세</th>
+			      <td>${pay.electric }</td>
+			    </tr>
+			    <tr>
+			      <th scope="row">기타</th>
+			      <td>${pay.etc }</td>
 			    </tr>
 			  </tbody>
-			</table>
+			</table> 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-        <button type="button" class="btn btn-primary">Understood</button>
       </div>
     </div>
   </div>

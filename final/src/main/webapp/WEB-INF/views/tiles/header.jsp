@@ -33,7 +33,7 @@ pageEncoding="UTF-8" %>
 					<div class="col-lg-12">
 						<nav
 							class="navbar navbar-expand-lg navbar-light justify-content-between">
-							<a class="navbar-brand" href="index.jsp"> <img
+							<a class="navbar-brand" href="home"> <img
 								src="resources/img/apart.JPG" alt="logo" style="width: 100px">
 							</a>
 							<button class="navbar-toggler" type="button"

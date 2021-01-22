@@ -8,7 +8,7 @@
 <title>선거투표목록</title>
 </head>
 <body>
-	<div align="center">
+	<div class="container">
 		<div>
 			<h1>선거 투표</h1>
 		</div>
@@ -24,15 +24,21 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td>"${boardVoteVo.seq}"</td>
-						<td>"${boardVoteVo.title}"</td>
-						<td>"${boardVoteVo.title}"</td>
-						<td>"${boardVoteVo.title}"</td>
+						<td>${boardVoteVo.seq}</td>
+						<td>${boardVoteVo.title}</td>
+						<td>${boardVoteVo.startDate}</td>
+						<td>${boardVoteVo.endDate}</td>
 					</tr>
-				</tbody>
+				</tbody>			
 			</table>
+			<div align="right">
+				<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<button class="btn btn-outline-secondary" onclick="">새로운 투표</button>
+				
+			</div>
 		</div>
 	</div>
-
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </body>
 </html>

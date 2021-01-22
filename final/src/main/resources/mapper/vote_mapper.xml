@@ -2,10 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="co.team.apt.vote.mapper.VoteMapper">
+<mapper namespace="co.team.apt.vote.mapper.BoardVoteMapper">
 	
 	
-	<select id="voteList" resultType="BoardVoteVo" parameterType="BoardVoteVo">
+	<select id="boardVoteList" resultType="BoardVoteVo" parameterType="BoardVoteVo">
 		select *
 		from boardvote
 		order by seq
