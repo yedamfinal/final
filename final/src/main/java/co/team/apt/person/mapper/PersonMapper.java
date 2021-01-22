@@ -9,5 +9,7 @@ public interface PersonMapper {
 	public ResidentVo loginCheck(ResidentVo vo);
 	public ResidentVo loginResident(ResidentVo vo);
 	public ManagerVo loginManager(ResidentVo vo);
-	
+	//회원가입
+	public void register(ResidentVo vo) ;
+	public void mregister(ManagerVo vo) ;
 }

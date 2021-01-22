@@ -9,7 +9,7 @@ import co.team.apt.common.vo.VisitCarVo;
 public interface VisitCarService {
 		
 	public List<VisitCarVo> visitList(VisitCarVo vo);
-	public String visitCarInsert(VisitCarVo vo);
+	public int visitCarInsert(VisitCarVo vo);
 	
 		
 }
