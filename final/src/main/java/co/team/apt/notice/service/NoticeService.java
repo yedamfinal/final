@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import co.team.apt.community.vo.BoardVo;
+import co.team.apt.common.vo.BoardVo;
 
 @Service
 public interface NoticeService {

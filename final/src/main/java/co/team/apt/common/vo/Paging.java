@@ -1,5 +1,8 @@
-package co.team.apt.common;
+package co.team.apt.common.vo;
 
+import lombok.Data;
+
+@Data
 public class Paging {
 	int pageUnit=10 ; 		//한페이지 출력할 레코드 건수
 	int pageSize=10 ; 		//페이지번호 수 (5) 1~ 5까지
@@ -10,6 +13,10 @@ public class Paging {
 	int endPage;
 	int first;
 	int last;
+	//검색
+	private String search;//검색어
+	private String searchType;//검색타입
+	
 	
 	public int getFirst() {
 		first = (getPage() - 1) * getPageUnit() + 1;

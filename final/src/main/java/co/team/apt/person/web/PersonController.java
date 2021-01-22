@@ -8,8 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import co.team.apt.common.vo.ResidentVo;
 import co.team.apt.person.service.PersonService;
-import co.team.apt.person.vo.ResidentVo;
 
 @Controller
 public class PersonController {
@@ -27,7 +27,7 @@ public class PersonController {
 			session.setAttribute("person", person);
 		}
 		//return "sign/loginResult";
-		return "redirect:/";
+		return "redirect:/home";
 	}
 	
 	//로그인폼이동
@@ -45,6 +45,6 @@ public class PersonController {
 		//session.removeAttribute("person"); //세션에서 person정보만 삭제
 		session.invalidate();
 		//return "sign/loginForm";
-		return "redirect:/";
+		return "redirect:/home";
 	}
 }
