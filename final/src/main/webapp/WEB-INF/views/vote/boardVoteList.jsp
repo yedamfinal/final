@@ -34,8 +34,7 @@
 			<div align="right">
 				<br />
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<button class="btn btn-outline-secondary" onclick="">새로운 투표</button>
-				
+				<button class="btn btn-outline-secondary" onclick="location.href='boardVoteInsert'">새로운 투표</button>
 			</div>
 		</div>
 	</div>
