@@ -1,6 +1,5 @@
 package co.team.apt.person.web;
 
-import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -11,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import co.team.apt.common.vo.ManagerVo;
 import co.team.apt.common.vo.ResidentVo;
@@ -33,6 +33,22 @@ public class PersonController {
 		}
 		// return "sign/loginResult";
 		return "redirect:/home";
+	}
+	
+	// 로그인 아작스
+	@RequestMapping("ajaxlogin.do")
+	@ResponseBody
+	public String ajaxlogin(Model model, HttpServletRequest request, ResidentVo vo) {
+		ResidentVo person = personService.login(vo);
+		HttpSession session = request.getSession(false);
+		// 체크로직
+		if (person != null) {
+			session.setAttribute("person", person);
+			return "success";
+		}else {
+			return "fail";
+		}
+		// return "sign/loginResult";
 	}
 
 	// 로그인폼이동

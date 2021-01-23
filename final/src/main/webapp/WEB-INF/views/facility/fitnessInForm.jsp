@@ -8,21 +8,23 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<img alt="" src="/resources/img/library.jpg">
+	<div class="container">
 	<!-- 1~20 // 21~36 -->
 	<form action="insertFitness.do">
 		<input id="id" name="id" type="hidden" value="${person.id }" /><br>
 		<input name="startDate" id="statDate" type="date"/><br>
 		<select name="month" id="month" >
-			<option value="1" label="1개월"></f:option>
-			<option value="3" label="3개월"></f:option>
-			<option value="6" label="6개월"></f:option>
+			<option value="1" label="1개월"></option>
+			<option value="3" label="3개월"></option>
+			<option value="6" label="6개월"></option>
 		</select><br>
-		<input name="cost" id="cost"/><br>
-		<button>등록</f:button>
-	</f:form>
+		가격 : <input name="cost" id="cost"/><br>
+		<button>등록</button>
+	</form>
+	</div>
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.js" integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM=" crossorigin="anonymous"></script>
+
 <script type="text/javascript">
 	$('#month').on('change',moveCost);
 	function moveCost(){
