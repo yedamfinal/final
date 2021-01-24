@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import co.team.apt.common.vo.FacilityVo;
+import co.team.apt.common.vo.ResidentVo;
 import co.team.apt.facility.mapper.FacilityMapper;
 import co.team.apt.facility.service.FacilityService;
 
@@ -31,6 +32,18 @@ public class FacilityServiceImpl implements FacilityService {
 	public int insertFitness(FacilityVo vo) {
 		// TODO Auto-generated method stub
 		return dao.insertFitness(vo);
+	}
+
+	@Override
+	public FacilityVo getLibrary(ResidentVo vo) {
+		// TODO Auto-generated method stub
+		return dao.getLibrary(vo);
+	}
+
+	@Override
+	public FacilityVo getFitness(ResidentVo vo) {
+		// TODO Auto-generated method stub
+		return dao.getFitness(vo);
 	}
 
 

@@ -24,11 +24,11 @@
 			<c:forEach items="${seatList }" var="seat" varStatus="i">
 				<c:if test="${seat eq false }">
 					<label for="${i.count}">${i.count}</label>
-					<input type="radio" name="seat" id="seat" value="${i.count}" />
+					<input type="radio" name="seat" value="${i.count}" />
 				</c:if>
 				<c:if test="${seat eq true }">
 					<label for="${i.count}">${i.count}</label>
-					<input type="radio" name="seat" id="seat" value="${i.count}"
+					<input type="radio" name="seat" value="${i.count}"
 						disabled />
 				</c:if>
 			</c:forEach>
@@ -67,10 +67,12 @@
 	function payment() {
 		let frm = $("#frm").serializeObject();
 		frm.cost = frm.cost.replace("만원","0000");
+		//let payno = Date.now();
+		let payno = 'test1234';
 		//결제 정보
 		let param = { // param
 			pg : "html5_inicis",
-			merchant_uid : Date.now(), //결제번호
+			merchant_uid : payno, //결제번호
 			name : "독서실", //헬스장, 독서실, x월 관리비 결제명
 			amount : frm.cost, //가격
 			buyer_name : frm.name, // 회원이름
@@ -79,33 +81,13 @@
 		IMP.request_pay(param, function(rsp) { // callback
 			if (rsp.success) {
 				// 결제 성공 시 로직, 디비에 저장
-				console.log(rsp);
-				//$("#frm").submit();
+				
+				$("#frm").submit();
 			} else {
 				// 결제 실패 시 로직, 결제실패 메시지 or 페이지
 				alert("결제에 실패하였습니다.")
 			}
 		});
 	}
-	/* var IMP = window.IMP; // 생략해도 괜찮습니다.
-	IMP.init("imp17111120"); // "imp00000000" 대신 발급받은 "가맹점 식별코드"를 사용합니다.
-
-	// IMP.request_pay(param, callback) 호출
-	IMP.request_pay({ // param
-		pg : "html5_inicis",
-		merchant_uid : Date.now(), //결제번호
-		name : "library", //헬스장, 독서실, x월 관리비 결제명
-		amount : 64900, //가격
-		buyer_name : "홍길동", // 회원이름
-		buyer_tel : "010-4242-4242" //회원전화번호
-	}, function(rsp) { // callback
-		if (rsp.success) {
-			// 결제 성공 시 로직, 디비에 저장
-
-		} else {
-			// 결제 실패 시 로직, 결제실패 메시지 or 페이지
-			alert("결제에 실패하였습니다.")
-		}
-	}); */
 </script>
 </html>

@@ -29,4 +29,12 @@
 	<select id="allList" resultType="FacilityVo">
 		select seat from library
 	</select>
+	
+	<select id="getLibrary" resultType="FacilityVo">
+		select * from library where id = #{id}
+	</select>
+	
+	<select id="getFitness" resultType="FacilityVo">
+		select * from fitness where id = #{id}
+	</select>
 </mapper>

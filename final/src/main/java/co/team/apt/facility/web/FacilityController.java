@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import co.team.apt.common.vo.FacilityVo;
+import co.team.apt.common.vo.ResidentVo;
 import co.team.apt.facility.service.FacilityService;
 
 @Controller
@@ -19,23 +20,35 @@ public class FacilityController {
 	
 	//도서관 등록 폼 이동
 	@RequestMapping("libraryInForm.do")
-	public String libraryInForm(FacilityVo vo, Model model){
-		boolean[] seatList = new boolean[36];
+	public String libraryInForm(ResidentVo id, Model model){
+		FacilityVo vo = facilityService.getLibrary(id);
 		
-		List<FacilityVo> list = facilityService.getSeat();
-		for (FacilityVo facilityVo : list) {
-			seatList[facilityVo.getSeat()-1] = true;
+		if(vo == null) {
+			boolean[] seatList = new boolean[36];
+			
+			List<FacilityVo> list = facilityService.getSeat();
+			for (FacilityVo facilityVo : list) {
+				seatList[facilityVo.getSeat()-1] = true;
+			}
+			
+			model.addAttribute("seatList", seatList);
+			return "facility/libraryInForm";
+		}else {
+			model.addAttribute("vo", vo);
+			return "facility/libraryUser";
 		}
-		
-		model.addAttribute("seatList", seatList);
-		return "facility/libraryInForm";
 	}
 	
 	//헬스장 등록 폼 이동
 		@RequestMapping("fitnessInForm.do")
-		public String fitnessInForm(FacilityVo vo){
-			
-			return "facility/fitnessInForm";
+		public String fitnessInForm(ResidentVo id,Model model){
+			FacilityVo vo = facilityService.getFitness(id);
+			if(vo == null) {
+				return "facility/fitnessInForm";
+			}else {
+				model.addAttribute("vo", vo);
+				return "facility/fitnessUser";
+			}
 		}
 	
 	//결제시 독서실 등록
@@ -43,8 +56,7 @@ public class FacilityController {
 	public String insertLibrary(FacilityVo vo, Model model) {
 		facilityService.insertLibrary(vo);
 		//에러처리
-		//리턴수정해야댐
-		return "facility/libraryInForm";
+		return "redirect:libraryInForm.do?id="+vo.getId();
 	}
 	
 	//결제시 헬스장 등록
@@ -52,7 +64,6 @@ public class FacilityController {
 	public String insertFitness(FacilityVo vo, Model model) {
 		int n =facilityService.insertFitness(vo);
 		//에러처리
-		//리턴수정해야댐
-		return "facility/libraryInForm";
+		return "redirect:fitnessInForm.do?id="+vo.getId();
 	}
 }
