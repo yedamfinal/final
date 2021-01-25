@@ -11,4 +11,7 @@ public class FacilityVo {
 	private String cost;
 	private String payDate;
 	private String month;
+	private String payNo;
+	private String cancel;
+	private String type;
 }
