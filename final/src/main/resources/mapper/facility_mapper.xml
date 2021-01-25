@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="co.team.apt.facility.mapper.FacilityMapper">
+	<insert id="insertLibrary" parameterType="FacilityVo">
+		insert into library 
+		values(
+			#{id},
+			#{seat},
+			#{startDate},
+			add_months(#{startDate},${month}),
+			#{cost},
+			sysdate
+		)
+	</insert>
+	
+	<insert id="insertFitness" parameterType="FacilityVo">
+		insert into fitness
+		values(
+			#{id},
+			#{startDate},
+			add_months(#{startDate},${month}),
+			#{cost},
+			sysdate
+		)
+	</insert>
+	
+	<select id="allList" resultType="FacilityVo">
+		select seat from library
+	</select>
+	
+	<select id="getLibrary" resultType="FacilityVo">
+		select * from library where id = #{id}
+	</select>
+	
+	<select id="getFitness" resultType="FacilityVo">
+		select * from fitness where id = #{id}
+	</select>
+</mapper>

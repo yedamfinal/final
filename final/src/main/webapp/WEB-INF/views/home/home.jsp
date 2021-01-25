@@ -1,62 +1,8 @@
-<%@ page session="false" contentType="text/html; charset=utf-8" %>
+<%@page contentType="text/html; charset=utf-8" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
-<html>
-<head>
-<!-- Required meta tags -->
-<meta charset="UTF-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Martine</title>
-<link rel="icon" href="resources/img/favicon.png">
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="resources/css/bootstrap.min.css">
-<!-- animate CSS -->
-<link rel="stylesheet" href="resources/css/animate.css">
-<!-- owl carousel CSS -->
-<link rel="stylesheet" href="resources/css/owl.carousel.min.css">
-<!-- themify CSS -->
-<link rel="stylesheet" href="resources/css/themify-icons.css">
-<!-- flaticon CSS -->
-<link rel="stylesheet" href="resources/css/flaticon.css">
-<!-- fontawesome CSS -->
-<link rel="stylesheet" href="resources/fontawesome/css/all.min.css">
-<!-- magnific CSS -->
-<link rel="stylesheet" href="resources/css/magnific-popup.css">
-<link rel="stylesheet" href="resources/css/gijgo.min.css">
-<!-- niceselect CSS -->
-<link rel="stylesheet" href="resources/css/nice-select.css">
-<!-- slick CSS -->
-<link rel="stylesheet" href="resources/css/slick.css">
-<!-- style CSS -->
-<link rel="stylesheet" href="resources/css/style.css">
-<link rel="stylesheet" type="text/css" href="resources/css/style2.css">
-<!-- jquery plugins here-->
-<script src="resources/js/jquery-1.12.1.min.js"></script>
-<!-- popper js -->
-<script src="resources/js/popper.min.js"></script>
-<!-- bootstrap js -->
-<script src="resources/js/bootstrap.min.js"></script>
-<!-- magnific js -->
-<script src="resources/js/jquery.magnific-popup.js"></script>
-<!-- swiper js -->
-<script src="resources/js/owl.carousel.min.js"></script>
-<!-- masonry js -->
-<script src="resources/js/masonry.pkgd.js"></script>
-<!-- masonry js -->
-<script src="resources/js/jquery.nice-select.min.js"></script>
-<script src="resources/js/gijgo.min.js"></script>
-<!-- contact js -->
-<script src="resources/js/jquery.ajaxchimp.min.js"></script>
-<script src="resources/js/jquery.form.js"></script>
-<script src="resources/js/jquery.validate.min.js"></script>
-<script src="resources/js/mail-script.js"></script>
-<script src="resources/js/contact.js"></script>
-<!-- custom js -->
-<script src="resources/js/custom.js"></script>
-</head>
-<body>
+
 <div class="top_place section_padding">
 	<div class="container">
 			<div class="row">
@@ -64,12 +10,12 @@
 					<img src="resources/img/main2.JPG" alt="logo" style="width: 100%">
 				</div>
 
-				<c:if test="${person != null }">
+				<c:if test="${not empty person  }">
 					<p class="loginGreetingt">
 						<span>${person.name }님 환영합니다.</span>
 					</p>
 				</c:if>
-				<c:if test="${person == null }">
+				<c:if test="${empty person  }">
 
 					<div class="col-sm-4">
 						<div class="mLogin_box mLogout">
@@ -211,5 +157,4 @@
 			</div>
 		</div>
 </div>
-</body>
-</html>
+

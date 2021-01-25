@@ -3,7 +3,18 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="co.team.apt.vote.mapper.BoardVoteMapper">
+
+	<select id="searchName" resultType="ResidentVo" parameterType="ResidentVo">
+		select name, dong, ho 
+		from resident
+		where =#{name}
+	</select>
+	<insert id="registerId" parameterType="candidateVo">
+		insert into candidate(id)
+		values (#{id})
 	
+	
+	</insert>
 	
 	<select id="boardVoteList" resultType="BoardVoteVo" parameterType="BoardVoteVo">
 		select *
@@ -43,4 +54,5 @@
 		delete from board
 		where seq = #{seq}
 	</delete>
+	
 </mapper>

@@ -10,5 +10,8 @@ public interface PersonService {
 	public List<ManagerVo> managerList(ManagerVo vo);
 	public void managerInsert(ManagerVo vo);
 	public List<ResidentVo> residentList(ResidentVo vo);
-	public void residentInsert(ResidentVo vo);
+
+
+	void resiRegister(ResidentVo vo);
+	void maneregister(ManagerVo vo);
 }

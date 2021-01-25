@@ -3,28 +3,44 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="co.team.apt.person.mapper.PersonMapper">
-	<select id="loginCheck" resultType="ResidentVo" parameterType="ResidentVo">
+	<select id="loginCheck" resultType="ResidentVo"
+		parameterType="ResidentVo">
 		select *
 		from(
-		select 'r' type, id, name, password,owner from resident
+		select 'r' type, id, name, password,owner
+		from resident
 		union all
-		select 'm' type, id, name, password,king from manager
+		select 'm' type, id, name, password,king from
+		manager
 		)
 		where id=#{id}
 		and password=#{password}
 	</select>
-	
-	<select id="loginResident" resultType="ResidentVo" parameterType="ResidentVo">
-		select a.*, 'r' type 
+
+	<select id="loginResident" resultType="ResidentVo"
+		parameterType="ResidentVo">
+		select a.*, 'r' type
 		from resident a
 		where id=#{id}
 	</select>
-	
-	<select id="loginManager" resultType="ManagerVo" parameterType="ResidentVo">
-		select * 
+
+	<select id="loginManager" resultType="ManagerVo"
+		parameterType="ResidentVo">
+		select *
 		from manager
 		where id=#{id}
 	</select>
-	
 
+	<insert id="register">
+		insert into
+		resident(id,password,name,phone,birth,owner,auth,dong,ho,del) values
+		(#{id},#{password},#{name},#{phone},#{birth},#{owner},#{auth},#{dong},#{ho},#{del})
+
+	</insert>
+	<insert id="mregister">
+		insert into
+		resident(id,password,name,birth,king) values
+		(#{id},#{password},#{name},#{birth},{king})
+
+	</insert>
 </mapper>

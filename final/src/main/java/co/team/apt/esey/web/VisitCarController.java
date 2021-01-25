@@ -36,10 +36,9 @@ public class VisitCarController {
 	@RequestMapping("visitCar.do")
 	public String insert(Model model, VisitCarVo vo) {
 		
-		String a = visitCarService.visitCarInsert(vo);
-		
+		int i = visitCarService.visitCarInsert(vo);
 	
-		if(a != null) {
+		if(i != 0) {
 			return "redirect:visitList.do";
 		}else {
 			return null;

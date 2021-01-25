@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import co.team.apt.common.vo.BoardVoteVo;
+import co.team.apt.common.vo.ResidentVo;
 import co.team.apt.vote.mapper.BoardVoteMapper;
 import co.team.apt.vote.service.BoardVoteService;
 
@@ -42,6 +43,12 @@ public class BoardVoteServiceImpl implements BoardVoteService {
 	public int voteDelete(BoardVoteVo vo) {
 		// TODO Auto-generated method stub
 		return dao.voteDelete(vo);
+	}
+
+	@Override
+	public ResidentVo searchName(ResidentVo vo) {
+		// TODO Auto-generated method stub
+		return dao.searchName(vo);
 	}
 
 }

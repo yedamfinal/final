@@ -26,11 +26,11 @@
 							<form target="_blank"
 								action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
 								method="get" class="form-inline">
-								<input class="form-control" name="EMAIL"
+								<!-- <input class="form-control" name="EMAIL"
 									placeholder="Your Email Address"
 									onfocus="this.placeholder = ''"
 									onblur="this.placeholder = 'Your Email Address '" required=""
-									type="email">
+									type="email"> -->
 								<button class="click-btn btn btn-default text-uppercase">
 									<i class="far fa-paper-plane"></i>
 								</button>

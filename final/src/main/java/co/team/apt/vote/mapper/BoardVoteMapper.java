@@ -3,6 +3,7 @@ package co.team.apt.vote.mapper;
 import java.util.List;
 
 import co.team.apt.common.vo.BoardVoteVo;
+import co.team.apt.common.vo.ResidentVo;
 
 public interface BoardVoteMapper {
 	List<BoardVoteVo> boardVoteList(BoardVoteVo vo);
@@ -11,5 +12,7 @@ public interface BoardVoteMapper {
 	int voteInsert(BoardVoteVo vo);
 	int voteUpdate(BoardVoteVo vo);
 	int voteDelete(BoardVoteVo vo);
+	ResidentVo searchName(ResidentVo vo);
+	
 }
 
