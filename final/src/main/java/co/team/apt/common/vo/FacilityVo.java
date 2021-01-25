@@ -14,4 +14,7 @@ public class FacilityVo {
 	private String payNo;
 	private String cancel;
 	private String type;
+	private String name;
+	private String phone;
+	private String address;
 }

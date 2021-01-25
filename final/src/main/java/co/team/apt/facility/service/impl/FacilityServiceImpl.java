@@ -3,7 +3,6 @@ package co.team.apt.facility.service.impl;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.LinkedHashMap;
@@ -85,6 +84,7 @@ public class FacilityServiceImpl implements FacilityService {
 		String inputLine;
 		String str = "";
 		while ((inputLine = in.readLine()) != null) { // response 출력
+			System.out.println(inputLine);
 			JSONObject obj = JSONObject.fromObject(inputLine);
 			obj = obj.getJSONObject("response");
 			str = obj.getString("access_token");
@@ -96,16 +96,16 @@ public class FacilityServiceImpl implements FacilityService {
 	}
 
 	@Override
-	public void cancel() throws Exception {
+	public void cancel(FacilityVo vo) throws Exception {
 		// 환불받기
 
 		String strUrl = "https://api.iamport.kr/payments/cancel";
 
 		URL url = new URL(strUrl); // 호출할 url
 		Map<String, Object> params = new LinkedHashMap<>(); // 파라미터 세팅
-		params.put("merchant_uid", "test1234");
-		params.put("amount", "2000");
-		params.put("reason", "단순변심");
+		params.put("merchant_uid", vo.getPayNo());
+		params.put("amount", vo.getCost());
+		params.put("reason", "기타");
 
 		StringBuilder postData = new StringBuilder();
 		for (Map.Entry<String, Object> param : params.entrySet()) {
@@ -132,6 +132,12 @@ public class FacilityServiceImpl implements FacilityService {
 
 		in.close();
 
+	}
+
+	@Override
+	public int deleteLibrary(FacilityVo vo) {
+		// TODO Auto-generated method stub
+		return dao.deleteLibrary(vo);
 	}
 
 }

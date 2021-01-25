@@ -44,6 +44,13 @@
 	</update>
 	
 	<select id="manageLibrary" resultType="FacilityVo">
-		select * from library order by cancel desc
+		select r.name, r.phone, r.dong ||'동 '|| r.ho||'호' address, l.*
+		from resident r, library l
+		where r.id = l.id
+		order by cancel desc, enddate
 	</select>
+	
+	<delete id="deleteLibrary">
+		delete from library where id=#{id}
+	</delete>
 </mapper>
