@@ -78,8 +78,8 @@
 								id="navbarDropdown" role="button" data-toggle="dropdown"
 								aria-haspopup="true" aria-expanded="false">근린시설</a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-									<a class="dropdown-item" href="libraryInForm.do?id=${person.id }">독서실</a> <a
-										class="dropdown-item" href="fitnessInForm.do?id=${person.id }">헬스장</a>
+									<a class="dropdown-item" href="libraryInForm.do?id=${person.id }">독서실</a> 
+									<a class="dropdown-item" href="fitnessInForm.do?id=${person.id }">헬스장</a>
 								</div></li>
 							<li class="nav-item dropdown"><a
 								class="nav-link dropdown-toggle" href="blog.html"
@@ -119,13 +119,13 @@
 				<div class="mb-3 row">
 					<label for="id" class="col-sm-3 col-form-label">아이디</label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" id="id" name="id" >
+						<input type="text" class="form-control" id="mid" name="id" >
 					</div>
 				</div>
 				<div class="mb-3 row">
 					<label for="password" class="col-sm-3 col-form-label">비밀번호</label>
 					<div class="col-sm-9">
-						<input type="password" class="form-control" id="password" name="password">
+						<input type="password" class="form-control" id="mpassword" name="password">
 					</div>
 				</div>
 				<button type="button" id="loginButton" class="btn btn-primary btn-block">로 그 인</button>
@@ -141,8 +141,8 @@
 	
 	//로그인 이벤트
 	function login(){
-		let id = $("#id").val();
-		let pw = $("#password").val();
+		let id = $("#mid").val();
+		let pw = $("#mpassword").val();
 		$.ajax({
 			url : 'ajaxlogin.do',
 			type : 'POST',

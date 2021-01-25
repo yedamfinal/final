@@ -21,12 +21,13 @@ public class FacilityController {
 	//도서관 등록 폼 이동
 	@RequestMapping("libraryInForm.do")
 	public String libraryInForm(ResidentVo id, Model model){
-		FacilityVo vo = facilityService.getLibrary(id);
+		id.setType("library");
+		FacilityVo vo = facilityService.getFacility(id);
 		
 		if(vo == null) {
 			boolean[] seatList = new boolean[36];
 			
-			List<FacilityVo> list = facilityService.getSeat();
+			List<FacilityVo> list = facilityService.allList();
 			for (FacilityVo facilityVo : list) {
 				seatList[facilityVo.getSeat()-1] = true;
 			}
@@ -42,7 +43,8 @@ public class FacilityController {
 	//헬스장 등록 폼 이동
 		@RequestMapping("fitnessInForm.do")
 		public String fitnessInForm(ResidentVo id,Model model){
-			FacilityVo vo = facilityService.getFitness(id);
+			id.setType("fitness");
+			FacilityVo vo = facilityService.getFacility(id);
 			if(vo == null) {
 				return "facility/fitnessInForm";
 			}else {
@@ -54,7 +56,7 @@ public class FacilityController {
 	//결제시 독서실 등록
 	@RequestMapping("insertLibrary.do")
 	public String insertLibrary(FacilityVo vo, Model model) {
-		facilityService.insertLibrary(vo);
+		facilityService.insertFacility(vo);
 		//에러처리
 		return "redirect:libraryInForm.do?id="+vo.getId();
 	}
@@ -62,8 +64,26 @@ public class FacilityController {
 	//결제시 헬스장 등록
 	@RequestMapping("insertFitness.do")
 	public String insertFitness(FacilityVo vo, Model model) {
-		int n =facilityService.insertFitness(vo);
+		int n =facilityService.insertFacility(vo);
 		//에러처리
 		return "redirect:fitnessInForm.do?id="+vo.getId();
+	}
+	
+	//환불요청
+	@RequestMapping("cancelRequest.do")
+	public String cancelRequest(FacilityVo vo) {
+		int n = facilityService.cancelRequest(vo);
+		//에러처리
+		return "redirect:home";
+	}
+	
+	//매니저
+	@RequestMapping("libraryManager.do")
+	public String manageFacility(Model model) {
+		List<FacilityVo> list = facilityService.manageLibrary();
+		
+		model.addAttribute("list", list);
+		
+		return "facility/libraryManage";
 	}
 }
