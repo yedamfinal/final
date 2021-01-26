@@ -77,7 +77,8 @@ public class FacilityController {
 		return "redirect:home";
 	}
 	
-	//매니저
+	//관리인항목
+	//도서관관리인페이지 이동
 	@RequestMapping("libraryManager.do")
 	public String manageFacility(Model model) {
 		List<FacilityVo> list = facilityService.manageLibrary();
@@ -85,5 +86,14 @@ public class FacilityController {
 		model.addAttribute("list", list);
 		
 		return "facility/libraryManage";
+	}
+	
+	@RequestMapping("cancelManage")
+	public String cancelManage(FacilityVo vo) throws Exception {
+		
+		//facilityService.cancel(vo);
+		facilityService.deleteLibrary(vo);
+		
+		return "redirect:libraryManager.do";
 	}
 }

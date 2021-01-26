@@ -56,7 +56,7 @@
 								id="navbarDropdown" role="button" data-toggle="dropdown"
 								aria-haspopup="true" aria-expanded="false"> 공지사항 </a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-									<a class="dropdown-item" href="#">일정표</a> <a
+									<a class="dropdown-item" href="calendar.do">일정표</a> <a
 										class="dropdown-item" href="noticeList.do?type=notice">공지사항</a>
 									<a class="dropdown-item" href="#">Q&A</a>
 								</div></li>
@@ -78,8 +78,14 @@
 								id="navbarDropdown" role="button" data-toggle="dropdown"
 								aria-haspopup="true" aria-expanded="false">근린시설</a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<c:if test="${person.type eq 'm'}">
+									<a class="dropdown-item" href="libraryManager.do">독서실</a> 
+									<a class="dropdown-item" href="#">헬스장</a>
+								</c:if>
+								<c:if test="${person.type ne 'm'}">
 									<a class="dropdown-item" href="libraryInForm.do?id=${person.id }">독서실</a> 
 									<a class="dropdown-item" href="fitnessInForm.do?id=${person.id }">헬스장</a>
+								</c:if>
 								</div></li>
 							<li class="nav-item dropdown"><a
 								class="nav-link dropdown-toggle" href="blog.html"

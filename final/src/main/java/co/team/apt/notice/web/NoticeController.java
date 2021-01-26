@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+
+
 
 import co.team.apt.common.vo.BoardVo;
 import co.team.apt.common.vo.Paging;
@@ -30,7 +33,7 @@ public class NoticeController {
 	
 	@Autowired
 	NoticeMapper dao;
-	
+		
 	//공지사항
 	@RequestMapping("noticeList.do")
 	public String noticeList(Model model, BoardVo vo, Paging paging) {
@@ -54,6 +57,8 @@ public class NoticeController {
 		
 		List<BoardVo> list = noticeService.noticeList(vo);
 		model.addAttribute("noticeList", list);
+		
+		
 		
 		return "notice/list";
 	}
@@ -151,4 +156,17 @@ public class NoticeController {
 		}		
 		
 	}
+	
+		//TEST(캘린더)
+		@RequestMapping("calendar.do")
+		public String calendar(Model model) {
+			return "calendar/calendar";
+		}
+		
+		//TEST(캘린더)
+		@RequestMapping("schedulePopup.do")
+		public String calendarpopup(Model model) {
+			return "calendar/schedulePopup";
+		}
+
 }

@@ -14,8 +14,8 @@
 	
 	<!-- 댓글 작성 -->
 	<insert id="replyWrite" parameterType="co.team.apt.common.vo.BcommentVo">
-		insert into bcomment(reno, writer, recontent, redate)
-			value(#{reno}, #{writer}, #{recontent}, #{redate})
+		insert into bcomment(reno, writer, defno, recontent, redate)
+			value(#{reno}, #{writer}, #{defno}, #{recontent}, #{redate})
 	</insert>
 		
 	<!-- 댓글 수정 -->

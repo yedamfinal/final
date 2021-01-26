@@ -11,4 +11,6 @@ public interface FacilityMapper {
 	public FacilityVo getLibrary(ResidentVo vo);
 	public int cancelLibrary(FacilityVo vo);
 	public List<FacilityVo> manageLibrary();
+	public int deleteLibrary(FacilityVo vo);
+
 }
