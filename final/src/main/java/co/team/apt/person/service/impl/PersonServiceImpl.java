@@ -21,10 +21,6 @@ public class PersonServiceImpl implements PersonService {
 	
 	@Autowired PersonMapper dao;
 	
-	
-	
-	
-	
 	//로그인
 	@Override
 	public ResidentVo login(ResidentVo vo) {

@@ -92,7 +92,6 @@ public class PersonController {
 	public String postRegister(ResidentVo vo) throws Exception {
 
 		service.resiRegister(vo);
-
 		return "redirect:/home";
 
 	}
@@ -106,7 +105,7 @@ public class PersonController {
 	// 관리자처리페이지 post 5
 	@RequestMapping(value = "/maneRegister", method = RequestMethod.POST)
 	public String postManeRegister(ManagerVo vo) throws Exception {
-
+		System.out.println(vo);
 		service.maneregister(vo);	
 
 		return "redirect:/home";

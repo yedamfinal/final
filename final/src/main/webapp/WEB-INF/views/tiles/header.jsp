@@ -19,7 +19,7 @@
 					</c:if>
 					<c:if test="${not empty person }">
 						<c:if test="${person.type == 'm'}">
-							<span><a href="#">Register </a></span>
+							<span><a href="register.do">Register </a></span>
 						</c:if>
 						<span><a href="logout.do">Logout</a></span>
 					</c:if>
