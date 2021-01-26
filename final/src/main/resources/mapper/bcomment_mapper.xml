@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="co.team.apt.comment.mapper.CommentMapper">
+
+	<!-- 댓글 조회 -->
+	<select id="replyList" parameterType="int" resultType="co.team.apt.common.vo.BcommentVo">
+		select
+			reno, defno, writer, recontent, redate
+		from bcomment
+			where defno = #{defno}		
+	</select>
+	
+	<!-- 댓글 작성 -->
+	<insert id="replyWrite" parameterType="co.team.apt.common.vo.BcommentVo">
+		insert into bcomment(reno, writer, recontent, redate)
+			value(#{reno}, #{writer}, #{recontent}, #{redate})
+	</insert>
+		
+	<!-- 댓글 수정 -->
+	<update id="replyModify" parameterType="co.team.apt.common.vo.BcommentVo">
+		update bcomment set
+			writer = #{writer},
+			recontent = #{recontent}
+		where reno = #{reno}
+			and defno = #{defno}	
+	</update>
+	
+	<!-- 댓글 삭제 -->
+	<delete id="replyDelete" parameterType="co.team.apt.common.vo.BcommentVo">
+		delete from bcomment
+		where reno = #{reno}
+			and defno = ${defno}	
+	</delete>
+</mapper>

@@ -8,7 +8,7 @@
 		SELECT * 
 		FROM BOARD
 		<include refid="searchQuery"/>
-		order by defno
+		order by defno desc
 	) b ) a where rn between #{start} and #{end}
 	</select>
 	
@@ -44,20 +44,28 @@
 	</select>
 	
 	<insert id="noticeInsert" parameterType="BoardVo">
-		insert into board(defno,
+		insert into board(
+					defno,
 					title,
 					content,
-					<!-- deffile, -->
 					defdate,
 					writer,
-					type)
-		values(def_seq.nextval,
+					type
+					<if test="deffile != null and deffile != ''"> 
+					, deffile
+					</if>
+					)
+		values(
+				def_seq.nextval,
 				#{title},
 				#{content},
-				<!-- #{deffile}, -->
 				sysdate,
 				#{writer},
-				#{type})
+				#{type}
+				<if test="deffile != null and deffile != ''">
+ 				, #{deffile} 
+ 				</if>
+				)
 	</insert>
 	
 	<update id="noticeUpdate" parameterType="BoardVo">

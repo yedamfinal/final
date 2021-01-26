@@ -51,14 +51,6 @@
 		<beans:property name="order" value="1" />
 	</beans:bean>
 
-	<!-- MultipartResolver 설정 -->
-	<beans:bean id="multipartResolver"
-		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<beans:property name="maxUploadSize" value="100000000" />
-		<beans:property name="maxInMemorySize"
-			value="100000000" />
-	</beans:bean>
-
 	<beans:bean id="messageSource"
 		class="org.springframework.context.support.ResourceBundleMessageSource">
 		<beans:property name="basenames">
@@ -82,6 +74,17 @@
 		</beans:bean>
 	</interceptors>
 <!-- <aop:aspectj-autoproxy proxy-target-class="true"/> -->
+
+	<!-- MultipartResolver 설정-->
+	<beans:bean id="multipartResolver"
+		 class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="100000000" />
+		<beans:property name="maxInMemorySize" value="100000000" />
+		<beans:property name="maxUploadSizePerFile" value="1000000"></beans:property>
+	</beans:bean>
+	
+    
+	
 
 
 </beans:beans>

@@ -15,6 +15,8 @@
 			<input id="id" name="id" type="hidden" value="${person.id }" /><br>
 			<input id="name" name="name" type="hidden" value="${person.name }" /><br>
 			<input id="phone" name="phone" type="hidden" value="${person.phone }" /><br>
+			<input id="payNo" name="payNo" type="hidden" value="" /><br>
+			<input id="type" name="type" type="hidden" value="library" /><br>
 			<input name="startDate" id="statDate" type="date" /><br> <select
 				name="month" id="month">
 				<option value="1" label="1개월"></option>
@@ -67,12 +69,12 @@
 	function payment() {
 		let frm = $("#frm").serializeObject();
 		frm.cost = frm.cost.replace("만원","0000");
-		//let payno = Date.now();
-		let payno = 'test1234';
+		let payNo = Date.now();
+		$('#payNo').val(payNo);
 		//결제 정보
 		let param = { // param
 			pg : "html5_inicis",
-			merchant_uid : payno, //결제번호
+			merchant_uid : payNo, //결제번호
 			name : "독서실", //헬스장, 독서실, x월 관리비 결제명
 			amount : frm.cost, //가격
 			buyer_name : frm.name, // 회원이름

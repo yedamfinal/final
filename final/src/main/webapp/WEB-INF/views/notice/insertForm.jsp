@@ -11,7 +11,7 @@
 <body>
 	<div class="container">
 		<div class="form-group">
-			<form action="noticeInsert.do" method="post">
+			<form action="noticeInsert.do" method="post" encType="multipart/form-data">
 				
 				<input class="orm-control mt-4 mb-2" type="text"
 					name="title" size="152" placeholder="제목을 입력해주세요." required>
@@ -20,7 +20,8 @@
 					placeholder="내용을 입력해주세요." required></textarea>
 				<input type="hidden" name="writer" value="${person.id }"> <input
 					type="hidden" name="type" value="notice"><br>
-				<button type="submit" class="btn btn-secondary mb-3">제출하기</button>
+				첨부파일<input type="file" name="uploadFile"/><br/>	
+				<button type="submit" class="btn btn-secondary mb-3">제출하기</button>	
 			</form>
 		</div>
 	</div>

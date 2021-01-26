@@ -7,9 +7,10 @@ import co.team.apt.common.vo.ResidentVo;
 
 public interface FacilityMapper {
 	public int insertLibrary(FacilityVo vo);
-	public int insertFitness(FacilityVo vo);
-	public List<FacilityVo> allList();
+	public List<FacilityVo> getSeat();
 	public FacilityVo getLibrary(ResidentVo vo);
-	public FacilityVo getFitness(ResidentVo vo);
-	
+	public int cancelLibrary(FacilityVo vo);
+	public List<FacilityVo> manageLibrary();
+	public int deleteLibrary(FacilityVo vo);
+
 }

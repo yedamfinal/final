@@ -78,8 +78,14 @@
 								id="navbarDropdown" role="button" data-toggle="dropdown"
 								aria-haspopup="true" aria-expanded="false">근린시설</a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-									<a class="dropdown-item" href="libraryInForm.do?id=${person.id }">독서실</a> <a
-										class="dropdown-item" href="fitnessInForm.do?id=${person.id }">헬스장</a>
+								<c:if test="${person.type eq 'm'}">
+									<a class="dropdown-item" href="libraryManager.do">독서실</a> 
+									<a class="dropdown-item" href="#">헬스장</a>
+								</c:if>
+								<c:if test="${person.type ne 'm'}">
+									<a class="dropdown-item" href="libraryInForm.do?id=${person.id }">독서실</a> 
+									<a class="dropdown-item" href="fitnessInForm.do?id=${person.id }">헬스장</a>
+								</c:if>
 								</div></li>
 							<li class="nav-item dropdown"><a
 								class="nav-link dropdown-toggle" href="blog.html"
@@ -141,8 +147,8 @@
 	
 	//로그인 이벤트
 	function login(){
-		let id = $("#id").val();
-		let pw = $("#password").val();
+		let id = $("#mid").val();
+		let pw = $("#mpassword").val();
 		$.ajax({
 			url : 'ajaxlogin.do',
 			type : 'POST',

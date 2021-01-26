@@ -12,6 +12,8 @@
 	<!-- 1~20 // 21~36 -->
 	<form action="insertFitness.do">
 		<input id="id" name="id" type="hidden" value="${person.id }" /><br>
+		<input id="type" name="type" type="hidden" value="fitness" /><br>
+		<input id="payNo" name="payNo" type="hidden" value="123" /><br>
 		<input name="startDate" id="statDate" type="date"/><br>
 		<select name="month" id="month" >
 			<option value="1" label="1개월"></option>
