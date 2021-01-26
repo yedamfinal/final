@@ -4,10 +4,14 @@ package co.team.apt.facility.web;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import co.team.apt.common.vo.FacilityVo;
 import co.team.apt.common.vo.ResidentVo;
@@ -20,24 +24,42 @@ public class FacilityController {
 	
 	//도서관 등록 폼 이동
 	@RequestMapping("libraryInForm.do")
-	public String libraryInForm(ResidentVo id, Model model){
-		id.setType("library");
-		FacilityVo vo = facilityService.getFacility(id);
+	public String libraryInForm(Model model, HttpServletRequest request){
+		HttpSession session =  request.getSession(false);
+		ResidentVo resiVo = (ResidentVo) session.getAttribute("person");
 		
-		if(vo == null) {
-			boolean[] seatList = new boolean[36];
+		if(resiVo == null) { //로그인 안한상태
+			return "home/needLogin";
+		}else if(resiVo.getType().equals("m")){//관리자로 로그인
+			return "redirect:libraryManager.do";
+		}else {//기타(주민) 등등
+			resiVo.setType("library");
+			FacilityVo vo = facilityService.getFacility(resiVo);
 			
-			List<FacilityVo> list = facilityService.allList();
-			for (FacilityVo facilityVo : list) {
-				seatList[facilityVo.getSeat()-1] = true;
+			if(vo == null) {
+				boolean[] seatList = new boolean[36];
+				
+				List<FacilityVo> list = facilityService.getSeat(vo);
+				for (FacilityVo facilityVo : list) {
+					seatList[facilityVo.getSeat()-1] = true;
+				}
+				
+				model.addAttribute("seatList", seatList);
+				return "facility/libraryInForm";
+			}else {
+				model.addAttribute("vo", vo);
+				return "facility/libraryUser";
 			}
-			
-			model.addAttribute("seatList", seatList);
-			return "facility/libraryInForm";
-		}else {
-			model.addAttribute("vo", vo);
-			return "facility/libraryUser";
 		}
+	}
+	
+	//독서실 좌석정보 아작스
+	@RequestMapping("getSeat.do")
+	@ResponseBody
+	public List<FacilityVo> getSeat(FacilityVo vo){
+		List<FacilityVo> list = facilityService.getSeat(vo);
+		
+		return list;
 	}
 	
 	//헬스장 등록 폼 이동
@@ -96,4 +118,6 @@ public class FacilityController {
 		
 		return "redirect:libraryManager.do";
 	}
+	
+	
 }

@@ -30,7 +30,16 @@
 	
 	
 	<select id="getSeat" resultType="FacilityVo">
-		select seat from library
+		select * 
+		from library
+		<where>
+			<if test="startDate != null and startDate !=''">
+			add_months(#{startDate},${month}) between startdate and enddate
+			or #{startDate} between startdate and enddate
+			or startdate between #{startDate} and add_months(#{startDate},${month})
+			or enddate between #{startDate} and add_months(#{startDate},${month})
+			</if>
+		</where> 
 	</select>
 	
 	<select id="getLibrary" resultType="FacilityVo">
@@ -39,7 +48,8 @@
 	
 	<update id="cancelLibrary" parameterType="FacilityVo">
 		update ${type}
-		set cancel = 'yes'
+		set cancel = 'yes',
+		content = #{content}
 		where id = #{id}
 	</update>
 	

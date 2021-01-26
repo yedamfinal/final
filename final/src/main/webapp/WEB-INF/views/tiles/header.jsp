@@ -69,7 +69,7 @@
 										class="dropdown-item" href="#">하자보수</a> <a
 										class="dropdown-item" href="#">아나바다</a>
 								</div></li>
-							<li class="nav-item"><a class="nav-link" href="#">관리비조회</a>
+							<li class="nav-item"><a class="nav-link" href="payRead.do">관리비조회</a>
 							</li>
 							<li class="nav-item"><a class="nav-link"
 								href="boardVoteList.do">전자투표</a></li>
@@ -78,14 +78,8 @@
 								id="navbarDropdown" role="button" data-toggle="dropdown"
 								aria-haspopup="true" aria-expanded="false">근린시설</a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<c:if test="${person.type eq 'm'}">
-									<a class="dropdown-item" href="libraryManager.do">독서실</a> 
-									<a class="dropdown-item" href="#">헬스장</a>
-								</c:if>
-								<c:if test="${person.type ne 'm'}">
-									<a class="dropdown-item" href="libraryInForm.do?id=${person.id }">독서실</a> 
-									<a class="dropdown-item" href="fitnessInForm.do?id=${person.id }">헬스장</a>
-								</c:if>
+									<a class="dropdown-item" href="libraryInForm.do">독서실</a> 
+									<a class="dropdown-item" href="fitnessInForm.do">헬스장</a>
 								</div></li>
 							<li class="nav-item dropdown"><a
 								class="nav-link dropdown-toggle" href="blog.html"
@@ -122,19 +116,21 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<div class="mb-3 row">
-					<label for="id" class="col-sm-3 col-form-label">아이디</label>
-					<div class="col-sm-9">
-						<input type="text" class="form-control" id="mid" name="id" >
+				<form action="login.do">
+					<div class="mb-3 row">
+						<label for="id" class="col-sm-3 col-form-label">아이디</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="mid" name="id" >
+						</div>
 					</div>
-				</div>
-				<div class="mb-3 row">
-					<label for="password" class="col-sm-3 col-form-label">비밀번호</label>
-					<div class="col-sm-9">
-						<input type="password" class="form-control" id="mpassword" name="password">
+					<div class="mb-3 row">
+						<label for="password" class="col-sm-3 col-form-label">비밀번호</label>
+						<div class="col-sm-9">
+							<input type="password" class="form-control" id="mpassword" name="password">
+						</div>
 					</div>
-				</div>
-				<button type="button" id="loginButton" class="btn btn-primary btn-block">로 그 인</button>
+					<button type="submit" id="loginButton" class="btn btn-primary btn-block">로 그 인</button>
+				</form>
 			</div>
 			<div class="modal-footer" id="fail">
 			</div>
@@ -142,7 +138,7 @@
 	</div>
 </div>
 <script>
-	//로그인 버튼
+	/* //로그인 버튼
 	$("#loginButton").on('click',login);
 	
 	//로그인 이벤트
@@ -167,6 +163,6 @@
 				}
 			}
 		});	
-	}
+	} */
 	
 </script>

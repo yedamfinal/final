@@ -31,12 +31,6 @@ public class FacilityServiceImpl implements FacilityService {
 	}
 
 	@Override
-	public List<FacilityVo> allList() {
-		// TODO Auto-generated method stub
-		return dao.getSeat();
-	}
-
-	@Override
 	public FacilityVo getFacility(ResidentVo vo) {
 		// TODO Auto-generated method stub
 		return dao.getLibrary(vo);
@@ -138,6 +132,12 @@ public class FacilityServiceImpl implements FacilityService {
 	public int deleteLibrary(FacilityVo vo) {
 		// TODO Auto-generated method stub
 		return dao.deleteLibrary(vo);
+	}
+
+	@Override
+	public List<FacilityVo> getSeat(FacilityVo vo) {
+		// TODO Auto-generated method stub
+		return dao.getSeat(vo);
 	}
 
 }
