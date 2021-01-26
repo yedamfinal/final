@@ -9,6 +9,7 @@
 </head>
 <body>
 	<div class="container">
+	${person }
 		<img alt="" src="resources/img/library.jpg">
 		<!-- 1~20 // 21~36 -->
 		<form id="frm" name="frm" action="insertLibrary.do">
@@ -17,8 +18,8 @@
 			<input id="phone" name="phone" type="hidden" value="${person.phone }" /><br>
 			<input id="payNo" name="payNo" type="hidden" value="" /><br>
 			<input id="type" name="type" type="hidden" value="library" /><br>
-			<input name="startDate" id="statDate" type="date" /><br> <select
-				name="month" id="month">
+			<input name="startDate" id="startDate" type="date" /><br> 
+			<select name="month" id="month">
 				<option value="1" label="1개월"></option>
 				<option value="3" label="3개월"></option>
 				<option value="6" label="6개월"></option>
@@ -26,12 +27,11 @@
 			<c:forEach items="${seatList }" var="seat" varStatus="i">
 				<c:if test="${seat eq false }">
 					<label for="${i.count}">${i.count}</label>
-					<input type="radio" name="seat" value="${i.count}" />
+					<input type="radio" name="seat" class="seat" id='s${i.count }' value="${i.count}" />
 				</c:if>
 				<c:if test="${seat eq true }">
 					<label for="${i.count}">${i.count}</label>
-					<input type="radio" name="seat" value="${i.count}"
-						disabled />
+					<input type="radio" name="seat" class="seat" id='s${i.count }' value="${i.count}" disabled />
 				</c:if>
 			</c:forEach>
 			<br> 가격 : <input name="cost" id="cost" value="11만원"/><br>
@@ -48,6 +48,7 @@
 <script type="text/javascript">
 	//이벤트
 	$('#month').on('change', moveCost);
+	$('#startDate').on('change', getSeat);
 	$('#payment').on('click', payment);
 
 	//개월선택시 가격입력
@@ -59,6 +60,41 @@
 			$('#cost').val('30만원')
 		} else {
 			$('#cost').val('55만원')
+		}
+		getSeat();
+	}
+	//좌석값 받아오기
+	function getSeat(){
+		let month = $('#month').val();
+		let start = $('#startDate').val();
+		console.log(month, start);
+		if(month==null || month=='' || start==null || start==''){
+			return;
+		}
+		
+		$.ajax({
+			url : 'getSeat.do',
+			type : 'POST',
+			dataType : 'json',
+			data : {
+				startDate : start,
+				month : month
+			},
+			error : function(xhr, status, msg) {
+				alert("상태값 :" + status + " Http에러메시지 :" + msg);
+			},
+			success : makeSeat
+		});
+	}
+	
+	//좌석 변경
+	function makeSeat(data){
+		console.log(data);
+		for(a of $('.seat[disabled]')){
+			$(a).removeAttr("disabled");
+		}
+		for(a of data){
+			$('#s'+a.seat).attr("disabled",true); 
 		}
 	}
 
@@ -91,5 +127,7 @@
 			}
 		});
 	}
+	
+	
 </script>
 </html>

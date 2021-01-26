@@ -123,7 +123,8 @@ ${pay }
         		<button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#payment">납부 내역 조회</button>
         		
         	</div>
-        	<button type="button" class="btn btn-outline-dark btn-block">관리비 납부하기</button>
+        	<button type="button" id="paymentButton" class="btn btn-outline-dark btn-block">관리비 납부하기</button>
+        	<button type="button" id="regular" class="btn btn-outline-dark btn-block">관리비 정기결제</button>
         </div>
     </div>
     
@@ -256,7 +257,47 @@ ${pay }
     
 </div>
 </body>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+<script type="text/javascript"
+	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<script type="text/javascript">
+	/* 이벤트 등록 */
+	$('#regular').on('click',regular)
+	$('#paymentButton').on('click',payment)
+	
+	
+	//결제 정보
+	var IMP = window.IMP; // 생략해도 괜찮습니다.
+	IMP.init("imp17111120"); // "imp00000000" 대신 발급받은 "가맹점 식별코드"를 사용합니다.
+	
+	//정기 결제
+	function regular(){
+		console.log("aaa");
+		// IMP.request_pay(param, callback) 호출
+		  IMP.request_pay({ // param
+		    pg: "html5_inicis",
+		    pay_method: "card", // "card"만 지원됩니다
+		    merchant_uid: "test123", // 빌링키 발급용 주문번호
+		    customer_uid: "gildong_0001_1234", // 카드(빌링키)와 1:1로 대응하는 값
+		    name: "최초인증결제",
+		    amount: 0 // 0 으로 설정하여 빌링키 발급만 진행합니다.
+		 /*    , 
+		    buyer_name : '승호', // 회원이름
+		    buyer_tel: "010-4242-4242" */
+		  }, function (rsp) { // callback
+		    if (rsp.success) {
+		      // 빌링키 발급 성공
+		      console.log(rsp);
+		    } else {
+		      // 빌링키 발급 실패
+		      console.log(rsp);
+		    }
+		  });
+	}
+	function payment(){
+		
+	}
+</script>
 </html>

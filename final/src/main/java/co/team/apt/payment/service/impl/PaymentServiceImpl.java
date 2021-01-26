@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import co.team.apt.common.vo.PaymentVo;
+import co.team.apt.common.vo.ResidentVo;
 import co.team.apt.payment.mapper.PaymentMapper;
 import co.team.apt.payment.service.PaymentService;
 
@@ -35,6 +36,12 @@ public class PaymentServiceImpl implements PaymentService{
 		vo=dao.payTotal(vo);
 		
 		return vo;
+	}
+
+	@Override
+	public String getOwner(ResidentVo resiVo) {
+		// TODO Auto-generated method stub
+		return dao.getOwner(resiVo);
 	}
 	
 

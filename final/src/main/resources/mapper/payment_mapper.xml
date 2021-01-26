@@ -133,8 +133,17 @@
 			   b.*
 		from paypublic a, (select * 
 						   from payment 
-						   where id='test' 
+						   where id=#{id}
 						   and to_char(paymonth,'yy-mm')=#{payMonth}) b
 		where to_char(a.paymonth,'yy-mm') = to_char(b.paymonth,'yy-mm')
+	</select>
+	
+	<select id="getOwner" resultType="string" parameterType="ResidentVo">
+		select id
+		from resident
+		where del = 'ing'
+		and dong = #{dong}
+		and ho= #{ho}
+		and owner = 'owner'
 	</select>
 </mapper>
