@@ -33,14 +33,17 @@
 
 	<insert id="register">
 		insert into
-		resident(id,password,name,phone,birth,owner,auth,dong,ho,del) values
-		(#{id},#{password},#{name},#{phone},#{birth},#{owner},#{auth},#{dong},#{ho},#{del})
-
+		resident(id,password,name,phone,birth,owner,dong,ho) values
+		(#{id},#{password},#{name},#{phone},#{birth},#{owner},#{dong},#{ho})
 	</insert>
 	<insert id="mregister">
 		insert into
-		resident(id,password,name,birth,king) values
-		(#{id},#{password},#{name},#{birth},{king})
-
+		manager(id,password,name,birth) values
+		(#{id},#{password},#{name},#{birth})
 	</insert>
+	
 </mapper>
+
+
+
+
