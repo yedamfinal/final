@@ -19,7 +19,7 @@
 					</c:if>
 					<c:if test="${not empty person }">
 						<c:if test="${person.type == 'm'}">
-							<span><a href="#">Register </a></span>
+							<span><a href="register.do">Register </a></span>
 						</c:if>
 						<span><a href="logout.do">Logout</a></span>
 					</c:if>
@@ -119,13 +119,13 @@
 				<div class="mb-3 row">
 					<label for="id" class="col-sm-3 col-form-label">아이디</label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" id="id" name="id" >
+						<input type="text" class="form-control" id="mid" name="id" >
 					</div>
 				</div>
 				<div class="mb-3 row">
 					<label for="password" class="col-sm-3 col-form-label">비밀번호</label>
 					<div class="col-sm-9">
-						<input type="password" class="form-control" id="password" name="password">
+						<input type="password" class="form-control" id="mpassword" name="password">
 					</div>
 				</div>
 				<button type="button" id="loginButton" class="btn btn-primary btn-block">로 그 인</button>

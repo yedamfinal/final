@@ -35,11 +35,7 @@
 				return false;
 			}
 		
-			if ($("#auth").val() == "") {
-				alert("권한을 입력해주세요.");
-				$("#auth").focus();
-				return false;
-			}
+			
 			
 			
 			
@@ -49,7 +45,7 @@
 </script>
 <div class="top_place section_padding">
 	<div class="container">
-		<form action="register" method="post">
+		<form action="maneRegister" method="post">
 			<div class="form-group has-feedback">
 			
 			
@@ -70,11 +66,7 @@
 				<label class="control-label" for="birth">생년월일</label> <input
 					class="form-control" type="text" id="birth" name="birth" />
 			</div>
-			<div class="form-group has-feedback">
-				<label class="control-label" for="owner">권한</label> <input
-					class="form-control" type="text" id="owner" name="owner" />
-			</div>
-
+	
 			
 
 			<div class="form-group has-feedback">
