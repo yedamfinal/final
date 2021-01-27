@@ -16,19 +16,12 @@
 			<h1>투표등록</h1>
 		</div>
 		<div>
+		<form action="boardVoteInsert.do" method="post">
 			<table class="table">
 				<tr>
 					<th width="100">선거 제목</th>
 					<td width="300"><input type="text" id="title" name="title">
 					</td>
-				</tr>
-				<tr>
-					<th width="100">후보자 등록</th>
-					<td width="300">
-						<input type="text" placeholder="후보자 id 입력" id="id">
-						<button class="btn btn-outline-secondary btn-sm" type="button" onclick="location.href='candiRegister'">후보자 검색</button> </br> 
-						<input readonly type="text" id="candidate" name="candidate">
-						
 				</tr>
 				<tr>
 					<th width="100">투표 시작일</th>
@@ -42,13 +35,19 @@
 				</tr>
 			</table>
 			<div align="right">
-				<button class="btn btn-outline-secondary" onclick="#">등록하기</button>
+				<button type="submit" class="btn btn-outline-secondary">등록하기</button>
 				&nbsp;&nbsp;&nbsp;
-				<button class="btn btn-outline-secondary"
-					onclick="location.href='/final/boardVoteList.do'">목록보기</button>
+				<button type="button" class="btn btn-outline-secondary" onclick="location.href='boardVoteList.do'">목록보기</button>
 				&nbsp;&nbsp;&nbsp;
 			</div>
+			</form>
 		</div>
 	</div>
+	
+<script>
+	var id= sessionStorage.getItem("id");
+	$('#RegisterCandidate').val(id);
+	
+</script>
 </body>
 </html>

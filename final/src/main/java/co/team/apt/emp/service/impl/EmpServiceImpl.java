@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import co.team.apt.emp.EmpVO;
+import co.team.apt.emp.mapper.EmpMapper;
 import co.team.apt.emp.service.EmpService;
-import co.team.apt.mapper.EmpMapper;
 
 
 @Service
