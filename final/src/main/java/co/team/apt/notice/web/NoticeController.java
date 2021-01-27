@@ -156,17 +156,5 @@ public class NoticeController {
 		}		
 		
 	}
-	
-		//TEST(캘린더)
-		@RequestMapping("calendar.do")
-		public String calendar(Model model) {
-			return "calendar/calendar";
-		}
-		
-		//TEST(캘린더)
-		@RequestMapping("schedulePopup.do")
-		public String calendarpopup(Model model) {
-			return "calendar/schedulePopup";
-		}
 
 }

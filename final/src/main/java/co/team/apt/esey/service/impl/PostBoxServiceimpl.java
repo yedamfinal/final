@@ -20,4 +20,10 @@ public class PostBoxServiceimpl implements PostBoxService {
 	return dao.postBoxList(vo);
 }
 
+	@Override
+	public int mPostBoxInsert(PostBoxVo vo) {
+		// TODO Auto-generated method stub
+		return dao.mPostBoxInsert(vo);
+	}
+
 }

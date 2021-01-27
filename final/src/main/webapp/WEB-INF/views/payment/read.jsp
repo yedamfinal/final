@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,13 +39,13 @@
 </style>
 </head>
 <body>
-${pay }
+<fmt:parseNumber var="int" integerOnly="true" />
 <div class="container" >
     <div class="top row">
         <div class="col-sm row">
         	<div class="col-4 center">
-        		<span class="border border-primary rounded-circle mon center">
-        			${pay.payMonth }
+        		<span class="border border-primary rounded-circle mon center" id="voMonth">
+        			${payList[0].payMonth }
         		</span>
         	</div>
         	<div class="col-8 center">
@@ -58,7 +60,7 @@ ${pay }
                         납기내
                     </div>
                     <div class="card-body">
-                        ${pay.cost }원
+                        <fmt:formatNumber type="number" maxFractionDigits="3" value="${payMap['total']+payMap['tax'] }" />원
                     </div>
                 </div>
                 <div class="card">
@@ -66,7 +68,7 @@ ${pay }
                         납기후
                     </div>
                     <div class="card-body">
-                       ${pay.cost*1.02 - (pay.cost * 1.02)%1 }원
+                       <fmt:formatNumber type="number" maxFractionDigits="3" value="${payList[0].cost*1.02+payMap['delay']+payMap['tax'] + (1-(payList[0].cost*1.02%1)%1 }" />원
                     </div>
                 </div>
             </div>
@@ -90,27 +92,27 @@ ${pay }
 			  <tbody>
 			    <tr>
 			      <th scope="row">당월부과액</th>
-			      <td>${pay.cost }</td>
+			      <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${payMap['total']+payMap['tax'] }" />원</td>
 			    </tr>
 			    <tr>
 			      <th scope="row">미납액</th>
-			      <td>0</td>
+			      <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${payMap['delay']}" />원</td>
 			    </tr>
 			    <tr>
 			      <th scope="row">연체료</th>
-			      <td>0</td>
+			      <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${payMap['tax']}" />원</td>
 			    </tr>
 			    <tr>
 			      <th scope="row">납기내 금액</th>
-			      <td>${pay.cost }</td>
+			      <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${payMap['total']+payMap['tax'] }" />원</td>
 			    </tr>
 			    <tr>
 			      <th scope="row">납기후 연체료</th>
-			      <td>${pay.cost * 0.02 - (pay.cost * 0.02)%1 }</td>
+			      <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${payList[0].cost*0.02+payMap['tax'] + (1-(payList[0].cost*0.02%1)%1 }" />원</td>
 			    </tr>
 			    <tr>
 			      <th scope="row">납기후 금액</th>
-			      <td>${pay.cost * 1.02 - (pay.cost * 1.02)%1 }</td>
+			      <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${payList[0].cost*1.02+payMap['delay']+payMap['tax'] + (1-(payList[0].cost*1.02%1)%1 }" />원</td>
 			    </tr>
 			  </tbody>
 			</table>
@@ -142,68 +144,76 @@ ${pay }
       </div>
       <div class="modal-body">
          <table class="table">
+         	<c:forEach items="${payList }" var="pay">
+			  <thead>         	
+			  	<tr>
+			      <th scope="row">${pay.payMonth }월 납입항목</th>
+			      <th>금액 (원)</th>
+			    </tr>
+			  </thead>
 			  <tbody>
 			    <tr>
 			      <th scope="row">일반관리비</th>
-			      <td>${pay.nomal }</td>
+			      <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${pay.nomal }" /></td>
 			    </tr>
 			    <tr>
 			      <th scope="row">청소비</th>
-			      <td>${pay.clean }</td>
+			      <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${pay.clean }" /></td>
 			    </tr>
 			    <tr>
 			      <th scope="row">경비비</th>
-			      <td>${pay.guard }</td>
+			      <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${pay.guard }" /></td>
 			    </tr>
 			    <tr>
 			      <th scope="row">소독비</th>
-			      <td>${pay.disinfection }</td>
+			      <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${pay.disinfection }" /></td>
 			    </tr>
 			    <tr>
 			      <th scope="row">승강기사용료</th>
-			      <td>${pay.elevator }</td>
+			      <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${pay.elevator }" /></td>
 			    </tr>
 			    <tr>
 			      <th scope="row">공용전기세</th>
-			      <td>${pay.PElectric }</td>
+			      <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${pay.PElectric }" /></td>
 			    </tr>
 			    <tr>
 			      <th scope="row">공용수도세</th>
-			      <td>${pay.PWater }</td>
+			      <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${pay.PWater }" /></td>
 			    </tr>
 			    <tr>
 			      <th scope="row">수선 유지비</th>
-			      <td>${pay.repair }</td>
+			      <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${pay.repair }" /></td>
 			    </tr>
 			    <tr>
 			      <th scope="row">장기수선 충당금</th>
-			      <td>${pay.LRepair }</td>
+			      <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${pay.LRepair }" /></td>
 			    </tr>
 			    <tr>
 			      <th scope="row">입주자 대표회의 운영비</th>
-			      <td>${pay.representative }</td>
+			      <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${pay.representative }" /></td>
 			    </tr>
 			    <tr>
 			      <th scope="row">난방비</th>
-			      <td>${pay.heating }</td>
+			      <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${pay.heating }" /></td>
 			    </tr>
 			    <tr>
 			      <th scope="row">수도세</th>
-			      <td>${pay.water }</td>
+			      <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${pay.water }" /></td>
 			    </tr>
 			    <tr>
 			      <th scope="row">급탕비</th>
-			      <td>${pay.hatWater }</td>
+			      <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${pay.hatWater }" /></td>
 			    </tr>
 			    <tr>
 			      <th scope="row">전기세</th>
-			      <td>${pay.electric }</td>
+			      <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${pay.electric }" /></td>
 			    </tr>
 			    <tr>
 			      <th scope="row">기타</th>
-			      <td>${pay.etc }</td>
+			      <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${pay.etc }" /></td>
 			    </tr>
 			  </tbody>
+         	</c:forEach>
 			</table> 
       </div>
       <div class="modal-footer">
@@ -264,8 +274,10 @@ ${pay }
 	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script type="text/javascript">
 	/* 이벤트 등록 */
-	$('#regular').on('click',regular)
+	//$('#regular').on('click',regular)
 	$('#paymentButton').on('click',payment)
+	
+	
 	
 	
 	//결제 정보

@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -70,14 +71,18 @@ article{
 </head>
 
 <body>
+
 	<header class="main_menu">
 		<tiles:insertAttribute name="header" />
 	</header>
+	<div class="container">
 	<article>
 		<tiles:insertAttribute name="content"/>
 	</article>
+	</div>
 	<footer class="footer-area">
 		<tiles:insertAttribute name="footer" />
 	</footer>
+
 </body>
 </html>

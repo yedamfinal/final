@@ -7,9 +7,9 @@ import lombok.Data;
 public class PostBoxVo {
 	
 	private int postNo;
-	private String Porduct;
+	private String product;
 	private String get;
-	private String Id;
+	private String id;
 	private Date getTime;
 	private Date arriveDate;
 	
