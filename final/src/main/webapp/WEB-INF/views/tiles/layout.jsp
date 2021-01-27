@@ -64,14 +64,18 @@ article{
 </head>
 
 <body>
+
 	<header class="main_menu">
 		<tiles:insertAttribute name="header" />
 	</header>
+	<div class="container">
 	<article>
 		<tiles:insertAttribute name="content"/>
 	</article>
+	</div>
 	<footer class="footer-area">
 		<tiles:insertAttribute name="footer" />
 	</footer>
+
 </body>
 </html>
