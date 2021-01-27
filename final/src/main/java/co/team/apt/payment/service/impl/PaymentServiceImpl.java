@@ -1,6 +1,7 @@
 package co.team.apt.payment.service.impl;
 
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -27,15 +28,15 @@ public class PaymentServiceImpl implements PaymentService{
 	}
 
 	@Override
-	public PaymentVo payRead(PaymentVo vo) {
+	public List<PaymentVo> payRead(PaymentVo vo) {
 		
 		SimpleDateFormat format = new SimpleDateFormat ("yy-MM");
 		String format_time = format.format (System.currentTimeMillis());
 		vo.setPayMonth(format_time);		
 		        				 		
-		vo=dao.payTotal(vo);
+		List<PaymentVo> list =dao.payTotal(vo);
 		
-		return vo;
+		return list;
 	}
 
 	@Override
