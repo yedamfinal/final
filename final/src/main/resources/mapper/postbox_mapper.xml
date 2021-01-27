@@ -5,6 +5,11 @@
 
 <select id="postBoxList" resultType="PostBoxVo" parameterType="PostBoxVo">
 		SELECT * FROM POSTBOX
-		
 </select>
+
+ <!-- 택배 등록 -->
+<insert id = "mPostBoxIn" parameterType = "PostBoxVo">
+	insert into POSTBOX (POSTNO,PRODUCT,ID) values (SEQ_POSTBOX.nextval,#{product},#{id})
+</insert>
+
 </mapper>
