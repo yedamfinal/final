@@ -9,38 +9,74 @@
 </head>
 <body>
 	<div class="container">
-	${person }
-		<img alt="" src="resources/img/library.jpg">
-		<!-- 1~20 // 21~36 -->
+		${person }
 		<form id="frm" name="frm" action="insertLibrary.do">
-			<input id="id" name="id" type="hidden" value="${person.id }" /><br>
-			<input id="name" name="name" type="hidden" value="${person.name }" /><br>
-			<input id="phone" name="phone" type="hidden" value="${person.phone }" /><br>
-			<input id="payNo" name="payNo" type="hidden" value="" /><br>
-			<input id="type" name="type" type="hidden" value="library" /><br>
-			<input name="startDate" id="startDate" type="date" /><br> 
-			<select name="month" id="month">
-				<option value="1" label="1개월"></option>
-				<option value="3" label="3개월"></option>
-				<option value="6" label="6개월"></option>
-			</select><br>
-			<c:forEach items="${seatList }" var="seat" varStatus="i">
-				<c:if test="${seat eq false }">
-					<label for="${i.count}">${i.count}</label>
-					<input type="radio" name="seat" class="seat" id='s${i.count }' value="${i.count}" />
-				</c:if>
-				<c:if test="${seat eq true }">
-					<label for="${i.count}">${i.count}</label>
-					<input type="radio" name="seat" class="seat" id='s${i.count }' value="${i.count}" disabled />
-				</c:if>
-			</c:forEach>
-			<br> 가격 : <input name="cost" id="cost" value="11만원"/><br>
-			<input id ="payment" type="button" value="등록">
+			<div class="row">
+				<div class="col-sm-8" align="center">
+					<img alt="" src="resources/img/library.jpg">
+				</div>
+				<!-- 1~20 // 21~36 -->
+				<div class="col-sm-4">
+					<br>
+					<br> <input id="id" name="id" type="hidden"
+						value="${person.id }" /> <input id="name" name="name"
+						type="hidden" value="${person.name }" /> <input id="phone"
+						name="phone" type="hidden" value="${person.phone }" /> <input
+						id="payNo" name="payNo" type="hidden" value="" /> <input
+						id="type" name="type" type="hidden" value="library" />
+
+					<div class="form-group">
+						<div class="input-group date" id="datetimepicker4"
+							data-target-input="nearest">
+							<input name="startDate" type="text"
+								class="form-control datetimepicker-input"
+								data-target="#datetimepicker4" />
+							<div class="input-group-append" data-target="#datetimepicker4"
+								data-toggle="datetimepicker">
+								<div class="input-group-text">
+									<i class="fa fa-calendar"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<select class="form-control" name="month" id="month">
+							<option value="1" label="1개월"></option>
+							<option value="3" label="3개월"></option>
+							<option value="6" label="6개월"></option>
+						</select>
+					</div>
+					<div class="form-group">
+						<input class="form-control" name="cost" id="cost" value="11만원"
+							readonly /><br>
+					</div>
+
+					<input class="btn btn-primary" id="payment" type="button"
+						value="등록">
+				</div>
+				<div class="form-group">
+					<c:forEach items="${seatList }" var="seat" varStatus="i">
+						<div class="form-check-inline">
+							<c:if test="${seat eq false }">
+									<label class="form-check-label" for="s${i.count}">${i.count}</label>
+									<input class="form-check-input" type="radio" name="seat"
+										class="seat" id='s${i.count }' value="${i.count}" />
+							</c:if>
+							<c:if test="${seat eq true }">
+									<label class="form-check-label" for="s${i.count}">${i.count}</label>
+									<input class="form-check-input" type="radio" name="seat"
+										class="seat" id='s${i.count }' value="${i.count}" disabled />
+							</c:if>
+						</div>
+					</c:forEach>
+				</div>
+			</div>
 		</form>
 	</div>
 </body>
 <!-- 제이쿼리 -->
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- 결제 -->
 <script type="text/javascript"
 	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
@@ -112,7 +148,7 @@
 			pg : "html5_inicis",
 			merchant_uid : payNo, //결제번호
 			name : "독서실", //헬스장, 독서실, x월 관리비 결제명
-			amount : frm.cost, //가격
+			amount : Number(frm.cost)/100, //가격
 			buyer_name : frm.name, // 회원이름
 			buyer_tel : frm.phone //회원전화번호
 		}
@@ -128,6 +164,10 @@
 		});
 	}
 	
-	
+	$(function () {
+        $('#datetimepicker4').datetimepicker({
+            format: 'L'
+        });
+    });
 </script>
 </html>

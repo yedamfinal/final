@@ -7,5 +7,6 @@ import co.team.apt.common.vo.PostBoxVo;
 public interface PostBoxMapper {
 	
 	public List<PostBoxVo> postBoxList(PostBoxVo vo);
+	public int mPostBoxInsert(PostBoxVo vo); 
 
 }

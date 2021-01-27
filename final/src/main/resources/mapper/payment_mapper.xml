@@ -134,7 +134,8 @@
 		from paypublic a, (select * 
 						   from payment 
 						   where id=#{id}
-						   and to_char(paymonth,'yy-mm')=#{payMonth}) b
+               and to_char(paymonth,'yy-mm') &lt;= #{payMonth}
+               and status in ('ing','no')) b
 		where to_char(a.paymonth,'yy-mm') = to_char(b.paymonth,'yy-mm')
 	</select>
 	

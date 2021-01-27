@@ -9,7 +9,6 @@
 	</settings>
 	<typeAliases>
 		<typeAlias type="co.team.apt.emp.EmpVO" alias="emp"/> 
-		
 		<package name="co.team.apt.common.vo"/> 
 	</typeAliases>
 
