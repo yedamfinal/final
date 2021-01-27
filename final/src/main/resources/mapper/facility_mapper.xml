@@ -4,29 +4,63 @@
 
 <mapper namespace="co.team.apt.facility.mapper.FacilityMapper">
 	<insert id="insertLibrary" parameterType="FacilityVo">
-		insert into library 
+		insert into ${type} (
+			id,
+			<if test="seat != null and seat != ''">
+				seat,
+			</if>
+			startdate,
+			enddate,
+			cost,
+			paydate,
+			payno
+			)
 		values(
 			#{id},
-			#{seat},
+			<if test="seat != null and seat != ''">
+				#{seat},
+			</if>
 			#{startDate},
 			add_months(#{startDate},${month}),
 			#{cost},
-			sysdate
+			sysdate,
+			#{payNo}
 		)
 	</insert>
 	
-	<insert id="insertFitness" parameterType="FacilityVo">
-		insert into fitness
-		values(
-			#{id},
-			#{startDate},
-			add_months(#{startDate},${month}),
-			#{cost},
-			sysdate
-		)
-	</insert>
 	
-	<select id="allList" resultType="FacilityVo">
-		select seat from library
+	<select id="getSeat" resultType="FacilityVo">
+		select * 
+		from library
+		<where>
+			<if test="startDate != null and startDate !=''">
+			add_months(#{startDate},${month}) between startdate and enddate
+			or #{startDate} between startdate and enddate
+			or startdate between #{startDate} and add_months(#{startDate},${month})
+			or enddate between #{startDate} and add_months(#{startDate},${month})
+			</if>
+		</where> 
 	</select>
+	
+	<select id="getLibrary" resultType="FacilityVo">
+		select * from ${type} where id = #{id}
+	</select>
+	
+	<update id="cancelLibrary" parameterType="FacilityVo">
+		update ${type}
+		set cancel = 'yes',
+		content = #{content}
+		where id = #{id}
+	</update>
+	
+	<select id="manageLibrary" resultType="FacilityVo">
+		select r.name, r.phone, r.dong ||'동 '|| r.ho||'호' address, l.*
+		from resident r, library l
+		where r.id = l.id
+		order by cancel desc, enddate
+	</select>
+	
+	<delete id="deleteLibrary">
+		delete from library where id=#{id}
+	</delete>
 </mapper>

@@ -1,6 +1,5 @@
 package co.team.apt.person.web;
 
-import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -11,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import co.team.apt.common.vo.ManagerVo;
 import co.team.apt.common.vo.ResidentVo;
@@ -27,12 +27,29 @@ public class PersonController {
 	public String login(Model model, HttpServletRequest request, ResidentVo vo) {
 		ResidentVo person = personService.login(vo);
 		HttpSession session = request.getSession(false);
+		String path = request.getHeader("Referer");
 		// 체크로직
 		if (person != null) {
 			session.setAttribute("person", person);
 		}
 		// return "sign/loginResult";
-		return "redirect:/home";
+		return "redirect:"+path;
+	}
+	
+	// 로그인 아작스
+	@RequestMapping("ajaxlogin.do")
+	@ResponseBody
+	public String ajaxlogin(Model model, HttpServletRequest request, ResidentVo vo) {
+		ResidentVo person = personService.login(vo);
+		HttpSession session = request.getSession(false);
+		// 체크로직
+		if (person != null) {
+			session.setAttribute("person", person);
+			return "success";
+		}else {
+			return "fail";
+		}
+		// return "sign/loginResult";
 	}
 
 	// 로그인폼이동
@@ -76,7 +93,6 @@ public class PersonController {
 	public String postRegister(ResidentVo vo) throws Exception {
 
 		service.resiRegister(vo);
-
 		return "redirect:/home";
 
 	}
@@ -90,7 +106,7 @@ public class PersonController {
 	// 관리자처리페이지 post 5
 	@RequestMapping(value = "/maneRegister", method = RequestMethod.POST)
 	public String postManeRegister(ManagerVo vo) throws Exception {
-
+		System.out.println(vo);
 		service.maneregister(vo);	
 
 		return "redirect:/home";

@@ -2,6 +2,8 @@ package co.team.apt.common.vo;
 
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Data;
 
 @Data
@@ -9,7 +11,8 @@ public class BoardVo {
 	private int defno;
 	private String title;
 	private String content;
-	private String deffile;
+	private String deffile;	//첨부파일명
+//	private MultipartFile uploadFile; //첨부파일
 	private Date defdate;
 	private String state; //하자보수 게시판 처리상태
 	private String writer; //글쓴이

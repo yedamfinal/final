@@ -21,21 +21,15 @@ public class PersonServiceImpl implements PersonService {
 	
 	@Autowired PersonMapper dao;
 	
-	
-	
-	
-	
 	//로그인
 	@Override
 	public ResidentVo login(ResidentVo vo) {
 		ResidentVo resultvo=dao.loginCheck(vo);
-		if(resultvo != null && resultvo.getType().equals("r")) {			
+		if(resultvo != null && resultvo.getType().equals("r")) {
 				return dao.loginResident(resultvo);
-			
 		}else {
-			System.out.println("로그인 실패 하였습니다. 다시 시도 해주세요.");
+			return resultvo;
 		}
-		return resultvo;
 	}
 
 	@Override

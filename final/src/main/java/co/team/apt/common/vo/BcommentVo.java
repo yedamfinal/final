@@ -9,7 +9,6 @@ public class BcommentVo {
 	private int reno;
 	private String recontent;
 	private Date redate;
-	private String type;
-	private int no;
+	private int defno;
 	private String writer;
 }
