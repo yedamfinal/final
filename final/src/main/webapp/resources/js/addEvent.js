@@ -1,8 +1,6 @@
-console.log("aaa");
-
 var eventModal = $('#eventModal');
-
 var modalTitle = $('.modal-title');
+var editCalendarno = $('#calendarno');
 var editAllDay = $('#edit-allDay');
 var editTitle = $('#edit-title');
 var editStart = $('#edit-start');
@@ -42,7 +40,7 @@ var newEvent = function (start, end, eventType) {
     $('#save-event').on('click', function () {
 
         var eventData = {
-            _id: eventId,
+            calendarno: editCalendarno.val(),
             title: editTitle.val(),
             start: editStart.val(),
             end: editEnd.val(),
@@ -77,7 +75,7 @@ var newEvent = function (start, end, eventType) {
             eventData.allDay = true;
         }
 
-        $("#calendar").fullCalendar('renderEvent', eventData, true);
+       
         eventModal.find('input, textarea').val('');
         eventModal.modal('hide');
 
@@ -87,10 +85,9 @@ var newEvent = function (start, end, eventType) {
             url: "calendarInsert.do",
             data: eventData,
             success: function (response) {
-                //DB연동시 중복이벤트 방지를 위한
-                //$('#calendar').fullCalendar('removeEvents');
-                //$('#calendar').fullCalendar('refetchEvents');
-				alert("성공")
+                 eventData.calendarno = response.calendarno;
+                 $("#calendar").fullCalendar('renderEvent', eventData, true);
+				alert("등록되었습니다.")
             }
         });
     });
