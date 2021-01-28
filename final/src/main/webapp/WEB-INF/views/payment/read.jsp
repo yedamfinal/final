@@ -111,7 +111,7 @@
 							</tr>
 							<tr>
 								<th scope="row">납기내 금액</th>
-								<td><fmt:formatNumber type="number" maxFractionDigits="3"
+								<td id="beforeCost"><fmt:formatNumber type="number" maxFractionDigits="3"
 										value="${payMap['total']+payMap['tax'] }" />원</td>
 							</tr>
 							<tr>
@@ -121,7 +121,7 @@
 							</tr>
 							<tr>
 								<th scope="row">납기후 금액</th>
-								<td><fmt:formatNumber type="number" maxFractionDigits="3"
+								<td id="afterCost"><fmt:formatNumber type="number" maxFractionDigits="3"
 										value="${payList[0].cost*1.02+payMap['delay'] + payMap['tax'] + (1-(payList[0].cost*1.02%1)%1)} " />원</td>
 							</tr>
 						</tbody>
@@ -467,7 +467,7 @@
 	/* 이벤트 등록 */
 	$('#regular').on('click', regular)
 	$('#paymentButton').on('click', payment)
-
+	
 	//결제 정보
 	var IMP = window.IMP; // 생략해도 괜찮습니다.
 	IMP.init("imp17111120"); // "imp00000000" 대신 발급받은 "가맹점 식별코드"를 사용합니다.
@@ -495,10 +495,45 @@
 			}
 		});
 	}
+	//관리비 납부
+	//결제
+	var IMP = window.IMP; // 생략해도 괜찮습니다.
+	IMP.init("imp17111120"); // "imp00000000" 대신 발급받은 "가맹점 식별코드"를 사용합니다.
+	
 	function payment() {
+		let payNo = Date.now();
+		$('#payNo').val(payNo);
+		let cost = $('#beforeCost').html().replace('원','').replace(',','');
+		/* let cost = $('#afterCost').html().replace('원','').replace(',',''); */
+		//결제 정보
+		let param = { // param
+			pg : "html5_inicis",
+			merchant_uid : payNo, //결제번호
+			name : $('#voMonth').html()+"월 관리비", //헬스장, 독서실, x월 관리비 결제명
+			amount : cost, //가격
+			buyer_name : '${person.name}', // 회원이름
+			buyer_tel :  '${person.phone}'//회원전화번호
+		}
+		
+		IMP.request_pay(param, function(rsp) { // callback
+			if (rsp.success) {
+				// 결제 성공 시 로직, 디비에 저장
+				
+			} else {
+				// 결제 실패 시 로직, 결제실패 메시지 or 페이지
+				alert("결제에 실패하였습니다.")
+			}
+		}); 
+	}
+	
+	//전월비교
+	function previousMonth(){
 		var t = document.getElementById("jun");
-		var r = t.rows();
-		for()
+		var r = t.rows;
+		var i = 0;
+		for(c of r){
+			c.cells[1].innerHTML = ++i;  
+		}
 	}
 </script>
 </html>
