@@ -279,13 +279,13 @@
 	
 	
 	
-	
+	/* 이거 안댐
 	//결제 정보
 	var IMP = window.IMP; // 생략해도 괜찮습니다.
 	IMP.init("imp17111120"); // "imp00000000" 대신 발급받은 "가맹점 식별코드"를 사용합니다.
 	
-	//정기 결제
-	function regular(){
+	//정기 결제 
+	 function regular(){
 		console.log("aaa");
 		// IMP.request_pay(param, callback) 호출
 		  IMP.request_pay({ // param
@@ -295,9 +295,9 @@
 		    customer_uid: "gildong_0001_1234", // 카드(빌링키)와 1:1로 대응하는 값
 		    name: "최초인증결제",
 		    amount: 0 // 0 으로 설정하여 빌링키 발급만 진행합니다.
-		 /*    , 
+		     , 
 		    buyer_name : '승호', // 회원이름
-		    buyer_tel: "010-4242-4242" */
+		    buyer_tel: "010-4242-4242" 
 		  }, function (rsp) { // callback
 		    if (rsp.success) {
 		      // 빌링키 발급 성공
@@ -307,7 +307,7 @@
 		      console.log(rsp);
 		    }
 		  });
-	}
+	} */
 	function payment(){
 		
 	}
