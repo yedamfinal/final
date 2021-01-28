@@ -53,8 +53,6 @@ var newEvent = function (start, end, eventType) {
             allDay: true
         };
 
-		console.log(eventData);
-
         if (eventData.start > eventData.end) {
             alert('끝나는 날짜가 앞설 수 없습니다.');
             return false;

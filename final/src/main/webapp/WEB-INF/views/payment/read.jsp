@@ -122,7 +122,7 @@
 							<tr>
 								<th scope="row">납기후 금액</th>
 								<td><fmt:formatNumber type="number" maxFractionDigits="3"
-										value="${payList[0].cost*1.02+payMap['delay']+payMap['tax'] + (1-(payList[0].cost*1.02%1)%1) }" />원</td>
+										value="${payList[0].cost*1.02+payMap['delay'] + payMap['tax'] + (1-(payList[0].cost*1.02%1)%1)} " />원</td>
 							</tr>
 						</tbody>
 					</table>
@@ -275,11 +275,106 @@
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
-					<div class="modal-body">...</div>
+					<div class="modal-body">
+						<input type="month" id="month1">
+						<input type="month" id="month2">
+						<button type="button" class="btn btn-primary">조회</button><br>
+						<table class="table" id="jun">
+						<thead>
+							<tr>
+								<th scope="row">${pay.payMonth }월납입항목</th>
+								<th id="monthTh1">x월 금액 (원)</th>
+								<th id="monthTh2">x월 금액 (원)</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th scope="row">일반관리비</th>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">청소비</th>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">경비비</th>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">소독비</th>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">승강기사용료</th>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">공용전기세</th>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">공용수도세</th>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">수선 유지비</th>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">장기수선 충당금</th>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">입주자 대표회의 운영비</th>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">난방비</th>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">수도세</th>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">급탕비</th>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">전기세</th>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">기타</th>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">${pay.payMonth }월합계</th>
+								<td></td>
+								<td></td>
+							</tr>
+						</tbody>
+						</table>
+					</div>
 					<div class="modal-footer">
+						
 						<button type="button" class="btn btn-secondary"
 							data-dismiss="modal">닫기</button>
-						<button type="button" class="btn btn-primary">Understood</button>
 					</div>
 				</div>
 			</div>
@@ -401,7 +496,9 @@
 		});
 	}
 	function payment() {
-
+		var t = document.getElementById("jun");
+		var r = t.rows();
+		for()
 	}
 </script>
 </html>
