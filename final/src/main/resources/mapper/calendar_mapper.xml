@@ -3,26 +3,52 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="co.team.apt.calendar.mapper.CalendarMapper">
-	
+	<!-- <select  id="CalendarList" parameterType="CalendarVo">
+		select * from calendar
+	</select> -->
 		
 	<insert id="CalendarInsert" parameterType="CalendarVo">
+	<selectKey resultType="int" keyProperty="calendarno" order="BEFORE">
+        SELECT def_seq.nextval FROM dual        
+    </selectKey>
 		insert into calendar(
 					calendarno,
 					caltitle,
 					calcontent,
 					startdate,
 					enddate,
-					writer
+					writer,
+					backgroundColor,
+					textColor
 					)
 		values(
-				def_seq.nextval,
-				#{edit-title},
-				#{inputModal},
-				#{edit-start},
-				#{edit-end},
-				'admin'
+				#{calendarno},
+				#{title},
+				#{description},
+				#{start},
+				#{end},
+				#{username},
+				#{backgroundColor},
+				#{textColor}
 				)
 	</insert>
+	
+	<update id="CalendarUpdate" parameterType="CalendarVo">
+		update calendar
+		set caltitle=#{title},
+			calcontent=#{description},
+			startdate=#{start},
+			enddate=#{end},
+			writer=#{username},
+			backgroundColor=#{backgroundColor},
+			textColor=#{textColor}
+		where calendarno = #{calendarno}
+	</update>
+	
+	<delete id="calendarDelete" parameterType="CalendarVo">
+		delete from calendar
+		where calendarno = #{calendarno}
+	</delete>
 	
 	
 </mapper>

@@ -1,6 +1,6 @@
 var eventModal = $('#eventModal');
-
 var modalTitle = $('.modal-title');
+var editCalendarno = $('#calendarno');
 var editAllDay = $('#edit-allDay');
 var editTitle = $('#edit-title');
 var editStart = $('#edit-start');
@@ -40,17 +40,18 @@ var newEvent = function (start, end, eventType) {
     $('#save-event').on('click', function () {
 
         var eventData = {
-            _id: eventId,
+            calendarno: editCalendarno.val(),
             title: editTitle.val(),
             start: editStart.val(),
             end: editEnd.val(),
             description: editDesc.val(),
-            type: editType.val(),
-            username: '사나',
+            username: '관리자',
             backgroundColor: editColor.val(),
             textColor: '#ffffff',
-            allDay: false
+            allDay: true
         };
+
+		console.log(eventData);
 
         if (eventData.start > eventData.end) {
             alert('끝나는 날짜가 앞설 수 없습니다.');
@@ -74,22 +75,19 @@ var newEvent = function (start, end, eventType) {
             eventData.allDay = true;
         }
 
-        $("#calendar").fullCalendar('renderEvent', eventData, true);
+       
         eventModal.find('input, textarea').val('');
-        editAllDay.prop('checked', false);
         eventModal.modal('hide');
 
         //새로운 일정 저장
         $.ajax({
-            type: "get",
-            url: "",
-            data: {
-                //.....
-            },
+            type: "post",
+            url: "calendarInsert.do",
+            data: eventData,
             success: function (response) {
-                //DB연동시 중복이벤트 방지를 위한
-                //$('#calendar').fullCalendar('removeEvents');
-                //$('#calendar').fullCalendar('refetchEvents');
+                 eventData.calendarno = response.calendarno;
+                 $("#calendar").fullCalendar('renderEvent', eventData, true);
+				alert("등록되었습니다.")
             }
         });
     });

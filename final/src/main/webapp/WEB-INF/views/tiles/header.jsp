@@ -86,7 +86,7 @@
 								id="navbarDropdown" role="button" data-toggle="dropdown"
 								aria-haspopup="true" aria-expanded="false">편의기능</a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-									<a class="dropdown-item" href="#">택배조회</a> <a
+									<a class="dropdown-item" href="postBoxList.do">택배조회</a> <a
 										class="dropdown-item" href="#">관리자 택배관리</a> <a
 										class="dropdown-item" href="#">입주자 차량등록</a> <a
 										class="dropdown-item" href="visitList.do">방문자 차량등록</a> <a

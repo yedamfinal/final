@@ -97,7 +97,8 @@ var calendar = $('#calendar').fullCalendar({
       container: 'body'
     });
 
-    return filtering(event);
+    /*return filtering(event);*/
+	return true;
 
   },
 
@@ -107,7 +108,7 @@ var calendar = $('#calendar').fullCalendar({
   events: function (start, end, timezone, callback) {
     $.ajax({
       type: "get",
-      url: "",
+      url: "resources/data.json",
       data: {
         // 화면이 바뀌면 Date 객체인 start, end 가 들어옴
         //startDate : moment(start).format('YYYY-MM-DD'),
@@ -137,14 +138,27 @@ var calendar = $('#calendar').fullCalendar({
      * 하루를 빼야 정상적으로 반영됨. */
     var newDates = calDateWhenResize(event);
 
+	/******** 임시 RAMDON ID - 실제 DB 연동시 삭제 **********/
+	var eventId = 1 + Math.floor(Math.random() * 1000);
+	/******** 임시 RAMDON ID - 실제 DB 연동시 삭제 **********/
+        
+    var eventData = {
+            _id: eventId,
+            title: editTitle.val(),
+            start: editStart.val(),
+            end: editEnd.val(),
+            description: editDesc.val(),
+            username: '관리자',
+            backgroundColor: editColor.val(),
+            textColor: '#ffffff',
+            allDay: true
+    };
+	
     //리사이즈한 일정 업데이트
     $.ajax({
-      type: "get",
-      url: "",
-      data: {
-        //id: event._id,
-        //....
-      },
+      type: "post",
+      url: "calendarUpdate.do",
+      data: eventData,
       success: function (response) {
         alert('수정: ' + newDates.startDate + ' ~ ' + newDates.endDate);
       }
@@ -171,14 +185,28 @@ var calendar = $('#calendar').fullCalendar({
 
     // 드랍시 수정된 날짜반영
     var newDates = calDateWhenDragnDrop(event);
-
+	
+	/******** 임시 RAMDON ID - 실제 DB 연동시 삭제 **********/
+	var eventId = 1 + Math.floor(Math.random() * 1000);
+	/******** 임시 RAMDON ID - 실제 DB 연동시 삭제 **********/
+        
+    var eventData = {
+            _id: eventId,
+            title: editTitle.val(),
+            start: editStart.val(),
+            end: editEnd.val(),
+            description: editDesc.val(),
+            username: '관리자',
+            backgroundColor: editColor.val(),
+            textColor: '#ffffff',
+            allDay: true
+    };
+	
     //드롭한 일정 업데이트
     $.ajax({
-      type: "get",
-      url: "",
-      data: {
-        //...
-      },
+      type: "post",
+      url: "calendarInsert.do",
+      data: eventData,
       success: function (response) {
         alert('수정: ' + newDates.startDate + ' ~ ' + newDates.endDate);
       }
