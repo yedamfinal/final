@@ -1,6 +1,6 @@
 var draggedEventIsAllDay;
 var activeInactiveWeekends = true;
-
+console.log("aaa");
 var calendar = $('#calendar').fullCalendar({
 
  /** ******************
@@ -97,7 +97,8 @@ var calendar = $('#calendar').fullCalendar({
       container: 'body'
     });
 
-    return filtering(event);
+    /*return filtering(event);*/
+	return true;
 
   },
 
@@ -107,7 +108,7 @@ var calendar = $('#calendar').fullCalendar({
   events: function (start, end, timezone, callback) {
     $.ajax({
       type: "get",
-      url: "",
+      url: "resources/data.json",
       data: {
         // 화면이 바뀌면 Date 객체인 start, end 가 들어옴
         //startDate : moment(start).format('YYYY-MM-DD'),

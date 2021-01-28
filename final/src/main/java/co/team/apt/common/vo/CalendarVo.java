@@ -6,11 +6,13 @@ import lombok.Data;
 
 @Data
 public class CalendarVo {
-	private int calendarno;
-	private String caltitle;
-	private String calcontent;
-	private Date startdate;
-	private Date enddate;	
-	private String writer;
-	
+	private int _id;
+	private String title;
+	private String description;
+	private Date start;
+	private Date end;	
+	private String username;
+	private String backgroundColor;
+	private String textColor;
+	private String allDay;
 }

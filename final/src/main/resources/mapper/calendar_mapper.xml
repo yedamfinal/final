@@ -12,15 +12,19 @@
 					calcontent,
 					startdate,
 					enddate,
-					writer
+					writer,
+					backgroundColor,
+					textColor
 					)
 		values(
 				def_seq.nextval,
-				#{edit-title},
-				#{inputModal},
-				#{edit-start},
-				#{edit-end},
-				'admin'
+				#{title},
+				#{description},
+				#{start},
+				#{end},
+				#{username},
+				#{backgroundColor},
+				#{textColor}
 				)
 	</insert>
 	
