@@ -2,7 +2,7 @@
  *  일정 편집
  * ************** */
 var editEvent = function (event, element, view) {
-
+	console.log(event);
     $('#deleteEvent').data('id', event._id); //클릭한 이벤트 ID
 
     $('.popover.fade.top').remove();
@@ -25,6 +25,7 @@ var editEvent = function (event, element, view) {
     }
 
     modalTitle.html('일정 수정');
+    editCalendarno.val(event.calendarno);
     editTitle.val(event.title);
     editStart.val(event.start.format('YYYY-MM-DD HH:mm'));
     editType.val(event.type);
@@ -75,16 +76,30 @@ var editEvent = function (event, element, view) {
         event.type = editType.val();
         event.backgroundColor = editColor.val();
         event.description = editDesc.val();
+        
+        /******** 임시 RAMDON ID - 실제 DB 연동시 삭제 **********/
+	    var eventId = 1 + Math.floor(Math.random() * 1000);
+	    /******** 임시 RAMDON ID - 실제 DB 연동시 삭제 **********/
+        
+        var eventData = {
+            _id: eventId,
+            title: editTitle.val(),
+            start: editStart.val(),
+            end: editEnd.val(),
+            description: editDesc.val(),
+            username: 'admin',
+            backgroundColor: editColor.val(),
+            textColor: '#ffffff',
+            allDay: true
+        };
 
         $("#calendar").fullCalendar('updateEvent', event);
 
         //일정 업데이트
         $.ajax({
-            type: "get",
-            url: "",
-            data: {
-                //...
-            },
+            type: "post",
+            url: "calendarUpdate.do",
+            data: eventData,
             success: function (response) {
                 alert('수정되었습니다.')
             }
@@ -99,14 +114,28 @@ $('#deleteEvent').on('click', function () {
     $('#deleteEvent').unbind();
     $("#calendar").fullCalendar('removeEvents', $(this).data('id'));
     eventModal.modal('hide');
-
+	
+	/******** 임시 RAMDON ID - 실제 DB 연동시 삭제 **********/
+	var eventId = 1 + Math.floor(Math.random() * 1000);
+	/******** 임시 RAMDON ID - 실제 DB 연동시 삭제 **********/
+        
+    var eventData = {
+            _id: eventId,
+            title: editTitle.val(),
+            start: editStart.val(),
+            end: editEnd.val(),
+            description: editDesc.val(),
+            username: '관리자',
+            backgroundColor: editColor.val(),
+            textColor: '#ffffff',
+            allDay: true
+    };
+	
     //삭제시
     $.ajax({
-        type: "get",
-        url: "",
-        data: {
-            //...
-        },
+        type: "post",
+        url: "calendarDelete.do",
+        data: eventdata,
         success: function (response) {
             alert('삭제되었습니다.');
         }

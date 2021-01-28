@@ -3,6 +3,7 @@ package co.team.apt.common.vo;
 import java.sql.Date;
 
 import lombok.Data;
+
 @Data
 public class PostBoxVo {
 	

@@ -91,6 +91,7 @@
                                 <label class="col-xs-4" for="edit-desc">설명</label>
                                 <textarea rows="4" cols="50" class="inputModal" name="inputModal"
                                     id="edit-desc"></textarea>
+                                <input type="hidden" id="calendarno" name="calendarno">
                             </div>
                         </div>
                         

@@ -16,7 +16,6 @@ public class PostBoxServiceimpl implements PostBoxService {
 	PostBoxMapper dao;
 	
 	public List<PostBoxVo> postBoxList(PostBoxVo vo){
-	
 	return dao.postBoxList(vo);
 }
 
