@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import co.team.apt.calendar.mapper.CalendarMapper;
 import co.team.apt.calendar.service.CalendarService;
@@ -40,6 +41,8 @@ public class CalendarController {
 	
 	//글쓰기
 	@RequestMapping("calendarInsert.do")
+	
+	@ResponseBody
 	public String insert(CalendarVo vo) throws SQLException {
 						
 			int n = calendarService.CalendarInsert(vo);

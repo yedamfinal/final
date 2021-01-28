@@ -20,13 +20,20 @@ public class BoardVoteController {
 	@Autowired
 	private BoardVoteService boardVoteService;
 	
-	@RequestMapping("/boardVoteInsert")
+	//등록페이지
+	@RequestMapping("/boardVoteInsert.do")
 	public String boardVoteInsert(Model model, BoardVoteVo vo) {
+		boardVoteService.voteInsert(vo);
+		return "redirect:boardVoteList.do";
+	}
+	
+	@RequestMapping("/boardVoteInsertForm.do")
+	public String boardVoteInsertForm(Model model, BoardVoteVo vo) {
 		
 		return "vote/boardVoteInsert";
 	}
 	
-	@RequestMapping("/candiRegister")
+	@RequestMapping("/candiRegister.do")
 	public String candiRegister(Model model, BoardVoteVo vo) {
 		
 		return "vote/candiRegister";
@@ -42,9 +49,29 @@ public class BoardVoteController {
 	
 	@RequestMapping("/searchName.do")
 	@ResponseBody
-	public ResidentVo searchId(ResidentVo vo){
+	public List<ResidentVo> searchName(ResidentVo vo){
 		
 		return boardVoteService.searchName(vo);		
+	}
+	
+	@RequestMapping("/boardVoteRead.do")
+	public String boardVoteRead(Model model, BoardVoteVo vo) {
+		vo= boardVoteService.selectOne(vo);
+		model.addAttribute("vo", vo);
+		return "vote/boardVoteRead";
+		
+	}
+	
+	@RequestMapping("/boardVoteUpdate.do")
+	public String boardVoteUpdate(BoardVoteVo vo) {
+		int n= boardVoteService.voteUpdate(vo);
+		return "redirect:boardVoteList.do";
+	}
+	
+	@RequestMapping("/boardVoteDelete.do")
+	public String boardVoteDelete(BoardVoteVo vo) {
+		int n= boardVoteService.voteDelete(vo);
+		return "redirect:boardVoteList.do";
 	}
 	
 	
