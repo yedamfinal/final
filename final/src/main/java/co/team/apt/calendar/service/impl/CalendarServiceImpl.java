@@ -16,31 +16,31 @@ public class CalendarServiceImpl implements CalendarService {
 	@Override
 	public List<CalendarVo> CalendarList(CalendarVo vo) {
 		// TODO Auto-generated method stub
-		return dao.CalendarList(vo);
+		return dao.calendarList(vo);
 	}
 
 	@Override
 	public CalendarVo CalendarOne(CalendarVo vo) {
 		// TODO Auto-generated method stub
-		return dao.CalendarOne(vo);
+		return dao.calendarOne(vo);
 	}
 
 	@Override
 	public int CalendarInsert(CalendarVo vo) {
 		// TODO Auto-generated method stub
-		return dao.CalendarInsert(vo);
+		return dao.calendarInsert(vo);
 	}
 
 	@Override
 	public int CalendarUpdate(CalendarVo vo) {
 		// TODO Auto-generated method stub
-		return dao.CalendarUpdate(vo);
+		return dao.calendarUpdate(vo);
 	}
 
 	@Override
 	public int CalendarDelete(CalendarVo vo) {
 		// TODO Auto-generated method stub
-		return dao.CalendarDelete(vo);
+		return dao.calendarDelete(vo);
 	}
 
 }
