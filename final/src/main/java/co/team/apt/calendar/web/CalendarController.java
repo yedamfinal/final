@@ -5,13 +5,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import co.team.apt.calendar.mapper.CalendarMapper;
 import co.team.apt.calendar.service.CalendarService;
-import co.team.apt.common.vo.BoardVo;
 import co.team.apt.common.vo.CalendarVo;
 
 @Controller
@@ -25,13 +23,21 @@ public class CalendarController {
 		
 	//캘린더 조회
 	@RequestMapping("calendar.do")
-	public String calendar(Model model, CalendarVo vo) {
-		
-//		List<CalendarVo> list = calendarService.CalendarList(vo);
-//		model.addAttribute("calendarList", list);
-//				
+	public String calendar(CalendarVo vo) {
 		return "calendar/calendar";
 	}
+	
+	//캘린더 조회
+		@RequestMapping("calendarAjax.do")
+		@ResponseBody
+		public List<CalendarVo> calendarAjax(CalendarVo vo) {
+			System.out.println(vo);
+			List<CalendarVo> list = calendarService.CalendarList(vo);
+						for (CalendarVo v : list ) {
+							v.setAllDay(true);
+						}
+			return list;
+		}
 			
 	
 	
@@ -53,17 +59,13 @@ public class CalendarController {
 	//글수정
 	@RequestMapping("calendarUpdate.do")
 	@ResponseBody
-	public CalendarVo update(CalendarVo vo) throws SQLException {
-							
+	public void update(CalendarVo vo) throws SQLException {
+			System.out.println(vo);
 			int n = calendarService.CalendarUpdate(vo);
-							
-			if(n != 0) {
-				return vo;
-			}else {
-				return null;//에러처리 필요
-			}
 	}
 	
+	
+	//글 삭제
 	@RequestMapping("calendarDelete.do")
 	@ResponseBody
 	public CalendarVo delete(CalendarVo vo) {

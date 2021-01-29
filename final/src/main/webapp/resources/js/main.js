@@ -106,15 +106,17 @@ var calendar = $('#calendar').fullCalendar({
    *  일정 받아옴 
    * ************** */
   events: function (start, end, timezone, callback) {
+	console.log(start, end, timezone, callback);
     $.ajax({
-      type: "get",
-      url: "resources/data.json",
+      url: "calendarAjax.do",
+	  type: "post",
       data: {
         // 화면이 바뀌면 Date 객체인 start, end 가 들어옴
         startDate : moment(start).format('YYYY-MM-DD'),
         endDate   : moment(end).format('YYYY-MM-DD')
       },
       success: function (response) {
+		console.log(response);
         var fixedDate = response.map(function (array) {
           if (array.allDay && array.start !== array.end) {
             array.end = moment(array.end).add(1, 'days'); // 이틀 이상 AllDay 일정인 경우 달력에 표기시 하루를 더해야 정상출력
@@ -122,7 +124,10 @@ var calendar = $('#calendar').fullCalendar({
           return array;
         });
         callback(fixedDate);
-      }
+      },
+error: function (response) {
+	alert()
+}
     });
   },
 
@@ -138,26 +143,12 @@ var calendar = $('#calendar').fullCalendar({
      * 하루를 빼야 정상적으로 반영됨. */
     var newDates = calDateWhenResize(event);
 
-	/******** 임시 RAMDON ID - 실제 DB 연동시 삭제 **********/
-	var eventId = 1 + Math.floor(Math.random() * 1000);
-	/******** 임시 RAMDON ID - 실제 DB 연동시 삭제 **********/
-        
-    var eventData = {
-            _id: eventId,
-            title: editTitle.val(),
-            start: editStart.val(),
-            end: editEnd.val(),
-            description: editDesc.val(),
-            username: '관리자',
-            backgroundColor: editColor.val(),
-            textColor: '#ffffff',
-            allDay: true
-    };
+
 	
     //리사이즈한 일정 업데이트
     $.ajax({
       type: "post",
-      url: "calendarUpdate.do",
+      url: "",
       data: eventData,
       success: function (response) {
         alert('수정: ' + newDates.startDate + ' ~ ' + newDates.endDate);
@@ -190,22 +181,12 @@ var calendar = $('#calendar').fullCalendar({
 	var eventId = 1 + Math.floor(Math.random() * 1000);
 	/******** 임시 RAMDON ID - 실제 DB 연동시 삭제 **********/
         
-    var eventData = {
-            _id: eventId,
-            title: editTitle.val(),
-            start: editStart.val(),
-            end: editEnd.val(),
-            description: editDesc.val(),
-            username: '관리자',
-            backgroundColor: editColor.val(),
-            textColor: '#ffffff',
-            allDay: true
-    };
+    
 	
     //드롭한 일정 업데이트
     $.ajax({
       type: "post",
-      url: "calendarInsert.do",
+      url: "",
       data: eventData,
       success: function (response) {
         alert('수정: ' + newDates.startDate + ' ~ ' + newDates.endDate);

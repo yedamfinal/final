@@ -25,7 +25,7 @@
 				
 				<tbody>
 				<c:forEach var="vo" items="${boardVoteList }">
-					<tr onclick="location.href='boardVoteRead.do?seq=${vo.seq }'">
+					<tr onclick="location.href='userBoardVoteRead.do?seq=${vo.seq }'">
 						<td>${vo.seq}</td>
 						<td>${vo.title}</td>
 						<td>${vo.startDate}</td>
@@ -34,13 +34,6 @@
 				</c:forEach>
 				</tbody>			
 			</table>
-			
-			<div align="right">
-				<br />
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<button class="btn btn-outline-secondary" onclick="location.href='boardVoteInsertForm.do'">새로운 투표</button>
-			</div>
-			
 		</div>
 	</div>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
