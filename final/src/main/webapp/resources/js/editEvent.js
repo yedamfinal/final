@@ -1,3 +1,14 @@
+var eventModal = $('#eventModal');
+var modalTitle = $('.modal-title');
+var editCalendarno = $('#calendarno');
+var editAllDay = $('#edit-allDay');
+var editTitle = $('#edit-title');
+var editStart = $('#edit-start');
+var editEnd = $('#edit-end');
+var editType = $('#edit-type');
+var editColor = $('#edit-color');
+var editDesc = $('#edit-desc');
+
 /* ****************
  *  일정 편집
  * ************** */
@@ -39,7 +50,19 @@ var editEvent = function (event, element, view) {
     //업데이트 버튼 클릭시
     $('#updateEvent').unbind();
     $('#updateEvent').on('click', function () {
-	
+		
+		var eventData = {
+            calendarno: editCalendarno.val(),
+            title: editTitle.val(),
+            startDate: editStart.val(),
+            endDate: editEnd.val(),
+            description: editDesc.val(),
+            username: 'admin',
+            backgroundColor: editColor.val(),
+            textColor: '#ffffff',
+            allDay: true
+        };
+		
         if (editStart.val() > editEnd.val()) {
             alert('끝나는 날짜가 앞설 수 없습니다.');
             return false;
@@ -54,12 +77,16 @@ var editEvent = function (event, element, view) {
         var startDate;
         var endDate;
         var displayDate;
+        var realEndDay;
 
         if (editAllDay.is(':checked')) {
-            statusAllDay = true;
-            startDate = moment(editStart.val()).format('YYYY-MM-DD');
-            endDate = moment(editEnd.val()).format('YYYY-MM-DD');
-            displayDate = moment(editEnd.val()).add(1, 'days').format('YYYY-MM-DD');
+            eventData.start = moment(eventData.start).format('YYYY-MM-DD');
+            //render시 날짜표기수정
+            eventData.end = moment(eventData.end).add(1, 'days').format('YYYY-MM-DD');
+            //DB에 넣을때(선택)
+            realEndDay = moment(eventData.end).format('YYYY-MM-DD');
+
+            eventData.allDay = true;
         } else {
             statusAllDay = false;
             startDate = editStart.val();
@@ -76,31 +103,19 @@ var editEvent = function (event, element, view) {
         event.type = editType.val();
         event.backgroundColor = editColor.val();
         event.description = editDesc.val();
+		        
         
-        /******** 임시 RAMDON ID - 실제 DB 연동시 삭제 **********/
-	    var eventId = 1 + Math.floor(Math.random() * 1000);
-	    /******** 임시 RAMDON ID - 실제 DB 연동시 삭제 **********/
+
         
-        var eventData = {
-            _id: eventId,
-            title: editTitle.val(),
-            start: editStart.val(),
-            end: editEnd.val(),
-            description: editDesc.val(),
-            username: 'admin',
-            backgroundColor: editColor.val(),
-            textColor: '#ffffff',
-            allDay: true
-        };
-
-        $("#calendar").fullCalendar('updateEvent', event);
-
+		console.log(eventData);
         //일정 업데이트
         $.ajax({
             type: "post",
             url: "calendarUpdate.do",
             data: eventData,
             success: function (response) {
+             	eventData.calendarno = response.calendarno;
+                $("#calendar").fullCalendar('updateEvent', event, true);
                 alert('수정되었습니다.')
             }
         });
@@ -115,29 +130,18 @@ $('#deleteEvent').on('click', function () {
     $("#calendar").fullCalendar('removeEvents', $(this).data('id'));
     eventModal.modal('hide');
 	
-	/******** 임시 RAMDON ID - 실제 DB 연동시 삭제 **********/
-	var eventId = 1 + Math.floor(Math.random() * 1000);
-	/******** 임시 RAMDON ID - 실제 DB 연동시 삭제 **********/
-        
-    var eventData = {
-            _id: eventId,
-            title: editTitle.val(),
-            start: editStart.val(),
-            end: editEnd.val(),
-            description: editDesc.val(),
-            username: '관리자',
-            backgroundColor: editColor.val(),
-            textColor: '#ffffff',
-            allDay: true
-    };
+	
+    
 	
     //삭제시
     $.ajax({
         type: "post",
         url: "calendarDelete.do",
-        data: eventdata,
+        data: {
+        	calendarno: editCalendarno.val()
+        },
         success: function (response) {
-            alert('삭제되었습니다.');
+         	alert('삭제되었습니다.');
         }
     });
 
