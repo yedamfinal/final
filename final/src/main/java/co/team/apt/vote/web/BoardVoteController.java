@@ -11,11 +11,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import co.team.apt.common.vo.BoardVoteVo;
+import co.team.apt.common.vo.CandidateVo;
 import co.team.apt.common.vo.ResidentVo;
 import co.team.apt.vote.service.BoardVoteService;
+import co.team.apt.vote.service.CandidateService;
 
 @Controller
 public class BoardVoteController {
+	@Autowired
+	private CandidateService candidateService;
 	
 	@Autowired
 	private BoardVoteService boardVoteService;
@@ -35,7 +39,7 @@ public class BoardVoteController {
 	
 	@RequestMapping("/candiRegister.do")
 	public String candiRegister(Model model, BoardVoteVo vo) {
-		
+		model.addAttribute("vo", vo);
 		return "vote/candiRegister";
 	}
 	
@@ -47,6 +51,7 @@ public class BoardVoteController {
 		return "vote/boardVoteList";
 	}
 	
+	//후보자 동명이인 중에 한명만 찾기 ajax 처리
 	@RequestMapping("/searchName.do")
 	@ResponseBody
 	public List<ResidentVo> searchName(ResidentVo vo){
@@ -54,12 +59,30 @@ public class BoardVoteController {
 		return boardVoteService.searchName(vo);		
 	}
 	
+	//후보자 삭제
+	@RequestMapping("/candiDelete.do")
+	@ResponseBody
+	public int candiDelete(CandidateVo vo){
+		return candidateService.candiDelete(vo);
+	}
+	
+	@RequestMapping("/updateCandidate.do")
+	public String updateCandidate(Model model, CandidateVo vo) {
+		vo =candidateService.selectName(vo);
+		
+		model.addAttribute("vo", vo);
+		return "vote/candiRegister";
+	}
+	
+	
+	//게시판->상세보기, 수정 페이지로 이동
 	@RequestMapping("/boardVoteRead.do")
-	public String boardVoteRead(Model model, BoardVoteVo vo) {
+	public String boardVoteRead(Model model, BoardVoteVo vo, CandidateVo cvo) {
 		vo= boardVoteService.selectOne(vo);
 		model.addAttribute("vo", vo);
-		return "vote/boardVoteRead";
+		model.addAttribute("clist", candidateService.candidateList(cvo));
 		
+		return "vote/boardVoteRead";
 	}
 	
 	@RequestMapping("/boardVoteUpdate.do")
@@ -73,6 +96,23 @@ public class BoardVoteController {
 		int n= boardVoteService.voteDelete(vo);
 		return "redirect:boardVoteList.do";
 	}
+	
+	
+	//후보자 1명 등록
+	@RequestMapping("/findCandidate.do")
+	public String findCandidate(CandidateVo vo) {
+		int n= candidateService.candiInsert(vo);
+		
+		return "redirect:boardVoteRead.do?seq="+vo.getSeq();
+	}
+	
+	@RequestMapping("/deleteCandidate.do")
+	public String deleteCandidate(CandidateVo vo) {
+		int n= candidateService.candiDelete(vo);
+		
+		return "redirect:candiRegister.do?seq=";
+	}
+	
 	
 	
 }

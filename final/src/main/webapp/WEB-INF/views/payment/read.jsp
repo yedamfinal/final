@@ -111,7 +111,7 @@
 							</tr>
 							<tr>
 								<th scope="row">납기내 금액</th>
-								<td><fmt:formatNumber type="number" maxFractionDigits="3"
+								<td id="beforeCost"><fmt:formatNumber type="number" maxFractionDigits="3"
 										value="${payMap['total']+payMap['tax'] }" />원</td>
 							</tr>
 							<tr>
@@ -121,8 +121,8 @@
 							</tr>
 							<tr>
 								<th scope="row">납기후 금액</th>
-								<td><fmt:formatNumber type="number" maxFractionDigits="3"
-										value="${payList[0].cost*1.02+payMap['delay']+payMap['tax'] + (1-(payList[0].cost*1.02%1)%1) }" />원</td>
+								<td id="afterCost"><fmt:formatNumber type="number" maxFractionDigits="3"
+										value="${payList[0].cost*1.02+payMap['delay'] + payMap['tax'] + (1-(payList[0].cost*1.02%1)%1)} " />원</td>
 							</tr>
 						</tbody>
 					</table>
@@ -275,11 +275,106 @@
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
-					<div class="modal-body">...</div>
+					<div class="modal-body">
+						<input type="month" id="month1">
+						<input type="month" id="month2">
+						<button type="button" class="btn btn-primary">조회</button><br>
+						<table class="table" id="jun">
+						<thead>
+							<tr>
+								<th scope="row">${pay.payMonth }월납입항목</th>
+								<th id="monthTh1">x월 금액 (원)</th>
+								<th id="monthTh2">x월 금액 (원)</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th scope="row">일반관리비</th>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">청소비</th>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">경비비</th>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">소독비</th>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">승강기사용료</th>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">공용전기세</th>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">공용수도세</th>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">수선 유지비</th>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">장기수선 충당금</th>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">입주자 대표회의 운영비</th>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">난방비</th>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">수도세</th>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">급탕비</th>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">전기세</th>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">기타</th>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">${pay.payMonth }월합계</th>
+								<td></td>
+								<td></td>
+							</tr>
+						</tbody>
+						</table>
+					</div>
 					<div class="modal-footer">
+						
 						<button type="button" class="btn btn-secondary"
 							data-dismiss="modal">닫기</button>
-						<button type="button" class="btn btn-primary">Understood</button>
 					</div>
 				</div>
 			</div>
@@ -372,7 +467,7 @@
 	/* 이벤트 등록 */
 	$('#regular').on('click', regular)
 	$('#paymentButton').on('click', payment)
-
+	
 	//결제 정보
 	var IMP = window.IMP; // 생략해도 괜찮습니다.
 	IMP.init("imp17111120"); // "imp00000000" 대신 발급받은 "가맹점 식별코드"를 사용합니다.
@@ -400,8 +495,45 @@
 			}
 		});
 	}
+	//관리비 납부
+	//결제
+	var IMP = window.IMP; // 생략해도 괜찮습니다.
+	IMP.init("imp17111120"); // "imp00000000" 대신 발급받은 "가맹점 식별코드"를 사용합니다.
+	
 	function payment() {
-
+		let payNo = Date.now();
+		$('#payNo').val(payNo);
+		let cost = $('#beforeCost').html().replace('원','').replace(',','');
+		/* let cost = $('#afterCost').html().replace('원','').replace(',',''); */
+		//결제 정보
+		let param = { // param
+			pg : "html5_inicis",
+			merchant_uid : payNo, //결제번호
+			name : $('#voMonth').html()+"월 관리비", //헬스장, 독서실, x월 관리비 결제명
+			amount : cost, //가격
+			buyer_name : '${person.name}', // 회원이름
+			buyer_tel :  '${person.phone}'//회원전화번호
+		}
+		
+		IMP.request_pay(param, function(rsp) { // callback
+			if (rsp.success) {
+				// 결제 성공 시 로직, 디비에 저장
+				
+			} else {
+				// 결제 실패 시 로직, 결제실패 메시지 or 페이지
+				alert("결제에 실패하였습니다.")
+			}
+		}); 
+	}
+	
+	//전월비교
+	function previousMonth(){
+		var t = document.getElementById("jun");
+		var r = t.rows;
+		var i = 0;
+		for(c of r){
+			c.cells[1].innerHTML = ++i;  
+		}
 	}
 </script>
 </html>
