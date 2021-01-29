@@ -27,7 +27,7 @@
 		from candidate
 		where seq=#{seq}
 		and id=#{id}
-		
+
 	</select>
 	
 	<insert id="candiInsert" parameterType="CandidateVo">
@@ -51,31 +51,31 @@
 		update candidate
 		set id=#{id},		
 			job=#{job},
-			gender=#{gender}
+			gender=#{gender},
 			content=#{content}
 		where seq = #{seq}
 	</update>
 
 	<delete id="candiDelete" parameterType="CandidateVo">
 		delete from candidate
-		where seq = #{seq}
+		where id = #{id}
 	</delete>
 	
 	<insert id="addCandi" parameterType="CandidateVo">
 		insert into candidate
 				(
-				seq, 
-				id, 
-				job, 
-				gender, 
-				content
+					seq, 
+					id, 
+					job, 
+					gender, 
+					content
 				)
 		values (
-				#{seq},
-				#{id},
-				#{job},
-				#{gender},
-				#{content}
+					#{seq},
+					#{id},
+					#{job},
+					#{gender},
+					#{content}
 				)
 	</insert>
 

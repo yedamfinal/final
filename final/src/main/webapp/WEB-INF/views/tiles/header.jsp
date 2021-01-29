@@ -72,7 +72,7 @@
 							<li class="nav-item"><a class="nav-link" href="payRead.do">관리비조회</a>
 							</li>
 							<li class="nav-item"><a class="nav-link"
-								href="boardVoteList.do">전자투표</a></li>
+								href="voteStart.do">전자투표</a></li>
 							<li class="nav-item dropdown"><a
 								class="nav-link dropdown-toggle" href="blog.html"
 								id="navbarDropdown" role="button" data-toggle="dropdown"
