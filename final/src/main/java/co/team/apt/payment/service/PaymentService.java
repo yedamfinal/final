@@ -13,7 +13,7 @@ public interface PaymentService {
 	public String getOwner(ResidentVo resiVo);
 	public String getToken() throws Exception;
 	public void getbillingKey(CardInfo vo) throws Exception;
-	public void againPayment(PaymentVo vo) throws Exception;
+	public void againPayment(CardInfo vo) throws Exception;
 	public int payOneSuccess(PaymentVo vo);
 	public int autoPay(CardInfo vo);
 }
