@@ -52,6 +52,8 @@
 		delete from boardvote
 		where seq = #{seq}
 	</delete>
+	
+	
 
 	
 </mapper>

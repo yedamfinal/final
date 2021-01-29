@@ -51,7 +51,7 @@
 			<div class="col-sm row">
 				<div class="col-4 center">
 					<span class="border border-primary rounded-circle mon center"
-						id="voMonth"> ${payList[0].payMonth } </span>
+						id="voMonth">  </span>
 				</div>
 				<div class="col-8 center">
 					납부마감일 ㄴㅁㅇㄻㄴㅇㄹ<br> 납부마감일을 넘길시 연체료가 부과됩니다.
@@ -111,7 +111,7 @@
 							</tr>
 							<tr>
 								<th scope="row">납기내 금액</th>
-								<td><fmt:formatNumber type="number" maxFractionDigits="3"
+								<td id="beforeCost"><fmt:formatNumber type="number" maxFractionDigits="3"
 										value="${payMap['total']+payMap['tax'] }" />원</td>
 							</tr>
 							<tr>
@@ -121,8 +121,8 @@
 							</tr>
 							<tr>
 								<th scope="row">납기후 금액</th>
-								<td><fmt:formatNumber type="number" maxFractionDigits="3"
-										value="${payList[0].cost*1.02+payMap['delay']+payMap['tax'] + (1-(payList[0].cost*1.02%1)%1) }" />원</td>
+								<td id="afterCost"><fmt:formatNumber type="number" maxFractionDigits="3"
+										value="${payList[0].cost*1.02+payMap['delay'] + payMap['tax'] + (1-(payList[0].cost*1.02%1)%1)} " />원</td>
 							</tr>
 						</tbody>
 					</table>
@@ -275,11 +275,106 @@
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
-					<div class="modal-body">...</div>
+					<div class="modal-body">
+						<input type="month" id="month1">
+						<input type="month" id="month2">
+						<button type="button" class="btn btn-primary">조회</button><br>
+						<table class="table" id="jun">
+						<thead>
+							<tr>
+								<th scope="row">${pay.payMonth }월납입항목</th>
+								<th id="monthTh1">x월 금액 (원)</th>
+								<th id="monthTh2">x월 금액 (원)</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th scope="row">일반관리비</th>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">청소비</th>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">경비비</th>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">소독비</th>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">승강기사용료</th>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">공용전기세</th>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">공용수도세</th>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">수선 유지비</th>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">장기수선 충당금</th>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">입주자 대표회의 운영비</th>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">난방비</th>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">수도세</th>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">급탕비</th>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">전기세</th>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">기타</th>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">${pay.payMonth }월합계</th>
+								<td></td>
+								<td></td>
+							</tr>
+						</tbody>
+						</table>
+					</div>
 					<div class="modal-footer">
+						
 						<button type="button" class="btn btn-secondary"
 							data-dismiss="modal">닫기</button>
-						<button type="button" class="btn btn-primary">Understood</button>
 					</div>
 				</div>
 			</div>
@@ -312,6 +407,7 @@
 		<div class="modal fade" id="regularPayment" data-backdrop="static"
 			data-keyboard="false" tabindex="-1"
 			aria-labelledby="staticBackdropLabel" aria-hidden="true">
+			<form action="autoPay.do" method="post">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -322,39 +418,41 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						<form
-							action="https://www.myservice.com/subscription/issue-billing"
-							method="post">
 							<div>
-								<label for="card_number">카드 번호 XXXX-XXXX-XXXX-XXXX</label> <input
-									id="card_number" type="text" name="card_number">
+								<label for="cardNumber">카드 번호 XXXX-XXXX-XXXX-XXXX</label> <input
+									id="cardNumber" name="cardNumber" type="text">
 							</div>
 							<div>
-								<label for="expiry">카드 유효기간 YYYY-MM</label> <input id="expiry"
-									type="text" name="expiry">
+								<label for="expriy">카드 유효기간 YYYY-MM</label> <input id="expriy"
+									type="text" name="expriy">
 							</div>
 							<div>
 								<label for="birth">생년월일 YYMMDD</label> <input id="birth"
 									type="text" name="birth">
 							</div>
 							<div>
-								<label for="pwd_2digit">카드 비밀번호 앞 두자리 XX</label> <input
-									id="pwd_2digit" type="text" name="pwd_2digit">
+								<label for="password">카드 비밀번호 앞 두자리 XX</label> <input
+									id="password" type="text" name="password">
 							</div>
-							<input hidden type="text" value="gildong_0001_1234"
-								name="customer_uid"> <input type="submit" value="결제하기">
-						</form>
+							<input hidden type="text" value="id"
+								name="id" value="${payList[0].id }">
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" 
 							data-dismiss="modal">닫기</button>
-						<button type="button" class="btn btn-primary"  id="regular">신청</button>
+						<button type="submit" class="btn btn-primary"  id="regular">경기결제</button>
 					</div>
 				</div>
+				</form>
 			</div>
 		</div>
 
 	</div>
+	<form action="payOneSuccess.do" method="post" style="display: none;" id="payOneSuccess">
+		<input name="cost" id="payOneCost">
+		<input name="payNo" id="payOnePayNo">
+		<input name="id" value="${payList[0].id }">
+	</form>
 </body>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -370,38 +468,61 @@
 	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script type="text/javascript">
 	/* 이벤트 등록 */
-	$('#regular').on('click', regular)
-	$('#paymentButton').on('click', payment)
-
-	//결제 정보
-	var IMP = window.IMP; // 생략해도 괜찮습니다.
-	IMP.init("imp17111120"); // "imp00000000" 대신 발급받은 "가맹점 식별코드"를 사용합니다.
+	//$('#regular').on('click', regular) //정기결제
+	$('#paymentButton').on('click', payment) //결제
+	
+	//현재 달입력
+	let voMonth = new Date();
+	$('#voMonth').html(voMonth.getMonth()+1+' 월');
+	
 
 	//정기 결제
 	function regular() {
-		console.log("aaa");
-		// IMP.request_pay(param, callback) 호출
-		IMP.request_pay({
-			pay_method : 'card', // 'card'만 지원됩니다.
-			merchant_uid : 'merchant_' + new Date().getTime(),
-			name : '최초인증결제',
-			amount : 0, // 빌링키 발급만 진행하며 결제승인을 하지 않습니다.
-			customer_uid : 'your-customer-unique-id', //customer_uid 파라메터가 있어야 빌링키 발급을 시도합니다.
-			buyer_email : 'iamport@siot.do',
-			buyer_name : '아임포트',
-			buyer_tel : '02-1234-1234'
-		}, function(rsp) {
-			if (rsp.success) {
-				alert('빌링키 발급 성공');
-				console.log(rsp);
-			} else {
-				alert('빌링키 발급 실패');
-				console.log(rsp);
-			}
-		});
+		
 	}
+	
+	
+	//관리비 납부
+	//결제
+	var IMP = window.IMP; // 생략해도 괜찮습니다.
+	IMP.init("imp17111120"); // "imp00000000" 대신 발급받은 "가맹점 식별코드"를 사용합니다.
+	
 	function payment() {
-
+		let payNo = Date.now();
+		$('#payNo').val(payNo);
+		let cost = $('#beforeCost').html().replace('원','').replace(',','');
+		/* let cost = $('#afterCost').html().replace('원','').replace(',',''); */
+		//결제 정보
+		let param = { // param
+			pg : "html5_inicis",
+			merchant_uid : payNo, //결제번호
+			name : $('#voMonth').html()+" 관리비", //헬스장, 독서실, x월 관리비 결제명
+			amount : 1200, //가격
+			buyer_name : '${person.name}', // 회원이름
+			buyer_tel :  '${person.phone}'//회원전화번호
+		}
+		
+		IMP.request_pay(param, function(rsp) { // callback
+			if (rsp.success) {
+				// 결제 성공 시 로직, 디비에 저장
+				$('#payOnePayNo').val(payNo);
+				$('#payOneCost').val(cost);
+				$('#payOneSuccess').submit();
+			} else {
+				// 결제 실패 시 로직, 결제실패 메시지 or 페이지
+				alert("결제에 실패하였습니다.")
+			}
+		}); 
+	}
+	
+	//전월비교
+	function previousMonth(){
+		var t = document.getElementById("jun");
+		var r = t.rows;
+		var i = 0;
+		for(c of r){
+			c.cells[1].innerHTML = ++i;  
+		}
 	}
 </script>
 </html>

@@ -147,4 +147,14 @@
 		and ho= #{ho}
 		and owner = 'owner'
 	</select>
+	
+	<update id="payOneSuccess" parameterType="PaymentVo">
+		update payment
+		set status = 'yes',
+		cost = #{cost},
+		paydate = sysdate,
+		payno = #{payNo}
+		where id = #{id}
+		and status in ('ing','no')
+	</update>
 </mapper>

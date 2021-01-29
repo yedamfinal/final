@@ -3,9 +3,29 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="co.team.apt.calendar.mapper.CalendarMapper">
-	
+	<select  id="calendarList" parameterType="CalendarVo" resultType="CalendarVo">
+		select calendarno,
+			   caltitle title,
+			   CALCONTENT description,
+			   		STARTDATE "start",
+			   		ENDDATE "end",
+			   		WRITER username,
+			   		backgroundColor,
+			   		textColor
+			 
+			   	
+		from calendar 
+		where 
+		#{startDate} between startdate and enddate
+			or #{endDate} between startdate and enddate
+			or startdate between #{startDate} and #{endDate}
+			or enddate between #{startDate} and #{endDate}
+	</select>
 		
-	<insert id="CalendarInsert" parameterType="CalendarVo">
+	<insert id="calendarInsert" parameterType="CalendarVo">
+	<selectKey resultType="int" keyProperty="calendarno" order="BEFORE">
+        SELECT def_seq.nextval FROM dual        
+    </selectKey>
 		insert into calendar(
 					calendarno,
 					caltitle,
@@ -17,7 +37,7 @@
 					textColor
 					)
 		values(
-				def_seq.nextval,
+				#{calendarno},
 				#{title},
 				#{description},
 				#{start},
@@ -27,6 +47,26 @@
 				#{textColor}
 				)
 	</insert>
+	
+	<update id="calendarUpdate" parameterType="CalendarVo">
+	<selectKey resultType="int" keyProperty="calendarno" order="BEFORE">
+        SELECT def_seq.nextval FROM dual        
+    </selectKey>
+		update calendar
+		set caltitle=#{title},
+			calcontent=#{description},
+			startdate=#{start},
+			enddate=#{end},
+			writer=#{username},
+			backgroundColor=#{backgroundColor},
+			textColor=#{textColor}
+		where calendarno = #{calendarno}
+	</update>
+	
+	<delete id="calendarDelete" parameterType="CalendarVo">
+		delete from calendar
+		where calendarno = #{calendarno}
+	</delete>
 	
 	
 </mapper>
