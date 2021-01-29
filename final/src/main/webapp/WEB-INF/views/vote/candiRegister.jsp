@@ -69,13 +69,13 @@
 			<h1>후보자 검색</h1>
 		</div>
 		<div>
-			<form action="findCandidate.do" method="post">
+			<form action="register.do" method="post">
 				<table class="table">
 					<input type="hidden" id="seq" name="seq" value="${vo.seq}">
 					<tr>
 						<th width="100">후보자 ID</th>
 						<td width="300">
-						<input readonly type="text" placeholder="후보자 id" name="id" id="id" value="${vo.id }"> 
+						<input readonly type="text" placeholder="후보자 id" name="id" id="id"> 
 						<input type="text" placeholder="후보자 이름 입력" id="name">
 							<button id="searchName" class="btn btn-outline-secondary btn-sm" type="button" >후보자 검색</button> 
 							</br>
