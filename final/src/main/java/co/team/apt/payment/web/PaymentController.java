@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import co.team.apt.common.vo.CardInfo;
 import co.team.apt.common.vo.PaymentVo;
 import co.team.apt.common.vo.ResidentVo;
 import co.team.apt.payment.service.PaymentService;
@@ -86,4 +87,20 @@ public class PaymentController {
 		
 		return "";
 	}
+	
+	@RequestMapping("payOneSuccess.do")
+	public String payTotal(PaymentVo vo) {
+		int n = paymentService.payOneSuccess(vo);
+		
+		return "redirect:payRead.do";
+	}
+	
+	@RequestMapping("autoPay.do")
+	public String autoPay(CardInfo vo) {
+		
+		int n = paymentService.autoPay(vo);
+		return "redirect:payRead.do";
+	}
+	
+	
 }
