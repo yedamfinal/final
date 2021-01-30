@@ -10,4 +10,5 @@ public interface CommunityMapper {
 	public int boardInsert(BoardVo vo);
 	public int boardUpdate(BoardVo vo);
 	public int boardDelete(BoardVo vo);
+	public int pagingCount(BoardVo vo);
 }

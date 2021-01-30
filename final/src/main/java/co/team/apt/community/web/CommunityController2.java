@@ -13,8 +13,8 @@ import co.team.apt.common.vo.Paging;
 import co.team.apt.community.mapper.CommunityMapper;
 import co.team.apt.community.service.CommunityService;
 
-@Controller
-public class CommunityController {
+//@Controller
+public class CommunityController2 {
 	
 	@Autowired 
 	CommunityService communityService;
@@ -24,9 +24,11 @@ public class CommunityController {
 	
 	//자유게시판 
 	//자유게시판 이동
-	@RequestMapping("communityList")
-	public String freeList(Model model,BoardVo vo, Paging paging) {
-		model.addAttribute("type", vo.getType());
+	@RequestMapping("communityList/{type:.+}")
+	public String freeList(Model model,BoardVo vo, Paging paging, 
+			@PathVariable("type") String type) {
+		
+		vo.setType(type);
 		
 		//페이징처리
 		paging.setPageUnit(10);
@@ -47,17 +49,17 @@ public class CommunityController {
 		List<BoardVo> list = communityService.boardList(vo);
 		model.addAttribute("boardList", list);
 		
-		return vo.getType()+"/list";
+		return "community/"+vo.getType()+"/list";
 	}
 	
 	//글쓰기 폼으로 이동
-	@RequestMapping("communityInsertForm.do")
+	@RequestMapping("freeInsertForm.do")
 	public String insertForm(Model model) {
 		return "community/free/insertForm";
 	}
 	
 	//글쓰기
-	@RequestMapping("communityInsert.do")
+	@RequestMapping("freeInsert.do")
 	public String insert(Model model,BoardVo vo) {
 		
 		int n = communityService.boardInsert(vo);
@@ -71,23 +73,23 @@ public class CommunityController {
 	}
 	
 	//글내용보기
-	@RequestMapping("communityRead.do")
+	@RequestMapping("freeRead.do")
 	public String read(BoardVo vo, Model model) {
 		vo = communityService.boardOne(vo);
 		model.addAttribute("vo",vo);
-		return "free/read";
+		return "community/free/read";
 	}
 	
 	//글수정폼으로 이동
-	@RequestMapping("communityUpdateForm.do")
+	@RequestMapping("freeUpdateForm.do")
 	public String updateForm(BoardVo vo, Model model) {
 		vo = communityService.boardOne(vo);
 		model.addAttribute("vo",vo);
-		return "free/updateForm";
+		return "community/free/updateForm";
 	}
 	
 	//글 삭제
-	@RequestMapping("communityDelete.do")
+	@RequestMapping("freeDelete.do")
 	public String delete(BoardVo vo, Model model) {
 		int n = communityService.boardDelete(vo);
 		
@@ -99,7 +101,7 @@ public class CommunityController {
 	}
 	
 	//업데이트
-	@RequestMapping("communityUpdate.do")
+	@RequestMapping("freeUpdate.do")
 	public String update(BoardVo vo, Model model) {
 		int n = communityService.boardUpdate(vo);
 		
@@ -110,4 +112,5 @@ public class CommunityController {
 		}
 	}
 	
+	//자유게시판 끝
 }

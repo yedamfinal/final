@@ -65,9 +65,9 @@
 								id="navbarDropdown" role="button" data-toggle="dropdown"
 								aria-haspopup="true" aria-expanded="false"> 커뮤니티 </a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-									<a class="dropdown-item" href="#">자유게시판</a> <a
-										class="dropdown-item" href="#">하자보수</a> <a
-										class="dropdown-item" href="#">아나바다</a>
+									<a class="dropdown-item" href="communityList?type=free">자유게시판</a> <a
+										class="dropdown-item" href="communityList?type=ana">하자보수</a> <a
+										class="dropdown-item" href="communityList?type=def">아나바다</a>
 								</div></li>
 							<li class="nav-item"><a class="nav-link" href="payRead.do">관리비조회</a>
 							</li>

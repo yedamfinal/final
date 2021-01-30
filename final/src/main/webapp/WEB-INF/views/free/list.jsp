@@ -24,8 +24,8 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="vo" items="${noticeList}">
-					<tr onclick="location.href='noticeRead.do?defno=${vo.defno}'">
+				<c:forEach var="vo" items="${boardList}">
+					<tr onclick="location.href='communityRead.do?defno=${vo.defno}'">
 						<th scope="col">${vo.defno}</th>
 						<th scope="col">${vo.title}</th>
 						<th scope="col">${vo.writer}</th>
@@ -35,11 +35,6 @@
 			</tbody>
 		</table>
 		<my:paging paging="${paging}" jsFunc="goList" />
-		<script>
-			function goList(p) {
-				location.href = "noticeList.do?page=" + p;
-			}
-		</script>
 		
 		<div align="right">
 			<form action="noticeList.do" method="post">
@@ -56,4 +51,9 @@
 		</div>
 	</div>
 	</body>
+	<script>
+		function goList(p) {
+			location.href = "communityList.do?page=" + p+"&type=${type}";
+		}
+	</script>
 </html>
