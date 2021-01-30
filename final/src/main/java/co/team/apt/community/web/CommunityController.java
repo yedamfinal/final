@@ -5,9 +5,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import co.team.apt.common.vo.BcommentVo;
 import co.team.apt.common.vo.BoardVo;
 import co.team.apt.common.vo.Paging;
 import co.team.apt.community.mapper.CommunityMapper;
@@ -22,11 +28,16 @@ public class CommunityController {
 	@Autowired
 	CommunityMapper dao;
 	
+	@ModelAttribute("type")
+	public String type(BoardVo vo) {
+		return vo.getType();
+	}
+	
 	//자유게시판 
 	//자유게시판 이동
-	@RequestMapping("communityList")
+	@RequestMapping("communityList"	)
 	public String freeList(Model model,BoardVo vo, Paging paging) {
-		model.addAttribute("type", vo.getType());
+		//model.addAttribute("type", vo.getType());
 		
 		//페이징처리
 		paging.setPageUnit(10);
@@ -53,7 +64,7 @@ public class CommunityController {
 	//글쓰기 폼으로 이동
 	@RequestMapping("communityInsertForm.do")
 	public String insertForm(Model model) {
-		return "community/free/insertForm";
+		return "community/insertForm";
 	}
 	
 	//글쓰기
@@ -64,7 +75,7 @@ public class CommunityController {
 		
 		
 		if(n != 0) {
-			return "redirect:freeList.do";			
+			return "redirect:communityList";			
 		}else {
 			return null;//에러처리
 		}
@@ -72,10 +83,15 @@ public class CommunityController {
 	
 	//글내용보기
 	@RequestMapping("communityRead.do")
-	public String read(BoardVo vo, Model model) {
+	public String read(BoardVo vo, Model model) throws JsonProcessingException {
 		vo = communityService.boardOne(vo);
+		//vo ->> json 파싱
+		List<BcommentVo> comment = communityService.commentList(vo);
+		ObjectMapper mapper = new ObjectMapper();
+		String re = mapper.writeValueAsString(comment);
+		model.addAttribute("comment",re);
 		model.addAttribute("vo",vo);
-		return "free/read";
+		return "community/read";
 	}
 	
 	//글수정폼으로 이동
@@ -83,7 +99,7 @@ public class CommunityController {
 	public String updateForm(BoardVo vo, Model model) {
 		vo = communityService.boardOne(vo);
 		model.addAttribute("vo",vo);
-		return "free/updateForm";
+		return "community/updateForm";
 	}
 	
 	//글 삭제
@@ -92,7 +108,7 @@ public class CommunityController {
 		int n = communityService.boardDelete(vo);
 		
 		if(n != 0) {		
-			return "redirect:freeList.do";
+			return "redirect:communityList";
 		}else {
 			return null;//에러처리
 		}
@@ -104,10 +120,45 @@ public class CommunityController {
 		int n = communityService.boardUpdate(vo);
 		
 		if(n != 0) {		
-			return "redirect:freeList.do";
+			return "redirect:communityList";
 		}else {
 			return null;//에러처리
 		}
 	}
 	
+	//댓글 작성
+	@RequestMapping("addComment.do")
+	@ResponseBody
+	public BcommentVo addComment(BcommentVo vo) {
+		int n = communityService.addComment(vo);
+		
+		if(n!=0)
+			return vo;
+		else
+			return null;
+	}
+	
+	//댓글삭제
+	@RequestMapping("commentDelete.do")
+	@ResponseBody
+	public String commentDelete(BcommentVo vo) {
+		int n = communityService.commentDelete(vo);
+		
+		if(n!=0)
+			return "success";
+		else
+			return null;
+	}
+	
+	//댓글삭제
+		@RequestMapping("commentUpdate.do")
+		@ResponseBody
+		public String commentUpdate(BcommentVo vo) {
+			int n = communityService.commentUpdate(vo);
+			
+			if(n!=0)
+				return "success";
+			else
+				return null;
+		}
 }

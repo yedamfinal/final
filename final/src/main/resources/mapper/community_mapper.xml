@@ -82,4 +82,34 @@
 		delete from board
 		where defno = #{defno}
 	</delete>
+	
+	<!-- 댓글 삽입 -->
+	<insert id="addCommnet" parameterType="BcommentVo">
+	<selectKey resultType="BcommentVo" keyProperty="reno,redate" order="BEFORE">
+        SELECT re_seq.nextval reno, sysdate redate FROM dual        
+    </selectKey>
+		insert into bcomment(reno, writer, defno, recontent, redate)
+		values(#{reno}, #{writer}, #{defno}, #{recontent}, sysdate)
+	</insert>
+	
+	<!-- 댓글 조회 -->
+	<select id="commentList" parameterType="BoardVo" resultType="BcommentVo">
+		select reno, defno, writer, recontent, redate
+		from bcomment
+		where defno = #{defno}	
+		order by 1	
+	</select>
+	
+	<!-- 댓글 삭제 -->
+	<delete id="commentDelete" parameterType="BcommentVo">
+		delete from bcomment
+		where reno = #{reno}
+	</delete>
+	
+	<!-- 댓글 수정 -->
+	<update id="commentUpdate" parameterType="BcommentVo">
+		update bcomment 
+		set recontent = #{recontent}
+		where reno = #{reno}
+	</update>
 </mapper>

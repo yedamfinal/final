@@ -11,7 +11,7 @@
 <body>
 	<div class="container">
 		<div class="form-group">
-			<form action="noticeInsert.do" method="post"
+			<form action="communityInsert.do" method="post"
 				encType="multipart/form-data">
 
 				<input class="orm-control mt-4 mb-2" type="text" name="title"
@@ -19,11 +19,11 @@
 
 				<textarea class="form-control" rows="10" name="content"
 					placeholder="내용을 입력해주세요." required></textarea>
-				<input type="hidden" name="writer" value="${person.id }"> <input
-					type="hidden" name="type" value="notice"><br>
+				<input type="hidden" name="writer" value="${person.id }"> 
+				<input type="hidden" name="type" value="${type }"><br>
 				<div class="custom-file mb-3">
 					<input type="file" class="custom-file-input" name="uploadFile"
-						id="validatedCustomFile" required> <label
+						id="validatedCustomFile"> <label
 						class="custom-file-label" for="validatedCustomFile">파일첨부...</label>
 				<div class="invalid-feedback">첨부파일</div>
 				</div>

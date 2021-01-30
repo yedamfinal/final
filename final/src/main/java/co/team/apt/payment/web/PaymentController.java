@@ -43,7 +43,7 @@ public class PaymentController {
 		
 		List<PaymentVo> list = paymentService.payRead(vo);
 		
-//		//vo -> json 파싱
+		//vo -> json 파싱
 //		ObjectMapper mapper = new ObjectMapper();
 //		String pay = mapper.writeValueAsString(vo);
 //		model.addAttribute("pay2",pay);
