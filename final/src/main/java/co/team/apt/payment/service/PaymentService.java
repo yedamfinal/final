@@ -1,6 +1,7 @@
 package co.team.apt.payment.service;
 
 import java.util.List;
+import java.util.Map;
 
 import co.team.apt.common.vo.CardInfo;
 import co.team.apt.common.vo.FacilityVo;
@@ -16,4 +17,5 @@ public interface PaymentService {
 	public void againPayment(CardInfo vo) throws Exception;
 	public int payOneSuccess(PaymentVo vo);
 	public int autoPay(CardInfo vo);
+	public List<Map<String, Object>> payExcel(PaymentVo vo);
 }

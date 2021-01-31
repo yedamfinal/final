@@ -198,6 +198,12 @@ public class PaymentServiceImpl implements PaymentService{
 		//자동결제 yes로 수정 및 결제정보 저장
 		return dao.autoPay(vo);
 	}
+
+	@Override
+	public List<Map<String, Object>> payExcel(PaymentVo vo) {
+		// TODO Auto-generated method stub
+		return dao.payExcel(vo);
+	}
 	
 
 }

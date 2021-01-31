@@ -1,15 +1,19 @@
 package co.team.apt.payment.web;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -47,7 +51,7 @@ public class PaymentController {
 //		ObjectMapper mapper = new ObjectMapper();
 //		String pay = mapper.writeValueAsString(vo);
 //		model.addAttribute("pay2",pay);
-		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		HashMap<String, Object> map = new HashMap<String, Object>();
 		
 		int total = 0;
 		int tax = 0;
@@ -63,6 +67,7 @@ public class PaymentController {
 		map.put("total", total);
 		map.put("delay", delay);
 		map.put("tax", tax);
+		map.put("id", vo.getId());
 		model.addAttribute("payList",list);
 		model.addAttribute("payMap",map);
 		
@@ -102,5 +107,34 @@ public class PaymentController {
 		return "redirect:payRead.do";
 	}
 	
-	
+	// 엑셀출력
+	@RequestMapping("payExcelView.do")
+	public ModelAndView excelView(PaymentVo vo, HttpServletResponse response) throws IOException {
+		List<Map<String, Object>> list = paymentService.payExcel(vo);
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		String[] header = { "납입액", 
+							"납입날짜", 
+							"월", 
+							"연체료",
+							"난방",
+							"수도세",
+							"급탕비",
+							"전기세",
+							"기타",
+							"일반관리비",
+							"청소비",
+							"경비비",
+							"소독비",
+							"승강기사용료",
+							"공용전기세",
+							"공용수도세",
+							"수선유지비",
+							"장기수선 충당금",
+							"대표회의 운영비"};
+		map.put("headers", header);
+		map.put("filename", "excel_dept");
+		map.put("datas", list);
+		return new ModelAndView("commonExcelView", map);
+	}
+
 }

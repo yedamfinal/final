@@ -46,6 +46,12 @@
 </style>
 </head>
 <body>
+<select id="aa"onchange="aaaa()">
+<option>a</option>
+<option>b</option>
+<option>c</option>
+<option>d</option>
+</select>
 	<div class="container">
 		<div class="top row">
 			<div class="col-sm row">
@@ -84,7 +90,7 @@
 			</div>
 			<div class="col-sm">
 				<div class="mid2" align="right">
-					<button class="btn btn-outline-dark">엑셀로 저장</button>
+					<button class="btn btn-outline-dark" onclick="location.href='payExcelView.do?id=${payMap['id'] }'">엑셀로 저장</button>
 					<button class="btn btn-outline-dark">고지서 인쇄</button>
 				</div>
 			</div>
@@ -451,7 +457,7 @@
 	<form action="payOneSuccess.do" method="post" style="display: none;" id="payOneSuccess">
 		<input name="cost" id="payOneCost">
 		<input name="payNo" id="payOnePayNo">
-		<input name="id" value="${payList[0].id }">
+		<input name="id" value="${payMap['id'] }">
 	</form>
 </body>
 <script
@@ -523,6 +529,12 @@
 		for(c of r){
 			c.cells[1].innerHTML = ++i;  
 		}
+	}
+	
+	function aaaa(){
+		//var a = $(this).html()
+		var a = $('#aa').val()
+		console.log(a);
 	}
 </script>
 </html>
