@@ -4,25 +4,24 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 import net.sf.json.JSONObject;
 
-public class CancelTest2 {
+public class CancelTest3 {
 	public static void main(String[] args) throws Exception{
-		String strUrl = "https://api.iamport.kr/subscribe/customers/test1";
+		String strUrl = "https://api.iamport.kr/subscribe/payments/again";//test1
 
 		URL url = new URL(strUrl); // 호출할 url
 		Map<String, Object> params = new LinkedHashMap<>(); // 파라미터 세팅
 //		params.put("imp_key", "2931481265928471");
 //		params.put("imp_secret", "0CfGz03QVo2mi9EVKCay3SFcEOnOYBPZe5FO5JF18InqR1mCDxaHqQT4EhTDTJC8OiWU2CVakiAcjWOX");
-		params.put("card_number", "6210-3178-4850-4859");//카드번호
-		params.put("expiry", "2021-12");//카드 ㅇ효기간
-		params.put("birth", "900207");//생년월일
-		params.put("pwd_2digit", "31");//카드비밀번호 앞 두자리
+		params.put("customer_uid", "test1");//카드번호
+		params.put("merchant_uid", "test");//카드 ㅇ효기간
+		params.put("amount", "1000");//생년월일
+		params.put("name", "관리비");//카드비밀번호 앞 두자리
 		
 		StringBuilder postData = new StringBuilder();
 		for (Map.Entry<String, Object> param : params.entrySet()) {
@@ -37,7 +36,7 @@ public class CancelTest2 {
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		conn.setRequestMethod("POST");
 		//conn.setRequestProperty("Content-Type", "application/json"); //json으로 값넘기기
-		conn.setRequestProperty("Authorization", "2255d7d9fe6e1c19e2a6d659ab1742291cfb1bf7");//test 1에서 받은 토큰
+		conn.setRequestProperty("Authorization", "0a92cf9138570f8fdb31539e66108e846d2d5a7b");//test 1에서 받은 토큰
 		conn.setDoOutput(true);
 		conn.getOutputStream().write(postDataBytes); // POST 호출
 
@@ -47,10 +46,10 @@ public class CancelTest2 {
 		String str = "";
 		while ((inputLine = in.readLine()) != null) { // response 출력
 			System.out.println(inputLine);
-//			System.out.println(URLDecoder.decode(inputLine));
-//			for (int i = 0; i < inputLine.length(); i++) {
-//	            System.out.print(String.format("U+%04X ", inputLine.codePointAt(i)));
-//	        }
+//			JSONObject obj = JSONObject.fromObject(inputLine);
+//			obj = obj.getJSONObject("response");
+//			str = obj.getString("access_token");
+//			System.out.println(str);
 		}
 		in.close();
 	}

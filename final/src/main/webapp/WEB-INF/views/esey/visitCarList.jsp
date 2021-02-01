@@ -12,9 +12,11 @@
 </head>
 <body>
 	<div class="container">
-	
+		<div>
+		<h1>방문자차량등록</h1>
+		</div>
 	<div align="center">
-		<table border="1" class="table">
+		<table class="table">
 		<thead>
 			<tr>
 				<th scope="col">동</th>
@@ -42,7 +44,7 @@
 		</tbody>
 		</table>
 
-		<a href="visitInsert.do">등록하기</a>
+		<button class="btn btn-outline-secondary" onclick="location.href='visitInsert.do'">차량 등록하기</button>
 		</div>		
 	</div>
 </body>

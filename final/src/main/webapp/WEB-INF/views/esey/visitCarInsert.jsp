@@ -59,39 +59,49 @@
             });
         });
     </script>
+    
+    
 </head>
 <body>
 <div class="container">
-<form>
-  <fieldset >
-    <legend>방문자 차량등록</legend>
-    <div class="form-group row">
-      <label>동</label>
-        <input type="text" class="form-control-plaintext" id="dong" value = "${person.dong}">
-      <label>호수</label>
-        <input type="text" class="form-control-plaintext" id="ho" value = "${person.ho}">
-     
-      <label>차량번호</label>
-      <input type="text" class="form-control" id="carNum" placeholder="Ex)24거 2567">
-      <small>차량번호를 정확히 등록하세요 ! </small>
-     
-     <div class="form-group">
-          <label for="startDate">시작일</label>
-          <input type="text" name="startDate" id="startDate">
-          <label for="endDate">종료일</label>
-          <input type="text" name="endDate" id="endDate">
-       </div>   
-    <div class="form-group">
-    </div>
-    <div class="form-group">
-      <label >방문목적</label>
-      <div>
-      <textarea class="form-control" id="purpose" name="purpose" cols="100" rows="3"></textarea>
-      </div>
-    </div>
-    </fieldset>
-    <button type="submit" >등록</button>
-</form>
-</div>
+		<div>
+			<h1>방문자차량등록</h1>
+		</div>
+		<div>
+		<form action="visitInsert.do" method="post">
+			<table class="table">
+				<tr>
+					<th width="100">동</th>
+					<td width="300"><input type="text" id="title" name="title">
+					</td>
+					<th width="100">호수</th>
+					<td width="300"><input type="text" id="title" name="title">
+					</td>
+				</tr>
+				<tr>
+					<th width="100">방문목적</th>
+					<td width="300"><textarea id="content" name="content"
+							style="width: 80%; height: 300px;"></textarea></td>
+				</tr>
+				<tr>
+					<th width="100">출입일</th>
+					<td width="300"><input type="date" id="startDate"
+						name="startDate"></td>
+				</tr>
+				<tr>
+					<th width="100">출고일</th>
+					<td width="300"><input type="date" id="endDate" name="endDate">
+					</td>
+				</tr>
+			</table>
+			<div align="right">
+				<button type="submit" class="btn btn-outline-secondary">등록하기</button>
+				&nbsp;&nbsp;&nbsp;
+				<button type="button" class="btn btn-outline-secondary" onclick="location.href='boardVoteList.do'">목록보기</button>
+				&nbsp;&nbsp;&nbsp;
+			</div>
+			</form>
+		</div>
+	</div>
 </body>
 </html>

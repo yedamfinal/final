@@ -147,4 +147,39 @@
 		and ho= #{ho}
 		and owner = 'owner'
 	</select>
+	
+	<update id="payOneSuccess" parameterType="PaymentVo">
+		update payment
+		set status = 'yes',
+		cost = #{cost},
+		paydate = sysdate,
+		payno = #{payNo}
+		where id = #{id}
+		and status in ('ing','no')
+	</update>
+	
+	<select id="payExcel" resultType="map" parameterType="PaymentVo">
+		select nvl(a.cost,'미납') 납입액,
+	       nvl(a.paydate,'') 납입날짜,
+	       to_char(a.paymonth,'yy/mm')||'월 관리비' 월,
+	       a.delaytax 연체료,
+	       a.heating 난방,
+	       a.water 수도세,
+	       a.hatwater 급탕비,
+	       a.electric 전기세,
+	       a.etc 기타,
+	       b.nomal 일반관리비,
+	       b.clean 청소비,
+	       b.guard 경비비,
+	       b.disinfection 소독비,
+	       b.elevator 승강기사용료,
+	       b.pelectric 공용전기세,
+	       b.pwater 공용수도세,
+	       b.repair 수선유지비,
+	       b.lrepair as "장기수선 충당금",
+	       b.representative as "대표회의 운영비"
+		from payment a, paypublic b
+		where to_char(a.paymonth,'yy-mm') = to_char(b.paymonth,'yy-mm')
+		and a.id = #{id}
+	</select>
 </mapper>

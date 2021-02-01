@@ -5,22 +5,38 @@
 <mapper namespace="co.team.apt.community.mapper.CommunityMapper">
 	<select id="boardList" resultType="BoardVo" parameterType="BoardVo">
 		
-		select b.*  from(  select a.*, rownum rn from(  
-                select *
-				from board
-				where type=#{type}
-				<if test="title != null and title != ''">
-					and title like '%' || #{title} || '%'
-				</if>
-				<if test="content != null and content != ''">
-					and content like '%' || #{content} || '%'
-				</if>
-				<if test="writer != null and writer != ''">
-					and writer = #{writer}
-				</if>
-				order by 1 desc
-        ) a ) b where rn between #{start} and #{end}
+		select a.* from( select b.*, rownum rn from (
+		SELECT * 
+		FROM BOARD
+		<include refid="searchQuery"/>
+		order by defno desc
+	) b ) a where rn between #{start} and #{end}
 	</select>
+	
+	<select id="pagingCount" resultType="int">
+	    SELECT count(*) 
+		FROM BOARD
+		<include refid="searchQuery"></include>
+	</select>
+	
+	<sql id = "searchQuery">
+		<choose>
+			<when test="searchType == 'all' ">
+				where 
+				type = #{type}
+				and (title like '%' || #{search} || '%'
+				or content like '%' || #{search} || '%'
+				or writer like '%' || #{search} || '%')
+			</when>
+			<otherwise>
+				where
+				type = #{type}
+			<if test="search != null and search != ''">
+				and ${searchType} like '%' || #{search} || '%'
+			</if>
+			</otherwise>
+		</choose>
+	</sql>
 	
 	<select id="boardOne" resultType="BoardVo" parameterType="BoardVo">
 		select *
@@ -28,28 +44,36 @@
 		where defno=#{defno}
 	</select>
 	
+	
 	<insert id="boardInsert" parameterType="BoardVo">
-		insert into board(defno,
+		insert into board(
+					defno,
 					title,
 					content,
-					deffile,
 					defdate,
 					writer,
-					type)
-		values(def_seq.nextval,
+					type
+					<if test="deffile != null and deffile != ''"> 
+					, deffile
+					</if>
+					)
+		values(
+				def_seq.nextval,
 				#{title},
 				#{content},
-				#{deffile},
 				sysdate,
 				#{writer},
-				#{type})
+				#{type}
+				<if test="deffile != null and deffile != ''">
+ 				, #{deffile} 
+ 				</if>
+				)
 	</insert>
 	
 	<update id="boardUpdate" parameterType="BoardVo">
 		update board
 		set title=#{title},
 			content=#{content},
-			deffile=#{deffile},
 			defdate=sysdate
 		where defno = #{defno}
 	</update>
@@ -58,4 +82,34 @@
 		delete from board
 		where defno = #{defno}
 	</delete>
+	
+	<!-- 댓글 삽입 -->
+	<insert id="addCommnet" parameterType="BcommentVo">
+	<selectKey resultType="BcommentVo" keyProperty="reno,redate" order="BEFORE">
+        SELECT re_seq.nextval reno, sysdate redate FROM dual        
+    </selectKey>
+		insert into bcomment(reno, writer, defno, recontent, redate)
+		values(#{reno}, #{writer}, #{defno}, #{recontent}, sysdate)
+	</insert>
+	
+	<!-- 댓글 조회 -->
+	<select id="commentList" parameterType="BoardVo" resultType="BcommentVo">
+		select reno, defno, writer, recontent, redate
+		from bcomment
+		where defno = #{defno}	
+		order by 1	
+	</select>
+	
+	<!-- 댓글 삭제 -->
+	<delete id="commentDelete" parameterType="BcommentVo">
+		delete from bcomment
+		where reno = #{reno}
+	</delete>
+	
+	<!-- 댓글 수정 -->
+	<update id="commentUpdate" parameterType="BcommentVo">
+		update bcomment 
+		set recontent = #{recontent}
+		where reno = #{reno}
+	</update>
 </mapper>
