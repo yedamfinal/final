@@ -194,7 +194,7 @@ public class PaymentServiceImpl implements PaymentService{
 
 		SimpleDateFormat format = new SimpleDateFormat ("yy-MM");
 		String format_time = format.format (System.currentTimeMillis());
-		vo.setPayMonth(format_time);	
+		payVo.setPayMonth(format_time);	
 		
 		try {
 			getbillingKey(vo);

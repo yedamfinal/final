@@ -96,6 +96,7 @@ public class PaymentController {
 		return "";
 	}
 	
+	//결제
 	@RequestMapping("payOneSuccess.do")
 	public String payTotal(PaymentVo vo) {
 		int n = paymentService.payOneSuccess(vo);
@@ -103,13 +104,13 @@ public class PaymentController {
 		return "redirect:payRead.do";
 	}
 	
-	//자동결제
+	//정기결제
 	@RequestMapping("autoPay.do")
 	public String autoPay(CardInfo vo) {
 		
 		int n = paymentService.autoPay(vo);
-		return null;
-		//return "redirect:payRead.do";
+		
+		return "redirect:payRead.do";
 	}
 	
 	// 엑셀출력
