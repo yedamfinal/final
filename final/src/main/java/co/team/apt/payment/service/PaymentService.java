@@ -14,8 +14,10 @@ public interface PaymentService {
 	public String getOwner(ResidentVo resiVo);
 	public String getToken() throws Exception;
 	public void getbillingKey(CardInfo vo) throws Exception;
-	public void againPayment(CardInfo vo) throws Exception;
+	public String againPayment(CardInfo vo) throws Exception;
 	public int payOneSuccess(PaymentVo vo);
 	public int autoPay(CardInfo vo);
 	public List<Map<String, Object>> payExcel(PaymentVo vo);
+	public List<PaymentVo> monthList(PaymentVo vo);
+	public PaymentVo payComparison(PaymentVo vo);
 }

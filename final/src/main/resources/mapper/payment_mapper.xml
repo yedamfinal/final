@@ -117,8 +117,10 @@
 			</if>
 		)
 	</insert>
+	
+	<!-- 관리비 유저 화면 -->
 	<select id="payTotal" resultType="PaymentVo" parameterType="PaymentVo">
-		select to_char(a.paymonth,'mm') paymonth, 
+		select to_char(a.paymonth,'yy-mm') paymonth, 
 			   b.heating+b.water+b.hatwater+b.electric+b.etc+(a.nomal+a.clean+a.guard+a.disinfection+a.elevator+a.pelectric+a.pwater+a.repair+a.lrepair+a.representative)/people cost, 
 			   a.nomal/people nomal,
 			   a.clean/people clean,
@@ -137,8 +139,10 @@
                and to_char(paymonth,'yy-mm') &lt;= #{payMonth}
                and status in ('ing','no')) b
 		where to_char(a.paymonth,'yy-mm') = to_char(b.paymonth,'yy-mm')
+		order by 18 desc
 	</select>
 	
+	<!-- 세대주 아이디받아오기 -->
 	<select id="getOwner" resultType="string" parameterType="ResidentVo">
 		select id
 		from resident
@@ -148,6 +152,7 @@
 		and owner = 'owner'
 	</select>
 	
+	<!-- 결제 성공 -->
 	<update id="payOneSuccess" parameterType="PaymentVo">
 		update payment
 		set status = 'yes',
@@ -160,7 +165,7 @@
 	
 	<select id="payExcel" resultType="map" parameterType="PaymentVo">
 		select nvl(a.cost,'미납') 납입액,
-	       nvl(a.paydate,'') 납입날짜,
+	       to_char(nvl(a.paydate,''),'yy/mm/dd') 납입날짜,
 	       to_char(a.paymonth,'yy/mm')||'월 관리비' 월,
 	       a.delaytax 연체료,
 	       a.heating 난방,
@@ -179,7 +184,42 @@
 	       b.lrepair as "장기수선 충당금",
 	       b.representative as "대표회의 운영비"
 		from payment a, paypublic b
-		where to_char(a.paymonth,'yy-mm') = to_char(b.paymonth,'yy-mm')
+		where to_char(a.paymonth,'yy/mm') = to_char(b.paymonth,'yy/mm')
 		and a.id = #{id}
+		order by 월 desc
 	</select>
+	
+	<select id="monthList" resultType="PaymentVo">
+		select to_char(paymonth,'yy-mm') payMonth
+		from payment 
+		where id=#{id} 
+		order by 1 desc
+	</select>
+	
+	<select id="payComparison" resultType="PaymentVo">
+		select to_char(a.paymonth,'yy-mm') paymonth, 
+			   b.heating+b.water+b.hatwater+b.electric+b.etc+(a.nomal+a.clean+a.guard+a.disinfection+a.elevator+a.pelectric+a.pwater+a.repair+a.lrepair+a.representative)/people cost, 
+			   a.nomal/people nomal,
+			   a.clean/people clean,
+			   a.guard/people guard,
+			   a.disinfection/people disinfection,
+			   a.elevator/people elevator,
+			   a.pelectric/people pelectric,
+			   a.pwater/people pwater,
+			   a.repair/people repair,
+			   a.lrepair/people lrepair,
+			   a.representative/people representative, 
+			   b.*
+		from paypublic a, (select * 
+						   from payment 
+						   where id=#{id}
+               and to_char(paymonth,'yy-mm') = #{payMonth}) b
+		where to_char(a.paymonth,'yy-mm') = to_char(b.paymonth,'yy-mm')
+	</select>
+	
+	<update id="autoPay" parameterType="CardInfo">
+		update resident 
+		set auto='yes' 
+		where id = #{id}
+	</update>
 </mapper>
