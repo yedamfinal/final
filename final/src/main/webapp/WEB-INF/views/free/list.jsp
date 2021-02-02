@@ -11,8 +11,12 @@
 </head>
 <body>
 	<div class="container">
-		<div align="right">
-		<a href="communityInsertForm.do?type=${type }">글쓰기</a>
+		<div class='row'>
+			<div class='col-8'>
+				<br>
+				<h1>자유게시판</h1>
+				<br>				
+			</div>
 		</div>
 		<table class="table">
 			<thead>
@@ -34,9 +38,12 @@
 				</c:forEach>
 			</tbody>
 		</table>
-		<my:paging paging="${paging}" jsFunc="goList" />
 		
 		<div align="right">
+		<a href="communityInsertForm.do?type=${type }">글쓰기</a>
+		</div>
+		<div align="center">
+			<my:paging paging="${paging}" jsFunc="goList" />
 			<form action="communityList" method="post">
 				<select name="searchType" size="1">
 					<option value="title" <c:if test="${paging.searchType == 'title'}">selected</c:if>>제목</option>
@@ -49,6 +56,7 @@
 				<input type="submit" value="검색">
 				
 			</form>
+			<br><br>
 		</div>
 	</div>
 	</body>

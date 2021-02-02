@@ -31,7 +31,7 @@ public class FacilityController {
 		if(resiVo == null) { //로그인 안한상태
 			return "home/needLogin";
 		}else if(resiVo.getType().equals("m")){//관리자로 로그인
-			return "redirect:libraryManager.do";
+			return "redirect:libraryManager.do?type=library";
 		}else {//기타(주민) 등등
 			resiVo.setType("library");
 			FacilityVo vo = facilityService.getFacility(resiVo);
@@ -62,25 +62,36 @@ public class FacilityController {
 		return list;
 	}
 	
-	//헬스장 등록 폼 이동
-		@RequestMapping("fitnessInForm.do")
-		public String fitnessInForm(ResidentVo id,Model model){
-			id.setType("fitness");
-			FacilityVo vo = facilityService.getFacility(id);
-			if(vo == null) {
-				return "facility/fitnessInForm";
-			}else {
-				model.addAttribute("vo", vo);
-				return "facility/fitnessUser";
-			}
-		}
-	
 	//결제시 독서실 등록
 	@RequestMapping("insertLibrary.do")
 	public String insertLibrary(FacilityVo vo, Model model) {
 		facilityService.insertFacility(vo);
 		//에러처리
-		return "redirect:libraryInForm.do?id="+vo.getId();
+		return "redirect:libraryInForm.do";
+	}
+	
+	//헬스장
+	//헬스장 등록 폼 이동
+	@RequestMapping("fitnessInForm.do")
+	public String fitnessInForm( HttpServletRequest request, Model model){
+		HttpSession session =  request.getSession(false);
+		ResidentVo resiVo = (ResidentVo) session.getAttribute("person");
+		
+		if(resiVo == null) { //로그인 안한상태
+			return "home/needLogin";
+		}else if(resiVo.getType().equals("m")){//관리자로 로그인
+			return "redirect:libraryManager.do?type=fitness";
+		}else {//기타(주민) 등등
+			resiVo.setType("fitness");
+			FacilityVo vo = facilityService.getFacility(resiVo);
+			
+			if(vo == null) {
+				return "facility/fitnessInForm";
+			}else {
+				model.addAttribute("vo", vo);
+				return "facility/libraryUser";
+			}
+		}
 	}
 	
 	//결제시 헬스장 등록
@@ -88,9 +99,10 @@ public class FacilityController {
 	public String insertFitness(FacilityVo vo, Model model) {
 		int n =facilityService.insertFacility(vo);
 		//에러처리
-		return "redirect:fitnessInForm.do?id="+vo.getId();
+		return "redirect:fitnessInForm.do";
 	}
 	
+	//공통항목
 	//환불요청
 	@RequestMapping("cancelRequest.do")
 	public String cancelRequest(FacilityVo vo) {
@@ -100,24 +112,27 @@ public class FacilityController {
 	}
 	
 	//관리인항목
-	//도서관관리인페이지 이동
+	//관리인페이지 이동
 	@RequestMapping("libraryManager.do")
-	public String manageFacility(Model model) {
-		List<FacilityVo> list = facilityService.manageLibrary();
+	public String manageFacility(Model model, ResidentVo vo) {
+		List<FacilityVo> list = facilityService.manageLibrary(vo);
 		
+		model.addAttribute("faType", vo.getType());
 		model.addAttribute("list", list);
 		
 		return "facility/libraryManage";
 	}
 	
+	//관리자 독서실 취소버튼
 	@RequestMapping("cancelManage")
-	public String cancelManage(FacilityVo vo) throws Exception {
+	public String cancelManage(FacilityVo vo) {
 		
-		//facilityService.cancel(vo);
+		
 		facilityService.deleteLibrary(vo);
 		
-		return "redirect:libraryManager.do";
+		return "redirect:libraryManager.do?type="+vo.getType();
 	}
 	
 	
+		
 }

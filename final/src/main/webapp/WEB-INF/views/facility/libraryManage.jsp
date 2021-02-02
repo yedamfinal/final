@@ -9,14 +9,29 @@
 </head>
 <body>
 	<div class="container">
-		${vo }
+		<div class='row'>
+			<div class='col-8'>
+				<br>
+				<h1>
+				<c:if test="${faType eq 'library' }">
+					독서실 관리
+				</c:if>
+				<c:if test="${faType ne 'library' }">
+					헬스장 관리
+				</c:if>
+				</h1>
+				<br>				
+			</div>
+		</div>
 		<table class="table">
 				<thead>
 					<tr>
 						<th scope="col">ID</th>
 						<th scope="col">이름</th>
 						<th scope="col">전화번호</th>
+						<c:if test="${faType eq 'library' }">
 						<th scope="col">좌석번호</th>
+						</c:if>
 						<th scope="col">시작일</th>
 						<th scope="col">종료일</th>
 						<th scope="col">환불</th>
@@ -28,11 +43,13 @@
 						<th scope="row">${vo.id }</th>
 						<td>${vo.name }</td>
 						<td>${vo.phone }</td>
+						<c:if test="${faType eq 'library' }">
 						<td>${vo.seat }</td>
+						</c:if>
 						<td>${vo.startDate }</td>
 						<td>${vo.endDate }</td>
 						<c:if test="${vo.cancel eq 'yes' }">
-							<td><button onclick="location.href='cancelManage?payNo=${vo.payNo}&cost=${vo.cost }&id=${vo.id }'">환불</button></td>
+							<td><button onclick="location.href='cancelManage?payNo=${vo.payNo}&cost=${vo.cost }&id=${vo.id }&type=${faType }'">환불</button></td>
 						</c:if>
 						<c:if test="${vo.cancel ne 'yes' }">
 							<td>No</td>
