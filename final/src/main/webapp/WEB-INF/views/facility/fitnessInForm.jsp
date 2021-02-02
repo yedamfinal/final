@@ -51,10 +51,35 @@
 <script type="text/javascript"
 	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script src="resources/js/payment/payment.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 <script type="text/javascript">
 	//이벤트
 	$('#month').on('change', moveCost);
 	$('#payment').on('click', payment);
+	
+	
+	//날짜 포맷
+	function getFormatDate(date){
+	    var year = date.getFullYear();              //yyyy
+	    var month = (1 + date.getMonth());          //M
+	    month = month >= 10 ? month : '0' + month;  //month 두자리로 저장
+	    var day = date.getDate();                   //d
+	    day = day >= 10 ? day : '0' + day;          //day 두자리로 저장
+	    return  year + '-' + month + '-' + day;
+	}
+	//7일후 날짜
+	function getFormatDate7(date){
+	    var year = date.getFullYear();              //yyyy
+	    var month = (1 + date.getMonth());          //M
+	    month = month >= 10 ? month : '0' + month;  //month 두자리로 저장
+	    var day = date.getDate()+7;                   //d
+	    day = day >= 10 ? day : '0' + day;          //day 두자리로 저장
+	    return  year + '-' + month + '-' + day;
+	}
+	
+	//날짜입력 input범위설정
+	let today = new Date();
+	$('#startDate').attr({min:getFormatDate(today),max:getFormatDate7(today)}).val(getFormatDate(today));
 
 	//개월선택시 가격입력
 	function moveCost() {

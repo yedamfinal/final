@@ -49,7 +49,7 @@
 						<td>${vo.startDate }</td>
 						<td>${vo.endDate }</td>
 						<c:if test="${vo.cancel eq 'yes' }">
-							<td><button onclick="location.href='cancelManage?payNo=${vo.payNo}&cost=${vo.cost }&id=${vo.id }&type=${faType }'">환불</button></td>
+							<td><button class="btn btn-danger" id="cancelButton">환불</button></td>
 						</c:if>
 						<c:if test="${vo.cancel ne 'yes' }">
 							<td>No</td>
@@ -60,7 +60,7 @@
 			</table>
 	</div>
 	<script>
-		
+	//onclick="location.href='cancelManage?payNo=${vo.payNo}&cost=${vo.cost }&id=${vo.id }&type=${faType }'"
 	</script>
 </body>
 </html>
