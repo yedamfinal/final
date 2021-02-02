@@ -136,13 +136,16 @@ public class PaymentServiceImpl implements PaymentService{
 	}
 
 	@Override
-	public void againPayment(CardInfo vo) throws Exception {
+	public String againPayment(CardInfo vo) throws Exception {
 		String strUrl = "https://api.iamport.kr/subscribe/payments/again";//test1
-
+	
+		String payno = Long.toString(System.currentTimeMillis());
+		
+		
 		URL url = new URL(strUrl); // 호출할 url
 		Map<String, Object> params = new LinkedHashMap<>(); // 파라미터 세팅
 		params.put("customer_uid", vo.getId()); // 빌링키
-		params.put("merchant_uid", System.currentTimeMillis()); // 거래번호
+		params.put("merchant_uid", payno); // 거래번호
 		params.put("amount", vo.getCost()); // 가격
 		params.put("name", vo.getPayMonth()+"월 관리비"); // 목적
 		
@@ -171,7 +174,8 @@ public class PaymentServiceImpl implements PaymentService{
 			System.out.println(inputLine);
 		}
 		in.close();
-		
+	
+		return payno;
 	}
 
 	@Override
@@ -184,10 +188,26 @@ public class PaymentServiceImpl implements PaymentService{
 	public int autoPay(CardInfo vo) {
 		// TODO Auto-generated method stub
 		//자동결제 빌링키 발급 및 결제
+		PaymentVo payVo = new PaymentVo();
+		payVo.setId(vo.getId());
+		payVo.setCost(vo.getCost());
+
+		SimpleDateFormat format = new SimpleDateFormat ("yy-MM");
+		String format_time = format.format (System.currentTimeMillis());
+		payVo.setPayMonth(format_time);	
+		
 		try {
 			getbillingKey(vo);
 			//빌링키 발급완료 db 상태저장
-			againPayment(vo);
+			List<PaymentVo> list = dao.payTotal(payVo);
+			
+			System.out.println(vo);
+			System.out.println(payVo);
+			System.out.println(list);
+			if(list != null) {		
+				payVo.setPayNo(againPayment(vo));
+				dao.payOneSuccess(payVo);
+			}
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -203,6 +223,18 @@ public class PaymentServiceImpl implements PaymentService{
 	public List<Map<String, Object>> payExcel(PaymentVo vo) {
 		// TODO Auto-generated method stub
 		return dao.payExcel(vo);
+	}
+
+	@Override
+	public List<PaymentVo> monthList(PaymentVo vo) {
+		// TODO Auto-generated method stub
+		return dao.monthList(vo);
+	}
+
+	@Override
+	public PaymentVo payComparison(PaymentVo vo) {
+		// TODO Auto-generated method stub
+		return dao.payComparison(vo);
 	}
 	
 

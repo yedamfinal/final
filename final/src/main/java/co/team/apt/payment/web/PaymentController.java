@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -46,6 +47,7 @@ public class PaymentController {
 		}
 		
 		List<PaymentVo> list = paymentService.payRead(vo);
+		List<PaymentVo> monthList = paymentService.monthList(vo);
 		
 		//vo -> json 파싱
 //		ObjectMapper mapper = new ObjectMapper();
@@ -68,6 +70,7 @@ public class PaymentController {
 		map.put("delay", delay);
 		map.put("tax", tax);
 		map.put("id", vo.getId());
+		map.put("monthList", monthList);
 		model.addAttribute("payList",list);
 		model.addAttribute("payMap",map);
 		
@@ -93,6 +96,7 @@ public class PaymentController {
 		return "";
 	}
 	
+	//결제
 	@RequestMapping("payOneSuccess.do")
 	public String payTotal(PaymentVo vo) {
 		int n = paymentService.payOneSuccess(vo);
@@ -100,10 +104,12 @@ public class PaymentController {
 		return "redirect:payRead.do";
 	}
 	
+	//정기결제
 	@RequestMapping("autoPay.do")
 	public String autoPay(CardInfo vo) {
 		
 		int n = paymentService.autoPay(vo);
+		
 		return "redirect:payRead.do";
 	}
 	
@@ -136,5 +142,13 @@ public class PaymentController {
 		map.put("datas", list);
 		return new ModelAndView("commonExcelView", map);
 	}
-
+	
+	
+	//전월비교 아작스
+	@RequestMapping("payComparison.do")
+	@ResponseBody
+	public PaymentVo payComparison(PaymentVo vo) {
+		vo = paymentService.payComparison(vo);
+		return vo;
+	}
 }

@@ -35,7 +35,7 @@
 <link rel="stylesheet" href="resources/css/style.css">
 <link rel="stylesheet" type="text/css" href="resources/css/style2.css">
 <!-- jquery plugins here-->
-<script src="resources/js/jquery-1.12.1.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
 <!-- popper js -->
 <script src="resources/js/popper.min.js"></script>
 <!-- bootstrap js -->
@@ -58,7 +58,7 @@
 <!-- custom js -->
 <script src="resources/js/custom.js"></script>
 <!-- input date -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script> 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script> 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" />

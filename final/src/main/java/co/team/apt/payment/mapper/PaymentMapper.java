@@ -15,4 +15,6 @@ public interface PaymentMapper {
 	public int payOneSuccess(PaymentVo vo);
 	public int autoPay(CardInfo vo);
 	public List<Map<String, Object>> payExcel(PaymentVo vo);
+	public List<PaymentVo> monthList(PaymentVo vo);
+	public PaymentVo payComparison(PaymentVo vo);
 }

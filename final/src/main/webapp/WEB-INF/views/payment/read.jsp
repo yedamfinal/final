@@ -46,12 +46,6 @@
 </style>
 </head>
 <body>
-<select id="aa"onchange="aaaa()">
-<option>a</option>
-<option>b</option>
-<option>c</option>
-<option>d</option>
-</select>
 	<div class="container">
 		<div class="top row">
 			<div class="col-sm row">
@@ -282,15 +276,25 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						<input type="month" id="month1">
-						<input type="month" id="month2">
-						<button type="button" class="btn btn-primary">조회</button><br>
+						
 						<table class="table" id="jun">
 						<thead>
 							<tr>
-								<th scope="row">${pay.payMonth }월납입항목</th>
-								<th id="monthTh1">x월 금액 (원)</th>
-								<th id="monthTh2">x월 금액 (원)</th>
+								<th scope="row">납입항목</th>
+								<th id="monthTh1">
+									<select id="selectMonth1">
+										<c:forEach items="${payMap['monthList'] }" var="vo">
+											<option>${ vo.payMonth}</option>
+										</c:forEach>
+									</select>
+								</th>
+								<th id="monthTh2">
+									<select id="selectMonth2">
+										<c:forEach items="${payMap['monthList'] }" var="vo">
+											<option>${ vo.payMonth}</option>
+										</c:forEach>
+									</select>
+								</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -438,10 +442,13 @@
 							</div>
 							<div>
 								<label for="password">카드 비밀번호 앞 두자리 XX</label> <input
-									id="password" type="text" name="password">
+									id="password" type="password" name="password">
 							</div>
-							<input hidden type="text" value="id"
-								name="id" value="${payList[0].id }">
+							${payMap['id'] }
+							<input hidden type="text" name="id" value="${payMap['id'] }">
+							<%-- <input hidden name="cost" value="${payMap['total']+payMap['tax'] }"> --%>
+							<input hidden name="cost" value="2000">
+							<input hidden name="payMonth" value="">
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" 
@@ -457,10 +464,10 @@
 	<form action="payOneSuccess.do" method="post" style="display: none;" id="payOneSuccess">
 		<input name="cost" id="payOneCost">
 		<input name="payNo" id="payOnePayNo">
-		<input name="id" value="${payMap['id'] }">
+		<input name="id" id="hiddenId" value="${payMap['id'] }">
 	</form>
 </body>
-<script
+<!-- <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
@@ -469,19 +476,53 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
 	integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
-	crossorigin="anonymous"></script>
+	crossorigin="anonymous"></script> -->
 <script type="text/javascript"
 	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script type="text/javascript">
 	/* 이벤트 등록 */
 	//$('#regular').on('click', regular) //정기결제
-	$('#paymentButton').on('click', payment) //결제
+	$('#paymentButton').on('click', payment); //결제
+	$('#selectMonth1').on('change',function(){
+		monthChange(1); //전월비교 달변경
+	});
+	$('#selectMonth2').on('change',function(){
+		monthChange(2); //전월비교 달변경
+	});
 	
 	//현재 달입력
 	let voMonth = new Date();
 	$('#voMonth').html(voMonth.getMonth()+1+' 월');
 	
-
+	//전월비교 달변경
+	function monthChange(num){
+		//monthTh+num
+		let month = event.target.value;
+		let id = $('#hiddenId').val();
+		$.ajax({
+			url : "payComparison.do",
+			type : "post",
+			data : {
+				payMonth : 	month,
+				id : id
+			},
+			success : function(result){
+				makeComparison(result,num)
+			}
+		});
+	}
+	
+	//비교 테이블 작성
+	function makeComparison(data,num){
+		
+		let payType = ['','nomal','clean','guard','disinfection','elevator','pelectric','pwater','repair','lrepair','representative','heating','water','hatWater','electric','etc','cost'];
+		
+		for(let i=0; i<jun.rows.length; i++){
+			if(i==0) continue;
+			jun.rows[i].cells[num].innerHTML =  Number(data[payType[i]]).toLocaleString()+' 원';
+		}
+	}
+	
 	//정기 결제
 	function regular() {
 		
@@ -531,10 +572,6 @@
 		}
 	}
 	
-	function aaaa(){
-		//var a = $(this).html()
-		var a = $('#aa').val()
-		console.log(a);
-	}
+	
 </script>
 </html>
