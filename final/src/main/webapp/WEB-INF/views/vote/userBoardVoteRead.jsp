@@ -19,8 +19,7 @@
 		<div>
 			<form action="" method="post" onsubmit="return false">
 				<input type="hidden" name="seq" value="${vo.seq}">
-				<table class="table">
-
+				<table class="table" id="table">
 					<tr>
 						<th width="100">투표 이름</th>
 						<td width="300"><input type="hidden" id="title" name="title"
@@ -31,7 +30,8 @@
 					<tr>
 						<th width="100">후보자</th>
 
-						<td width="300"><c:forEach var="vo" items="${clist}"
+						<td width="300">
+							<c:forEach var="vo" items="${clist}"
 								varStatus="i">
 								<input type="radio" name="name"><label>${i.count}번 후보 ${vo.name}</label>
 								
@@ -48,11 +48,14 @@
 					<button type="button" class="btn btn-outline-secondary"
 						onclick="location.href='boardVoteList.do'">목록보기</button>
 					&nbsp;&nbsp;&nbsp;
-					<button type="submit"  class="btn btn-outline-secondary">투표하기</button>
+					<button type="voteForCandidate()"  class="btn btn-outline-secondary">투표하기</button>
 				</div>
 			</form>
 		</div>
 	</div>
 
 </body>
+<script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.37/dist/web3.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+<script src="js/vote/index.js"></script>
 </html>
