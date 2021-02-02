@@ -46,9 +46,11 @@ public class BoardVoteServiceImpl implements BoardVoteService {
 	}
 
 	@Override
-	public ResidentVo searchName(ResidentVo vo) {
+	public List<ResidentVo> searchName(ResidentVo vo) {
 		// TODO Auto-generated method stub
 		return dao.searchName(vo);
 	}
+
+	
 
 }

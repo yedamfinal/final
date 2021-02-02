@@ -5,15 +5,14 @@
 <mapper namespace="co.team.apt.vote.mapper.BoardVoteMapper">
 
 	<select id="searchName" resultType="ResidentVo" parameterType="ResidentVo">
-		select name, dong, ho 
+		select id, name, dong, ho 
 		from resident
-		where =#{name}
+		where name= #{name}
 	</select>
+	
 	<insert id="registerId" parameterType="candidateVo">
 		insert into candidate(id)
 		values (#{id})
-	
-	
 	</insert>
 	
 	<select id="boardVoteList" resultType="BoardVoteVo" parameterType="BoardVoteVo">
@@ -32,27 +31,29 @@
 		insert into boardvote(
 								seq,
 								title,
-								startdate
+								startdate,
 								enddate )
 		values(
 				seq_vote.nextval,
 				#{title},
-				#{startdate}
-				#{enddate} )
+				#{startDate},
+				#{endDate} )
 	</insert>
 	
 	<update id="voteUpdate" parameterType="BoardVoteVo">
-		update board
-		set title=#{title},
-			content=#{content},
-			startdate=#{sysdate},
-			enddate=#{enddate}
+		update boardvote
+		set title=#{title},		
+			startdate=#{startDate},
+			enddate=#{endDate}
 		where seq = #{seq}
 	</update>
 
 	<delete id="voteDelete" parameterType="BoardVoteVo">
-		delete from board
+		delete from boardvote
 		where seq = #{seq}
 	</delete>
+	
+	
+
 	
 </mapper>

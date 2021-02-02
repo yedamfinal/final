@@ -160,15 +160,6 @@
 			<scope>test</scope>
 		</dependency>
 
-
-
-		<!-- fileupload -->
-		<dependency>
-			<groupId>commons-fileupload</groupId>
-			<artifactId>commons-fileupload</artifactId>
-			<version>1.3.2</version>
-		</dependency>
-
 		<!-- email -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
@@ -226,6 +217,20 @@
 			<groupId>commons-fileupload</groupId>
 			<artifactId>commons-fileupload</artifactId>
 			<version>1.3.2</version>
+		</dependency>
+		
+		<!-- 엑셀 다운로드 -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.14</version>
+		</dependency>
+
+		<!-- pdf 다운, 출력 -->
+		<dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports</artifactId>
+			<version>6.4.0</version>
 		</dependency>
 
 	</dependencies>

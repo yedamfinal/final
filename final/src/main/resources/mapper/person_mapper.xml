@@ -7,13 +7,14 @@
 		parameterType="ResidentVo">
 		select *
 		from(
-		select 'r' type, id, name, password,owner
-		from resident
-		union all
-		select 'm' type, id, name, password,king from
-		manager
+			select 'r' type, id, name, password,owner
+			from resident
+			where del = 'ing'
+			union all
+			select 'm' type, id, name, password,king from
+			manager
 		)
-		where id=#{id}
+		where upper(id)=upper(#{id})
 		and password=#{password}
 	</select>
 

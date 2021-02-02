@@ -29,12 +29,13 @@ public class PersonController {
 	public String login(Model model, HttpServletRequest request, ResidentVo vo) {
 		ResidentVo person = personService.login(vo);
 		HttpSession session = request.getSession(false);
+		String path = request.getHeader("Referer");
 		// 체크로직
 		if (person != null) {
 			session.setAttribute("person", person);
 		}
 		// return "sign/loginResult";
-		return "redirect:/home";
+		return "redirect:"+path;
 	}
 	
 	// 로그인 아작스

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="co.team.apt.vote.mapper.CandidateMapper">
+
+	<select id="searchName" resultType="ResidentVo" parameterType="ResidentVo">
+		select id, name, dong, ho 
+		from resident
+		where name= #{name}
+	</select>
+	
+	<insert id="registerId" parameterType="candidateVo">
+		insert into candidate(id)
+		values (#{id})
+	</insert>
+	
+	<select id="candidateList" resultType="CandidateVo" parameterType="CandidateVo">
+		select r.name, c.id, c.seq
+		from resident r, candidate c
+		where r.id= c.id
+		and c.seq =#{seq}
+	</select>
+	
+	<select id="selectName" resultType="CandidateVo">
+		select *
+		from candidate
+		where seq=#{seq}
+		and id=#{id}
+
+	</select>
+	
+	<insert id="candiInsert" parameterType="CandidateVo">
+		insert into candidate(
+								seq,
+								id,
+								job,
+								gender,
+								content
+								)
+		values(
+				#{seq},
+				#{id},
+				#{job},
+				#{gender},
+				#{content}
+				 )
+	</insert>
+	
+	<update id="candiUpdate" parameterType="CandidateVo">
+		update candidate
+		set id=#{id},		
+			job=#{job},
+			gender=#{gender},
+			content=#{content}
+		where seq = #{seq}
+	</update>
+
+	<delete id="candiDelete" parameterType="CandidateVo">
+		delete from candidate
+		where id = #{id}
+	</delete>
+	
+	<insert id="addCandi" parameterType="CandidateVo">
+		insert into candidate
+				(
+					seq, 
+					id, 
+					job, 
+					gender, 
+					content
+				)
+		values (
+					#{seq},
+					#{id},
+					#{job},
+					#{gender},
+					#{content}
+				)
+	</insert>
+
+	
+</mapper>

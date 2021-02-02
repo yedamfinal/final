@@ -22,20 +22,25 @@
 						<th scope="col" style="width: 15%">투표 종료일</th>
 					</tr>
 				</thead>
+				
 				<tbody>
-					<tr>
-						<td>${boardVoteVo.seq}</td>
-						<td>${boardVoteVo.title}</td>
-						<td>${boardVoteVo.startDate}</td>
-						<td>${boardVoteVo.endDate}</td>
+				<c:forEach var="vo" items="${boardVoteList }">
+					<tr onclick="location.href='boardVoteRead.do?seq=${vo.seq }'">
+						<td>${vo.seq}</td>
+						<td>${vo.title}</td>
+						<td>${vo.startDate}</td>
+						<td>${vo.endDate}</td>
 					</tr>
+				</c:forEach>
 				</tbody>			
 			</table>
+			
 			<div align="right">
 				<br />
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<button class="btn btn-outline-secondary" onclick="location.href='boardVoteInsert'">새로운 투표</button>
+				<button class="btn btn-outline-secondary" onclick="location.href='boardVoteInsertForm.do'">새로운 투표</button>
 			</div>
+			
 		</div>
 	</div>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
