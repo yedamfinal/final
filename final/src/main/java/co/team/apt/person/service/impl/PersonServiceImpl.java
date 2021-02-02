@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
+import co.team.apt.common.vo.ListResidentDto;
 import co.team.apt.common.vo.ManagerVo;
 import co.team.apt.common.vo.ResidentVo;
 import co.team.apt.person.mapper.PersonMapper;
@@ -65,6 +66,13 @@ public class PersonServiceImpl implements PersonService {
 	public void maneregister(ManagerVo vo) {
 		// TODO Auto-generated method stub
 		dao.mregister(vo);
+	}
+
+	@Override
+	public void multiregister(ListResidentDto vo) {
+		// TODO Auto-generated method stub
+		dao.multiregister(vo);
+		
 	}
 
 }

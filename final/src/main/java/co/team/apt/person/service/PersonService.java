@@ -2,6 +2,7 @@ package co.team.apt.person.service;
 
 import java.util.List;
 
+import co.team.apt.common.vo.ListResidentDto;
 import co.team.apt.common.vo.ManagerVo;
 import co.team.apt.common.vo.ResidentVo;
 
@@ -13,4 +14,8 @@ public interface PersonService {
 
 	void resiRegister(ResidentVo vo);
 	void maneregister(ManagerVo vo);
+	void multiregister(ListResidentDto vo);
+
+
+
 }

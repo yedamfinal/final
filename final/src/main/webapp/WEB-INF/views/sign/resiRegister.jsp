@@ -4,44 +4,79 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <script type="text/javascript">
-	var i = 1;
+	var i = 0;
+	
 	function add_div() {
 		i++;
-		/* var div = document.createElement('div');
-		div.className = "form-control"
-		div.innerHTML = document.getElementById('mmm').innerHTML;
-		document.getElementById('mmm').appendChild(div); */
-        
+		
+		//owenr 추가
+		var div = document.getElementById('owner');	
+		div2 = div.cloneNode(true)
+		div2.setAttribute('name', 'list['+i+'].owner')
+		document.getElementById('ownera').appendChild(div2);
+		
+        //id 추가
 		var div = document.createElement('input');
-		div.setAttribute('id','id'+i);
-		div.className = "form-control"
-		div.innerHTML = document.getElementById('ida').innerHTML;
-
+		div.setAttribute('id','id'+i); 
+		div.className = "form-control cid"
+		div.setAttribute('name', 'list['+i+'].id')
 		document.getElementById('ida').appendChild(div);
 		
+		//password
 		var div = document.createElement('input');
 		div.className = "form-control"
-		div.innerHTML = document.getElementById('pass').innerHTML;
-
+		div.setAttribute('name', 'list['+i+'].password')
+		div.setAttribute('type', 'password')
 		document.getElementById('pass').appendChild(div);
 		
+		
+		//birth 
 		var div = document.createElement('input');
 		div.className = "form-control"
-		div.innerHTML = document.getElementById('birtha').innerHTML;
-
+		div.setAttribute('name', 'list['+i+'].birth')
 		document.getElementById('birtha').appendChild(div);
 		
+		
+		//name 
 		var div = document.createElement('input');
 		div.className = "form-control"
-		div.innerHTML = document.getElementById('namea').innerHTML;
-
+		div.setAttribute('name', 'list['+i+'].name')
 		document.getElementById('namea').appendChild(div);
 		
+		//연락처
 		var div = document.createElement('input');
 		div.className = "form-control"
-		div.innerHTML = document.getElementById('conta').innerHTML;
-
+		div.setAttribute('name', 'list['+i+'].phone')
 		document.getElementById('conta').appendChild(div); 
+		
+		
+	 	var resident
+		var number = 0;
+		var length = 3;
+
+		number=number+""//number를 문자열로 변환하는 작업
+		var str=""
+		for(var a=0;a<length-number.length;a++){
+		  str=str+"0";
+		}
+		str=str+number; 
+	
+		if ($("#owner").val() == "세대주") {
+			resident = "a";
+
+		}else {
+			resident ="b";
+		}
+		resident = aptdong[$("#dong").val()] + $("#ho").val() + resident +str;
+				
+		
+	//	$("#id").val(resident);
+		
+		var t=1
+		for(a of $('.cid'))
+		{ 
+		  $(a).val(resident+t++)}
+	
 
 	}
 
@@ -52,24 +87,44 @@
 	}
 
 	function hoisted(obj) {
-		var resident
+	
 		
+		var resident
+		var number = i;
+		var length = 4;
+
+		number=number+""//number를 문자열로 변환하는 작업
+		var str=""
+		for(var a=0;a<length-number.length;a++){
+		  str=str+"0";
+		}
+		str=str+number; 
+	
 		if ($("#owner").val() == "세대주") {
 			resident = "a";
 
 		}else {
 			resident ="b";
 		}
-		resident = aptdong[$("#dong").val()] + $("#ho").val() + resident
+		resident = aptdong[$("#dong").val()] + $("#ho").val() + resident +str;
+						
+		
 		$("#id").val(resident);
-		$("#id2").val(resident);
+		
+		
+	
 	}
 
 	aptdong = {
 		'101' : 'A',
 		'102' : 'B',
 		'103' : 'C',
-		'104' : 'D'
+		'104' : 'D',
+		'105' : 'E',
+		'106' : 'F',
+		'107' : 'G',
+		'108' : 'H',
+		'109' : 'I'
 	}
 
 	$(document).ready(function() {
@@ -153,48 +208,48 @@
 
 				</select>
 			</div>
-			
-	
-			<div class="form-group has-feedback">
-				<label class="control-label" for="owner">세대주/원</label> 
-				
-				<select
+
+
+			<div id= "ownera" class="form-group has-feedback">
+				<label class="control-label" for="owner">세대주/원</label> <select
 					class="form-control" onchange="hoisted(this)" id="owner"
-					name="owner">
+					name="list[0].owner">
+					
 					<option value="">세대주/세대원 선택</option>
 					<option value="세대주">세대주</option>
 					<option value="세대원">세대원</option>
 				</select>
 			</div>
-			
+
 			<div id="ida" class="form-group has-feedback">
 				<label class="control-label" for="id">아이디</label> <input
-					class="form-control" type="text" id="id" name="id" />
+					class="form-control cid" type="text" id="id" name="list[0].id" />
 
 			</div>
 			<div id="pass" class="form-group has-feedback">
 				<label class="control-label" for="password">패스워드</label> <input
-					class="form-control" type="password" id="password" name="password" />
+					class="form-control" type="password" id="password"
+					name="list[0].password" />
 			</div>
 			<div id="namea" class="form-group has-feedback">
 				<label class="control-label" for="name">이름</label> <input
-					class="form-control" type="text" id="name" name="name" />
+					class="form-control" type="text" id="name" name="list[0].name" />
 			</div>
 
 			<div id="conta" class="form-group has-feedback">
 				<label class="control-label" for="phone">연락처</label> <input
-					class="form-control" type="text" id="phone" name="phone" />
+					class="form-control" type="text" id="phone" name="list[0].phone" />
 			</div>
 			<div id="birtha" class="form-group has-feedback">
 				<label class="control-label" for="birth">생년월일</label> <input
-					class="form-control" type="text" id="birth" name="birth" />
+					class="form-control" type="text" id="birth" name="list[0].birth" />
 			</div>
 
 			<div class="form-group has-feedback">
 				<button class="btn btn-success" type="submit" id="submit">회원가입</button>
 				<button class="cencle btn btn-danger" type="button">취소</button>
 			</div>
-		
+
 			<input type="button" value="추가" onclick="add_div()"><br />
 
 
