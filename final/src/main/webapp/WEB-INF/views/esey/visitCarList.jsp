@@ -29,12 +29,10 @@
 		</thead>
 		<tbody>
 			
+			<c:forEach var="vo" items="${visitList}">
 			<tr>
 				<th scope="col">${person.dong}</th>
-				<th scope="col">${person.ho}</th>
-			<tr/>
-			<c:forEach var="vo" items="${visitList}">
-			<tr>	
+				<th scope="col">${person.ho}</th>	
 				<th scope="col">${vo.carNum}</th>
 				<th scope="col">${vo.purpose}</th>
 				<th scope="col">${vo.startDate}</th>

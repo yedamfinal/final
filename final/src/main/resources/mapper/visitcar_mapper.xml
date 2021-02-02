@@ -6,7 +6,10 @@
   
   
   	<select id="visitList" resultType="VisitCarVo" parameterType="VisitCarVo">
-		SELECT * FROM VISITCAR
+		select a.PURPOSE, a.STARTDATE, a.ENDDATE, a.CARNUM, b.Id
+		from visitcar a , resident b
+		where a.id = b.id
+		
 	</select>
   	
   	
@@ -16,17 +19,21 @@
 								PURPOSE, 
 								STARTDATE,
 								ENDDATE,
-								ID,
-								CARNUM
+								CARNUM,
+								ID
 								)
-	 	                VALUES(
+	 	                VALUES(	
 	 	               			#{purpose},
 	 	               			#{startDate},
 	 	               			#{endDate},
-	 	               			#{Id},
-	 	               			#{carNum})
+	 	               			#{carNum},
+	 	               			#{Id}
+	 	               			)
   	
   	</insert>
+  	
+  
+  	
   	
 
   </mapper>
