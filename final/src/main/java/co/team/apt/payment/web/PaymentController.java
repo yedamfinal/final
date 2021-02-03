@@ -1,6 +1,8 @@
 package co.team.apt.payment.web;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Connection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,21 +10,27 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import co.team.apt.common.vo.CardInfo;
 import co.team.apt.common.vo.PaymentVo;
 import co.team.apt.common.vo.ResidentVo;
 import co.team.apt.payment.service.PaymentService;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
 
 @Controller
 public class PaymentController {
@@ -155,5 +163,25 @@ public class PaymentController {
 		return vo;
 	}
 	
+	// pdf출력
+	@Autowired
+	DataSource dataSourceSpied;
 	
+	@RequestMapping("paymentPdf.do" )
+	public void report(HttpServletRequest request, HttpServletResponse response
+			, @RequestParam(required=false) String id) throws Exception {
+		Connection conn = dataSourceSpied.getConnection();
+		
+		request.setCharacterEncoding("UTF-8");
+		
+		
+		
+		// 소스 컴파일 jrxml -> jasper
+		InputStream stream = getClass().getResourceAsStream("/pdf/payment.jrxml");
+		JasperReport jasperReport = JasperCompileManager.compileReport(stream); // 파라미터 맵
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("P_id", id);
+		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, map, conn);
+		JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream());
+	}
 }

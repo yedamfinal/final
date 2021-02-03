@@ -33,7 +33,6 @@ public class VisitCarController {
 	
 	@RequestMapping("visitCarInsert.do")
 	public String visitCarInsert(Model model, VisitCarVo vo) {
-		System.out.println(vo);
 		visitCarService.visitCarInsert(vo);
 			return "redirect:visitList.do";
 
