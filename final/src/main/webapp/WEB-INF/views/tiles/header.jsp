@@ -58,7 +58,7 @@
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 									<a class="dropdown-item" href="calendar.do">일정표</a> <a
 										class="dropdown-item" href="noticeList.do?type=notice">공지사항</a>
-									<a class="dropdown-item" href="#">Q&A</a>
+									<a class="dropdown-item" href="qnaList.do">Q&A</a>
 								</div></li>
 							<li class="nav-item dropdown"><a
 								class="nav-link dropdown-toggle" href="blog.html"
