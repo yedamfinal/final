@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="co.team.apt.qna.mapper.QnaMapper">
+	<!-- <select id="qnaList" resultType="QnaVo" parameterType="QnaVo">
+		select a.* from( select b.*, rownum rn from (
+		SELECT * 
+		FROM qna
+		<include refid="searchQuery"/>
+		order by defno desc
+	) b ) a where rn between #{start} and #{end}
+	</select>
+	
+	<sql id = "searchQuery">
+		<choose>
+			<when test="searchType == 'all' ">
+				where 
+				type = 'notice'
+				and (title like '%' || #{search} || '%'
+				or content like '%' || #{search} || '%'
+				or writer like '%' || #{search} || '%')
+			</when>
+			<otherwise>
+				where
+				type = 'notice'
+			<if test="search != null and search != ''">
+				and ${searchType} like '%' || #{search} || '%'
+			</if>
+			</otherwise>
+		</choose>
+	</sql>
+		
+	<select id="pagingCount" resultType="int">
+	SELECT count(*) 
+		FROM BOARD
+		<include refid="searchQuery"></include>
+	</select>	
+	
+	<select id="noticeOne" resultType="BoardVo" parameterType="BoardVo">
+		select *
+		from board
+		where defno=#{defno}
+	</select>
+	
+	<insert id="noticeInsert" parameterType="BoardVo">
+		insert into board(
+					defno,
+					title,
+					content,
+					defdate,
+					writer,
+					type
+					<if test="deffile != null and deffile != ''"> 
+					, deffile
+					</if>
+					)
+		values(
+				def_seq.nextval,
+				#{title},
+				#{content},
+				sysdate,
+				#{writer},
+				#{type}
+				<if test="deffile != null and deffile != ''">
+ 				, #{deffile} 
+ 				</if>
+				)
+	</insert>
+	
+	<update id="noticeUpdate" parameterType="BoardVo">
+		update board
+		set title=#{title},
+			content=#{content},
+			defdate=sysdate
+		where defno = #{defno}
+	</update>
+
+	<delete id="noticeDelete" parameterType="BoardVo">
+		delete from board
+		where defno = #{defno}
+	</delete> -->
+</mapper>

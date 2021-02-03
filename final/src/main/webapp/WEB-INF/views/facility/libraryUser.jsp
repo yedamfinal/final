@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,8 +20,18 @@
 			<h1 class="display-4">독서실 이용중</h1>
 			<br>
 			<br>
-			<p class="lead text-dark">${person.name }님은${vo.endDate }까지${vo.seat }번자리
-				이용 가능합니다.</p>
+			<p class="lead text-dark">
+				<c:if test="${vo.cancel eq 'yes' }">
+					${person.name }님께서는 환불신청 상태입니다.
+				</c:if>
+				<c:if test="${vo.cancel ne 'yes' }">
+					${person.name }님께서는 ${vo.endDate }까지
+					<c:if test="${not empty vo.seat }">
+					${vo.seat }번자리
+					</c:if>				
+					이용 가능합니다.
+				</c:if>
+			</p>
 			<hr class="my-4">
 			<p>기간연장 및 환불은 아래 버튼을 눌러주세요</p>
 			<br>
@@ -70,7 +81,8 @@
 					<div class="input-group-prepend">
 						<span class="input-group-text" id="addon-wrapping">예정금액</span>
 					</div>
-					<input id="cost" name="cost" readonly type="text" class="form-control"
+					<input id="cost" hidden name="cost">
+					<input id="cost2" readonly type="text" class="form-control"
 						aria-label="Username" aria-describedby="addon-wrapping">
 				</div>
 				<div class="input-group flex-nowrap">
@@ -81,7 +93,7 @@
 						aria-label="Username" aria-describedby="addon-wrapping">
 				</div>
 				<br>
-				<button class="btn btn-danger btn-block">환불신청</button>
+				<button class="btn btn-danger btn-block" id="finalButton">환불신청</button>
 				<br><br><br><br><br>
 			</form>
 		</div>
@@ -106,16 +118,26 @@
 			let total = Math.round((end - start) / (1000 * 60 * 60 * 24));
 			let other = Math.round((end - Date.now()) / (1000 * 60 * 60 * 24));
 			let a = other / total;
-			console.log(a);
-
-			if (a > 1) {
-				$('#cost').val('전액 환불 가능합니다. ${vo.cost}원 환불예정입니다.')
+			let str = '${vo.cost}';
+			let cost = Number(str.replace('만원','0000'));
+			
+			if('${vo.cancel}'=='yes'){
+				$('#cost2').val('이미 환불신청 중 입니다.');
+				$('#content').attr('disabled','disabled').val('이미 환불신청 중 입니다.');
+				$('#finalButton').attr('disabled','disabled');
+			}else if (a > 1) {
+				$('#cost2').val('전액 환불 가능합니다. 원 환불예정입니다.');
+				$('#cost').val(cost.toLocaleString());
 			} else if (a > (2 / 3)) {
-				$('#cost').val('교습기간의 1/3이내입니다. '+Math.round(Number('${vo.cost}') * 2 / 3)+'원 환불예정입니다.')
+				$('#cost2').val('교습기간의 1/3이내입니다. '+Math.round(Number(cost) * 2 / 3).toLocaleString()+'원 환불예정입니다.')
+				$('#cost').val(Math.round(Number(cost) * 2 / 3));
 			} else if (a > (1 / 2)) {
-				$('#cost').val('교습기간의 1/2이내입니다. '+Math.round(Number('${vo.cost}') / 2)+'원 환불예정입니다.')
+				$('#cost2').val('교습기간의 1/2이내입니다. '+Math.round(Number(cost) / 2).toLocaleString()+'원 환불예정입니다.')
+				$('#cost').val(Math.round(Number(cost) / 2));
 			} else {
-				$('#cost').val('교습기간의 1/2이 넘었습니다. 환불 신청을 하실 수 없습니다.')
+				$('#cost2').val('교습기간의 1/2이 넘었습니다. 환불 신청을 하실 수 없습니다.');
+				$('#content').attr('disabled','disabled').val('교습기간의 1/2이 넘었습니다. 환불 신청을 하실 수 없습니다.');
+				$('#finalButton').attr('disabled','disabled');
 			}
 		}
 

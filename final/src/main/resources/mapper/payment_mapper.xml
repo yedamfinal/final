@@ -222,4 +222,31 @@
 		set auto='yes' 
 		where id = #{id}
 	</update>
+	
+	<!-- 매월첫날 연체상태 변경 -->
+	<update id="payDelay" statementType="CALLABLE">
+		{ call payDelay() }
+	</update>
+	
+	<!-- 관리자페이지 리스트 조회 -->
+	<select id="managerList" resultType="PaymentVo">
+		
+		select case when no<![CDATA[>]]>0 then '연체중' 
+					when ing<![CDATA[>]]>0 then '납입전' 
+					else '납입완' end as status, 
+			   b.paydate, 
+			   b.cost, 
+			   b.id, 
+			   c.dong, 
+			   c.ho
+		from (select id,sum(case when status ='no' then 1 else 0 end) no, 
+		              sum(case when status ='ing' then 1 else 0 end)  ing,
+		              sum(case when status ='yes' then 1 else 0 end) yes,
+		              max(case when status ='yes' then payid else 0 end) payid
+		      from payment
+		      group by id) a, payment b, resident c
+		where a.payid = b.payid
+		and a.id = c.id
+		order by dong, ho
+	</select>
 </mapper>
