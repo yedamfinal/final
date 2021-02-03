@@ -40,7 +40,7 @@
 		</tbody>
 		</table>
 
-		<a href="mPostBoxInsert.do">등록하기</a>
+		<button class="btn btn-outline-secondary" onclick="location.href='mPostBoxInsForm.do'">등록하기</button>
 		</div>		
 	</div>
 </body>

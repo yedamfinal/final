@@ -69,14 +69,15 @@ textarea#gdsDes { width:400px; height:180px; }
 <form role="form" method="post" autocomplete="off">
 
 <div class="inputArea">	
-	<label>동</label>
-
-	<label>호수</label>
+	<label >동</label>
+	${person.dong}
+	&nbsp;&nbsp;<label>호수</label>
+	${person.ho}
 </div>
 
 <div class="inputArea">
-	<label for="gdsName">번호</label>
-	<input type="text" id="postNo" name="postNo" />
+	<label >번호</label>
+	<input type="text" id="postNo" name="postNo" value="" />
 </div>
 
 <div class="inputArea">
@@ -86,7 +87,7 @@ textarea#gdsDes { width:400px; height:180px; }
 
 <div class="inputArea">
 	<label for="gdsPrice">도착시간</label>
-	<input type="text" id="arriveDate" name="arriveDate" />
+	<input type="text" id="arriveDate" name="arriveDate" value = '${vo.arrivDate}' />
 </div>
 
 <div class="inputArea">
@@ -97,7 +98,7 @@ textarea#gdsDes { width:400px; height:180px; }
 
 
 <div class="inputArea">
-	<button type="submit" id="register_Btn" class="btn btn-primary">등록</button>
+	<button type="submit" class="btn btn-primary">등록</button>
 </div>
 
 </form>
