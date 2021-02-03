@@ -89,7 +89,7 @@
 									<a class="dropdown-item" href="postBoxList.do">택배조회</a> <a
 										class="dropdown-item" href="carList.do">입주자 차량등록</a> <a
 										class="dropdown-item" href="visitList.do">방문자 차량등록</a> <a
-										class="dropdown-item" href="#">CCTV</a> <a
+										class="dropdown-item" href="cctv.do">CCTV</a> <a
 										class="dropdown-item" href="#">관리자 차량관리</a> <a
 										class="dropdown-item" href="#">관리자 택배관리</a> 
 										
