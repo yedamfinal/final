@@ -20,4 +20,6 @@ public interface PaymentService {
 	public List<Map<String, Object>> payExcel(PaymentVo vo);
 	public List<PaymentVo> monthList(PaymentVo vo);
 	public PaymentVo payComparison(PaymentVo vo);
+	public void payDelay();
+	public List<PaymentVo> managerList();
 }

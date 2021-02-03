@@ -456,8 +456,8 @@
 						<button type="submit" class="btn btn-primary"  id="regular">경기결제</button>
 					</div>
 				</div>
-				</form>
 			</div>
+			</form>
 		</div>
 
 	</div>

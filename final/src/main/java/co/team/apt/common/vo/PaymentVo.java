@@ -32,4 +32,7 @@ public class PaymentVo {
 	private String lRepair;	//장기수선충당금
 	private String representative;	//입주자 대표회의 운영비
 	private Integer people;	//세대수
+	//개인정보(관리자페이지)
+	private String dong; //동
+	private String ho; //호수
 }

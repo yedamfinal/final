@@ -237,5 +237,19 @@ public class PaymentServiceImpl implements PaymentService{
 		return dao.payComparison(vo);
 	}
 	
+	//매월1일 연체 처리
+	@Override
+	public void payDelay() {
+		// TODO Auto-generated method stub
+		dao.payDelay();
+	}
+	
+	//매니저화면 리스트
+	@Override
+	public List<PaymentVo> managerList() {
+		// TODO Auto-generated method stub
+		return dao.managerList();
+	}
+	
 
 }

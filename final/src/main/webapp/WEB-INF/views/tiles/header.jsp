@@ -19,7 +19,7 @@
 					</c:if>
 					<c:if test="${not empty person }">
 						<c:if test="${person.type == 'm'}">
-							<span><a href="register.do">Register </a></span>
+							<span><a href="register">Register </a></span>
 						</c:if>
 						<span><a href="logout.do">Logout</a></span>
 					</c:if>
@@ -58,7 +58,7 @@
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 									<a class="dropdown-item" href="calendar.do">일정표</a> <a
 										class="dropdown-item" href="noticeList.do?type=notice">공지사항</a>
-									<a class="dropdown-item" href="#">Q&A</a>
+									<a class="dropdown-item" href="qnaList.do">Q&A</a>
 								</div></li>
 							<li class="nav-item dropdown"><a
 								class="nav-link dropdown-toggle" href="blog.html"

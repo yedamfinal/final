@@ -27,10 +27,10 @@
 			<tbody>
 				<c:forEach var="vo" items="${noticeList}">
 					<tr onclick="location.href='noticeRead.do?defno=${vo.defno}'">
-						<th scope="col">${vo.defno}</th>
-						<th scope="col">${vo.title}</th>
-						<th scope="col">${vo.writer}</th>
-						<th scope="col">${vo.defdate}</th>
+						<td scope="col">${vo.defno}</td>
+						<td scope="col">${vo.title}</td>
+						<td scope="col">${vo.writer}</td>
+						<td scope="col">${vo.defdate}</td>
 					</tr>
 				</c:forEach>
 			</tbody>

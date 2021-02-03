@@ -39,7 +39,10 @@ public class PaymentController {
 		if(resiVo == null) { //로그인 안한상태
 			return "home/needLogin";
 		}else if(resiVo.getType().equals("m")){//관리자로 로그인
-			return "";
+			List<PaymentVo> managerList = paymentService.managerList();
+			model.addAttribute("payList",managerList);
+			
+			return "payment/payManager";
 		}else if(resiVo.getOwner().equals("owner")) {//세대주로 로그인
 			vo.setId(resiVo.getId()); 
 		}else {//기타(세대원) 등등
@@ -151,4 +154,6 @@ public class PaymentController {
 		vo = paymentService.payComparison(vo);
 		return vo;
 	}
+	
+	
 }

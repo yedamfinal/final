@@ -8,15 +8,12 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="resources/css/bootstrap.min.css">
 </head>
 <body>
 	<div class="container">
-		<div class='row'>
-			<div class='col-8'>
-				<br>
-				<h1>자유게시판</h1>
-				<br>				
-			</div>
+		<div align="right">
+		<a href="qnaInsertForm.do">글쓰기</a>
 		</div>
 		<table class="table">
 			<thead>
@@ -28,23 +25,25 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="vo" items="${boardList}">
-					<tr onclick="location.href='communityRead.do?defno=${vo.defno}&type=${type }'">
-						<td scope="col">${vo.defno}</th>
-						<td scope="col">${vo.title}</th>
-						<td scope="col">${vo.writer}</th>
-						<td scope="col">${vo.defdate}</th>
+				<c:forEach var="vo" items="${qnaList}">
+					<tr onclick="location.href='qnaRead.do?qndno=${vo.qnano}'">
+						<td scope="col">${vo.qnano}</td>
+						<td scope="col">${vo.title}</td>
+						<td scope="col">${vo.writer}</td>
+						<td scope="col">${vo.qnadate}</td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
+		<my:paging paging="${paging}" jsFunc="goList" />
+		<script>
+			function goList(p) {
+				location.href = "qnaList.do?page=" + p;
+			}
+		</script>
 		
 		<div align="right">
-		<a href="communityInsertForm.do?type=${type }">글쓰기</a>
-		</div>
-		<div align="center">
-			<my:paging paging="${paging}" jsFunc="goList" />
-			<form action="communityList" method="post">
+			<form action="qnaList.do" method="post">
 				<select name="searchType" size="1">
 					<option value="title" <c:if test="${paging.searchType == 'title'}">selected</c:if>>제목</option>
 					<option value="content" <c:if test="${paging.searchType == 'content'}">selected</c:if>>내용</option>
@@ -52,17 +51,10 @@
 					<option value="all" <c:if test="${paging.searchType == 'all'}">selected</c:if>>제목+내용+작성자</option>
 				</select>
 				<input name="search" value="${paging.search}"> 
-				<input hidden name="type" value="${type}"> 
 				<input type="submit" value="검색">
 				
 			</form>
-			<br><br>
 		</div>
 	</div>
 	</body>
-	<script>
-		function goList(p) {
-			location.href = "communityList.do?page=" + p+"&type=${type}";
-		}
-	</script>
 </html>
