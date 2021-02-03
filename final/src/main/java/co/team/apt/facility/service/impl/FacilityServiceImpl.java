@@ -132,7 +132,8 @@ public class FacilityServiceImpl implements FacilityService {
 	public int deleteLibrary(FacilityVo vo) {
 		// TODO Auto-generated method stub
 		
-		vo.getCost().replace("만원", "00");
+		//vo.getCost().replace("만원", "00");
+		vo.setCost("2000");
 		try {
 			cancel(vo);
 		} catch (Exception e) {

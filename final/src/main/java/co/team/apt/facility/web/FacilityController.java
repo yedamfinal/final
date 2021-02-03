@@ -127,7 +127,7 @@ public class FacilityController {
 	@RequestMapping("cancelManage")
 	public String cancelManage(FacilityVo vo) {
 		
-		
+		System.out.println(vo);
 		facilityService.deleteLibrary(vo);
 		
 		return "redirect:libraryManager.do?type="+vo.getType();

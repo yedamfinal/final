@@ -127,8 +127,8 @@
 				$('#content').attr('disabled','disabled').val('이미 환불신청 중 입니다.');
 				$('#finalButton').attr('disabled','disabled');
 			}else if (a > 1) {
-				$('#cost2').val('전액 환불 가능합니다. 원 환불예정입니다.');
-				$('#cost').val(cost.toLocaleString());
+				$('#cost2').val('전액 환불 가능합니다.'+ cost.toLocaleString()+'원 환불예정입니다.');
+				$('#cost').val(Math.round(Number(cost)));
 			} else if (a > (2 / 3)) {
 				$('#cost2').val('교습기간의 1/3이내입니다. '+Math.round(Number(cost) * 2 / 3).toLocaleString()+'원 환불예정입니다.')
 				$('#cost').val(Math.round(Number(cost) * 2 / 3));

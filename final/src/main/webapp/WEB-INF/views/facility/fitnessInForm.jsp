@@ -109,7 +109,7 @@
 			pg : "html5_inicis",
 			merchant_uid : payNo, //결제번호
 			name : "헬스장", //헬스장, 독서실, x월 관리비 결제명
-			amount : Number(frm.cost)/100, //가격
+			amount : 2000, //가격
 			buyer_name : frm.name, // 회원이름
 			buyer_tel : frm.phone //회원전화번호
 		}

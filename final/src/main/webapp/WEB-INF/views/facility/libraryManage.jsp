@@ -53,7 +53,11 @@
 										data-content="${vo.content }"
 										data-name="${vo.name }"
 										data-phone="${vo.phone }" 
-										data-cost="${vo.cost }">환불요청</button></td>
+										data-cost="${vo.cost }"
+										data-payNo="${vo.payNo }"
+										data-id="${vo.id }"
+										data-type="${faType }">환불요청</button></td>
+										
 						</c:if>
 						<c:if test="${vo.cancel ne 'yes' }">
 							<td>No</td>
@@ -89,7 +93,13 @@
 						
 					</div>
 					<div class="modal-footer">
-					    <button class="btn btn-danger" onclick="location.href='cancelManage?payNo=${vo.payNo}&cost=${vo.cost }&id=${vo.id }&type=${faType }'">환불</button>
+						<form action="cancelManage" method="post">
+							<input hidden name="cost" id="cancelCost2">
+							<input hidden name="payNo" id="cancelPayNo">
+							<input hidden name="id" id="cancelId">
+							<input hidden name="type" id="cancelType">
+						    <button class="btn btn-danger">환불</button>
+						</form>
 						<button type="button" class="btn btn-secondary"
 							data-dismiss="modal">닫기</button>
 					</div>
@@ -98,12 +108,19 @@
 		</div>
 	<script>
 	//onclick="location.href='cancelManage?payNo=${vo.payNo}&cost=${vo.cost }&id=${vo.id }&type=${faType }'"
+		let cost,payNo,id,type;
 			
 		$('.cancelButton').on('click',function(){
 			$('#cancelName').html($(this).data('name'));
 			$('#cancelPhone').html($(this).data('phone'));
 			$('#cancelCost').html($(this).data('cost'));
 			$('#cancelContent').html($(this).data('content'));
+			
+			$('#cancelCost2').val($(this).data('cost'));
+			$('#cancelPayNo').val($(this).data('payno'));
+			$('#cancelId').val($(this).data('id'));
+			$('#cancelType').val($(this).data('type'));
+			
 			$('#cancelModal').modal('show');
 		})
 	</script>

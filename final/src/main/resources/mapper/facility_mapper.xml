@@ -49,7 +49,7 @@
 	<update id="cancelLibrary" parameterType="FacilityVo">
 		update ${type}
 		set cancel = 'yes',
-		cost = #{cost}
+		cost = #{cost},
 		content = #{content}
 		where id = #{id}
 	</update>
