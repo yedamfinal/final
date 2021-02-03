@@ -50,15 +50,16 @@
 		</div>
 		<div>
 			<form action="updateCandidate.do" method="post">
-				<table class="table">
 					<input type="hidden" id="seq" name="seq" value="${vo.seq}">
 					<input type="hidden" name="id" value="${vo.id}">
 					<input type="hidden" name="name" value="${vo.name}">
+					
+				<table class="table">
 					<tr>
 						<th width="100">후보자 ID</th>
-						<td width="300"><span>${vo.id }<span>
+						<td width="300"><span>${vo.id }</span>
 					</tr>
-					<tr>
+					<tr	>
 						<th width="100">후보자 이름</th>
 						<td width="300"><span>${vo.name }</span>
 					</tr>
@@ -99,4 +100,5 @@
 		</div>
 	</div>
 </body>
+
 </html>

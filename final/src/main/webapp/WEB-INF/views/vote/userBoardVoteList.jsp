@@ -17,9 +17,10 @@
 				<thead>
 					<tr>
 						<th scope="col" style="width: 10%">no</th>
-						<th scope="col" style="width: 60%">선거제목</th>
-						<th scope="col" style="width: 15%">투표 시작일</th>
-						<th scope="col" style="width: 15%">투표 종료일</th>
+						<th scope="col" style="width: 50%">선거제목</th>
+						<th scope="col" style="width: 10%"></th>
+						<th scope="col" style="width: 10%">투표 시작일</th>
+						<th scope="col" style="width: 10%">투표 종료일</th>
 					</tr>
 				</thead>
 				
@@ -28,6 +29,7 @@
 					<tr onclick="location.href='userBoardVoteRead.do?seq=${vo.seq }'">
 						<td>${vo.seq}</td>
 						<td>${vo.title}</td>
+						<td><button type="button" class="btn btn-outline-secondary btn-sm" data-seq="${vo.seq}" data-enddate="${vo.endDate }">결과 보기</button></td>
 						<td>${vo.startDate}</td>
 						<td>${vo.endDate}</td>
 					</tr>
@@ -38,4 +40,15 @@
 	</div>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </body>
+<script>
+$("button").on('click', function(e){
+	var seq=$(this).data("seq")
+	var endDate=$(this).data("enddate")
+	location.href="result.do?seq="+seq +"&endDate=" +endDate;
+	
+	 
+	e.stopPropagation();
+})
+
+</script>
 </html>

@@ -16,10 +16,11 @@
 	</insert>
 	
 	<select id="candidateList" resultType="CandidateVo" parameterType="CandidateVo">
-		select r.name, c.id, c.seq
+		select r.name, c.id, c.seq, c.votenum
 		from resident r, candidate c
 		where r.id= c.id
 		and c.seq =#{seq}
+		order by voteNum
 	</select>
 	
 	<select id="selectName" resultType="CandidateVo">
@@ -36,14 +37,16 @@
 								id,
 								job,
 								gender,
-								content
+								content,
+								votenum
 								)
 		values(
 				#{seq},
 				#{id},
 				#{job},
 				#{gender},
-				#{content}
+				#{content},
+				#{voteNum}
 				 )
 	</insert>
 	

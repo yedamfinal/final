@@ -29,10 +29,11 @@
 
 					<tr>
 						<th width="100">후보자</th>
-
-						<td width="300"><c:forEach var="vo" items="${clist}"
-								varStatus="i">
-								<span>후보 ${i.count}번 ${vo.name}</span>
+						<td width="300">
+						<c:set var="num" value="0" />
+						<c:forEach var="vo" items="${clist}">
+								<c:set var="num" value="${vo.voteNum}"/>
+								<span>후보 ${vo.voteNum} 번 ${vo.name}</span>
 								<button type="button"
 									onclick="location.href='editCandidate.do?seq=${vo.seq}&id=${vo.id}&name=${vo.name}'"
 									class="btn btn-outline-secondary btn-sm">수정</button>
@@ -40,7 +41,9 @@
 									onclick="location.href='deleteCandidate.do?seq=${vo.seq}&id=${vo.id }'"
 									class="btn btn-outline-secondary btn-sm">삭제</button>
 								</br>
-							</c:forEach></td>
+						</c:forEach>
+						${num}
+						</td>
 					</tr>
 
 
@@ -57,7 +60,7 @@
 				</table>
 				<div align="right">
 					<button type="button"
-						onclick="location.href='candiRegister.do?seq=${vo.seq}'"
+						onclick="location.href='candiRegister.do?seq=${vo.seq}&voteNum=${num+1 }'"
 						class="btn btn-outline-secondary">후보자 등록</button>
 					&nbsp;&nbsp;&nbsp;
 					<button type="button" class="btn btn-outline-secondary"

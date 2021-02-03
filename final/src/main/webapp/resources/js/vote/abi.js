@@ -1,13 +1,60 @@
 abi = [
 	{
+		"constant": true,
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "NumLists",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "candidatesCount",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"constant": false,
 		"inputs": [
 			{
-				"name": "candidate",
-				"type": "bytes32"
+				"internalType": "uint256",
+				"name": "_seq",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "_name",
+				"type": "string"
 			}
 		],
-		"name": "voteForCandidate",
+		"name": "addCandidate",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_seq",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_candidateId",
+				"type": "uint256"
+			}
+		],
+		"name": "vote",
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
@@ -17,72 +64,17 @@ abi = [
 		"constant": true,
 		"inputs": [
 			{
-				"name": "",
+				"internalType": "uint256",
+				"name": "_seq",
 				"type": "uint256"
 			}
 		],
-		"name": "candidateList",
+		"name": "winnerName",
 		"outputs": [
 			{
-				"name": "",
-				"type": "bytes32"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "candidate",
-				"type": "bytes32"
-			}
-		],
-		"name": "totalVotesFor",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "candidate",
-				"type": "bytes32"
-			}
-		],
-		"name": "validCandidate",
-		"outputs": [
-			{
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "",
-				"type": "bytes32"
-			}
-		],
-		"name": "votesReceived",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
+				"internalType": "string",
+				"name": "_winner",
+				"type": "string"
 			}
 		],
 		"payable": false,

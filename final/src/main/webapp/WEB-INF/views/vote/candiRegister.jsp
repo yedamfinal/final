@@ -70,8 +70,9 @@
 		</div>
 		<div>
 			<form action="register.do" method="post">
-				<table class="table">
+					<input type="hidden" name="voteNum" value="${vo.voteNum }">
 					<input type="hidden" id="seq" name="seq" value="${vo.seq}">
+				<table class="table">
 					<tr>
 						<th width="100">후보자 ID</th>
 						<td width="300">

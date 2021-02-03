@@ -2,7 +2,8 @@ package co.team.apt.vote.web;
 
 
 
-import java.util.HashMap;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +19,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 import co.team.apt.common.vo.BoardVoteVo;
 import co.team.apt.common.vo.CandidateVo;
-import co.team.apt.common.vo.PaymentVo;
 import co.team.apt.common.vo.ResidentVo;
 import co.team.apt.vote.service.BoardVoteService;
 import co.team.apt.vote.service.CandidateService;
@@ -56,12 +56,35 @@ public class BoardVoteController {
 		return "redirect:boardVoteList.do";
 	}
 	
+	
 	@RequestMapping("/boardVoteInsertForm.do")
 	public String boardVoteInsertForm(Model model, BoardVoteVo vo) {
 		
 		return "vote/boardVoteInsert";
 	}
 	
+	//투표 결과 페이지
+	@RequestMapping("/result.do")
+	@ResponseBody
+	public String result(Model model, BoardVoteVo vo) {
+		if(vo.getEndDate().getTime() > System.currentTimeMillis()) {
+			return "<script>"
+					 + "alert(\"you can't checked the result.\");"
+			         + "location.href='voteStart.do'"
+			         + "</script>";
+		} else {
+			return "<script>"
+			         + "location.href='voteResult.do?seq="+vo.getSeq()+"'"
+			         + "</script>";
+		}
+		
+	}
+	@RequestMapping("/voteResult.do")
+	public String ResultForm(Model model, BoardVoteVo vo) {
+		
+		
+		return "vote/result";
+	}
 
 	
 	@RequestMapping("/boardVoteList.do")
@@ -172,5 +195,9 @@ public class BoardVoteController {
 		return "vote/profile";
 	}
 	
-	
+	//승호가 테스트에 쓴거
+	@RequestMapping("hoTest.do")
+	public String hoTest() {
+		return "vote/test";
+	}
 }
