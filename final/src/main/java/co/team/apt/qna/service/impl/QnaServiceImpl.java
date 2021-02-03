@@ -17,31 +17,31 @@ public class QnaServiceImpl implements QnaService{
 	@Override
 	public List<QnaVo> qnaList(QnaVo vo) {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.qnaList(vo);
 	}
 
 	@Override
 	public QnaVo qnaOne(QnaVo vo) {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.qnaOne(vo);
 	}
 
 	@Override
 	public int qnaInsert(QnaVo vo) {
 		// TODO Auto-generated method stub
-		return 0;
+		return dao.qnaInsert(vo);
 	}
 
 	@Override
 	public int qnaUpdate(QnaVo vo) {
 		// TODO Auto-generated method stub
-		return 0;
+		return dao.qnaUpdate(vo);
 	}
 
 	@Override
 	public int qnaDelete(QnaVo vo) {
 		// TODO Auto-generated method stub
-		return 0;
+		return dao.qnaDelete(vo);
 	}
 
 	

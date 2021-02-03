@@ -6,4 +6,9 @@
 <select id="carList" resultType="CarVo" parameterType="CarVo">
 		SELECT * FROM CAR
 </select>
+
+<insert id="carInsert" parameterType="CarVo">
+	insert into car(carnum,cartype,id) values(#{carNum},#{carType},#{Id})
+
+</insert>
 </mapper>

@@ -58,7 +58,7 @@
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 									<a class="dropdown-item" href="calendar.do">일정표</a> <a
 										class="dropdown-item" href="noticeList.do?type=notice">공지사항</a>
-									<a class="dropdown-item" href="#">Q&A</a>
+									<a class="dropdown-item" href="qnaList.do">Q&A</a>
 								</div></li>
 							<li class="nav-item dropdown"><a
 								class="nav-link dropdown-toggle" href="blog.html"
@@ -87,11 +87,12 @@
 								aria-haspopup="true" aria-expanded="false">편의기능</a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 									<a class="dropdown-item" href="postBoxList.do">택배조회</a> <a
-										class="dropdown-item" href="#">관리자 택배관리</a> <a
-										class="dropdown-item" href="#">입주자 차량등록</a> <a
+										class="dropdown-item" href="carList.do">입주자 차량등록</a> <a
 										class="dropdown-item" href="visitList.do">방문자 차량등록</a> <a
+										class="dropdown-item" href="#">CCTV</a> <a
 										class="dropdown-item" href="#">관리자 차량관리</a> <a
-										class="dropdown-item" href="#">CCTV</a>
+										class="dropdown-item" href="#">관리자 택배관리</a> 
+										
 								</div></li>
 						</ul>
 					</div>

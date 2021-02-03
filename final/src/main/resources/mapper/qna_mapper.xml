@@ -3,12 +3,13 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="co.team.apt.qna.mapper.QnaMapper">
-	<!-- <select id="qnaList" resultType="QnaVo" parameterType="QnaVo">
+
+	<select id="qnaList" resultType="QnaVo" parameterType="QnaVo">
 		select a.* from( select b.*, rownum rn from (
 		SELECT * 
 		FROM qna
 		<include refid="searchQuery"/>
-		order by defno desc
+		order by family DESC, depth ASC
 	) b ) a where rn between #{start} and #{end}
 	</select>
 	
@@ -16,16 +17,13 @@
 		<choose>
 			<when test="searchType == 'all' ">
 				where 
-				type = 'notice'
-				and (title like '%' || #{search} || '%'
+				(title like '%' || #{search} || '%'
 				or content like '%' || #{search} || '%'
 				or writer like '%' || #{search} || '%')
 			</when>
 			<otherwise>
-				where
-				type = 'notice'
 			<if test="search != null and search != ''">
-				and ${searchType} like '%' || #{search} || '%'
+				where ${searchType} like '%' || #{search} || '%'
 			</if>
 			</otherwise>
 		</choose>
@@ -33,27 +31,30 @@
 		
 	<select id="pagingCount" resultType="int">
 	SELECT count(*) 
-		FROM BOARD
+		FROM qna
 		<include refid="searchQuery"></include>
 	</select>	
 	
-	<select id="noticeOne" resultType="BoardVo" parameterType="BoardVo">
+	<select id="qnaOne" resultType="QnaVo" parameterType="QnaVo">
 		select *
-		from board
-		where defno=#{defno}
+		from qna
+		where qnano=#{qnano}
 	</select>
 	
-	<insert id="noticeInsert" parameterType="BoardVo">
-		insert into board(
-					defno,
+	<insert id="qnaInsert" parameterType="QnaVo">
+		<selectKey resultType="int" keyProperty="board_re_ref" order="BEFORE">
+        
+        SELECT IFNULL(MAX(BOARD_RE_REF), 0) + 1 
+        FROM BOARD.TB_BOARD
+          
+    </selectKey>
+		insert into qna(
+					qnano,
 					title,
 					content,
 					defdate,
 					writer,
 					type
-					<if test="deffile != null and deffile != ''"> 
-					, deffile
-					</if>
 					)
 		values(
 				def_seq.nextval,
@@ -62,22 +63,19 @@
 				sysdate,
 				#{writer},
 				#{type}
-				<if test="deffile != null and deffile != ''">
- 				, #{deffile} 
- 				</if>
 				)
 	</insert>
 	
-	<update id="noticeUpdate" parameterType="BoardVo">
-		update board
+	<update id="qnaUpdate" parameterType="QnaVo">
+		update qna
 		set title=#{title},
 			content=#{content},
-			defdate=sysdate
-		where defno = #{defno}
+			qnadate=sysdate
+		where qnano = #{qnano}
 	</update>
 
-	<delete id="noticeDelete" parameterType="BoardVo">
-		delete from board
-		where defno = #{defno}
-	</delete> -->
+	<delete id="qnaDelete" parameterType="QnaVo">
+		delete from qna
+		where qnano = #{qnano}
+	</delete>
 </mapper>

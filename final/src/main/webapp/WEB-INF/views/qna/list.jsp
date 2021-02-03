@@ -13,7 +13,7 @@
 <body>
 	<div class="container">
 		<div align="right">
-		<a href="noticeInsertForm.do">글쓰기</a>
+		<a href="qnaInsertForm.do">글쓰기</a>
 		</div>
 		<table class="table">
 			<thead>
@@ -25,12 +25,12 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="vo" items="${noticeList}">
-					<tr onclick="location.href='noticeRead.do?defno=${vo.defno}'">
-						<td scope="col">${vo.defno}</td>
+				<c:forEach var="vo" items="${qnaList}">
+					<tr onclick="location.href='qnaRead.do?qnano=${vo.qnano}'">
+						<td scope="col">${vo.qnano}</td>
 						<td scope="col">${vo.title}</td>
 						<td scope="col">${vo.writer}</td>
-						<td scope="col">${vo.defdate}</td>
+						<td scope="col">${vo.qnadate}</td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -38,12 +38,12 @@
 		<my:paging paging="${paging}" jsFunc="goList" />
 		<script>
 			function goList(p) {
-				location.href = "noticeList.do?page=" + p;
+				location.href = "qnaList.do?page=" + p;
 			}
 		</script>
 		
 		<div align="right">
-			<form action="noticeList.do" method="post">
+			<form action="qnaList.do" method="post">
 				<select name="searchType" size="1">
 					<option value="title" <c:if test="${paging.searchType == 'title'}">selected</c:if>>제목</option>
 					<option value="content" <c:if test="${paging.searchType == 'content'}">selected</c:if>>내용</option>
