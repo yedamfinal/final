@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -16,6 +17,7 @@
           </div>
           <hr>
           <form action="userJoinAction.reservation" method="POST" class="pt-3" style="max-width:720px;">
+          	<input type="hidden" id="Id" name="Id" value="${person.id}">
 		    <div>
 		   		<label>동</label>
 		   		<input type="text" class="form-control-plaintext" id="dong" value ="${person.dong}">
