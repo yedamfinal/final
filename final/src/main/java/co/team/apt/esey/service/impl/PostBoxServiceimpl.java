@@ -16,8 +16,13 @@ public class PostBoxServiceimpl implements PostBoxService {
 	PostBoxMapper dao;
 	
 	public List<PostBoxVo> postBoxList(PostBoxVo vo){
-	
 	return dao.postBoxList(vo);
 }
+
+	@Override
+	public int mPostBoxInsert(PostBoxVo vo) {
+		// TODO Auto-generated method stub
+		return dao.mPostBoxInsert(vo);
+	}
 
 }

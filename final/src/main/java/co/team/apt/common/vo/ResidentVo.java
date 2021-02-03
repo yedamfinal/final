@@ -17,5 +17,4 @@ public class ResidentVo {
 	private String ho;
 	private String del;
 	private String type;
-	
 }

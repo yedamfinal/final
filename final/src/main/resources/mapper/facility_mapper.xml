@@ -30,7 +30,16 @@
 	
 	
 	<select id="getSeat" resultType="FacilityVo">
-		select seat from library
+		select * 
+		from library
+		<where>
+			<if test="startDate != null and startDate !=''">
+			add_months(#{startDate},${month}) between startdate and enddate
+			or #{startDate} between startdate and enddate
+			or startdate between #{startDate} and add_months(#{startDate},${month})
+			or enddate between #{startDate} and add_months(#{startDate},${month})
+			</if>
+		</where> 
 	</select>
 	
 	<select id="getLibrary" resultType="FacilityVo">
@@ -39,18 +48,29 @@
 	
 	<update id="cancelLibrary" parameterType="FacilityVo">
 		update ${type}
-		set cancel = 'yes'
+		set cancel = 'yes',
+		cost = #{cost},
+		content = #{content}
 		where id = #{id}
 	</update>
 	
-	<select id="manageLibrary" resultType="FacilityVo">
+	<select id="manageLibrary" resultType="FacilityVo" parameterType="ResidentVo">
 		select r.name, r.phone, r.dong ||'동 '|| r.ho||'호' address, l.*
-		from resident r, library l
+		from resident r, ${type} l
 		where r.id = l.id
 		order by cancel desc, enddate
 	</select>
 	
 	<delete id="deleteLibrary">
-		delete from library where id=#{id}
+		delete from ${type} where id=#{id}
+	</delete>
+	
+	<delete id="terminateFitness">
+		<![CDATA[delete from fitness where enddate < sysdate]]>
+		
+	</delete>
+	
+	<delete id="terminateLibrary">
+		<![CDATA[delete from library where enddate < sysdate]]>
 	</delete>
 </mapper>

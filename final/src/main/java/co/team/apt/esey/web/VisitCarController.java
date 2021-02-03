@@ -13,14 +13,12 @@ import co.team.apt.esey.service.VisitCarService;
 
 @Controller
 public class VisitCarController {
-	@Autowired
-	VisitCarMapper dao;
 	
 	@Autowired
 	VisitCarService visitCarService;
 	
 	//방문자 차량 조회
-	@RequestMapping("visitList.do")
+	@RequestMapping("/visitList.do")
 	public String visitList(Model model, VisitCarVo vo) {
 		List<VisitCarVo> list = visitCarService.visitList(vo);
 		model.addAttribute("visitList", list);
@@ -33,17 +31,12 @@ public class VisitCarController {
 	}
 		
 	
-	@RequestMapping("visitCar.do")
-	public String insert(Model model, VisitCarVo vo) {
-		
-		int i = visitCarService.visitCarInsert(vo);
-	
-		if(i != 0) {
+	@RequestMapping("visitCarInsert.do")
+	public String visitCarInsert(Model model, VisitCarVo vo) {
+		visitCarService.visitCarInsert(vo);
 			return "redirect:visitList.do";
-		}else {
-			return null;
-		}
+
+		
 	}
 	
-
 }

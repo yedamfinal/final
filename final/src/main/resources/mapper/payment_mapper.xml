@@ -117,8 +117,10 @@
 			</if>
 		)
 	</insert>
+	
+	<!-- 관리비 유저 화면 -->
 	<select id="payTotal" resultType="PaymentVo" parameterType="PaymentVo">
-		select to_char(a.paymonth,'mm') paymonth, 
+		select to_char(a.paymonth,'yy-mm') paymonth, 
 			   b.heating+b.water+b.hatwater+b.electric+b.etc+(a.nomal+a.clean+a.guard+a.disinfection+a.elevator+a.pelectric+a.pwater+a.repair+a.lrepair+a.representative)/people cost, 
 			   a.nomal/people nomal,
 			   a.clean/people clean,
@@ -133,8 +135,119 @@
 			   b.*
 		from paypublic a, (select * 
 						   from payment 
-						   where id='test' 
-						   and to_char(paymonth,'yy-mm')=#{payMonth}) b
+						   where id=#{id}
+               and to_char(paymonth,'yy-mm') &lt;= #{payMonth}
+               and status in ('ing','no')) b
 		where to_char(a.paymonth,'yy-mm') = to_char(b.paymonth,'yy-mm')
+		order by 18 desc
+	</select>
+	
+	<!-- 세대주 아이디받아오기 -->
+	<select id="getOwner" resultType="string" parameterType="ResidentVo">
+		select id
+		from resident
+		where del = 'ing'
+		and dong = #{dong}
+		and ho= #{ho}
+		and owner = 'owner'
+	</select>
+	
+	<!-- 결제 성공 -->
+	<update id="payOneSuccess" parameterType="PaymentVo">
+		update payment
+		set status = 'yes',
+		cost = #{cost},
+		paydate = sysdate,
+		payno = #{payNo}
+		where id = #{id}
+		and status in ('ing','no')
+	</update>
+	
+	<select id="payExcel" resultType="map" parameterType="PaymentVo">
+		select nvl(a.cost,'미납') 납입액,
+	       to_char(nvl(a.paydate,''),'yy/mm/dd') 납입날짜,
+	       to_char(a.paymonth,'yy/mm')||'월 관리비' 월,
+	       a.delaytax 연체료,
+	       a.heating 난방,
+	       a.water 수도세,
+	       a.hatwater 급탕비,
+	       a.electric 전기세,
+	       a.etc 기타,
+	       b.nomal 일반관리비,
+	       b.clean 청소비,
+	       b.guard 경비비,
+	       b.disinfection 소독비,
+	       b.elevator 승강기사용료,
+	       b.pelectric 공용전기세,
+	       b.pwater 공용수도세,
+	       b.repair 수선유지비,
+	       b.lrepair as "장기수선 충당금",
+	       b.representative as "대표회의 운영비"
+		from payment a, paypublic b
+		where to_char(a.paymonth,'yy/mm') = to_char(b.paymonth,'yy/mm')
+		and a.id = #{id}
+		order by 월 desc
+	</select>
+	
+	<select id="monthList" resultType="PaymentVo">
+		select to_char(paymonth,'yy-mm') payMonth
+		from payment 
+		where id=#{id} 
+		order by 1 desc
+	</select>
+	
+	<!-- 관리비 월별비교 -->
+	<select id="payComparison" resultType="PaymentVo">
+		select to_char(a.paymonth,'yy-mm') paymonth, 
+			   b.heating+b.water+b.hatwater+b.electric+b.etc+(a.nomal+a.clean+a.guard+a.disinfection+a.elevator+a.pelectric+a.pwater+a.repair+a.lrepair+a.representative)/people cost, 
+			   a.nomal/people nomal,
+			   a.clean/people clean,
+			   a.guard/people guard,
+			   a.disinfection/people disinfection,
+			   a.elevator/people elevator,
+			   a.pelectric/people pelectric,
+			   a.pwater/people pwater,
+			   a.repair/people repair,
+			   a.lrepair/people lrepair,
+			   a.representative/people representative, 
+			   b.*
+		from paypublic a, (select * 
+						   from payment 
+						   where id=#{id}
+               and to_char(paymonth,'yy-mm') = #{payMonth}) b
+		where to_char(a.paymonth,'yy-mm') = to_char(b.paymonth,'yy-mm')
+	</select>
+	
+	<update id="autoPay" parameterType="CardInfo">
+		update resident 
+		set auto='yes' 
+		where id = #{id}
+	</update>
+	
+	<!-- 매월첫날 연체상태 변경 -->
+	<update id="payDelay" statementType="CALLABLE">
+		{ call payDelay() }
+	</update>
+	
+	<!-- 관리자페이지 리스트 조회 -->
+	<select id="managerList" resultType="PaymentVo">
+		
+		select case when no<![CDATA[>]]>0 then '연체중' 
+					when ing<![CDATA[>]]>0 then '납입전' 
+					else '납입완' end as status, 
+			   b.paydate, 
+			   b.cost, 
+			   b.id, 
+			   c.dong, 
+			   c.ho
+		from (select id,sum(case when status ='no' then 1 else 0 end) no, 
+		              sum(case when status ='ing' then 1 else 0 end)  ing,
+		              sum(case when status ='yes' then 1 else 0 end) yes,
+		              max(case when status ='yes' then payid else 0 end) payid
+		      from payment
+		      group by id) a, payment b, resident c
+		where a.payid = b.payid
+		and a.id = c.id
+		order by dong, ho
 	</select>
 </mapper>

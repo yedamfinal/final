@@ -13,6 +13,7 @@ public class PaymentVo {
 	private String id;//세대주
 	private String payMonth; //납입달
 	private String delayTax; //연체료
+	private String payNo; // 결제번호
 	//개인
 	private String heating; //난방비
 	private String water; 	//수도세
@@ -31,4 +32,7 @@ public class PaymentVo {
 	private String lRepair;	//장기수선충당금
 	private String representative;	//입주자 대표회의 운영비
 	private Integer people;	//세대수
+	//개인정보(관리자페이지)
+	private String dong; //동
+	private String ho; //호수
 }

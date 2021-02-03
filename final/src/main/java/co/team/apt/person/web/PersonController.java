@@ -11,7 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
+import co.team.apt.common.vo.ListResidentDto;
 import co.team.apt.common.vo.ManagerVo;
 import co.team.apt.common.vo.ResidentVo;
 import co.team.apt.person.service.PersonService;
@@ -27,12 +29,13 @@ public class PersonController {
 	public String login(Model model, HttpServletRequest request, ResidentVo vo) {
 		ResidentVo person = personService.login(vo);
 		HttpSession session = request.getSession(false);
+		String path = request.getHeader("Referer");
 		// 체크로직
 		if (person != null) {
 			session.setAttribute("person", person);
 		}
 		// return "sign/loginResult";
-		return "redirect:/home";
+		return "redirect:"+path;
 	}
 	
 	// 로그인 아작스
@@ -89,9 +92,9 @@ public class PersonController {
 
 	// 입주민 처리페이지 post 4
 	@RequestMapping(value = "/resiRegister", method = RequestMethod.POST)
-	public String postRegister(ResidentVo vo) throws Exception {
+	public String postRegister(ListResidentDto vo) throws Exception {
 
-		service.resiRegister(vo);
+		service.multiregister(vo);
 		return "redirect:/home";
 
 	}
@@ -110,4 +113,6 @@ public class PersonController {
 
 		return "redirect:/home";
 	}
+	
+	
 }

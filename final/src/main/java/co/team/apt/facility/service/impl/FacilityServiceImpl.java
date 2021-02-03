@@ -31,12 +31,6 @@ public class FacilityServiceImpl implements FacilityService {
 	}
 
 	@Override
-	public List<FacilityVo> allList() {
-		// TODO Auto-generated method stub
-		return dao.getSeat();
-	}
-
-	@Override
 	public FacilityVo getFacility(ResidentVo vo) {
 		// TODO Auto-generated method stub
 		return dao.getLibrary(vo);
@@ -49,9 +43,9 @@ public class FacilityServiceImpl implements FacilityService {
 	}
 
 	@Override
-	public List<FacilityVo> manageLibrary() {
+	public List<FacilityVo> manageLibrary(ResidentVo vo) {
 		// TODO Auto-generated method stub
-		return dao.manageLibrary();
+		return dao.manageLibrary(vo);
 	}
 
 	@Override
@@ -137,7 +131,30 @@ public class FacilityServiceImpl implements FacilityService {
 	@Override
 	public int deleteLibrary(FacilityVo vo) {
 		// TODO Auto-generated method stub
+		
+		//vo.getCost().replace("만원", "00");
+		vo.setCost("2000");
+		try {
+			cancel(vo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return dao.deleteLibrary(vo);
+	}
+
+	@Override
+	public List<FacilityVo> getSeat(FacilityVo vo) {
+		// TODO Auto-generated method stub
+		return dao.getSeat(vo);
+	}
+	
+	//기간종료 회원 삭제
+	@Override
+	public void deleteFacility() {
+		// TODO Auto-generated method stub
+		dao.terminateFitness();
+		dao.terminateLibrary();
 	}
 
 }

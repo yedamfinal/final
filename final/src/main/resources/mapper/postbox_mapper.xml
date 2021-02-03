@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="co.team.apt.esey.mapper.CarMapper">
+<mapper namespace="co.team.apt.esey.mapper.PostBoxMapper">
 
 <select id="postBoxList" resultType="PostBoxVo" parameterType="PostBoxVo">
 		SELECT * FROM POSTBOX
-		
 </select>
+
+ <!-- 택배 등록 -->
+<insert id = "mPostBoxInsert" parameterType = "PostBoxVo">
+	insert into POSTBOX (POSTNO,PRODUCT,ID) values (SEQ_POSTBOX.nextval,#{product},#{id})
+</insert>
+
 </mapper>

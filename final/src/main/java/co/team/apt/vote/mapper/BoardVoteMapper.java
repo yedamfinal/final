@@ -12,7 +12,9 @@ public interface BoardVoteMapper {
 	int voteInsert(BoardVoteVo vo);
 	int voteUpdate(BoardVoteVo vo);
 	int voteDelete(BoardVoteVo vo);
-	ResidentVo searchName(ResidentVo vo);
+	List<ResidentVo> searchName(ResidentVo vo);
+	
+	
 	
 }
 
