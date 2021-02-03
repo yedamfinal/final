@@ -17,8 +17,8 @@
                		
                    <tr>
                    		<td colspan="2" align="right">
-                           <button type="button" onclick="location.href='qnaUpdateForm.do?defno=${vo.defno}' ">글수정</button>
-                           <button type="button" onclick="location.href='qnaDelete.do?defno=${vo.defno}' ">글삭제</button>
+                           <button type="button" onclick="location.href='qnaUpdateForm.do?qnano=${vo.qnano}' ">글수정</button>
+                           <button type="button" onclick="location.href='qnaDelete.do?qnano=${vo.qnano}' ">글삭제</button>
                            <button type="button" onclick="location.href='qnaInsertForm.do' ">답변</button>
                        </td>
                    </tr>
@@ -37,14 +37,9 @@
                    </tr>
                </table>
                <hr />
-               <c:if test="${not empty vo.deffile}">
-               		<div align="left">
-						<h6>첨부파일 : <a href="download/${vo.deffile}">${vo.deffile}</a></h6>
-					</div>
-			   </c:if>
-			   <hr />
+               <hr />
                <div align="right">
-               <button type="button" onclick="location.href='noticeList.do?type=notice' ">글목록</button>
+               <button type="button" onclick="location.href='qnaList.do' ">글목록</button>
                </div>
 		</div>
 		

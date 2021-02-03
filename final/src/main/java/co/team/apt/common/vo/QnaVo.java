@@ -6,9 +6,9 @@ import lombok.Data;
 @Data
 public class QnaVo {
 	private int qnano;
-	private String name;
+	private String title;
 	private String content;
-	private String writher;
+	private String writer;
 	private Date qnadate;
 	private int family; //그룹번호
 	private int depth;	//원글로부터 깊이

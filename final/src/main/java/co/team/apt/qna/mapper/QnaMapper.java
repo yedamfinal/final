@@ -11,4 +11,5 @@ public interface QnaMapper {
 	public int qnaUpdate(QnaVo vo);
 	public int qnaDelete(QnaVo vo);
 	public int pagingCount(QnaVo vo);
+	public int replyBoard(QnaVo vo);
 }

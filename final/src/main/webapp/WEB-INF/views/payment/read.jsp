@@ -85,7 +85,7 @@
 			<div class="col-sm">
 				<div class="mid2" align="right">
 					<button class="btn btn-outline-dark" onclick="location.href='payExcelView.do?id=${payMap['id'] }'">엑셀로 저장</button>
-					<button class="btn btn-outline-dark">고지서 인쇄</button>
+					<button class="btn btn-outline-dark" onclick="location.href='paymentPdf.do?id=${payMap['id']}'">고지서 인쇄</button>
 				</div>
 			</div>
 		</div>

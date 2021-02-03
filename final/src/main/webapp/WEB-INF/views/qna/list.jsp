@@ -26,7 +26,7 @@
 			</thead>
 			<tbody>
 				<c:forEach var="vo" items="${qnaList}">
-					<tr onclick="location.href='qnaRead.do?qndno=${vo.qnano}'">
+					<tr onclick="location.href='qnaRead.do?qnano=${vo.qnano}'">
 						<td scope="col">${vo.qnano}</td>
 						<td scope="col">${vo.title}</td>
 						<td scope="col">${vo.writer}</td>

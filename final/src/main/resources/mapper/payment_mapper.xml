@@ -196,6 +196,7 @@
 		order by 1 desc
 	</select>
 	
+	<!-- 관리비 월별비교 -->
 	<select id="payComparison" resultType="PaymentVo">
 		select to_char(a.paymonth,'yy-mm') paymonth, 
 			   b.heating+b.water+b.hatwater+b.electric+b.etc+(a.nomal+a.clean+a.guard+a.disinfection+a.elevator+a.pelectric+a.pwater+a.repair+a.lrepair+a.representative)/people cost, 

@@ -109,6 +109,7 @@
 	<script type="text/javascript">
 		$('#extension').hide();
 		$('#cancel').hide();
+		
 
 		function cancel() {
 			$('#extension').hide();
