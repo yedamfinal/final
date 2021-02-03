@@ -48,7 +48,7 @@
 					<button type="button" class="btn btn-outline-secondary"
 						onclick="location.href='boardVoteList.do'">목록보기</button>
 					&nbsp;&nbsp;&nbsp;
-					<button type="voteForCandidate()"  class="btn btn-outline-secondary">투표하기</button>
+					<button id="btnVote" type="submit"  class="btn btn-outline-secondary">투표하기</button>
 				</div>
 			</form>
 		</div>
