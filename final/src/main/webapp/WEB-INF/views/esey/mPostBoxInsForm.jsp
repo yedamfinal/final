@@ -46,6 +46,7 @@ textarea#gdsDes { width:400px; height:180px; }
 
 </head>
 <body>
+
 <div id="root">
 	<header id="header">
 		<div id="header_box">
@@ -63,8 +64,9 @@ textarea#gdsDes { width:400px; height:180px; }
 		<aside>
 			<%-- <%@ include file="../include/aside.jsp" %> --%>
 		</aside>
+	
 		<div id="container_box">
-			<h2>상품 등록</h2>
+		<h1>택배 등록</h1>
 			
 <form role="form" method="post" autocomplete="off">
 

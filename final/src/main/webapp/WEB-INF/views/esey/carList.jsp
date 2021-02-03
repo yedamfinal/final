@@ -12,7 +12,9 @@
 </head>
 <body>
 	<div class="container">
-	
+	<div>
+		<h1>입주자차량등록</h1>
+	</div>
 	<div align="center">
 		<table class="table">
 		<thead>

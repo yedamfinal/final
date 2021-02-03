@@ -10,7 +10,9 @@
 </head>
 <body>
 	<div class="container">
-	
+	<div>
+		<h1>택배조회</h1>
+	</div>
 	<div align="center">
 		<table class="table">
 		<thead>
