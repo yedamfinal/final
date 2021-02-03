@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import co.team.apt.common.vo.CarVo;
-import co.team.apt.common.vo.VisitCarVo;
 import co.team.apt.esey.service.CarService;
 
 @Controller
@@ -25,7 +24,18 @@ public class CarController {
 		model.addAttribute("carList", list);
 		return "esey/carList";
 	}
+	@RequestMapping("/carInsertFrom.do")
+	public String carInsert(Model model) {
+		return "esey/carInsertForm";
+		
+	}
 	
+	@RequestMapping("/carInsert.do")
+	public String carInsert(Model model, CarVo vo) {
+		carService.carInsert(vo);
+		return "redirect:carList.do";
+		
+	}
 	
 
 }

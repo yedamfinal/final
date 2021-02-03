@@ -3,12 +3,12 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="co.team.apt.qna.mapper.QnaMapper">
-	<!-- <select id="qnaList" resultType="QnaVo" parameterType="QnaVo">
+	<select id="qnaList" resultType="QnaVo" parameterType="QnaVo">
 		select a.* from( select b.*, rownum rn from (
 		SELECT * 
 		FROM qna
 		<include refid="searchQuery"/>
-		order by defno desc
+		order by qnano desc
 	) b ) a where rn between #{start} and #{end}
 	</select>
 	
@@ -16,16 +16,13 @@
 		<choose>
 			<when test="searchType == 'all' ">
 				where 
-				type = 'notice'
-				and (title like '%' || #{search} || '%'
+				(title like '%' || #{search} || '%'
 				or content like '%' || #{search} || '%'
 				or writer like '%' || #{search} || '%')
 			</when>
 			<otherwise>
-				where
-				type = 'notice'
 			<if test="search != null and search != ''">
-				and ${searchType} like '%' || #{search} || '%'
+				where ${searchType} like '%' || #{search} || '%'
 			</if>
 			</otherwise>
 		</choose>
@@ -33,19 +30,19 @@
 		
 	<select id="pagingCount" resultType="int">
 	SELECT count(*) 
-		FROM BOARD
+		FROM qna
 		<include refid="searchQuery"></include>
 	</select>	
 	
-	<select id="noticeOne" resultType="BoardVo" parameterType="BoardVo">
+	<select id="qnaOne" resultType="QnaVo" parameterType="QnaVo">
 		select *
-		from board
-		where defno=#{defno}
+		from qna
+		where qnano=#{qnano}
 	</select>
 	
-	<insert id="noticeInsert" parameterType="BoardVo">
-		insert into board(
-					defno,
+	<insert id="qnaInsert" parameterType="QnaVo">
+		insert into qna(
+					qnano,
 					title,
 					content,
 					defdate,
@@ -79,5 +76,5 @@
 	<delete id="noticeDelete" parameterType="BoardVo">
 		delete from board
 		where defno = #{defno}
-	</delete> -->
+	</delete>
 </mapper>

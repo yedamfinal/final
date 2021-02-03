@@ -14,7 +14,7 @@
 	<div class="container">
 	
 	<div align="center">
-		<table border="1" class="table">
+		<table class="table">
 		<thead>
 			<tr>
 				<th scope="col">동</th>
@@ -25,12 +25,11 @@
 		</thead>
 		<tbody>
 			
+			
+			<c:forEach var="vo" items="${carList}">
 			<tr>
 				<th scope="col">${person.dong}</th>
-				<th scope="col">${person.ho}</th>
-			<tr/>
-			<c:forEach var="vo" items="${carList}">
-			<tr>	
+				<th scope="col">${person.ho}</th>	
 				<th scope="col">${vo.carNum}</th>
 				<th scope="col">${vo.carType}</th>
 			</tr> 
@@ -38,7 +37,7 @@
 		</tbody>
 		</table>
 
-		<a href="carInsert.do">등록하기</a>
+		<button class="btn btn-outline-secondary" onclick="location.href='carInsertFrom.do'">차량 등록하기</button>
 		</div>		
 	</div>
 </body>

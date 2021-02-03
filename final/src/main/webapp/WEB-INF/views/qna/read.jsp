@@ -17,8 +17,9 @@
                		
                    <tr>
                    		<td colspan="2" align="right">
-                           <button type="button" onclick="location.href='noticeUpdateForm.do?defno=${vo.defno}' ">글수정</button>
-                           <button type="button" onclick="location.href='noticeDelete.do?defno=${vo.defno}' ">글삭제</button>
+                           <button type="button" onclick="location.href='qnaUpdateForm.do?defno=${vo.defno}' ">글수정</button>
+                           <button type="button" onclick="location.href='qnaDelete.do?defno=${vo.defno}' ">글삭제</button>
+                           <button type="button" onclick="location.href='qnaInsertForm.do' ">답변</button>
                        </td>
                    </tr>
                    <tr>

@@ -25,13 +25,13 @@ public class PostBoxController {
 	@RequestMapping("mPostBoxInsert.do")
 	public String mPostBoxInsert(Model model, PostBoxVo vo) {
 		int n = postBoxService.mPostBoxInsert(vo);
-		return "esey/postBox";
+		return "redirect/postBoxList.do";
 	}
 	
 	@RequestMapping("postBoxList.do")
 	public String postBoxList(Model model, PostBoxVo vo) {
 		List<PostBoxVo> list = postBoxService.postBoxList(vo);
-		model.addAttribute("posBoxList",list);
+		model.addAttribute("postBoxList",list);
 		return "esey/postBox";
 	}
 	

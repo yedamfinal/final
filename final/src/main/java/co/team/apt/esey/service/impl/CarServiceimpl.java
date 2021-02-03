@@ -19,6 +19,12 @@ public class CarServiceimpl implements CarService {
 		return dao.carList(vo);
 	}
 
+	@Override
+	public int carInsert(CarVo vo) {
+		// TODO Auto-generated method stub
+		return dao.carInsert(vo);
+	}
+
 
 }
 
