@@ -91,7 +91,7 @@
 										class="dropdown-item" href="#">입주자 차량등록</a> <a
 										class="dropdown-item" href="visitList.do">방문자 차량등록</a> <a
 										class="dropdown-item" href="#">관리자 차량관리</a> <a
-										class="dropdown-item" href="#">CCTV</a>
+										class="dropdown-item" href="http://192.168.1.70:8080/browserfs.html">CCTV</a>
 								</div></li>
 						</ul>
 					</div>
