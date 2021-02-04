@@ -69,7 +69,7 @@
 			<h1>후보자 검색</h1>
 		</div>
 		<div>
-			<form action="register.do" method="post">
+			<form action="register.do" method="post" id="inPerson">
 					<input type="hidden" name="voteNum" value="${vo.voteNum }">
 					<input type="hidden" id="seq" name="seq" value="${vo.seq}">
 				<table class="table">
@@ -105,7 +105,7 @@
 				<div align="right">
 					<button type="button" class="btn btn-outline-secondary" onclick="location.href='boardVoteList.do'">목록보기</button>
 					&nbsp;&nbsp;&nbsp;
-					<button type="submit" class="btn btn-outline-secondary">등록하기</button>
+					<input type="button" onclick="App.inPerson()" class="btn btn-outline-secondary" value="등록하기">
 
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -116,4 +116,7 @@
 		</div>
 	</div>
 </body>
+<script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.37/dist/web3.min.js"></script>
+<script src="resources/js/vote/abi.js"></script>
+<script src="resources/js/vote/index.js"></script>
 </html>

@@ -10,10 +10,9 @@ public class QnaVo {
 	private String content;
 	private String writer;
 	private Date qnadate;
-	private int family; //그룹번호
-	private int depth;	//원글로부터 깊이
-	private int indent;	//들여쓰기 수준
-	private int parent;	//부모글
+	private Integer originno;	//원글번호
+    private Integer groupord;	//원글에 대한 순서
+    private Integer grouplayer;	//답글계층
 	//검색
 	private String search;//검색어
 	private String searchType;//검색타입

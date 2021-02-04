@@ -67,6 +67,7 @@ public class BoardVoteController {
 	@RequestMapping("/result.do")
 	@ResponseBody
 	public String result(Model model, BoardVoteVo vo) {
+		
 		if(vo.getEndDate().getTime() > System.currentTimeMillis()) {
 			return "<script>"
 					 + "alert(\"you can't checked the result.\");"
@@ -81,8 +82,7 @@ public class BoardVoteController {
 	}
 	@RequestMapping("/voteResult.do")
 	public String ResultForm(Model model, BoardVoteVo vo) {
-		
-		
+		model.addAttribute("vo", vo);
 		return "vote/result";
 	}
 
