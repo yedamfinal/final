@@ -43,7 +43,23 @@ public class QnaServiceImpl implements QnaService{
 		// TODO Auto-generated method stub
 		return dao.qnaDelete(vo);
 	}
+	@Override
+	public int replyInsert(QnaVo vo) {
+		// TODO Auto-generated method stub
+		return dao.replyInsert(vo);
+	}
 
+	@Override
+	public int replyUpdate(QnaVo vo) {
+		// TODO Auto-generated method stub
+		return dao.replyUpdate(vo);
+	}
+
+	@Override
+	public int replyDelete(QnaVo vo) {
+		// TODO Auto-generated method stub
+		return dao.replyDelete(vo);
+	}
 	
 	
 }

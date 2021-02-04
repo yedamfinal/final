@@ -61,6 +61,14 @@ public class QnaController {
 		return "qna/insertForm";
 	}
 	
+	//답글쓰기 폼으로 이동
+		@RequestMapping("replyInsertForm.do")
+		public String replyInsertForm(Model model, QnaVo vo) {
+			vo = qnaService.qnaOne(vo);
+			model.addAttribute("vo", vo);
+			return "qna/replyInsertForm";
+		}
+	
 	//글쓰기
 	@RequestMapping("qnaInsert.do")
 	public String insert(Model model, QnaVo vo, HttpServletRequest request) throws IllegalStateException, IOException {
@@ -73,6 +81,19 @@ public class QnaController {
 			return null;//에러처리 필요
 		}
 	}
+	
+	//답글쓰기
+		@RequestMapping("replyInsert.do")
+		public String replyInsert(Model model, QnaVo vo, HttpServletRequest request) throws IllegalStateException, IOException {
+					
+			int n = qnaService.replyInsert(vo);
+					
+			if(n != 0) {
+				return "redirect:qnaList.do";
+			}else {
+				return null;//에러처리 필요
+			}
+		}
 	
 	
 	
@@ -91,8 +112,27 @@ public class QnaController {
 		return "qna/updateForm";
 	}
 	
+	@RequestMapping("replyUpdateForm.do")
+	public String replyUpdateForm(QnaVo vo, Model model) {
+		vo = qnaService.qnaOne(vo);
+		model.addAttribute("vo", vo);
+		return "qna/replyUpdateForm";
+	}
+	
 	@RequestMapping("qnaUpdate.do")
 	public String update(Model model, QnaVo vo) {
+		
+		int n = qnaService.qnaUpdate(vo);
+				
+		if(n != 0) {
+			return "redirect:qnaList.do";	//return "redirect:noticeList.do?type=notice"; type값 리턴
+		}else {
+			return null;//에러처리 필요
+		}
+	}
+	
+	@RequestMapping("replyUpdate.do")
+	public String replyUpdate(Model model, QnaVo vo) {
 		
 		int n = qnaService.qnaUpdate(vo);
 				
