@@ -9,7 +9,7 @@
 		SELECT * 
 		FROM qna
 		<include refid="searchQuery"/>
-		order by family DESC, depth ASC
+		order by originno DESC, groupord ASC
 	) b ) a where rn between #{start} and #{end}
 	</select>
 	
@@ -28,7 +28,7 @@
 			</otherwise>
 		</choose>
 	</sql>
-		
+			
 	<select id="pagingCount" resultType="int">
 	SELECT count(*) 
 		FROM qna
@@ -42,27 +42,25 @@
 	</select>
 	
 	<insert id="qnaInsert" parameterType="QnaVo">
-		<selectKey resultType="int" keyProperty="board_re_ref" order="BEFORE">
-        
-        SELECT IFNULL(MAX(BOARD_RE_REF), 0) + 1 
-        FROM BOARD.TB_BOARD
-          
-    </selectKey>
 		insert into qna(
 					qnano,
 					title,
 					content,
-					defdate,
+					qnadate,
 					writer,
-					type
+					originno,
+					groupord,
+					grouplayer
 					)
 		values(
-				def_seq.nextval,
+				qna_seq.nextval,
 				#{title},
 				#{content},
 				sysdate,
 				#{writer},
-				#{type}
+				qna_seq.nextval,
+				0,
+				0
 				)
 	</insert>
 	
@@ -78,4 +76,29 @@
 		delete from qna
 		where qnano = #{qnano}
 	</delete>
+	
+	<insert id="replyInsert" parameterType="QnaVo">
+		insert into qna(
+					qnano,
+					title,
+					content,
+					qnadate,
+					writer,
+					originno,
+					groupord,
+					grouplayer
+					)
+		values(
+				qna_seq.nextval,
+				#{title},
+				#{content},
+				sysdate,
+				#{writer},
+				#{originno},
+				#{groupord}+1,
+				#{grouplayer}+1
+				)
+	</insert>
+	
+	
 </mapper>
