@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import co.team.apt.common.vo.BoardVoteVo;
 import co.team.apt.common.vo.PostBoxVo;
 import co.team.apt.common.vo.ResidentVo;
 import co.team.apt.esey.service.PostBoxService;
@@ -70,5 +71,20 @@ public class PostBoxController {
 			postBoxService.mPostBoxInsert(vo);
 			return "redirect:mPostBox.do";
 		}
-	
+		//수정폼으로 이동 
+		@RequestMapping("mPostBoxUpdateForm.do")
+		public String mPostBoxUpdateForm(Model model) {
+			return "esey/mPostBoxUdpForm";
+		}
+		@RequestMapping("mPostBoxUpdate.do")
+		public String mPostBoxUpdate(PostBoxVo vo) {
+			postBoxService.mPostBoxUpdate(vo);
+			return "redirect:mPostBox.do";
+		}
+		@RequestMapping("mPostBoxDelete.do")
+		public String mPostBoxDelete(PostBoxVo vo) {
+			int n= postBoxService.mPostBoxDelete(vo);
+			return "redirect:mPostBox.do";
+		}
+		
 }

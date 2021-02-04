@@ -52,10 +52,10 @@ ${vo}ddd
 						onclick="location.href='mPostBox.do'">목록보기</button>
 						&nbsp;&nbsp;&nbsp;
 					<button type="button"
-						onclick="location.href='boardVoteDelete.do?seq=${vo.postNo}'"
+						onclick="location.href='mPostBoxDelete.do?postno=${vo.postNo}'"
 						class="btn btn-outline-secondary">삭제하기</button>
 					&nbsp;&nbsp;&nbsp;
-					<button type="submit" class="btn btn-outline-secondary">수정완료</button>
+					<button type="button" class="btn btn-outline-secondary" onclick="location.href= 'mPostBoxUpdateForm.do'">수정하기</button>
 				</div>
 			
 		</div>

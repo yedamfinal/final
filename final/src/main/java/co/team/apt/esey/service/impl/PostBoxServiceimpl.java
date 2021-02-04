@@ -37,4 +37,16 @@ public class PostBoxServiceimpl implements PostBoxService {
 		return dao.mPostBox(vo);
 	}
 
+	@Override
+	public int mPostBoxUpdate(PostBoxVo vo) {
+		// TODO Auto-generated method stub
+		return dao.mPostBoxUpdate(vo);
+	}
+
+	@Override
+	public int mPostBoxDelete(PostBoxVo vo) {
+		// TODO Auto-generated method stub
+		return dao.mPostBoxDelete(vo);
+	}
+
 }

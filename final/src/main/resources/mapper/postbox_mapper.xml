@@ -20,4 +20,16 @@
 <insert id = "mPostBoxInsert" parameterType = "PostBoxVo">
 	insert into POSTBOX (POSTNO,dong,ho,PRODUCT) values (SEQ_POSTBOX.nextval,#{dong},#{ho},#{product})
 </insert>
+
+<update id="mPostBoxUpdate" parameterType="PostBoxVo">
+	update postbox set product=#{product},
+			gettime = #{getTime},
+			get = #{get} 
+			where postno = #{postNo}
+</update> 
+
+ <delete id="mPostBoxDelete" parameterType="PostBoxVo">
+	delect from postbox
+	where postno = #{postNo}
+	</delete>
 </mapper>
