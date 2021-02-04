@@ -6,9 +6,7 @@
   
   
   	<select id="visitList" resultType="VisitCarVo" parameterType="VisitCarVo">
-		select a.PURPOSE, a.STARTDATE, a.ENDDATE, a.CARNUM, b.Id
-		from visitcar a , resident b
-		where a.id = b.id
+		SELECT * from visitcar where id=#{id}
 		
 	</select>
   	

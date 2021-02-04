@@ -10,9 +10,11 @@ public class PostBoxVo {
 	private int postNo;
 	private String product;
 	private String get;
-	private String id;
 	private Date getTime;
 	private Date arriveDate;
+	private String dong;
+	private String ho;
+	private String rn;
 	
 	
 	

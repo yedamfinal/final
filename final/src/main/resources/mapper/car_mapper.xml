@@ -4,7 +4,7 @@
 <mapper namespace="co.team.apt.esey.mapper.CarMapper">
 
 <select id="carList" resultType="CarVo" parameterType="CarVo">
-		SELECT * FROM CAR
+		SELECT * FROM CAR where id=#{id}
 </select>
 
 <insert id="carInsert" parameterType="CarVo">

@@ -4,12 +4,20 @@
 <mapper namespace="co.team.apt.esey.mapper.PostBoxMapper">
 
 <select id="postBoxList" resultType="PostBoxVo" parameterType="PostBoxVo">
-		SELECT * FROM POSTBOX
+		SELECT * FROM POSTBOX where dong=#{dong} and ho=#{ho}
 </select>
 
- <!-- 택배 등록 -->
-<insert id = "mPostBoxInsert" parameterType = "PostBoxVo">
-	insert into POSTBOX (POSTNO,PRODUCT,ID) values (SEQ_POSTBOX.nextval,#{product},#{id})
-</insert>
+<select id="selectOne" resultType="PostBoxVo" parameterType="PostBoxVo">
+	select * from postBox where postno=#{postNo}
+</select>
 
+<!-- 관리자 택배조회 -->
+	<select id="mPostBox" resultType="PostBoxVo" parameterType="PostBoxVo">
+		SELECT rownum rn,a.* FROM POSTBOX a order by rn
+</select>
+
+ <!--관리자 택배 등록 -->
+<insert id = "mPostBoxInsert" parameterType = "PostBoxVo">
+	insert into POSTBOX (POSTNO,dong,ho,PRODUCT) values (SEQ_POSTBOX.nextval,#{dong},#{ho},#{product})
+</insert>
 </mapper>

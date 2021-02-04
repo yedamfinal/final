@@ -68,33 +68,23 @@ textarea#gdsDes { width:400px; height:180px; }
 		<div id="container_box">
 		<h1>택배 등록</h1>
 			
-<form role="form" method="post" autocomplete="off">
+<form action="mPostBoxInsert.do" method="post">
 
-<div class="inputArea">	
-	<label >동</label>
-	${person.dong}
-	&nbsp;&nbsp;<label>호수</label>
-	${person.ho}
-</div>
+
 
 <div class="inputArea">
-	<label >번호</label>
-	<input type="text" id="postNo" name="postNo" value="" />
+	<label >동</label>
+	<input type="text" id="dong" name="dong" />
 </div>
+<div class="inputArea">
+	<label >호수</label>
+	<input type="text" id="ho" name="ho" />
+</div>
+
 
 <div class="inputArea">
 	<label for="gdsPrice">상품명</label>
 	<input type="text" id="product" name="product" />
-</div>
-
-<div class="inputArea">
-	<label for="gdsPrice">도착시간</label>
-	<input type="text" id="arriveDate" name="arriveDate" value = '${vo.arrivDate}' />
-</div>
-
-<div class="inputArea">
-	<label for="gdsStock">수령시간</label>
-	<input type="text" id="getTime" name="getTime" />
 </div>
 
 

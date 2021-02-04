@@ -38,7 +38,6 @@
 			</c:forEach>
 		</tbody>
 		</table>
-
 		<button class="btn btn-outline-secondary" onclick="location.href='carInsertFrom.do'">차량 등록하기</button>
 		</div>		
 	</div>
