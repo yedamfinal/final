@@ -9,7 +9,8 @@
 		SELECT * 
 		FROM qna
 		<include refid="searchQuery"/>
-		order by family DESC, depth ASC
+		connect by prior qnano = parent
+		order by groupno DESC
 	) b ) a where rn between #{start} and #{end}
 	</select>
 	
@@ -28,6 +29,7 @@
 			</otherwise>
 		</choose>
 	</sql>
+	
 		
 	<select id="pagingCount" resultType="int">
 	SELECT count(*) 
