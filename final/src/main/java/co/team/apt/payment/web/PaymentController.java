@@ -1,5 +1,6 @@
 package co.team.apt.payment.web;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -18,6 +19,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -183,5 +185,24 @@ public class PaymentController {
 		map.put("P_id", id);
 		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, map, conn);
 		JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream());
+	}
+	
+	@RequestMapping("payExcelUpload")
+	public String payExcelUpload(PaymentVo vo, HttpServletRequest request,
+			@RequestParam(required = false) MultipartFile uploadFile) 
+					throws IllegalStateException, IOException {
+		//첨부파일 처리
+		String path = request.getSession()
+							 .getServletContext()
+							 .getRealPath("/resources/excel"); 
+		if(uploadFile != null && uploadFile.getSize()>0) {
+			File file = new File(path,
+					uploadFile.getOriginalFilename());
+			//rename
+			
+			uploadFile.transferTo(file);
+			vo.setExcelFile(uploadFile.getOriginalFilename());			
+		}
+		return "payment/insertForm";
 	}
 }

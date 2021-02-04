@@ -28,6 +28,10 @@
 		급탕 : <input name="hatWater" value="10"><br>
 		전기 : <input name="electric" value="10"><br>
 		기타 : <input name="etc" value="10"><br>
+		
+		<input type="file" class="custom-file-input" name="uploadFile"
+						id="validatedCustomFile"> <label
+						class="custom-file-label" for="validatedCustomFile">파일첨부...</label>
 		<button>관리비 등록</button>
 	</form>
 </body>

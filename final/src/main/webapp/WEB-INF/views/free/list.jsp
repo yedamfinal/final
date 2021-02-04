@@ -53,7 +53,6 @@
 				</select>
 				<input name="search" value="${paging.search}"> 
 				<input hidden name="type" value="${type}"> 
-				<input hidden name="page" value=""> 
 				<input type="submit" value="검색">
 				
 			</form>
@@ -65,6 +64,7 @@
 		
 		function goList(p) {
 			//location.href = "communityList.do?page=" + p+"&type=${type}";
+				<input hidden name="page" value=""> 
 			$('#page').val(p);
 			$('#pageSearchForm').submit();
 		}

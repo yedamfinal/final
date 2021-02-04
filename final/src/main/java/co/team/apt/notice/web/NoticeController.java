@@ -86,7 +86,6 @@ public class NoticeController {
 					uploadFile.transferTo(file);
 					vo.setDeffile(uploadFile.getOriginalFilename());			
 				}
-				System.out.println(vo);
 		
 		int n = noticeService.noticeInsert(vo);
 		model.addAttribute("type", vo.getType());
