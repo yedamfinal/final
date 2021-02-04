@@ -11,6 +11,7 @@
 글번호 : <input id="seq"><br>
 id : <input id="id"><br>
 <button id="inPerson" onclick="App.inPerson()">후보자 등록</button><br><br>
+
 <h1>투표</h1>
 글번호 : <input id="seq2"><br>
 후보자 번호 : <input id="num"><br>

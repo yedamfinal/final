@@ -14,11 +14,11 @@
 <body>
 	<div class="container">
 		<div>
-			<h1>투표등록</h1>
+			<h1>투표하기</h1>
 		</div>
 		<div>
-			<form action="" method="post" onsubmit="return false">
-				<input type="hidden" name="seq" value="${vo.seq}">
+			
+				<input type="hidden" id="seq" name="seq" value="${vo.seq}">
 				<table class="table" id="table">
 					<tr>
 						<th width="100">투표 이름</th>
@@ -30,10 +30,10 @@
 					<tr>
 						<th width="100">후보자</th>
 
-						<td width="300">
+						<td width="300" id="selectCandidate">
 							<c:forEach var="vo" items="${clist}"
 								varStatus="i">
-								<input type="radio" name="name"><label>${i.count}번 후보 ${vo.name}</label>
+								<input type="radio" data-num='${vo.voteNum }' id="${i.count}id" name="name"><label for="${i.count}id">${vo.voteNum}번 후보 ${vo.name}</label>
 								
 								<button type="button"
 									onclick="location.href='profile.do?seq=${vo.seq}&id=${vo.id}&name=${vo.name}'"
@@ -48,14 +48,15 @@
 					<button type="button" class="btn btn-outline-secondary"
 						onclick="location.href='boardVoteList.do'">목록보기</button>
 					&nbsp;&nbsp;&nbsp;
-					<button id="btnVote" type="submit"  class="btn btn-outline-secondary">투표하기</button>
+					<input id="btnVote" type="button" onclick="App.btnVote()" class="btn btn-outline-secondary" value="투표하기">
 				</div>
-			</form>
+	
 		</div>
 	</div>
 
 </body>
 <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.37/dist/web3.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
-<script src="js/vote/index.js"></script>
+<script src="resources/js/vote/abi.js"></script>
+<script src="resources/js/vote/index.js"></script>
+
 </html>

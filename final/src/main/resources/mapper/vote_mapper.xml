@@ -18,7 +18,7 @@
 	<select id="boardVoteList" resultType="BoardVoteVo" parameterType="BoardVoteVo">
 		select *
 		from boardvote
-		order by seq
+		order by seq desc
 	</select>
 	
 	<select id="selectOne" resultType="BoardVoteVo" parameterType="BoardVoteVo">
