@@ -8,5 +8,7 @@ public interface PostBoxMapper {
 	
 	public List<PostBoxVo> postBoxList(PostBoxVo vo);
 	public int mPostBoxInsert(PostBoxVo vo); 
+	PostBoxVo selectOne(PostBoxVo vo);
+	public List<PostBoxVo> mPostBox(PostBoxVo vo);
 
 }

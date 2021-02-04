@@ -25,4 +25,16 @@ public class PostBoxServiceimpl implements PostBoxService {
 		return dao.mPostBoxInsert(vo);
 	}
 
+	@Override
+	public PostBoxVo selectOne(PostBoxVo vo) {
+		// TODO Auto-generated method stub
+		return dao.selectOne(vo);
+	}
+
+	@Override
+	public List<PostBoxVo> mPostBox(PostBoxVo vo) {
+		// TODO Auto-generated method stub
+		return dao.mPostBox(vo);
+	}
+
 }

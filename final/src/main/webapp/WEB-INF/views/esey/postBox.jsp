@@ -29,9 +29,9 @@
 		<tbody>
 		
 			<c:forEach var="vo" items="${postBoxList}">
-			<tr>
-				<th scope="col">${person.dong}</th>
-				<th scope="col">${person.ho}</th>	
+			<tr onclick="location.href='postBoxRead.do?postNo=${vo.postNo }'">
+				<th scope="col">${vo.dong}</th>
+				<th scope="col">${vo.ho}</th>	
 				<th scope="col">${vo.postNo}</th>
 				<th scope="col">${vo.product}</th>
 				<th scope="col">${vo.arriveDate}</th>
@@ -41,8 +41,9 @@
 			</c:forEach>
 		</tbody>
 		</table>
-
+		<c:if test ="${person.type eq 'm'}">
 		<button class="btn btn-outline-secondary" onclick="location.href='mPostBoxInsForm.do'">등록하기</button>
+		</c:if>
 		</div>		
 	</div>
 </body>
