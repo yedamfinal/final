@@ -72,7 +72,7 @@ public class NoticeController {
 	//글쓰기
 	@RequestMapping("noticeInsert.do")
 	public String insert(Model model, BoardVo vo, HttpServletRequest request,
-	@RequestParam(required = false) MultipartFile uploadFile) throws IllegalStateException, IOException {
+			@RequestParam(required = false) MultipartFile uploadFile) throws IllegalStateException, IOException {
 		
 			//첨부파일 처리
 				String path = request.getSession()

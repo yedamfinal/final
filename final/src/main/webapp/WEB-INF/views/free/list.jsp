@@ -52,6 +52,7 @@
 					<option value="all" <c:if test="${paging.searchType == 'all'}">selected</c:if>>제목+내용+작성자</option>
 				</select>
 				<input name="search" value="${paging.search}"> 
+				<input hidden name="page" id="page" value=""> 
 				<input hidden name="type" value="${type}"> 
 				<input type="submit" value="검색">
 				
@@ -64,7 +65,6 @@
 		
 		function goList(p) {
 			//location.href = "communityList.do?page=" + p+"&type=${type}";
-				<input hidden name="page" value=""> 
 			$('#page').val(p);
 			$('#pageSearchForm').submit();
 		}

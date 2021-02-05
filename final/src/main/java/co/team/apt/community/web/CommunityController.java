@@ -2,6 +2,8 @@ package co.team.apt.community.web;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,9 +38,13 @@ public class CommunityController {
 	//자유게시판 
 	//자유게시판 이동
 	@RequestMapping("communityList"	)
-	public String freeList(Model model,BoardVo vo, Paging paging) {
+	public String freeList(Model model,BoardVo vo, Paging paging, HttpSession session) {
 		//model.addAttribute("type", vo.getType());
-		
+		if(vo.getType() != null) {
+			session.setAttribute("pageType", vo.getType());
+		}else {
+			vo.setType((String) session.getAttribute("pageType"));
+		}
 		//페이징처리
 		paging.setPageUnit(10);
 		paging.setPageSize(10);	//페이지넘버 자체를 지정

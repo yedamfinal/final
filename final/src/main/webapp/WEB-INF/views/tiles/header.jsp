@@ -13,11 +13,13 @@
 
 			<div class="col-lg-6 col-sm-12 col-md-6">
 				<div class="sub_menu_social_icon">
+					
 					<c:if test="${empty person  }">
 						<span><a data-toggle="modal" data-target="#login">Login
 						</a></span>
 					</c:if>
 					<c:if test="${not empty person }">
+						<span>${person.name }님 환영합니다</span>
 						<c:if test="${person.type == 'm'}">
 							<span><a href="register">Register </a></span>
 						</c:if>
@@ -66,8 +68,8 @@
 								aria-haspopup="true" aria-expanded="false"> 커뮤니티 </a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 									<a class="dropdown-item" href="communityList?type=free">자유게시판</a> <a
-										class="dropdown-item" href="communityList?type=ana">하자보수</a> <a
-										class="dropdown-item" href="communityList?type=def">아나바다</a>
+										class="dropdown-item" href="communityList?type=ana">아나바다</a> <a
+										class="dropdown-item" href="communityList?type=def">하자보수</a>
 								</div></li>
 							<li class="nav-item"><a class="nav-link" href="payRead.do">관리비조회</a>
 							</li>

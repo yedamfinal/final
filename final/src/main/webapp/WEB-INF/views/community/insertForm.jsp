@@ -29,7 +29,7 @@
 				</div>
 				<!-- 첨부파일<input type="file" name="uploadFile" /><br /> -->
 				<div align="right">
-				<button type="submit" class="btn btn-secondary mb-3">제출하기</button>
+				<button type="submit" class="btn btn-secondary mb-3">글쓰기</button>
 				</div>
 			</form>
 		</div>

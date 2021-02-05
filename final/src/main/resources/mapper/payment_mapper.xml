@@ -250,4 +250,31 @@
 		and a.id = c.id
 		order by dong, ho
 	</select>
+	
+	<insert id="insertDB" parameterType="java.util.Map">
+        INSERT INTO paypublic(
+        			paymonth,
+        			nomal,
+        			clean,
+        			guard,
+        			disinfection,
+        			elevator,
+        			pelectric,
+        			pwater,
+        			repair,
+        			lrepair,
+        			representative
+		)
+        VALUES(sysdate,
+        	#{nomal},
+        	#{clean},
+        	#{guard},
+        	#{disinfection},
+        	#{elevator},
+        	#{pelectric},
+        	#{pwater},
+        	#{repair},
+        	#{lrepair},
+        	#{representative})
+    </insert>
 </mapper>

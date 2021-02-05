@@ -133,7 +133,7 @@ public class FacilityServiceImpl implements FacilityService {
 		// TODO Auto-generated method stub
 		
 		//vo.getCost().replace("만원", "00");
-		vo.setCost("2000");
+		//vo.setCost("2000");
 		try {
 			cancel(vo);
 		} catch (Exception e) {

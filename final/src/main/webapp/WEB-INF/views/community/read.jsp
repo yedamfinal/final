@@ -109,19 +109,19 @@ function addComment(){
 //댓글 만들기
 function makeComment(re){
 	let div,top,body,no;	
-	top = $('<p />').html(re.writer+" <span>"+re.redate+"</span>");
+	top = $('<p />').html(re.writer+" | <span>"+re.redate + " </span>");
 	/* top.append($('<button />').html('답글').click(function(){
 		$().after() 대댓글
 	})) */
 	if(re.writer=='${person.id}'){//글쓴이랑 로그인id랑 같으면 수정삭제
-		top.append($('<button />').html('수정').click(function(){
-			reUpdateForm(re.reno,re.recontent)
-		}))
-		top.append($('<button />').html('삭제').click(function(){
+		top.append($('<button />').addClass('pull-right').html('삭제').click(function(){
 			reDelete(re.reno)
 		}))
+		top.append($('<button />').addClass('pull-right').html('수정').click(function(){
+			reUpdateForm(re.reno,re.recontent)
+		}))
 	}
-	body = $('<p />').attr('id','body'+re.reno).html(re.recontent);
+	body = $('<h4 />').attr('id','body'+re.reno).addClass('text-body').html(re.recontent);
 	div = $('<div />').attr('id','re'+re.reno).append(top,body);
 	$('#reUl').append(div);
 	$('#comment').val('')

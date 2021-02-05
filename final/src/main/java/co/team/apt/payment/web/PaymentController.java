@@ -1,10 +1,14 @@
 package co.team.apt.payment.web;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -20,10 +24,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
+import co.team.apt.common.vo.BoardVo;
 import co.team.apt.common.vo.CardInfo;
 import co.team.apt.common.vo.PaymentVo;
 import co.team.apt.common.vo.ResidentVo;
@@ -187,22 +193,69 @@ public class PaymentController {
 		JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream());
 	}
 	
-	@RequestMapping("payExcelUpload")
-	public String payExcelUpload(PaymentVo vo, HttpServletRequest request,
-			@RequestParam(required = false) MultipartFile uploadFile) 
-					throws IllegalStateException, IOException {
+	@RequestMapping("payExcelUpload.do")
+	public String payExcelUpload(Model model, HttpServletRequest request,
+			@RequestParam(required = false) MultipartFile excelFile) throws IllegalStateException, IOException {
+		
 		//첨부파일 처리
 		String path = request.getSession()
 							 .getServletContext()
-							 .getRealPath("/resources/excel"); 
-		if(uploadFile != null && uploadFile.getSize()>0) {
-			File file = new File(path,
-					uploadFile.getOriginalFilename());
-			//rename
+							 .getRealPath("/resources/img/upload"); 
+		if(excelFile != null && excelFile.getSize()>0) {
+			File file = new File(path, excelFile.getOriginalFilename());
+			excelFile.transferTo(file);
 			
-			uploadFile.transferTo(file);
-			vo.setExcelFile(uploadFile.getOriginalFilename());			
+			/*
+			 * FileInputStream aa = null; try { aa = new FileInputStream((File)excelFile); }
+			 * catch (FileNotFoundException e) { System.out.println("이게뜨면 ㄴ안대 아아아아ㅏ아");
+			 * throw new RuntimeException(e.getMessage(), e); }
+			 */
+			
+			paymentService.getExcelUpload(file);
+			
 		}
 		return "payment/insertForm";
+	}
+	
+	public void payExcelUpload2(HttpServletRequest request,
+			@RequestParam(required = false) MultipartFile uploadFile, HttpServletResponse rep) 
+					throws IllegalStateException, IOException {
+		
+		 
+        Map returnObject = new HashMap(); 
+        
+        try { // MultipartHttpServletRequest 생성 
+            MultipartHttpServletRequest mhsr = (MultipartHttpServletRequest) request; 
+            Iterator iter = mhsr.getFileNames(); 
+            MultipartFile mfile = null; 
+            String fieldName = ""; 
+            
+            // 값이 나올때까지
+            while (iter.hasNext()) { 
+                fieldName = iter.next().toString(); // 내용을 가져와서 
+                mfile = mhsr.getFile(fieldName); 
+                String origName; 
+                origName = new String(mfile.getOriginalFilename().getBytes("8859_1"), "UTF-8"); //한글꺠짐 방지 // 파일명이 없다면 
+                
+                returnObject.put("params", mhsr.getParameterMap()); 
+                
+                
+                //위치 및 파일
+                System.out.println(origName);
+                //paymentService.getExcelUpload("D:\\"+origName);
+            }
+            
+            } catch (UnsupportedEncodingException e) { // TODO Auto-generated catch block 
+                e.printStackTrace(); 
+            }catch (IllegalStateException e) { // TODO Auto-generated catch block 
+                e.printStackTrace(); 
+            } catch (IOException e) { // TODO Auto-generated catch block 
+                e.printStackTrace(); 
+            }
+ 
+        
+        
+        
+       
 	}
 }
