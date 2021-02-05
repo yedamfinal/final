@@ -19,6 +19,7 @@
 		<table class="table">
 		<thead>
 			<tr>
+				<th scope="col">no</th>
 				<th scope="col">동</th>
 				<th scope="col">호수</th>
 				<th scope="col">차량번호</th>
@@ -29,11 +30,16 @@
 			
 			
 			<c:forEach var="vo" items="${carList}">
-			<tr>
+			<tr  onclick="location.href='carRead.do?cno=${vo.cno }'">
+				<th scope="col">${vo.cno}</th>
 				<th scope="col">${person.dong}</th>
 				<th scope="col">${person.ho}</th>	
 				<th scope="col">${vo.carNum}</th>
-				<th scope="col">${vo.carType}</th>
+				<th scope="col">
+				 <c:if test = "${vo.carType eq 'S'}">소형</c:if>
+				 <c:if test = "${vo.carType eq 'M'}">중형</c:if>
+				 <c:if test = "${vo.carType eq 'L'}">대형</c:if>
+				 </th>
 			</tr> 
 			</c:forEach>
 		</tbody>

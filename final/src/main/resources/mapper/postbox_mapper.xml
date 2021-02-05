@@ -29,7 +29,7 @@
 </update> 
 
  <delete id="mPostBoxDelete" parameterType="PostBoxVo">
-	delect from postbox
+	delete from postbox
 	where postno = #{postNo}
 	</delete>
 </mapper>
