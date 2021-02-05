@@ -10,6 +10,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import co.team.apt.common.vo.BoardVo;
 import co.team.apt.common.vo.Paging;
+import co.team.apt.common.vo.ResidentVo;
 import co.team.apt.notice.mapper.NoticeMapper;
 import co.team.apt.notice.service.NoticeService;
 
@@ -36,30 +38,34 @@ public class NoticeController {
 		
 	//공지사항
 	@RequestMapping("noticeList.do")
-	public String noticeList(Model model, BoardVo vo, Paging paging) {
+	public String noticeList(Model model, BoardVo vo, Paging paging, HttpServletRequest request) {
+		//권한별 페이지이동 시작
+		HttpSession session =  request.getSession(false);
+		ResidentVo resiVo = (ResidentVo) session.getAttribute("person");
+		
+		if(resiVo == null) { //로그인 안한상태
+			return "home/needLogin";
+		}
+			
 		
 		//페이징처리
-				paging.setPageUnit(10);
-				paging.setPageSize(10);	//페이지넘버 자체를 지정
-				// 페이지번호 파라미터
-				if( paging.getPage() == null) {
-					paging.setPage(1); 
-				}		
-				// 시작/마지막 레코드 번호
-				vo.setStart(paging.getFirst());
-				vo.setEnd(paging.getLast());		
-				// 전체 건수
-				paging.setTotalRecord(dao.pagingCount(vo));		//전체레코드건수
+		paging.setPageUnit(10);
+		paging.setPageSize(10);	//페이지넘버 자체를 지정
+		// 페이지번호 파라미터
+		if( paging.getPage() == null) {
+			paging.setPage(1); 
+		}		
+		// 시작/마지막 레코드 번호
+		vo.setStart(paging.getFirst());
+		vo.setEnd(paging.getLast());		
+		// 전체 건수
+		paging.setTotalRecord(dao.pagingCount(vo));		//전체레코드건수
 	
-	
-				model.addAttribute("paging", paging);	//JSP -> <my:paging paging="${paging}" />
+		model.addAttribute("paging", paging);	//JSP -> <my:paging paging="${paging}" />
 				
-		
 		List<BoardVo> list = noticeService.noticeList(vo);
 		model.addAttribute("noticeList", list);
-		
-		
-		
+				
 		return "notice/list";
 	}
 	
@@ -155,5 +161,11 @@ public class NoticeController {
 		}		
 		
 	}
+	
+	//글쓰기 폼으로 이동
+		@RequestMapping("introduece.do")
+		public String intoduce(Model model) {
+			return "introduce/introduce";
+		}
 
 }

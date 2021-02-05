@@ -49,7 +49,7 @@
 						class="collapse navbar-collapse main-menu-item justify-content-center"
 						id="navbarSupportedContent">
 						<ul class="navbar-nav">
-							<li class="nav-item"><a class="nav-link" href="#">아파트소개</a>
+							<li class="nav-item"><a class="nav-link" href="introduece.do">아파트소개</a>
 							</li>
 							<li class="nav-item dropdown"><a
 								class="nav-link dropdown-toggle" href="blog.html"
