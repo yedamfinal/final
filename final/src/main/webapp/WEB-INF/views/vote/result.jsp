@@ -6,12 +6,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script>
-	var result= "${vo.seq}";
+		
 </script>
 </head>
 <body>
 
-당선자: <input id="voteResultInput">
+당선자: <span id="voteResultInput"></span>
 
 		
 </body>
