@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import co.team.apt.common.vo.CarVo;
 import co.team.apt.common.vo.ResidentVo;
 import co.team.apt.common.vo.VisitCarVo;
 import co.team.apt.esey.mapper.VisitCarMapper;
@@ -46,8 +47,13 @@ public class VisitCarController {
 	public String visitCarInsert(Model model, VisitCarVo vo) {
 		visitCarService.visitCarInsert(vo);
 			return "redirect:visitList.do";
-
-		
+	}
+	
+	@RequestMapping("visitCarRead.do")
+	public String visitCarRead(Model model, VisitCarVo vo) {
+		vo = visitCarService.selectOne(vo);
+	    model.addAttribute("vo", vo);
+	    return "esey/visitCarRead";
 	}
 	
 }

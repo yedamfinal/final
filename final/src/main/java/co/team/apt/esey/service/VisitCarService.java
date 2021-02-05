@@ -10,6 +10,7 @@ public interface VisitCarService {
 		
 	public List<VisitCarVo> visitList(VisitCarVo vo);
 	public int visitCarInsert(VisitCarVo vo);
+	VisitCarVo selectOne(VisitCarVo vo);
 	
 		
 }

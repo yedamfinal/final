@@ -73,16 +73,19 @@ public class PostBoxController {
 		}
 		//수정폼으로 이동 
 		@RequestMapping("mPostBoxUpdateForm.do")
-		public String mPostBoxUpdateForm(Model model) {
+		public String mPostBoxUpdateForm(Model model, PostBoxVo vo) {
+			System.out.println(vo.getPostNo());
+			vo = postBoxService.selectOne(vo);
+			model.addAttribute("vo", vo);
 			return "esey/mPostBoxUdpForm";
 		}
 		@RequestMapping("mPostBoxUpdate.do")
-		public String mPostBoxUpdate(PostBoxVo vo) {
-			postBoxService.mPostBoxUpdate(vo);
+		public String mPostBoxUpdate( Model model, PostBoxVo vo) {
+			int n = postBoxService.mPostBoxUpdate(vo);
 			return "redirect:mPostBox.do";
 		}
 		@RequestMapping("mPostBoxDelete.do")
-		public String mPostBoxDelete(PostBoxVo vo) {
+		public String mPostBoxDelete( Model model, PostBoxVo vo) {
 			int n= postBoxService.mPostBoxDelete(vo);
 			return "redirect:mPostBox.do";
 		}
