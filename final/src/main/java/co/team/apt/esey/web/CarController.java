@@ -41,18 +41,22 @@ public class CarController {
 			return "esey/carList";
 		}
 	}
-	@RequestMapping("/carInsertFrom.do")
+	@RequestMapping("carInsertFrom.do")
 	public String carInsert(Model model) {
 		return "esey/carInsertForm";
 		
 	}
 	
-	@RequestMapping("/carInsert.do")
+	@RequestMapping("carInsert.do")
 	public String carInsert(Model model, CarVo vo) {
 		carService.carInsert(vo);
 		return "redirect:carList.do";
 		
 	}
-	
-
+	@RequestMapping("carRead.do")
+	public String carRead(Model model, CarVo vo) {
+		vo = carService.selectOne(vo);
+	    model.addAttribute("vo", vo);
+	    return "esey/carRead";
+	}
 }

@@ -26,6 +26,7 @@
 				
 				<tbody>
 				<c:forEach var="vo" items="${boardVoteList }">
+				<c:if test="${vo.endDate }">
 					<tr onclick="location.href='userBoardVoteRead.do?seq=${vo.seq }'">
 						<td>${vo.seq}</td>
 						<td>${vo.title}</td>
@@ -33,6 +34,7 @@
 						<td>${vo.startDate}</td>
 						<td>${vo.endDate}</td>
 					</tr>
+				</c:if>
 				</c:forEach>
 				</tbody>			
 			</table>

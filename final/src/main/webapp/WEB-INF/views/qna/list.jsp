@@ -57,8 +57,8 @@
 					<option value="all" <c:if test="${paging.searchType == 'all'}">selected</c:if>>제목+내용+작성자</option>
 				</select>
 				<input name="search" value="${paging.search}">
-				<input hidden name="type" value="${type}"> 
-				<input hidden name="page" value="">  
+				<input type="hidden" name="type" value="${type}"> 
+				<input type="hidden" name="page" id="page" value="">  
 				<input type="submit" value="검색">
 				
 			</form>

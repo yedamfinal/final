@@ -9,6 +9,7 @@ public interface VisitCarMapper {
 	
 	public List<VisitCarVo> visitList(VisitCarVo vo);
 	public int visitCarInsert(VisitCarVo vo);
+	VisitCarVo selectOne(VisitCarVo vo);
 	//입주자 차량조회 등록 
 	
 

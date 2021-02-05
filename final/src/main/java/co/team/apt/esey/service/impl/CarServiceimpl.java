@@ -25,6 +25,12 @@ public class CarServiceimpl implements CarService {
 		return dao.carInsert(vo);
 	}
 
+	@Override
+	public CarVo selectOne(CarVo vo) {
+		// TODO Auto-generated method stub
+		return dao.selectOne(vo);
+	}
+
 
 }
 

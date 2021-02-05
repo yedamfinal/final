@@ -18,17 +18,23 @@
 								STARTDATE,
 								ENDDATE,
 								CARNUM,
-								ID
+								ID,
+								VISITNO
 								)
 	 	                VALUES(	
 	 	               			#{purpose},
 	 	               			#{startDate},
 	 	               			#{endDate},
 	 	               			#{carNum},
-	 	               			#{Id}
+	 	               			#{Id},
+	 	               			ViSITCNO_SEQ.nextval
 	 	               			)
   	
   	</insert>
+  	
+  	<select id="selectOne" resultType="VisitCarVo" parameterType="VisitCarVo">
+		select * from VISITCAR where visitno = #{visitNo}
+	</select>
   	
   
   	

@@ -41,8 +41,7 @@
 									<li><span>아이디또는 비밀번호를 잊으셨나요?</span> <a
 										href="/login/lost_id/" class="ldSearch_btn blind_txt">찾아보기</a>
 									</li>
-									<li><span>아직 아파트너 회원이 아니신가요?</span> <a href="/join/term/"
-										class="join_btn blind_txt">회원가입하기</a></li>
+									
 								</ul>
 							</div>
 						</div>

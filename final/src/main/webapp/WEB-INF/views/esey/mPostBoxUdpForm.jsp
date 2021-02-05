@@ -24,8 +24,8 @@ ${vo}ddd
 
 					<tr>
 						<th width="100">동</th>
-						<td width="100"> <select class="form-control" onchange="hoisted(this)" id="dong" name="dong"> 
-							<option value="">동선택</option>
+						<td width="100"> <select class="form-control" onchange="hoisted(this)" id="dong" name="dong">
+						
 							<option value="101">101동</option>
 							<option value="102">102동</option>
 							<option value="103">103동</option>
@@ -42,11 +42,11 @@ ${vo}ddd
 						<td width="300">
 						<select
 						class="form-control" onchange="hoisted(this)" id="ho"name="ho">
-						<option value="">호선택</option>
-						<option value="101">101호</option>
-						<option value="102">102호</option>
-						<option value="103">103호</option>
-						<option value="104">104호</option>
+						
+						<option value="101" <c:if test="${vo.ho eq '101' }">selected</c:if> >101호</option>
+						<option value="102" <c:if test="${vo.ho eq '102' }">selected</c:if> >102호</option>
+						<option value="103" <c:if test="${vo.ho eq '103' }">selected</c:if> >103호</option>
+						<option value="104" <c:if test="${vo.ho eq '104' }">selected</c:if> >104호</option>
 
 				</select></td>
 					</tr>	
@@ -82,4 +82,7 @@ ${vo}ddd
 	</div>
 
 </body>
+<script type="text/javascript">
+	$('#dong').val('${vo.dong}');
+</script>
 </html>
