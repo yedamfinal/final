@@ -294,7 +294,7 @@ public class PaymentServiceImpl implements PaymentService{
     			}
                 
                 //신규삽입
-                dao.insertDB(map);
+                dao.insertDB(paymentMap);
                 System.out.println(paymentMap);
             }
         
