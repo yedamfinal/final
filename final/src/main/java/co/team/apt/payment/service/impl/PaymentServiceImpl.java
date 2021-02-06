@@ -254,7 +254,8 @@ public class PaymentServiceImpl implements PaymentService{
 		// TODO Auto-generated method stub
 		return dao.managerList();
 	}
-
+	
+	//엑셀 업로드
 	@Override
 	public List<?> getExcelUpload(File excelFile) {
 		String[] payPublic={"nomal", "clean",	"guard", "disinfection", "elevator",	"pelectric", "pwater", "repair",	"lrepair",	"representative"};
@@ -281,7 +282,7 @@ public class PaymentServiceImpl implements PaymentService{
 			}
                 
                 //신규삽입
-                //dao.insertDB(publicMap);
+                dao.insertPayPublic(publicMap);
                 System.out.println(publicMap);
             
             //세대별 관리비
@@ -294,7 +295,7 @@ public class PaymentServiceImpl implements PaymentService{
     			}
                 
                 //신규삽입
-                dao.insertDB(paymentMap);
+                dao.insertPayment(paymentMap);
                 System.out.println(paymentMap);
             }
         

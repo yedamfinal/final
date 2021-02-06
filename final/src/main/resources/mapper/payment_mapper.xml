@@ -4,7 +4,7 @@
 
 <mapper namespace="co.team.apt.payment.mapper.PaymentMapper">
 	<!-- 관리인이 관리비 등록 개인 -->
-	<insert id="insertPayment" parameterType="PaymentVo">
+	<insert id="insertPayment2222" parameterType="PaymentVo">
 		insert into payment(
 			payid,
 			id,
@@ -47,7 +47,7 @@
 		)
 	</insert>
 	<!-- 관리인이 관리비 등록 공통 -->
-	<insert id="insertPayPublic" parameterType="PaymentVo">
+	<insert id="insertPayPublic222" parameterType="PaymentVo">
 		insert into paypublic(
 			paymonth,
 			people
@@ -251,7 +251,32 @@
 		order by dong, ho
 	</select>
 	
-	<insert id="insertDB" parameterType="java.util.Map">
+	<insert id="insertPayment" parameterType="java.util.Map">
+		insert into payment(payid,
+                    id,
+                    paymonth,
+                    heating,
+                    water,
+                    hatwater,
+                    electric,
+                    etc
+                    )
+		values (payment_seq.nextval,
+		        (select id 
+		         from resident 
+		         where dong=#{dong} 
+		         and ho=#{ho} 
+		         and owner='owner' 
+		         and del='ing'),
+		         sysdate,
+		         #{heating},
+		         #{water},
+		         #{hatwater},
+		         #{electric},
+		         #{etc}
+		        )
+	</insert>
+	<insert id="insertPayPublic" parameterType="java.util.Map">
         INSERT INTO paypublic(
         			paymonth,
         			nomal,

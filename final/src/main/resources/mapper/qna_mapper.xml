@@ -97,7 +97,7 @@
 				#{originno},
 				#{groupord}+1,
 				#{grouplayer}+1
-				)
+			  )
 	</insert>
 	
 	

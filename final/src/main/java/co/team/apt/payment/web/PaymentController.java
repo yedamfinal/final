@@ -200,7 +200,7 @@ public class PaymentController {
 		//첨부파일 처리
 		String path = request.getSession()
 							 .getServletContext()
-							 .getRealPath("/resources/img/upload"); 
+							 .getRealPath("/resources/excelTest"); 
 		if(excelFile != null && excelFile.getSize()>0) {
 			File file = new File(path, excelFile.getOriginalFilename());
 			excelFile.transferTo(file);
@@ -214,7 +214,7 @@ public class PaymentController {
 			paymentService.getExcelUpload(file);
 			
 		}
-		return "payment/insertForm";
+		return "redirect:payRead.do";
 	}
 	
 	public void payExcelUpload2(HttpServletRequest request,
@@ -252,10 +252,6 @@ public class PaymentController {
             } catch (IOException e) { // TODO Auto-generated catch block 
                 e.printStackTrace(); 
             }
- 
-        
-        
-        
        
 	}
 }
