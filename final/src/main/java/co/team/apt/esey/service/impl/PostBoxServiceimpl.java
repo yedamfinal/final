@@ -55,4 +55,10 @@ public class PostBoxServiceimpl implements PostBoxService {
 		return dao.mafter(vo);
 	}
 
+	@Override
+	public int mbefore(PostBoxVo vo) {
+		// TODO Auto-generated method stub
+		return dao.mbefore(vo);
+	}
+
 }

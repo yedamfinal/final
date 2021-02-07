@@ -16,5 +16,5 @@ public interface PostBoxService {
 	public int mPostBoxUpdate(PostBoxVo vo);
 	public int mPostBoxDelete(PostBoxVo vo);
 	public int mafter(PostBoxVo vo);
-
+	public int mbefore(PostBoxVo vo);
 }

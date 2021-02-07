@@ -39,5 +39,11 @@
 <update id="mafter" parameterType="PostBoxVo"> 
 	update postbox set get = 'after' , getTime = sysdate where postno = #{postNo}
 </update>
+
+<update id="mbefore" parameterType="PostBoxVo"> 
+	update postbox set get = 'before' , getTime = null where postno = #{postNo}
+</update>
+
+
 </mapper>
 

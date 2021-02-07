@@ -38,8 +38,8 @@
 				<th scope="col">${vo.getTime}</th>
 				<th scope="col"><select class="form-control getselect"
 							name="get" onchange = "getselect('${vo.postNo}')">
-							<option value="before">수령전</option>
-							<option value="after">수령완료</option>							
+							<option value="before" <c:if test="${vo.get eq 'before' }">selected</c:if>>수령전</option>
+							<option value="after"<c:if test="${vo.get eq 'after' }">selected</c:if>>수령완료</option>							
 							
 							</select></th>
 			</tr> 

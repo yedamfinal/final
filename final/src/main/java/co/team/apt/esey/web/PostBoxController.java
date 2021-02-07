@@ -95,6 +95,8 @@ public class PostBoxController {
 		public String mget(Model model, PostBoxVo vo) {
 			if(vo.getGet().equals("after")) {
 			  postBoxService.mafter(vo);
+			} else if(vo.getGet().equals("before")) {
+				postBoxService.mbefore(vo);
 			}
 			return "redirect:mPostBox.do";
 		}

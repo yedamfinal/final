@@ -44,8 +44,14 @@
 			</c:forEach>
 		</tbody>
 		</table>
-		<button class="btn btn-outline-secondary" onclick="location.href='carInsertFrom.do'">차량 등록하기</button>
+		<button class="btn btn-outline-secondary" onclick="location.href='carInsertFrom.do?id=${person.id}'">차량 등록하기</button>
 		</div>		
 	</div>
+	<script type="text/javascript">
+		let error = '${vo.error}';
+		if(error == 'no'){
+			alert("등록개수가 초과되었습니다.");
+		}
+	</script>
 </body>
 </html>
