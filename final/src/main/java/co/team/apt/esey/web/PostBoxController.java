@@ -80,13 +80,24 @@ public class PostBoxController {
 			return "esey/mPostBoxUdpForm";
 		}
 		@RequestMapping("mPostBoxUpdate.do")
-		public String mPostBoxUpdate( Model model, PostBoxVo vo) {
+		public String mPostBoxUpdate(Model model, PostBoxVo vo) {
+			System.out.println("ddd");
 			int n = postBoxService.mPostBoxUpdate(vo);
 			return "redirect:mPostBox.do";
 		}
 		@RequestMapping("mPostBoxDelete.do")
 		public String mPostBoxDelete( Model model, PostBoxVo vo) {
 			int n= postBoxService.mPostBoxDelete(vo);
+			return "redirect:mPostBox.do";
+		}
+		// 택배 상태변경 
+		@RequestMapping("mget.do")
+		public String mget(Model model, PostBoxVo vo) {
+			if(vo.getGet().equals("after")) {
+			  postBoxService.mafter(vo);
+			} else if(vo.getGet().equals("before")) {
+				postBoxService.mbefore(vo);
+			}
 			return "redirect:mPostBox.do";
 		}
 		

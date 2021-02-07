@@ -36,16 +36,42 @@
 				<th scope="col">${vo.product}</th>
 				<th scope="col">${vo.arriveDate}</th>
 				<th scope="col">${vo.getTime}</th>
-				<th scope="col">${vo.get}</th>
+				<th scope="col"><select class="form-control getselect"
+							name="get" onchange = "getselect('${vo.postNo}')">
+							<option value="before" <c:if test="${vo.get eq 'before' }">selected</c:if>>수령전</option>
+							<option value="after"<c:if test="${vo.get eq 'after' }">selected</c:if>>수령완료</option>							
+							
+							</select></th>
 			</tr> 
 			</c:forEach>
+			
 		</tbody>
 		</table>
+		<form  hidden="hidden" action = "mget.do" method ="post" id="mget"> 
+		<input name="postNo" id="postNo" />
+		<input name="get" id="get" />
+		</form>
 		
 		<button class="btn btn-outline-secondary" onclick="location.href='mPostBoxInsForm.do'">등록하기</button>
 		<%-- <c:if test ="${person.type eq 'm'}">
 		</c:if> --%>
 		</div>		
 	</div>
+	
+	<script type="text/javascript">
+	$(".getselect").on("click",function(event){
+		event.stopPropagation();
+		
+	}) 
+	function getselect(postNo) {
+		/* console.log(postNo,event.target.value) */
+		$("#postNo").val(postNo);
+		$("#get").val(event.target.value); 
+		$("#mget").submit();
+	}
+		
+	
+	
+	</script>
 </body>
 </html>

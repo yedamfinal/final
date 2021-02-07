@@ -15,4 +15,17 @@
 	select * from car where cno=#{cno}
 </select>
 
+
+<select id = "cerror" resultType="integer" parameterType="CarVo">
+	select count(*) cno
+from car
+where id in ( select id 
+              from resident r, (select dong,ho 
+                                from resident 
+                                where id=#{id}) m
+              where r.dong = m.dong
+              and r.ho = m.ho and r.del='ing')
+
+</select>
+
 </mapper>

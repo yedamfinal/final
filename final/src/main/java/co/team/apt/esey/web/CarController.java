@@ -38,13 +38,19 @@ public class CarController {
 			vo.setId(resiVo.getId());
 			List<CarVo> list = carService.carList(vo);
 			model.addAttribute("carList", list);
+			model.addAttribute("vo", vo);
 			return "esey/carList";
 		}
 	}
 	@RequestMapping("carInsertFrom.do")
-	public String carInsert(Model model) {
-		return "esey/carInsertForm";
+	public String carInsertFrom(Model model, CarVo vo) {
 		
+		int n = carService.cerror(vo);
+		if(n >= 2) {
+			return "redirect:carList.do?error=no";
+		}else {
+		return "esey/carInsertForm";
+		}
 	}
 	
 	@RequestMapping("carInsert.do")
@@ -59,4 +65,5 @@ public class CarController {
 	    model.addAttribute("vo", vo);
 	    return "esey/carRead";
 	}
+	
 }

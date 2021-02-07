@@ -12,6 +12,8 @@ public interface PostBoxMapper {
 	public List<PostBoxVo> mPostBox(PostBoxVo vo);
 	public int mPostBoxUpdate(PostBoxVo vo);
 	public int mPostBoxDelete(PostBoxVo vo);
+	public int mafter(PostBoxVo vo);
+	public int mbefore(PostBoxVo vo); 
 	
 
 }

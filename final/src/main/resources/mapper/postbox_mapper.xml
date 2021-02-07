@@ -23,6 +23,9 @@
 
 <update id="mPostBoxUpdate" parameterType="PostBoxVo">
 	update postbox set product=#{product},
+			dong = #{dong},
+			ho = #{ho},
+			arrivedate = #{arriveDate},
 			gettime = #{getTime},
 			get = #{get} 
 			where postno = #{postNo}
@@ -32,4 +35,15 @@
 	delete from postbox
 	where postno = #{postNo}
 	</delete>
+	
+<update id="mafter" parameterType="PostBoxVo"> 
+	update postbox set get = 'after' , getTime = sysdate where postno = #{postNo}
+</update>
+
+<update id="mbefore" parameterType="PostBoxVo"> 
+	update postbox set get = 'before' , getTime = null where postno = #{postNo}
+</update>
+
+
 </mapper>
+

@@ -9,5 +9,6 @@ public interface CarMapper {
 		public List<CarVo> carList(CarVo vo); 
 		public int carInsert(CarVo vo);
 		CarVo selectOne(CarVo vo);
+		public int cerror(CarVo vo);
 
 }
