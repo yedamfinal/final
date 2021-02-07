@@ -15,11 +15,12 @@
 ${vo}ddd
 	<div class="container">
 		<div>
-			<h1>조회</h1>
+			<h1>tnwjd</h1>
 		</div>
 		<div>	
+				<form action="carUpdate.do" method="post">
 				<input type="hidden" name="cno" value="${vo.cno}">
-				
+				<input type="hidden" name="Id" value="${vo.Id}">
 				<table class="table">
 
 					<tr>
@@ -32,28 +33,24 @@ ${vo}ddd
 					</tr>	
 					<tr>
 						<th width="100">차번호</th>
-						<td width="300">${vo.carNum}</td>
+						<td width="300"><input type="text" id="carNum" name="carNum" value="${vo.carNum}"/></td>
 					</tr>
 					<tr>
 						<th width="100">차종</th>
-						<td width="300">
-						<c:if test = "${vo.carType eq 'S'}">소형</c:if>
-				 		<c:if test = "${vo.carType eq 'M'}">중형</c:if>
-				 		<c:if test = "${vo.carType eq 'L'}">대형</c:if></td>
+						<td width="300"><select class="form-control" id="carType"
+							name="carType">
+						<option value="소형" <c:if test = "${vo.carType eq 'S'}">selected</c:if>>소형</option>
+				 		<option value="중형" <c:if test = "${vo.carType eq 'M'}">selected</c:if>>중형</option>
+				 		<option value="대형" <c:if test = "${vo.carType eq 'L'}">selected</c:if>>대형</option>
+				 		</select></td>
 					</tr>
 
 				</table>
 				<div align="right">
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<button type="button" class="btn btn-outline-secondary"
-						onclick="location.href='carList.do'">목록보기</button>
-						<button type="button"
-						onclick="location.href='carDelete.do?cno=${vo.cno}'"
-						class="btn btn-outline-secondary">삭제하기</button>
-					&nbsp;&nbsp;&nbsp;
-				<button type="button" class="btn btn-outline-secondary" onclick="location.href='carUpdateForm.do?cno=${vo.cno}'">수정하기</button>
+
+				<button type="submit" class="btn btn-outline-secondary">수정완료</button>
 				</div>
-			
+			</form>
 		</div>
 	</div>
 

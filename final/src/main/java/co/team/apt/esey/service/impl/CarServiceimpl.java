@@ -37,6 +37,18 @@ public class CarServiceimpl implements CarService {
 		return dao.cerror(vo);
 	}
 
+	@Override
+	public int carDelete(CarVo vo) {
+		// TODO Auto-generated method stub
+		return dao.carDelete(vo);
+	}
+
+	@Override
+	public int carUpdate(CarVo vo) {
+		// TODO Auto-generated method stub
+		return dao.carUpdate(vo);
+	}
+
 
 }
 

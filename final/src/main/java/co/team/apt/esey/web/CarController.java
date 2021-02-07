@@ -14,6 +14,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 import co.team.apt.common.vo.BoardVoteVo;
 import co.team.apt.common.vo.CarVo;
+import co.team.apt.common.vo.PostBoxVo;
 import co.team.apt.common.vo.ResidentVo;
 import co.team.apt.esey.service.CarService;
 
@@ -64,6 +65,21 @@ public class CarController {
 		vo = carService.selectOne(vo);
 	    model.addAttribute("vo", vo);
 	    return "esey/carRead";
+	}
+	@RequestMapping("carDelete.do")
+	public String mPostBoxDelete( Model model, CarVo vo) {
+		int n= carService.carDelete(vo);
+		return "redirect:carList.do";
+	}
+		
+	@RequestMapping("carUpdateForm.do")
+	public String carUpdateForm(Model model) {
+		return "esey/carUpdateForm";
+	}
+	@RequestMapping("carUpdate.do")
+	public String carUpdate(Model model, CarVo vo) {
+		int n = carService.carUpdate(vo);
+		return "redirect:carList.do";
 	}
 	
 }

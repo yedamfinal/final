@@ -12,5 +12,7 @@ public interface CarService {
 	public int carInsert(CarVo vo);
 	CarVo selectOne(CarVo vo);
 	public int cerror(CarVo vo);
+	public int carDelete(CarVo vo);
+	public int carUpdate(CarVo vo);
 		
 }

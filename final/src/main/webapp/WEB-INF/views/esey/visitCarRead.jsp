@@ -30,7 +30,7 @@ ${vo}ddd
 						<th width="100">호수</th>
 						<td width="300">${person.ho}</td>
 					</tr>	
-					<tr>
+					<tr> 
 						<th width="100">차량번호</th>
 						<td width="300">${vo.carNum}</td>
 					</tr>

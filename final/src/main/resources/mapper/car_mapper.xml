@@ -28,4 +28,17 @@ where id in ( select id
 
 </select>
 
+<delete id="carDelete" parameterType="CarVo">
+	delete from car
+	where cno = #{cno}
+</delete>
+<update id="carUpdate" parameterType="CarVo">
+	update car set carnum=#{carNum},
+			cartype = #{carType},
+			cno = #{cno},
+			Id = #{Id},
+			where cno = #{cno}
+</update> 
+
+
 </mapper>

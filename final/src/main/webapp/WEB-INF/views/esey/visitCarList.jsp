@@ -31,7 +31,7 @@
 		<tbody>
 			
 			<c:forEach var="vo" items="${visitList}">
-			<tr onclick="location.href='visitCarRead.do?visitno=${vo.visitNo}'">
+			<tr onclick="location.href='visitCarRead.do?visitNo=${vo.visitNo}'">
 				<th scope="col">${vo.visitNo}</th>
 				<th scope="col">${person.dong}</th>
 				<th scope="col">${person.ho}</th>	
