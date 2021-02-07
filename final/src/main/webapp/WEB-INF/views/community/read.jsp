@@ -69,6 +69,7 @@
 				<button id="updateCancel">취소</button>
 			</p>
 		</div>
+		<div id="commentUpdateHome"></div>
 		<!-- 댓글 -->
 		
 </div>        
@@ -84,12 +85,28 @@ $("#updateCancel").on('click',updateCancel);
 //댓글 수정창 숨김
 $('#commentUpdate').hide();
 //댓글 리스트
-let commentList = ${comment};
-for(var c of commentList){
-	console.log(c)
+let commentStart = ${comment};
+for(var c of commentStart){
 	makeComment(c);
 }
 
+//댓글 리스트 받아오기
+function commentList(){
+	$.ajax({
+		url:'commentList.ajax',
+		type:'post',
+		data:{
+			defno : '${vo.defno}'
+		},
+		success:function(list){
+			$('#commentUpdateHome').append($('#commentUpdate').hide());
+			$('#reUl').empty();
+			for(var c of list){
+				makeComment(c);
+			}
+		}
+	});
+}
 //댓글등록
 function addComment(){
 	let comment= $('#comment').val();
@@ -102,7 +119,7 @@ function addComment(){
 			writer : '${person.id}',
 			defno : '${vo.defno}'
 		},
-		success:makeComment
+		success:commentList
 	});
 }
 
@@ -137,7 +154,7 @@ function reDelete(no){
 		},
 		success:function(result){
 			if(result=='success'){
-				$('#re'+no).remove();
+				commentList();
 			}
 		}
 	});
@@ -164,7 +181,7 @@ function commentUpdate(){
 		},
 		success:function(result){
 			if(result=='success'){
-				$('#body'+no).html(text);
+				commentList();
 				$('#commentUpdate').hide();
 			}
 		}

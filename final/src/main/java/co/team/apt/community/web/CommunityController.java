@@ -131,6 +131,13 @@ public class CommunityController {
 			return null;//에러처리
 		}
 	}
+	//댓글 리스트 아작스
+	@RequestMapping("commentList.ajax")
+	@ResponseBody
+	public List<BcommentVo> commentList(BoardVo vo) {
+		List<BcommentVo> comment = communityService.commentList(vo);
+		return comment;
+	}
 	
 	//댓글 작성
 	@RequestMapping("addComment.do")

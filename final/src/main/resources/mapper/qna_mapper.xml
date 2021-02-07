@@ -30,7 +30,7 @@
 	</sql>
 			
 	<select id="pagingCount" resultType="int">
-	SELECT count(*) 
+		SELECT count(*) 
 		FROM qna
 		<include refid="searchQuery"></include>
 	</select>	

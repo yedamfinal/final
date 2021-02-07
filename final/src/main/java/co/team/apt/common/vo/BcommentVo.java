@@ -14,4 +14,8 @@ public class BcommentVo {
 	private Date redate;
 	private int defno;
 	private String writer;
+	private String reClass;
+	private String reReno;
+	private String groupNo;
+	private String del;
 }
