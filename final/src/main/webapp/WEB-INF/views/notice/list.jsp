@@ -12,11 +12,14 @@
 </head>
 <body>
 	<div class="container">
+		<div align="right">
+		<a href="noticeInsertForm.do">글쓰기</a>
+		</div>
 		<table class="table">
 			<thead>
 				<tr>
 					<th scope="col">글번호</th>
-					<th scope="col" width="800">제목</th>
+					<th scope="col" width="720">제목</th>
 					<th scope="col">작성자</th>
 					<th scope="col">작성시간</th>
 				</tr>
@@ -24,17 +27,14 @@
 			<tbody>
 				<c:forEach var="vo" items="${noticeList}">
 					<tr onclick="location.href='noticeRead.do?defno=${vo.defno}'">
-						<th scope="col">${vo.defno}</th>
-						<th scope="col">${vo.title}</th>
-						<th scope="col">${vo.writer}</th>
-						<th scope="col">${vo.defdate}</th>
+						<td scope="col">${vo.defno}</td>
+						<td scope="col">${vo.title}</td>
+						<td scope="col">${vo.writer}</td>
+						<td scope="col">${vo.defdate}</td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
-		<div align="right">
-		<a href="noticeInsertForm.do">글쓰기</a>
-		</div>
 		<my:paging paging="${paging}" jsFunc="goList" />
 		<script>
 			function goList(p) {
@@ -50,12 +50,11 @@
 					<option value="writer" <c:if test="${paging.searchType == 'writer'}">selected</c:if>>작성자</option>
 					<option value="all" <c:if test="${paging.searchType == 'all'}">selected</c:if>>제목+내용+작성자</option>
 				</select>
-				
 				<input name="search" value="${paging.search}"> 
 				<input type="submit" value="검색">
 				
 			</form>
 		</div>
 	</div>
-</body>
+	</body>
 </html>

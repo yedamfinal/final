@@ -26,18 +26,7 @@
 						id="type" name="type" type="hidden" value="library" />
 
 					<div class="form-group">
-						<div class="input-group date" id="datetimepicker4"
-							data-target-input="nearest">
-							<input name="startDate" type="text"
-								class="form-control datetimepicker-input"
-								data-target="#datetimepicker4" />
-							<div class="input-group-append" data-target="#datetimepicker4"
-								data-toggle="datetimepicker">
-								<div class="input-group-text">
-									<i class="fa fa-calendar"></i>
-								</div>
-							</div>
-						</div>
+						<input type="date" id="startDate" name="startDate">
 					</div>
 					<div class="form-group">
 						<select class="form-control" name="month" id="month">
@@ -54,8 +43,8 @@
 					<input class="btn btn-primary" id="payment" type="button"
 						value="등록">
 				</div>
-				<div class="form-group">
-					<c:forEach items="${seatList }" var="seat" varStatus="i">
+				<div class="form-group" id="seatDiv">
+					<%-- <c:forEach items="${seatList }" var="seat" varStatus="i">
 						<div class="form-check-inline">
 							<c:if test="${seat eq false }">
 									<label class="form-check-label" for="s${i.count}">${i.count}</label>
@@ -68,15 +57,39 @@
 										class="seat" id='s${i.count }' value="${i.count}" disabled />
 							</c:if>
 						</div>
-					</c:forEach>
+					</c:forEach> --%>
+					<table>
+						<thead>
+						<tr>
+						</tr>
+						</thead>
+						<tbody>
+						<c:forEach items="${seatList }" var="seat" varStatus="i">
+							<c:if test="${i.count%6==1 }"><tr></c:if>
+								<td style="width: 200px; height: 50px">
+									<c:if test="${seat eq false }">
+										<input class="form-check-input seat" type="radio" name="seat"
+											id='s${i.count }' value="${i.count}" />
+										<span>${i.count }번 자리 </span>
+										<span class="btn btn-success btn-sm" id='b${i.count }'>사용가능</span>
+									</c:if>
+									<c:if test="${seat eq true }">
+										<input class="form-check-input seat" type="radio" name="seat"
+											id='s${i.count }' value="${i.count}" disabled />
+										<span>${i.count }번 자리</span>
+										<span class="btn btn-danger btn-sm" id='b${i.count }'>예약완료</span>
+									</c:if>
+								</td>
+							<%-- <c:if test="${i.count%6==1 }"></tr></c:if> --%>
+						</c:forEach>
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</form>
 	</div>
 </body>
-<!-- 제이쿼리 -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <!-- 결제 -->
 <script type="text/javascript"
 	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
@@ -86,6 +99,30 @@
 	$('#month').on('change', moveCost);
 	$('#startDate').on('change', getSeat);
 	$('#payment').on('click', payment);
+	
+
+	//날짜 포맷
+	function getFormatDate(date){
+	    var year = date.getFullYear();              //yyyy
+	    var month = (1 + date.getMonth());          //M
+	    month = month >= 10 ? month : '0' + month;  //month 두자리로 저장
+	    var day = date.getDate();                   //d
+	    day = day >= 10 ? day : '0' + day;          //day 두자리로 저장
+	    return  year + '-' + month + '-' + day;
+	}
+	//7일후 날짜
+	function getFormatDate7(date){
+	    var year = date.getFullYear();              //yyyy
+	    var month = (1 + date.getMonth());          //M
+	    month = month >= 10 ? month : '0' + month;  //month 두자리로 저장
+	    var day = date.getDate()+7;                   //d
+	    day = day >= 10 ? day : '0' + day;          //day 두자리로 저장
+	    return  year + '-' + month + '-' + day;
+	}
+	
+	//날짜입력 input범위설정
+	let today = new Date();
+	$('#startDate').attr({min:getFormatDate(today),max:getFormatDate7(today)}).val(getFormatDate(today));
 
 	//개월선택시 가격입력
 	function moveCost() {
@@ -99,6 +136,7 @@
 		}
 		getSeat();
 	}
+	
 	//좌석값 받아오기
 	function getSeat(){
 		let month = $('#month').val();
@@ -126,12 +164,15 @@
 	//좌석 변경
 	function makeSeat(data){
 		console.log(data);
-		for(a of $('.seat[disabled]')){
+		 for(a of $('.seat[disabled]')){
 			$(a).removeAttr("disabled");
+			$('#b'+$(a).val()).attr('class','btn btn-success btn-sm').html('사용가능');
 		}
 		for(a of data){
 			$('#s'+a.seat).attr("disabled",true); 
-		}
+			$('#b'+a.seat).attr("class",'btn btn-danger btn-sm').html('예약완료'); 
+		} 
+		
 	}
 
 	//결제
@@ -148,7 +189,7 @@
 			pg : "html5_inicis",
 			merchant_uid : payNo, //결제번호
 			name : "독서실", //헬스장, 독서실, x월 관리비 결제명
-			amount : Number(frm.cost)/100, //가격
+			amount : 2000, //가격
 			buyer_name : frm.name, // 회원이름
 			buyer_tel : frm.phone //회원전화번호
 		}

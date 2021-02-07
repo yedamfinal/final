@@ -34,11 +34,13 @@
 				</c:forEach>
 				</tbody>			
 			</table>
+			
 			<div align="right">
 				<br />
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<button class="btn btn-outline-secondary" onclick="location.href='boardVoteInsertForm.do'">새로운 투표</button>
 			</div>
+			
 		</div>
 	</div>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

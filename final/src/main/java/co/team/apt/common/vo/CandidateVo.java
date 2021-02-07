@@ -10,5 +10,6 @@ public class CandidateVo {
 	private String gender;
 	private String content;
 	private String seq;
+	private int voteNum;
 
 }

@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -12,7 +13,7 @@ import net.sf.json.JSONObject;
 
 public class CancelTest2 {
 	public static void main(String[] args) throws Exception{
-		String strUrl = "https://api.iamport.kr/subscribe/customers/test";
+		String strUrl = "https://api.iamport.kr/subscribe/customers/test1";
 
 		URL url = new URL(strUrl); // 호출할 url
 		Map<String, Object> params = new LinkedHashMap<>(); // 파라미터 세팅
@@ -36,7 +37,7 @@ public class CancelTest2 {
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		conn.setRequestMethod("POST");
 		//conn.setRequestProperty("Content-Type", "application/json"); //json으로 값넘기기
-		conn.setRequestProperty("Authorization", "b6df62c077a631c8e7c64e67b806a6bc5df4cbe1");//test 1에서 받은 토큰
+		conn.setRequestProperty("Authorization", "2255d7d9fe6e1c19e2a6d659ab1742291cfb1bf7");//test 1에서 받은 토큰
 		conn.setDoOutput(true);
 		conn.getOutputStream().write(postDataBytes); // POST 호출
 
@@ -46,12 +47,11 @@ public class CancelTest2 {
 		String str = "";
 		while ((inputLine = in.readLine()) != null) { // response 출력
 			System.out.println(inputLine);
-//			JSONObject obj = JSONObject.fromObject(inputLine);
-//			obj = obj.getJSONObject("response");
-//			str = obj.getString("access_token");
-//			System.out.println(str);
+//			System.out.println(URLDecoder.decode(inputLine));
+//			for (int i = 0; i < inputLine.length(); i++) {
+//	            System.out.print(String.format("U+%04X ", inputLine.codePointAt(i)));
+//	        }
 		}
-		//b6df62c077a631c8e7c64e67b806a6bc5df4cbe1
 		in.close();
 	}
 }

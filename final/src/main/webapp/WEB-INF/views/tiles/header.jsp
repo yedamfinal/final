@@ -19,7 +19,7 @@
 					</c:if>
 					<c:if test="${not empty person }">
 						<c:if test="${person.type == 'm'}">
-							<span><a href="register.do">Register </a></span>
+							<span><a href="register">Register </a></span>
 						</c:if>
 						<span><a href="logout.do">Logout</a></span>
 					</c:if>
@@ -58,21 +58,21 @@
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 									<a class="dropdown-item" href="calendar.do">일정표</a> <a
 										class="dropdown-item" href="noticeList.do?type=notice">공지사항</a>
-									<a class="dropdown-item" href="#">Q&A</a>
+									<a class="dropdown-item" href="qnaList.do">Q&A</a>
 								</div></li>
 							<li class="nav-item dropdown"><a
 								class="nav-link dropdown-toggle" href="blog.html"
 								id="navbarDropdown" role="button" data-toggle="dropdown"
 								aria-haspopup="true" aria-expanded="false"> 커뮤니티 </a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-									<a class="dropdown-item" href="#">자유게시판</a> <a
-										class="dropdown-item" href="#">하자보수</a> <a
-										class="dropdown-item" href="#">아나바다</a>
+									<a class="dropdown-item" href="communityList?type=free">자유게시판</a> <a
+										class="dropdown-item" href="communityList?type=ana">하자보수</a> <a
+										class="dropdown-item" href="communityList?type=def">아나바다</a>
 								</div></li>
 							<li class="nav-item"><a class="nav-link" href="payRead.do">관리비조회</a>
 							</li>
 							<li class="nav-item"><a class="nav-link"
-								href="boardVoteList.do">전자투표</a></li>
+								href="voteStart.do">전자투표</a></li>
 							<li class="nav-item dropdown"><a
 								class="nav-link dropdown-toggle" href="blog.html"
 								id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -87,11 +87,12 @@
 								aria-haspopup="true" aria-expanded="false">편의기능</a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 									<a class="dropdown-item" href="postBoxList.do">택배조회</a> <a
-										class="dropdown-item" href="#">관리자 택배관리</a> <a
-										class="dropdown-item" href="#">입주자 차량등록</a> <a
+										class="dropdown-item" href="carList.do">입주자 차량등록</a> <a
 										class="dropdown-item" href="visitList.do">방문자 차량등록</a> <a
+										class="dropdown-item" href="cctv.do">CCTV</a> <a
 										class="dropdown-item" href="#">관리자 차량관리</a> <a
-										class="dropdown-item" href="http://192.168.1.70:8080/browserfs.html">CCTV</a>
+										class="dropdown-item" href="#">관리자 택배관리</a> 
+										
 								</div></li>
 						</ul>
 					</div>

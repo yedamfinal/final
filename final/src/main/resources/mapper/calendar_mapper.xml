@@ -3,11 +3,26 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="co.team.apt.calendar.mapper.CalendarMapper">
-	<!-- <select  id="CalendarList" parameterType="CalendarVo">
-		select * from calendar
-	</select> -->
+	<select  id="calendarList" parameterType="CalendarVo" resultType="CalendarVo">
+		select calendarno,
+			   caltitle title,
+			   CALCONTENT description,
+			   		STARTDATE "start",
+			   		ENDDATE "end",
+			   		WRITER username,
+			   		backgroundColor,
+			   		textColor
+			 
+			   	
+		from calendar 
+		where 
+		#{startDate} between startdate and enddate
+			or #{endDate} between startdate and enddate
+			or startdate between #{startDate} and #{endDate}
+			or enddate between #{startDate} and #{endDate}
+	</select>
 		
-	<insert id="CalendarInsert" parameterType="CalendarVo">
+	<insert id="calendarInsert" parameterType="CalendarVo">
 	<selectKey resultType="int" keyProperty="calendarno" order="BEFORE">
         SELECT def_seq.nextval FROM dual        
     </selectKey>
@@ -33,7 +48,10 @@
 				)
 	</insert>
 	
-	<update id="CalendarUpdate" parameterType="CalendarVo">
+	<update id="calendarUpdate" parameterType="CalendarVo">
+	<selectKey resultType="int" keyProperty="calendarno" order="BEFORE">
+        SELECT def_seq.nextval FROM dual        
+    </selectKey>
 		update calendar
 		set caltitle=#{title},
 			calcontent=#{description},

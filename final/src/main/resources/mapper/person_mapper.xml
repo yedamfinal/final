@@ -35,13 +35,25 @@
 	<insert id="register">
 		insert into
 		resident(id,password,name,phone,birth,owner,dong,ho) values
-		(#{id},#{password},#{name},#{phone},#{birth},#{owner},#{dong},#{ho})
+		(#{id},#{password},#{name},#{phone},#{birth},#{owner},#{dong},#{ho}),
+	
+		
 	</insert>
 	<insert id="mregister">
 		insert into
 		manager(id,password,name,birth) values
 		(#{id},#{password},#{name},#{birth})
 	</insert>
+	
+	<update id="multiregister">
+	
+	<foreach collection="list" item="item" index="index" separator=" " open="INSERT ALL" close="SELECT * FROM DUAL">
+                 INTO resident  (id,password,name,phone,birth,owner,dong,ho) VALUES
+                (#{item.id},#{item.password},#{item.name},#{item.phone},#{item.birth}
+                ,#{item.owner},#{dong},#{ho})
+             </foreach>
+	
+	</update>
 	
 </mapper>
 

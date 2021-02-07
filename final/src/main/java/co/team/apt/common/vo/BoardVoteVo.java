@@ -10,4 +10,5 @@ public class BoardVoteVo {
 	private String title;
 	private Date startDate;
 	private Date endDate;
+	private int voteNum;
 }
