@@ -88,28 +88,33 @@
 	<selectKey resultType="BcommentVo" keyProperty="reno,redate" order="BEFORE">
         SELECT re_seq.nextval reno, sysdate redate FROM dual        
     </selectKey>
-		insert into bcomment(reno, writer, defno, recontent, redate)
-		values(#{reno}, #{writer}, #{defno}, #{recontent}, sysdate)
+		insert into bcomment(reno, writer, defno, recontent, redate, groupno)
+		values(#{reno}, #{writer}, #{defno}, #{recontent}, sysdate, #{reno})
 	</insert>
 	
 	<!-- 댓글 조회 -->
 	<select id="commentList" parameterType="BoardVo" resultType="BcommentVo">
-		select reno, defno, writer, recontent, redate
+		select reno, defno, writer, recontent, redate, reclass, rereno, groupno, del
 		from bcomment
-		where defno = #{defno}	
+		where defno = #{defno}
+		and del = 'ing'	
 		order by 1	
 	</select>
 	
 	<!-- 댓글 삭제 -->
-	<delete id="commentDelete" parameterType="BcommentVo">
-		delete from bcomment
-		where reno = #{reno}
-	</delete>
+	<update id="commentDelete" parameterType="BcommentVo">
+		<!-- delete from bcomment
+		where reno = #{reno} -->
+		update bcomment
+		set del='del'
+		where reno=#{reno}
+	</update>
 	
 	<!-- 댓글 수정 -->
 	<update id="commentUpdate" parameterType="BcommentVo">
 		update bcomment 
-		set recontent = #{recontent}
+		set recontent = #{recontent},
+			redate = sysdate
 		where reno = #{reno}
 	</update>
 </mapper>
