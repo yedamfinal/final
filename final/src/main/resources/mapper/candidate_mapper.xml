@@ -20,6 +20,7 @@
 		from resident r, candidate c
 		where r.id= c.id
 		and c.seq =#{seq}
+		and c.state ='ing'
 		order by voteNum
 	</select>
 	
@@ -46,25 +47,26 @@
 				#{job},
 				#{gender},
 				#{content},
-				#{voteNum}
+				nvl((select max(votenum) from candidate where seq=#{seq}),0)+1
 				 )
 	</insert>
 	
 	<update id="candiUpdate" parameterType="CandidateVo">
-		update candidate
-		set id=#{id},		
-			job=#{job},
+		update candidate		
+		set job=#{job},
 			gender=#{gender},
 			content=#{content}
-		where seq = #{seq}
+		where id=#{id}
+		and seq=#{seq}
 	</update>
 
 	<delete id="candiDelete" parameterType="CandidateVo">
-		delete from candidate
+		update candidate
+		set state='del'
 		where id = #{id}
 	</delete>
 	
-	<insert id="addCandi" parameterType="CandidateVo">
+	<!-- <insert id="addCandi" parameterType="CandidateVo">
 		insert into candidate
 				(
 					seq, 
@@ -80,7 +82,7 @@
 					#{gender},
 					#{content}
 				)
-	</insert>
+	</insert> -->
 
 	
 </mapper>

@@ -18,7 +18,7 @@ ${vo}ddd
 			<h1>조회</h1>
 		</div>
 		<div>	
-				<input type="hidden" name="visitNo" value="${vo.visitNo}">
+				<input type="hidden" name="cno" value="${vo.cno}">
 				
 				<table class="table">
 
@@ -31,28 +31,22 @@ ${vo}ddd
 						<td width="300">${person.ho}</td>
 					</tr>	
 					<tr>
-						<th width="100">차량번호</th>
+						<th width="100">차번호</th>
 						<td width="300">${vo.carNum}</td>
 					</tr>
 					<tr>
-						<th width="100">방문목적</th>
-						<td width="300">${vo.purpose}</td>
+						<th width="100">차종</th>
+						<td width="300">
+						<c:if test = "${vo.carType eq 'S'}">소형</c:if>
+				 		<c:if test = "${vo.carType eq 'M'}">중형</c:if>
+				 		<c:if test = "${vo.carType eq 'L'}">대형</c:if></td>
 					</tr>
-					<tr>
-						<th width="100">시작일</th>
-						<td width="300">${vo.startDate}</td>
-					</tr>
-					<tr>
-						<th width="100">종료일</th>
-						<td width="300">${vo.endDate}</td>
-					</tr>
-					
 
 				</table>
 				<div align="right">
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<button type="button" class="btn btn-outline-secondary"
-						onclick="location.href='visitList.do'">목록보기</button>
+						onclick="location.href='carList.do'">목록보기</button>
 				</div>
 			
 		</div>

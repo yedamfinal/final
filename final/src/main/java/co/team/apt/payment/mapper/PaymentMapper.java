@@ -19,4 +19,6 @@ public interface PaymentMapper {
 	public PaymentVo payComparison(PaymentVo vo);
 	public void payDelay();
 	public List<PaymentVo> managerList();
+	public void insertPayment(Map<String, Object> map);
+	public void insertPayPublic(Map<String, Object> map);
 }

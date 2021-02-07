@@ -4,12 +4,40 @@
 <mapper namespace="co.team.apt.esey.mapper.PostBoxMapper">
 
 <select id="postBoxList" resultType="PostBoxVo" parameterType="PostBoxVo">
-		SELECT * FROM POSTBOX
+		SELECT * FROM POSTBOX where dong=#{dong} and ho=#{ho}
 </select>
 
- <!-- 택배 등록 -->
+<select id="selectOne" resultType="PostBoxVo" parameterType="PostBoxVo">
+	select * from postBox where postno=#{postNo}
+</select>
+
+<!-- 관리자 택배조회 -->
+	<select id="mPostBox" resultType="PostBoxVo" parameterType="PostBoxVo">
+		SELECT rownum rn,a.* FROM POSTBOX a order by rn
+</select>
+
+ <!--관리자 택배 등록 -->
 <insert id = "mPostBoxInsert" parameterType = "PostBoxVo">
-	insert into POSTBOX (POSTNO,PRODUCT,ID) values (SEQ_POSTBOX.nextval,#{product},#{id})
+	insert into POSTBOX (POSTNO,dong,ho,PRODUCT) values (SEQ_POSTBOX.nextval,#{dong},#{ho},#{product})
 </insert>
 
+<update id="mPostBoxUpdate" parameterType="PostBoxVo">
+	update postbox set product=#{product},
+			dong = #{dong},
+			ho = #{ho},
+			arrivedate = #{arriveDate},
+			gettime = #{getTime},
+			get = #{get} 
+			where postno = #{postNo}
+</update> 
+
+ <delete id="mPostBoxDelete" parameterType="PostBoxVo">
+	delete from postbox
+	where postno = #{postNo}
+	</delete>
+	
+<update id="mafter" parameterType="PostBoxVo"> 
+	update postbox set get = 'after' , getTime = sysdate where postno = #{postNo}
+</update>
 </mapper>
+

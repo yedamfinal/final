@@ -44,14 +44,15 @@
 		</div>
 		<div align="center">
 			<my:paging paging="${paging}" jsFunc="goList" />
-			<form action="communityList" method="post">
-				<select name="searchType" size="1">
+			<form action="communityList" method="post" id='pageSearchForm'>
+				<select name="searchType" id="searchType" size="1">
 					<option value="title" <c:if test="${paging.searchType == 'title'}">selected</c:if>>제목</option>
 					<option value="content" <c:if test="${paging.searchType == 'content'}">selected</c:if>>내용</option>
 					<option value="writer" <c:if test="${paging.searchType == 'writer'}">selected</c:if>>작성자</option>
 					<option value="all" <c:if test="${paging.searchType == 'all'}">selected</c:if>>제목+내용+작성자</option>
 				</select>
 				<input name="search" value="${paging.search}"> 
+				<input hidden name="page" id="page" value=""> 
 				<input hidden name="type" value="${type}"> 
 				<input type="submit" value="검색">
 				
@@ -61,8 +62,11 @@
 	</div>
 	</body>
 	<script>
+		
 		function goList(p) {
-			location.href = "communityList.do?page=" + p+"&type=${type}";
+			//location.href = "communityList.do?page=" + p+"&type=${type}";
+			$('#page').val(p);
+			$('#pageSearchForm').submit();
 		}
 	</script>
 </html>

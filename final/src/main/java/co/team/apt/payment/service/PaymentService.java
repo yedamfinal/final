@@ -1,5 +1,6 @@
 package co.team.apt.payment.service;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 
@@ -22,4 +23,5 @@ public interface PaymentService {
 	public PaymentVo payComparison(PaymentVo vo);
 	public void payDelay();
 	public List<PaymentVo> managerList();
+	public List<?> getExcelUpload(File file);
 }

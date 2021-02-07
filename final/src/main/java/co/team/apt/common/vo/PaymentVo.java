@@ -35,4 +35,7 @@ public class PaymentVo {
 	//개인정보(관리자페이지)
 	private String dong; //동
 	private String ho; //호수
+	
+	//엑셀업로드
+	private String excelFile;
 }

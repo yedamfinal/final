@@ -29,20 +29,23 @@
 		<tbody>
 		
 			<c:forEach var="vo" items="${postBoxList}">
-			<tr>
-				<th scope="col">${person.dong}</th>
-				<th scope="col">${person.ho}</th>	
-				<th scope="col">${vo.postNo}</th>
-				<th scope="col">${vo.product}</th>
-				<th scope="col">${vo.arriveDate}</th>
-				<th scope="col">${vo.getTime}</th>
-				<th scope="col">${vo.get}</th>
+			<tr onclick="location.href='postBoxRead.do?postNo=${vo.postNo }'">
+				<td scope="col">${vo.dong}</td>
+				<td scope="col">${vo.ho}</td>	
+				<td scope="col">${vo.postNo}</td>
+				<td scope="col">${vo.product}</td>
+				<td scope="col">${vo.arriveDate}</td>
+				<td scope="col">${vo.getTime}</td>
+				<td scope="col"><c:if test = "${vo.get eq 'after'}">수령완료</c:if>
+								<c:if test = "${vo.get eq 'before'}">수령전</c:if>
+					</td>
 			</tr> 
 			</c:forEach>
 		</tbody>
 		</table>
-
+		<c:if test ="${person.type eq 'm'}">
 		<button class="btn btn-outline-secondary" onclick="location.href='mPostBoxInsForm.do'">등록하기</button>
+		</c:if>
 		</div>		
 	</div>
 </body>

@@ -101,22 +101,23 @@
 	
 	function payment() {
 		let frm = $("#frm").serializeObject();
-		frm.cost = frm.cost.replace("만원","0000");
+		let cost = frm.cost.replace("만원","0000");
 		let payNo = Date.now();
+		
 		$('#payNo').val(payNo);
 		//결제 정보
 		let param = { // param
 			pg : "html5_inicis",
 			merchant_uid : payNo, //결제번호
 			name : "헬스장", //헬스장, 독서실, x월 관리비 결제명
-			amount : 2000, //가격
+			amount : cost, //가격
 			buyer_name : frm.name, // 회원이름
 			buyer_tel : frm.phone //회원전화번호
 		}
 		IMP.request_pay(param, function(rsp) { // callback
 			if (rsp.success) {
 				// 결제 성공 시 로직, 디비에 저장
-				
+				$('#cost').val(cost);
 				$("#frm").submit();
 			} else {
 				// 결제 실패 시 로직, 결제실패 메시지 or 페이지

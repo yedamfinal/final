@@ -28,9 +28,9 @@
             </ul>
         </div>
 
-        <div id="wrapper">
+        <div id="wrapper" align="center">
             <div id="loading"></div>
-            <div id="calendar"></div>
+            <div id="calendar" style="width:80%"></div>
         </div>
 
 

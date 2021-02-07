@@ -17,6 +17,12 @@
 			<br>				
 		</div>
 	</div>
+	엑셀업로드 : <br/>
+	<form name="excelUpForm" id="excelUpForm" enctype="multipart/form-data" method="POST" action="payExcelUpload.do">
+	    <input type="file" id="excelFile" name="excelFile" value="엑셀 업로드" />
+	    <button>업로드</button>
+	</form>
+
 	<table class="table" >
 			<thead align="center">
 				<tr>

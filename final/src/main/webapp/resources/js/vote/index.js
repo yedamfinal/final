@@ -28,9 +28,12 @@ App = {
 
 
 		App.contract = new web3.eth.Contract(abi);
-		App.contract.options.address = "0xA5453f26cB691d30b0D5f8533e5B057C3fC933f5";
+		App.contract.options.address = "0x9Dd589D5e3Bab33029b44BAB12b7Ca77A596FD7F";
 
 		App.voting();
+		if(result != ""){
+			App.voteResult(result)
+		}
 
 	},
 	voting: function() {
@@ -61,8 +64,6 @@ App = {
 		
 	},
 	inPerson: function(){
-		
-		
 		web3.eth.getAccounts(function(error, accounts){
 			if(error){
 				console.log(error);
@@ -71,11 +72,31 @@ App = {
 			console.log(accounts);
 			var account = accounts[0];
 			let seq = $('#seq').val() //글번호  seq = seq.value seq = document.getElementId('seq').value
-			let id = $('#id').val() //주민 id
+			let id = $('#vid').val() //주민 id
 			
 			App.contract.methods.addCandidate(seq,id) //글번호, 투표자id
 						  .send({from:account})
-						  .then(function(result){});
+						  .then(function(result){
+							alert(id);
+							$("#inPerson").submit();
+						 	
+						});
+			
+		})
+	},
+	voteResult : function(seq){
+		web3.eth.getAccounts(function(error, accounts){
+			if(error){
+				console.log(error);
+				return;
+			}
+			var account = accounts[0];
+			//let seq3 = $('#seq').val()
+			App.contract.methods.winnerName(seq)// 글번호
+						  .call()
+						  .then(function(result){
+							$('#voteResultInput').html(result);				
+						   });
 			
 		})
 	},
@@ -86,31 +107,24 @@ App = {
 				return;
 			}
 			var account = accounts[0];
-			let seq2 = $('#seq2').val()
-			let num = $('#num').val() //후보자 번호
+			let seq2 = $('#seq').val()
+			//let num = $('#num').val() //후보자 번호
+			let num= Number($('#selectCandidate').find('input[name="name"]:checked').data('num'));
 			
-			App.contract.methods.vote(seq2,num)// 글번호, 투표번호
+			App.contract.methods.vote(seq2, num)// 글번호, 투표번호
 						  .send({from:account})
-						  .then(function(result){});
-			
+						  		
+						  .then(function(result){
+							alert(num+'번 후보에 투표하셨습니다.')
+							
+							location.href="voteStart.do"
+							
+						});
+							
+		
 		})
 	},
-	voteResult : function(){
-		web3.eth.getAccounts(function(error, accounts){
-			if(error){
-				console.log(error);
-				return;
-			}
-			var account = accounts[0];
-			let seq3 = $('#seq3').val()
-			App.contract.methods.winnerName(seq3)// 글번호
-						  .call()
-						  .then(function(result){
-							$('#voteResultInput').val(result);
-						   });
-			
-		})
-	}
+
 }
 
 $(function() {

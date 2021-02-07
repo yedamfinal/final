@@ -8,5 +8,6 @@ public class CarVo {
    private String carNum;
    private String carType;
    private String Id;
+   private int cno;
    
 }

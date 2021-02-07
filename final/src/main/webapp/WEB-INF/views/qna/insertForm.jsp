@@ -11,7 +11,7 @@
 <body>
 	<div class="container">
 		<div class="form-group">
-			<form action="" method="post"
+			<form action="qnaInsert.do" method="post"
 				encType="multipart/form-data">
 
 				<input class="orm-control mt-4 mb-2" type="text" name="title"

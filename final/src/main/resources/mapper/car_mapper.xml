@@ -4,11 +4,15 @@
 <mapper namespace="co.team.apt.esey.mapper.CarMapper">
 
 <select id="carList" resultType="CarVo" parameterType="CarVo">
-		SELECT * FROM CAR
+		SELECT * FROM CAR where id=#{id}
 </select>
 
 <insert id="carInsert" parameterType="CarVo">
-	insert into car(carnum,cartype,id) values(#{carNum},#{carType},#{Id})
-
+	insert into car (carnum,cartype,id,cno) values(#{carNum},#{carType},#{Id},CNO_SEQ.nextval)
 </insert>
+
+<select id="selectOne" resultType="CarVo" parameterType="CarVo">
+	select * from car where cno=#{cno}
+</select>
+
 </mapper>

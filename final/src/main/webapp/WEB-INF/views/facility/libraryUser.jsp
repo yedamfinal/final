@@ -37,7 +37,6 @@
 			<br>
 			<br>
 			<p class="lead">
-				<button class="btn btn-primary btn-lg" onclick="extension()">기간연장</button>
 				<button class="btn btn-danger btn-lg" onclick="cancel()">환불안내</button>
 			</p>
 		</div>
@@ -121,18 +120,18 @@
 			let a = other / total;
 			let str = '${vo.cost}';
 			let cost = Number(str.replace('만원','0000'));
-			
+			//let cost = Number('${vo.cost}');
 			if('${vo.cancel}'=='yes'){
 				$('#cost2').val('이미 환불신청 중 입니다.');
 				$('#content').attr('disabled','disabled').val('이미 환불신청 중 입니다.');
 				$('#finalButton').attr('disabled','disabled');
-			}else if (a > 1) {
+			}else if (a >= 1) {
 				$('#cost2').val('전액 환불 가능합니다.'+ cost.toLocaleString()+'원 환불예정입니다.');
 				$('#cost').val(Math.round(Number(cost)));
-			} else if (a > (2 / 3)) {
+			} else if (a >= (2 / 3)) {
 				$('#cost2').val('교습기간의 1/3이내입니다. '+Math.round(Number(cost) * 2 / 3).toLocaleString()+'원 환불예정입니다.')
 				$('#cost').val(Math.round(Number(cost) * 2 / 3));
-			} else if (a > (1 / 2)) {
+			} else if (a >= (1 / 2)) {
 				$('#cost2').val('교습기간의 1/2이내입니다. '+Math.round(Number(cost) / 2).toLocaleString()+'원 환불예정입니다.')
 				$('#cost').val(Math.round(Number(cost) / 2));
 			} else {
