@@ -29,6 +29,21 @@ public class VisitCarServiceimpl implements VisitCarService {
 		// TODO Auto-generated method stub
 		return dao.selectOne(vo);
 	}
+	@Override
+	public int visitCarDelect(VisitCarVo vo) {
+		// TODO Auto-generated method stub
+		return dao.visitCarDelect(vo);
+	}
+	@Override
+	public int visitCarUpdate(VisitCarVo vo) {
+		// TODO Auto-generated method stub
+		return dao.visitCarUpdate(vo);
+	}
+	@Override
+	public List<VisitCarVo> mVisitList(VisitCarVo vo) {
+		// TODO Auto-generated method stub
+		return dao.mVisitList(vo);
+	}
 	
 }
 

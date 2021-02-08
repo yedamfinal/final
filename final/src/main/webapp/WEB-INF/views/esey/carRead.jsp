@@ -50,7 +50,6 @@ ${vo}ddd
 						<button type="button"
 						onclick="location.href='carDelete.do?cno=${vo.cno}'"
 						class="btn btn-outline-secondary">삭제하기</button>
-					&nbsp;&nbsp;&nbsp;
 				<button type="button" class="btn btn-outline-secondary" onclick="location.href='carUpdateForm.do?cno=${vo.cno}'">수정하기</button>
 				</div>
 			

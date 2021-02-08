@@ -43,10 +43,44 @@
 			</c:forEach>
 		</tbody>
 		</table>
-		<c:if test ="${person.type eq 'm'}">
-		<button class="btn btn-outline-secondary" onclick="location.href='mPostBoxInsForm.do'">등록하기</button>
-		</c:if>
+		<my:paging paging="${paging}" jsFunc="goList" /> <!-- 페이징 구현기능 -->
+		
+		<form action="postBoxList.do" method="post" id='pageSearchForm'>
+				<select name="searchType" id="searchType" size="1">
+					<option value="product" <c:if test="${paging.searchType == 'product'}">selected</c:if>>제품명</option>
+						</select>
+				<input name="search" value="${paging.search}"> 
+				<input hidden name="page" id="page" value=""> 
+				<input type="submit" value="검색">
+			</form>
+		
+		<div align="right">
+				<button class="btn btn-outline-secondary" onclick="location.href='test.do'">운송장 조회</button>
+				</div>
+		
+		
 		</div>		
 	</div>
+	
+	<script type="text/javascript">
+	$(".stopevent").on("click",function(event){
+		event.stopPropagation();
+		
+	}) 
+	function getselect(postNo) {
+		/* console.log(postNo,event.target.value) */
+		$("#postNo").val(postNo);
+		$("#get").val(event.target.value); 
+		$("#mget").submit();
+	}
+		
+	function goList(p) {
+		//location.href = "mPostBox.do?page=" + p;
+		$('#page').val(p);
+		$ ('#pageSearchForm').submit();
+	}
+	
+	</script>
+	
 </body>
 </html>

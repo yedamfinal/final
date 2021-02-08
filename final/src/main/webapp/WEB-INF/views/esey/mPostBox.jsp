@@ -36,7 +36,7 @@
 				<th scope="col">${vo.product}</th>
 				<th scope="col">${vo.arriveDate}</th>
 				<th scope="col">${vo.getTime}</th>
-				<th scope="col"><select class="form-control getselect"
+				<th scope="col" class = "stopevent"><select class="form-control getselect"
 							name="get" onchange = "getselect('${vo.postNo}')">
 							<option value="before" <c:if test="${vo.get eq 'before' }">selected</c:if>>수령전</option>
 							<option value="after"<c:if test="${vo.get eq 'after' }">selected</c:if>>수령완료</option>							
@@ -51,6 +51,18 @@
 		<input name="postNo" id="postNo" />
 		<input name="get" id="get" />
 		</form>
+		<my:paging paging="${paging}" jsFunc="goList" /> <!-- 페이징 구현기능 --> 
+		
+		<form action="mPostBox.do" method="post" id='pageSearchForm'>
+				<select name="searchType" id="searchType" size="1">
+					<option value="product" <c:if test="${paging.searchType == 'product'}">selected</c:if>>제품명</option>
+					<option value="dong" <c:if test="${paging.searchType == 'dong'}">selected</c:if>>동/호수</option>
+						</select>
+				<input name="search" value="${paging.search}"> 
+				<input hidden name="page" id="page" value=""> 
+				<input type="submit" value="검색">
+				
+			</form>
 		
 		<button class="btn btn-outline-secondary" onclick="location.href='mPostBoxInsForm.do'">등록하기</button>
 		<%-- <c:if test ="${person.type eq 'm'}">
@@ -59,7 +71,7 @@
 	</div>
 	
 	<script type="text/javascript">
-	$(".getselect").on("click",function(event){
+	$(".stopevent").on("click",function(event){
 		event.stopPropagation();
 		
 	}) 
@@ -70,7 +82,11 @@
 		$("#mget").submit();
 	}
 		
-	
+	function goList(p) {
+		//location.href = "mPostBox.do?page=" + p;
+		$('#page').val(p);
+		$ ('#pageSearchForm').submit();
+	}
 	
 	</script>
 </body>
