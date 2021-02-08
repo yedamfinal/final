@@ -45,7 +45,7 @@ public class QnaServiceImpl implements QnaService{
 	}
 	@Override
 	public int replyInsert(QnaVo vo) {
-		// TODO Auto-generated method stub
+		dao.replyLayerUpdate(vo);
 		return dao.replyInsert(vo);
 	}
 

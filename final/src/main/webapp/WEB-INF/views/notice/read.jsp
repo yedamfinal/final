@@ -47,41 +47,7 @@
                </div>
 		</div>
 		
-		<!-- 댓글 -->
-		<hr />
-		<ul>
-			<li>
-				<div>
-					<p>첫번째 댓글 작성자</p>
-					<p>첫번째 댓글</p>
-				</div>
-			</li>
-			<li>
-				<div>
-					<p>두번째 댓글 작성자</p>
-					<p>두번째 댓글</p>
-				</div>
-			</li>
-			<li>
-				<div>
-					<p>세번째 댓글 작성자</p>
-					<p>세번째 댓글</p>
-				</div>
-			</li>
-		</ul>
-
-		<div>
-			<p>
-				<label>댓글 작성자</label> <input type="text">
-			</p>
-			<p>
-				<textarea rows="5" cols="50"></textarea>
-			</p>
-			<p>
-				<button type="button">댓글 작성</button>
-			</p>
-		</div>
-		<!-- 댓글 -->
+		
 		
 </div>        
 

@@ -46,9 +46,9 @@ public class CalendarController {
 	public List<CalendarVo> calendarAjax(CalendarVo vo) {
 						
 	List<CalendarVo> list = calendarService.CalendarList(vo);
-			for (CalendarVo v : list ) {
-				v.setAllDay(true);
-			}
+	
+	 for (CalendarVo v : list ) { v.setAllDay(true); }
+	 
 	return list;
 	}
 			

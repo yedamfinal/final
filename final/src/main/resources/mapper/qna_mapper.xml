@@ -100,5 +100,7 @@
 			  )
 	</insert>
 	
-	
+	<update id="replyLayerUpdate" parameterType="QnaVo">
+	update qna set groupord = groupord + 1 where originno = #{originno} and groupord > #{groupord}
+	</update>
 </mapper>

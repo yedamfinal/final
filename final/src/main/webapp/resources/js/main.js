@@ -8,7 +8,7 @@ var calendar = $('#calendar').fullCalendar({
    * *******************/
   locale                    : 'ko',    
   timezone                  : "local", 
-  nextDayThreshold          : "09:00:00",
+ /* nextDayThreshold          : "09:00:00",*/
   allDaySlot                : true,
   displayEventTime          : true,
   displayEventEnd           : true,

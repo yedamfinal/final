@@ -41,7 +41,7 @@
 				#{title},
 				#{description},
 				#{start},
-				#{end},
+				#{endDate},
 				#{username},
 				#{backgroundColor},
 				#{textColor}
