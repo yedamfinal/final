@@ -9,9 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import co.team.apt.common.vo.BoardVoteVo;
+import co.team.apt.common.vo.Paging;
 import co.team.apt.common.vo.PostBoxVo;
 import co.team.apt.common.vo.ResidentVo;
+import co.team.apt.esey.mapper.PostBoxMapper;
 import co.team.apt.esey.service.PostBoxService;
 
 @Controller
@@ -20,15 +21,31 @@ public class PostBoxController {
 	@Autowired
 	PostBoxService postBoxService;
 	
+	@Autowired
+	PostBoxMapper dao;
+	
 	//리스트 조회
 	@RequestMapping("postBoxList.do")
-	public String postBoxList(Model model, PostBoxVo vo ,HttpSession session) {
+	public String postBoxList(Model model, PostBoxVo vo ,Paging paging ,HttpSession session) {
 		ResidentVo resiVo = (ResidentVo) session.getAttribute("person");
 		if(resiVo == null){
 			return "home/needLogin";
 		}else if (resiVo.getType().equals("m")) {
 			return "redirect:mPostBox.do";
 		}else {
+			//페이징처리
+			paging.setPageUnit(10);
+			paging.setPageSize(10);	//페이지넘버 자체를 지정
+			// 페이지번호 파라미터
+			if( paging.getPage() == null) {
+				paging.setPage(1); 
+			}		
+			// 시작/마지막 레코드 번호
+			vo.setStart(paging.getFirst());
+			vo.setEnd(paging.getLast());		
+			// 전체 건수
+			paging.setTotalRecord(dao.pagingCount(vo));		//전체레코드건수	
+		
 		vo.setDong(resiVo.getDong());
 		vo.setHo(resiVo.getHo());
 		List<PostBoxVo> list = postBoxService.postBoxList(vo);
@@ -37,7 +54,7 @@ public class PostBoxController {
 		}
 	}
 	@RequestMapping("postBoxRead.do")
-	public String postBoxRead(Model model, PostBoxVo vo, HttpSession session) {
+	public String postBoxRead(Model model, PostBoxVo vo,HttpSession session) {
 		ResidentVo resiVo = (ResidentVo) session.getAttribute("person");
 		vo = postBoxService.selectOne(vo);
 		model.addAttribute("vo", vo);
@@ -52,7 +69,23 @@ public class PostBoxController {
 	
 	//관리자 택배조회
 		@RequestMapping("mPostBox.do")
-		public String mPostBox(Model model, PostBoxVo vo) {
+		public String mPostBox(Model model, Paging paging , PostBoxVo vo) {
+			//페이징처리
+			paging.setPageUnit(10);
+			paging.setPageSize(10);	//페이지넘버 자체를 지정
+			// 페이지번호 파라미터
+			if( paging.getPage() == null) {
+				paging.setPage(1); 
+			}		
+			// 시작/마지막 레코드 번호
+			vo.setStart(paging.getFirst());
+			vo.setEnd(paging.getLast());		
+			// 전체 건수
+			paging.setTotalRecord(dao.pagingCount(vo));		//전체레코드건수
+
+
+			model.addAttribute("paging", paging);
+			
 			List<PostBoxVo> list = postBoxService.mPostBox(vo);
 			model.addAttribute("mPostBox", list);
 			return "esey/mPostBox";

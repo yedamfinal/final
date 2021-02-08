@@ -8,12 +8,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <!-- Bootstrap CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 </head>
 <body>
+${vo},${vo.cget}
 	<div class="container">
 	<div>
-		<h1>입주자차량등록</h1>
+		<h1>입주자차량신청</h1>
 	</div>
 	<div align="center">
 		<table class="table">
@@ -24,22 +24,23 @@
 				<th scope="col">호수</th>
 				<th scope="col">차량번호</th>
 				<th scope="col">차종</th>
+				<th scope="col">승인여부</th>	
 			</tr>
 		</thead>
 		<tbody>
 			
-			
 			<c:forEach var="vo" items="${carList}">
 			<tr  onclick="location.href='carRead.do?cno=${vo.cno }'">
-				<th scope="col">${vo.cno}</th>
-				<th scope="col">${person.dong}</th>
-				<th scope="col">${person.ho}</th>	
-				<th scope="col">${vo.carNum}</th>
-				<th scope="col">
+				<td scope="col">${vo.cno}</td>
+				<td scope="col">${person.dong}</td>
+				<td scope="col">${person.ho}</td>	
+				<td scope="col">${vo.carNum}</td>
+				<td scope="col">
 				 <c:if test = "${vo.carType eq 'S'}">소형</c:if>
 				 <c:if test = "${vo.carType eq 'M'}">중형</c:if>
 				 <c:if test = "${vo.carType eq 'L'}">대형</c:if>
-				 </th>
+				</td>
+				 <td scope="col">${vo.cget}</td>
 			</tr> 
 			</c:forEach>
 		</tbody>

@@ -4,7 +4,10 @@
 <mapper namespace="co.team.apt.esey.mapper.PostBoxMapper">
 
 <select id="postBoxList" resultType="PostBoxVo" parameterType="PostBoxVo">
+		select a.* from( select b.*, rownum rm from (
 		SELECT * FROM POSTBOX where dong=#{dong} and ho=#{ho}
+		<include refid="searchQuery"></include>
+		) b ) a where rm between #{start} and #{end}
 </select>
 
 <select id="selectOne" resultType="PostBoxVo" parameterType="PostBoxVo">
@@ -13,8 +16,42 @@
 
 <!-- 관리자 택배조회 -->
 	<select id="mPostBox" resultType="PostBoxVo" parameterType="PostBoxVo">
-		SELECT rownum rn,a.* FROM POSTBOX a order by rn
+		select a.* from( select b.*, rownum rm from (
+		SELECT rownum rn,a.* FROM POSTBOX a 
+		<include refid="searchQuery"></include>
+		order by rn
+		) b ) a where rm between #{start} and #{end}
+		
 </select>
+	<select id="pagingCount" resultType="int">
+	    SELECT count(*) 
+		FROM postbox 
+		<include refid="searchQuery"></include>
+	</select>
+	<sql id = "searchQuery">
+		<!-- <choose>
+			<when test="searchType == 'all' ">
+				where
+				type = #{type}
+				and (title like '%' || #{search} || '%'
+				or content like '%' || #{search} || '%'
+				or writer like '%' || #{search} || '%')
+			</when>
+			<otherwise>
+				where
+				type = #{type}
+			<if test="search != null and search != ''">
+				and ${searchType} like '%' || #{search} || '%'
+			</if>
+			</otherwise>
+		</choose> -->
+		<where>
+			<if test="search != null and search != ''">
+				${searchType} like '%' || #{search} || '%'
+			</if>
+		</where>
+		
+	</sql>
 
  <!--관리자 택배 등록 -->
 <insert id = "mPostBoxInsert" parameterType = "PostBoxVo">

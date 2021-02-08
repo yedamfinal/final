@@ -53,6 +53,10 @@ ${vo}ddd
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<button type="button" class="btn btn-outline-secondary"
 						onclick="location.href='visitList.do'">목록보기</button>
+						<button type="button"
+						onclick="location.href='visitCarDelect.do?visitNo=${vo.visitNo}'"
+						class="btn btn-outline-secondary">삭제하기</button>
+						<button type="button" class="btn btn-outline-secondary" onclick="location.href='visitCarupdateForm.do?visitNo=${vo.visitNo}'">수정하기</button>
 				</div>
 			
 		</div>

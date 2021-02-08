@@ -12,4 +12,5 @@ public interface CarMapper {
 		public int cerror(CarVo vo);
 		public int carDelete(CarVo vo);
 		public int carUpdate(CarVo vo);
+		public List<CarVo> mCarList(CarVo vo);
 }
