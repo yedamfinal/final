@@ -19,6 +19,7 @@
 <script src="resources/js/vote/abi.js"></script>
 <script src="resources/js/vote/index.js"></script>
 <script>
+let result = '${vo.seq}';
 App.init();
 </script>
 </html>

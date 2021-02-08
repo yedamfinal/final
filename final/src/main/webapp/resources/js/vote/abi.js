@@ -72,9 +72,26 @@ abi = [
 		"name": "winnerName",
 		"outputs": [
 			{
-				"internalType": "string",
-				"name": "_winner",
-				"type": "string"
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "voteCount",
+						"type": "uint256"
+					}
+				],
+				"internalType": "struct Election.Candidate[]",
+				"name": "_result",
+				"type": "tuple[]"
 			}
 		],
 		"payable": false,

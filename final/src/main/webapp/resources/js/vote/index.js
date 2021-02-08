@@ -28,7 +28,7 @@ App = {
 
 
 		App.contract = new web3.eth.Contract(abi);
-		App.contract.options.address = "0x9Dd589D5e3Bab33029b44BAB12b7Ca77A596FD7F";
+		App.contract.options.address = "0xC1548228AeC8D02C381B16bc3eCC671F869fbb3a";
 
 		App.voting();
 		if(result != ""){
@@ -95,6 +95,10 @@ App = {
 			App.contract.methods.winnerName(seq)// 글번호
 						  .call()
 						  .then(function(result){
+						    //console.log(result);
+							//console.log(result.id,result.name, result.voteCount);
+							console.log(result[0].id);
+							console.log(result[0].name)
 							$('#voteResultInput').html(result);				
 						   });
 			
@@ -106,7 +110,7 @@ App = {
 				console.log(error);
 				return;
 			}
-			var account = accounts[0];
+			var account = accounts[0];	
 			let seq2 = $('#seq').val()
 			//let num = $('#num').val() //후보자 번호
 			let num= Number($('#selectCandidate').find('input[name="name"]:checked').data('num'));

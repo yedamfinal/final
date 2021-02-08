@@ -14,6 +14,8 @@ public interface CandidateMapper {
 	int candiDelete(CandidateVo vo);
 
 	CandidateVo selectName(CandidateVo vo);
+
+	CandidateVo candiProfile(CandidateVo vo);
 	
 	
 	

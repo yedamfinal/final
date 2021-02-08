@@ -11,5 +11,7 @@ public class CandidateVo {
 	private String content;
 	private String seq;
 	private int voteNum;
-
+	private String dong;
+	private String ho;
+	private String picture;
 }
