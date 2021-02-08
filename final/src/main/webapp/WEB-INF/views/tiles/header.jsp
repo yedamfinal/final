@@ -88,12 +88,17 @@
 								id="navbarDropdown" role="button" data-toggle="dropdown"
 								aria-haspopup="true" aria-expanded="false">편의기능</a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<c:if test ="${person.type ne 'm'}">
 									<a class="dropdown-item" href="postBoxList.do">택배조회</a> <a
 										class="dropdown-item" href="carList.do">입주자 차량등록</a> <a
-										class="dropdown-item" href="visitList.do">방문자 차량등록</a> <a
-										class="dropdown-item" href="cctv.do">CCTV</a> <a
-										class="dropdown-item" href="#">관리자 차량관리</a> <a
-										class="dropdown-item" href="#">관리자 택배관리</a> 
+										class="dropdown-item" href="visitList.do">방문자 차량등록</a> 
+										</c:if>
+										<c:if test ="${person.type eq 'm'}">
+										<a class="dropdown-item" href="mPostBox.do">택배관리</a> <a
+										class="dropdown-item" href="mCarList.do">차량관리</a>
+										</c:if>
+										 <a class="dropdown-item" href="cctv.do">CCTV</a>
+										 
 										
 								</div></li>
 						</ul>

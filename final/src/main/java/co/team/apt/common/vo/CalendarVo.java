@@ -11,9 +11,9 @@ public class CalendarVo {
 	private Integer calendarno;
 	private String title;
 	private String description;
-	@JsonFormat(pattern = "yyyy-MM-dd")
+	 @JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Seoul") 
 	private Date start;
-	@JsonFormat(pattern = "yyyy-MM-dd")
+	 @JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Seoul") 
 	private Date end;
 	private String startDate;
 	private String endDate;

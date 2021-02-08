@@ -14,4 +14,5 @@ public interface QnaMapper {
 	public int replyInsert(QnaVo vo);
 	public int replyUpdate(QnaVo vo);
 	public int replyDelete(QnaVo vo);
+	public int replyLayerUpdate(QnaVo vo);
 }

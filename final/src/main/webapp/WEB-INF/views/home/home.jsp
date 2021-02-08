@@ -67,6 +67,15 @@
 						<div class="tab_noti_list m_noti_list">
 							<ul id="notice_latest_ul1">
 
+								<%-- <c:forEach var="vo" items="${noticeList}">
+								<li onclick="location.href='noticeRead.do?defno=${vo.defno}'">
+									<li><a>${vo.title}
+									<small title="작성일">${vo.defdate}</small>
+									</a>
+									
+								</c:forEach> --%>
+								
+								
 								<li><a
 									href="javascript:post_to_url('/board/view/inform/',{'wr_id':'784323'})">로그인을
 										하셔야 확인 가능합니다. <small title="작성일">2021-01-17</small>

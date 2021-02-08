@@ -4,7 +4,7 @@
 <mapper namespace="co.team.apt.esey.mapper.CarMapper">
 
 <select id="carList" resultType="CarVo" parameterType="CarVo">
-		SELECT * FROM CAR where id=#{id}
+		SELECT c.*,r.dong,r.ho FROM CAR c, resident r where c.id = r.id and c.id=#{id} 
 </select>
 
 <insert id="carInsert" parameterType="CarVo">
@@ -40,5 +40,8 @@ where id in ( select id
 			where cno = #{cno}
 </update> 
 
-
+<!-- 관리자 입주자 차량조회 -->
+	<select id="mCarList" resultType="CarVo" parameterType="CarVo">
+	SELECT c.*,r.dong,r.ho FROM CAR c, resident r where c.id = r.id
+	</select>
 </mapper>

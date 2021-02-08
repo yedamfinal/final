@@ -55,5 +55,31 @@ public class VisitCarController {
 	    model.addAttribute("vo", vo);
 	    return "esey/visitCarRead";
 	}
+	@RequestMapping("visitCarDelect.do")
+	public String visitCarDelect(Model model, VisitCarVo vo) {
+		int n = visitCarService.visitCarDelect(vo);
+		return "redirect:visitList.do";
+	}
+	@RequestMapping("visitCarupdateForm.do") 
+		public String visitCarupdateForm(Model model, VisitCarVo vo) {
+		return "esey/visitCarUpdate";
+	}
+	@RequestMapping("visitCarUpdate.do")
+	public String visitCarUpdate(Model model, VisitCarVo vo) {
+		int n = visitCarService.visitCarUpdate(vo);
+		return "redirect:visitList.do";
+				
+	}
+	//관리자 차량조회
+	@RequestMapping("mVisitList.do")
+	public String mVisitList(Model model, VisitCarVo vo) {
+		List<VisitCarVo> list = visitCarService.mVisitList(vo);
+		model.addAttribute("mVisitList",list);
+			return "esey/mVisitCarList"; 
+		
+	}
+	
+	
+
 	
 }

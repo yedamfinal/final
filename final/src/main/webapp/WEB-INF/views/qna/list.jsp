@@ -31,9 +31,14 @@
 						<td>
 						<c:choose>
 
-							<c:when test="${vo.groupord eq 0}">${vo.title}</c:when>
+							<c:when test="${vo.grouplayer eq 0}">${vo.title}</c:when>
 							
-							<c:when test="${vo.groupord ne 0}">&nbsp;&nbsp;ㄴ[답변] : ${vo.title}</c:when>
+							<c:when test="${vo.grouplayer ne 0}">
+								<c:forEach begin="1" end="${vo.grouplayer}">
+								&nbsp;&nbsp;&nbsp;&nbsp;
+								</c:forEach>
+								<img src="resources/img/right.png" width="20px" height="20px">[답변] : ${vo.title}
+							</c:when>
 							
 							
 						</c:choose>

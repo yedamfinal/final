@@ -13,7 +13,8 @@ public interface PostBoxMapper {
 	public int mPostBoxUpdate(PostBoxVo vo);
 	public int mPostBoxDelete(PostBoxVo vo);
 	public int mafter(PostBoxVo vo);
-	public int mbefore(PostBoxVo vo); 
+	public int mbefore(PostBoxVo vo);
+	public int pagingCount(PostBoxVo vo); 
 	
 
 }

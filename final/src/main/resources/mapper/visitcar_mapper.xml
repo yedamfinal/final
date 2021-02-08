@@ -35,8 +35,26 @@
   	<select id="selectOne" resultType="VisitCarVo" parameterType="VisitCarVo">
 		select * from VISITCAR where visitno = #{visitNo}
 	</select>
+	
+	<delete id="visitCarDelect" parameterType="VisitCarVo">
+	
+		delete from visitcar
+		where visitno = #{visitNo}
+	
+	</delete>
   	
+  	<update id="visitCarUpdate" parameterType="VisitCarVo">
+		update postbox set carNum=#{carNum},
+			purpose = #{purpose},
+			startDate = #{startDate},
+			endDate = #{endDate} 
+			where visitNo = #{visitNo}
+	</update>
   
+  	<select id="mVisitList" resultType="VisitCarVo" parameterType="VisitCarVo">
+		SELECT * from visitcar
+		
+	</select>
   	
   	
 

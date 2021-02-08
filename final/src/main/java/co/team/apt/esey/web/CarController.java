@@ -34,7 +34,7 @@ public class CarController {
 		if(resiVo == null){
 			return "home/needLogin";
 		}else if (resiVo.getType().equals("m")) {
-			return null;
+			return "redirect:mCarList.do";
 		}else {
 			vo.setId(resiVo.getId());
 			List<CarVo> list = carService.carList(vo);
@@ -81,5 +81,16 @@ public class CarController {
 		int n = carService.carUpdate(vo);
 		return "redirect:carList.do";
 	}
+
+	//관리자 차량조회
+	@RequestMapping("mCarList.do")
+	public String mCarList(Model model, CarVo vo) {
+		List<CarVo> list = carService.mCarList(vo);
+		model.addAttribute("mCarList",list);
+			return "esey/mCarList"; 
+				
+	}
+	
+	
 	
 }
