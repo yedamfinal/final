@@ -53,8 +53,8 @@
 					<span class="border border-primary rounded-circle mon center"
 						id="voMonth">  </span>
 				</div>
-				<div class="col-8 center">
-					납부마감일 ㄴㅁㅇㄻㄴㅇㄹ<br> 납부마감일을 넘길시 연체료가 부과됩니다.
+				<div class="col-8 center" id="Deadline">
+					
 				</div>
 			</div>
 			<div class="col-sm center">
@@ -494,6 +494,13 @@
 	let voMonth = new Date();
 	$('#voMonth').html(voMonth.getMonth()+1+' 월');
 	
+
+	let dtest = new Date();
+	dtest = new Date(dtest.getFullYear(),dtest.getMonth()+1);
+	dtest = new Date(dtest-1);
+	
+	$('#Deadline').html("납부마감일 : "+(dtest.getMonth()+1)+"월 "+dtest.getDate()+"일<br> 납부마감일을 넘길시 연체료가 부과됩니다.")
+	
 	//전월비교 달변경
 	function monthChange(num){
 		//monthTh+num
@@ -571,7 +578,6 @@
 			c.cells[1].innerHTML = ++i;  
 		}
 	}
-	
 	
 </script>
 </html>

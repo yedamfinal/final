@@ -14,7 +14,6 @@
             <br/>
             <br/>
             	<table class="table" >
-               		
                    <tr>
                    		<td colspan="2" align="right">
                            <button type="button" onclick="location.href='qnaUpdateForm.do?qnano=${vo.qnano}' ">글수정</button>
