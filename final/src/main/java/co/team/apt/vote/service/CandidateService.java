@@ -14,5 +14,7 @@ public interface CandidateService {
 	int candiDelete(CandidateVo vo);
 
 	CandidateVo selectName(CandidateVo vo);
+
+	CandidateVo candiProfile(CandidateVo vo);
 	
 }

@@ -5,7 +5,7 @@
 <mapper namespace="co.team.apt.vote.mapper.CandidateMapper">
 
 	<select id="searchName" resultType="ResidentVo" parameterType="ResidentVo">
-		select id, name, dong, ho 
+		select id, name, dong, ho
 		from resident
 		where name= #{name}
 	</select>
@@ -39,7 +39,8 @@
 								job,
 								gender,
 								content,
-								votenum
+								votenum,
+								picture
 								)
 		values(
 				#{seq},
@@ -47,7 +48,8 @@
 				#{job},
 				#{gender},
 				#{content},
-				nvl((select max(votenum) from candidate where seq=#{seq}),0)+1
+				nvl((select max(votenum) from candidate where seq=#{seq}),0)+1,
+				#{picture}
 				 )
 	</insert>
 	
@@ -65,6 +67,14 @@
 		set state='del'
 		where id = #{id}
 	</delete>
+	
+	<select id="candiProfile" parameterType="CandidateVo" resultType="CandidateVo">
+		select r.name, r.dong, r.ho, c.*
+		from resident r, candidate c
+		where r.id=c.id
+		and c.id=#{id}
+		and c.seq=#{seq}
+	</select>
 	
 	<!-- <insert id="addCandi" parameterType="CandidateVo">
 		insert into candidate

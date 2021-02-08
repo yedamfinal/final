@@ -51,6 +51,13 @@ public class CandidateServiceImpl implements CandidateService {
 	}
 
 
+	@Override
+	public CandidateVo candiProfile(CandidateVo vo) {
+		// TODO Auto-generated method stub
+		return dao.candiProfile(vo);
+	}
+
+
 
 
 	
