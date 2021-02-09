@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
@@ -403,7 +404,44 @@
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
-					<div class="modal-body">...</div>
+					<div class="modal-body">
+						
+						<table class="table">
+								<thead>
+									<tr>
+										<th scope="row">${pay.payMonth }월납입항목</th>
+										<th>납입금액</th>
+										<th>납입일자</th>
+										<th>납입여부</th>
+									</tr>
+								</thead>
+							<c:forEach items="${detailList }" var="de">
+								<tbody>
+									<tr>
+										<td>${fn:substring(de.payMonth,0,7) }</td>
+										<c:choose>
+										<c:when test="${fn:toLowerCase(de.status)=='yes' }">
+											<td><fmt:formatNumber type="number" maxFractionDigits="3"
+													value="${de.cost }" />원</td>
+											<td>${de.payDate }</td>
+											<td>납입완</td>
+										</c:when> 
+										<c:when test="${fn:toLowerCase(de.status)=='no' }">
+											<td></td>
+											<td></td>
+											<td>연체중</td>
+										</c:when> 
+										<c:when test="${fn:toLowerCase(de.status)=='ing' }">
+											<td></td>
+											<td></td>
+											<td>납입전</td>
+										</c:when> 
+										</c:choose>
+									</tr>
+								</tbody>
+							</c:forEach>
+						</table>
+					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary"
 							data-dismiss="modal">닫기</button>
@@ -444,7 +482,6 @@
 								<label for="password">카드 비밀번호 앞 두자리 XX</label> <input
 									id="password" type="password" name="password">
 							</div>
-							${payMap['id'] }
 							<input hidden type="text" name="id" value="${payMap['id'] }">
 							<%-- <input hidden name="cost" value="${payMap['total']+payMap['tax'] }"> --%>
 							<input hidden name="cost" value="2000">
@@ -578,6 +615,8 @@
 			c.cells[1].innerHTML = ++i;  
 		}
 	}
+	
+	
 	
 </script>
 </html>

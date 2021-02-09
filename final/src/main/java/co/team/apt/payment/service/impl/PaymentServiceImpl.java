@@ -311,6 +311,12 @@ public class PaymentServiceImpl implements PaymentService{
 
 	}
 
+	@Override
+	public List<PaymentVo> detailList(PaymentVo vo) {
+		// TODO Auto-generated method stub
+		return dao.ditailList(vo);
+	}
+
 	
 	
 

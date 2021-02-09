@@ -24,4 +24,5 @@ public interface PaymentService {
 	public void payDelay();
 	public List<PaymentVo> managerList();
 	public List<?> getExcelUpload(File file);
+	public List<PaymentVo> detailList(PaymentVo vo);
 }
