@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,7 +26,7 @@
 					${person.name }님께서는 환불신청 상태입니다.
 				</c:if>
 				<c:if test="${vo.cancel ne 'yes' }">
-					${person.name }님께서는 ${vo.endDate }까지
+					${person.name }님께서는 ${fn:substring(vo.endDate,0,10) }까지
 					<c:if test="${not empty vo.seat }">
 					${vo.seat }번자리
 					</c:if>				

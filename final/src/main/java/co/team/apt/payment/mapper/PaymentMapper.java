@@ -21,4 +21,5 @@ public interface PaymentMapper {
 	public List<PaymentVo> managerList();
 	public void insertPayment(Map<String, Object> map);
 	public void insertPayPublic(Map<String, Object> map);
+	public List<PaymentVo> ditailList(PaymentVo vo);
 }

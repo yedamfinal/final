@@ -57,7 +57,8 @@
 		update candidate		
 		set job=#{job},
 			gender=#{gender},
-			content=#{content}
+			content=#{content},
+			picture=#{picture}
 		where id=#{id}
 		and seq=#{seq}
 	</update>
@@ -75,24 +76,4 @@
 		and c.id=#{id}
 		and c.seq=#{seq}
 	</select>
-	
-	<!-- <insert id="addCandi" parameterType="CandidateVo">
-		insert into candidate
-				(
-					seq, 
-					id, 
-					job, 
-					gender, 
-					content
-				)
-		values (
-					#{seq},
-					#{id},
-					#{job},
-					#{gender},
-					#{content}
-				)
-	</insert> -->
-
-	
 </mapper>
