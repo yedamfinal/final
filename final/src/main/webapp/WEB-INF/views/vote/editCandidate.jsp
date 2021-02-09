@@ -49,7 +49,7 @@
 			<h1>후보자 정보 수정</h1>
 		</div>
 		<div>
-			<form action="updateCandidate.do" method="post">
+			<form action="updateCandidate.do" method="post" encType="multipart/form-data">
 					<input type="hidden" id="seq" name="seq" value="${vo.seq}">
 					<input type="hidden" name="id" value="${vo.id}">
 					<input type="hidden" name="name" value="${vo.name}">
@@ -82,6 +82,10 @@
 						<th width="100">공약 및 약력</th>
 						<td width="300"><textarea id="content" name="content"
 								style="width: 80%; height: 300px;">${vo.content }</textarea></td>
+					</tr>
+					<tr>
+						<th width="100">후보자 사진 첨부</th>
+						<td width="300"><input type="file" name="uploadFile"></td>
 					</tr>
 				</table>
 				<div align="right">

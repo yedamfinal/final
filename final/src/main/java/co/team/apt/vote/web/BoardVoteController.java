@@ -2,8 +2,6 @@ package co.team.apt.vote.web;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import co.team.apt.common.vo.BoardVoteVo;
 import co.team.apt.common.vo.CandidateVo;
@@ -123,19 +122,22 @@ public class BoardVoteController {
 
 	// 주민 게시판->상세보기, 수정 페이지로 이동
 	@RequestMapping("/userBoardVoteRead.do")
-	public String userBoardVoteRead(Model model, BoardVoteVo vo, CandidateVo cvo) {
+	public String userBoardVoteRead(Model model, BoardVoteVo vo, CandidateVo cvo) throws JsonProcessingException {
+		List<CandidateVo> list = candidateService.candidateList(cvo);
 		vo = boardVoteService.selectOne(vo);
 		model.addAttribute("vo", vo);
-		model.addAttribute("clist", candidateService.candidateList(cvo));
+		model.addAttribute("clist", list);
 		if (vo.getEndDate().getTime() > System.currentTimeMillis()) {
 			return "vote/userBoardVoteRead";
 		} else {
+			
+			ObjectMapper mapper = new ObjectMapper();
+			String json = mapper.writeValueAsString(list);
+			model.addAttribute("json", json);
+
 			return "vote/result";
 		}
 	}
-	
-
-	
 
 	// 후보자 정보 수정
 	@RequestMapping("/boardVoteUpdate.do")
@@ -153,14 +155,12 @@ public class BoardVoteController {
 
 	// 후보자 1명 등록
 	@RequestMapping("/register.do")
-	public String findCandidate(CandidateVo vo, HttpServletRequest request, @RequestParam(required = false) MultipartFile uploadFile)
-			throws IllegalStateException, IOException {
-	
+	public String findCandidate(CandidateVo vo, HttpServletRequest request,
+			@RequestParam(required = false) MultipartFile uploadFile) throws IllegalStateException, IOException {
+
 		String path = request.getSession().getServletContext().getRealPath("/resources/img/candidate");
 		if (uploadFile != null && uploadFile.getSize() > 0) {
-			File file = new File(path, uploadFile.getOriginalFilename());
-			
-//rename
+			File file = new File(path, uploadFile.getOriginalFilename());// rename
 
 			uploadFile.transferTo(file);
 			vo.setPicture(uploadFile.getOriginalFilename());
@@ -182,8 +182,16 @@ public class BoardVoteController {
 
 	// 후보자 수정
 	@RequestMapping("/updateCandidate.do")
-	public String updateCandidate(CandidateVo vo) {
-		System.out.println(vo);
+	public String updateCandidate(CandidateVo vo, HttpServletRequest request,
+			@RequestParam(required = false) MultipartFile uploadFile) throws IllegalStateException, IOException {
+
+		String path = request.getSession().getServletContext().getRealPath("/resources/img/candidate");
+		if (uploadFile != null && uploadFile.getSize() > 0) {
+			File file = new File(path, uploadFile.getOriginalFilename());// rename
+
+			uploadFile.transferTo(file);
+			vo.setPicture(uploadFile.getOriginalFilename());
+		}
 		int n = candidateService.candiUpdate(vo);
 
 		return "redirect:boardVoteRead.do?seq=" + vo.getSeq();

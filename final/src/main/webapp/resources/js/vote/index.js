@@ -2,6 +2,7 @@ App = {
 	web3Provider: null,
 	contract: {},
 	candidateList: [],
+	resultList: [],
 	init: async function() {
 
 
@@ -99,7 +100,9 @@ App = {
 							//console.log(result.id,result.name, result.voteCount);
 							console.log(result[0].id);
 							console.log(result[0].name)
-							$('#voteResultInput').html(result);				
+							$('#voteResultInput').html(result);	
+							App.resultList=result;
+							makeChart();
 						   });
 			
 		})
