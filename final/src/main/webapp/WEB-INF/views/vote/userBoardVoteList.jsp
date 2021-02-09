@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,23 +18,18 @@
 					<tr>
 						<th scope="col" style="width: 10%">no</th>
 						<th scope="col" style="width: 50%">선거제목</th>
-						<th scope="col" style="width: 10%"></th>
 						<th scope="col" style="width: 10%">투표 시작일</th>
 						<th scope="col" style="width: 10%">투표 종료일</th>
 					</tr>
 				</thead>
-				
 				<tbody>
 				<c:forEach var="vo" items="${boardVoteList }">
-				<c:if test="${vo.endDate }">
-					<tr onclick="location.href='userBoardVoteRead.do?seq=${vo.seq }'">
+					<tr onclick="location.href='userBoardVoteRead.do?seq=${vo.seq }&endDate=${vo.endDate} '">
 						<td>${vo.seq}</td>
 						<td>${vo.title}</td>
-						<td><button type="button" class="btn btn-outline-secondary btn-sm" data-seq="${vo.seq}" data-enddate="${vo.endDate }">결과 보기</button></td>
 						<td>${vo.startDate}</td>
 						<td>${vo.endDate}</td>
 					</tr>
-				</c:if>
 				</c:forEach>
 				</tbody>			
 			</table>
@@ -47,14 +42,17 @@
 <script src="resources/js/vote/index.js"></script>
 
 <script>
-$("button").on('click', function(e){
+
+
+
+/* $("button").on('click', function(e){
 	var seq=$(this).data("seq")
 	var endDate=$(this).data("enddate")
 	location.href="result.do?seq="+seq +"&endDate=" +endDate;
 	
 	 
 	e.stopPropagation();
-})
+}) */
 
 </script>
 </html>

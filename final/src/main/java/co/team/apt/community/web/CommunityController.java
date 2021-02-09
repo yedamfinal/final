@@ -2,6 +2,7 @@ package co.team.apt.community.web;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import co.team.apt.common.vo.BcommentVo;
 import co.team.apt.common.vo.BoardVo;
 import co.team.apt.common.vo.Paging;
+import co.team.apt.common.vo.ResidentVo;
 import co.team.apt.community.mapper.CommunityMapper;
 import co.team.apt.community.service.CommunityService;
 
@@ -39,12 +41,20 @@ public class CommunityController {
 	//자유게시판 이동
 	@RequestMapping("communityList"	)
 	public String freeList(Model model,BoardVo vo, Paging paging, HttpSession session) {
+		//권한별 페이지이동 시작
+		ResidentVo resiVo = (ResidentVo) session.getAttribute("person");
+		
+		if(resiVo == null) { //로그인 안한상태
+			return "home/needLogin";
+		}
+		
 		//model.addAttribute("type", vo.getType());
 		if(vo.getType() != null) {
 			session.setAttribute("pageType", vo.getType());
 		}else {
 			vo.setType((String) session.getAttribute("pageType"));
 		}
+		
 		//페이징처리
 		paging.setPageUnit(10);
 		paging.setPageSize(10);	//페이지넘버 자체를 지정
