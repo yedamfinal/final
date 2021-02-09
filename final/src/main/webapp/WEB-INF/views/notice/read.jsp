@@ -7,20 +7,19 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="resources/css/bootstrap.min.css">
+
 </head>
 <body>
 <div class="container">
 <div align="center">
             <br/>
             <br/>
+            <div align="right">
+            <button type="button" onclick="location.href='noticeUpdateForm.do?defno=${vo.defno}' ">글수정</button>
+            <button type="button" onclick="location.href='noticeDelete.do?defno=${vo.defno}' ">글삭제</button>
+            </div>
             	<table class="table" >
                		
-                   <tr>
-                   		<td colspan="2" align="right">
-                           <button type="button" onclick="location.href='noticeUpdateForm.do?defno=${vo.defno}' ">글수정</button>
-                           <button type="button" onclick="location.href='noticeDelete.do?defno=${vo.defno}' ">글삭제</button>
-                       </td>
-                   </tr>
                    <tr>
                        <td width="900px">
                         제목: ${vo.title}
@@ -30,7 +29,7 @@
                     </td>
                    </tr>
                    <tr height="500px">
-                       <td colspan="2" valign="top">
+                       <td style="word-break:break-word; white-space: pre-wrap; table-layout: fixed;" >
                            ${vo.content}
                        </td>
                    </tr>

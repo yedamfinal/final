@@ -46,8 +46,7 @@ public class NoticeController {
 		if(resiVo == null) { //로그인 안한상태
 			return "home/needLogin";
 		}
-			
-		
+				
 		//페이징처리
 		paging.setPageUnit(10);
 		paging.setPageSize(10);	//페이지넘버 자체를 지정
@@ -162,10 +161,11 @@ public class NoticeController {
 		
 	}
 	
-	//글쓰기 폼으로 이동
-		@RequestMapping("introduece.do")
-		public String intoduce(Model model) {
-			return "introduce/introduce";
-		}
-
+	//아파트소개
+	@RequestMapping("introduece.do")
+	public String intoduce(Model model) {
+		return "introduce/introduce";
+	}
+	
+			
 }
