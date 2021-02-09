@@ -18,7 +18,7 @@ ${vo}ddd
 			<h1>tnwjd</h1>
 		</div>
 		<div>	
-				<form action="carUpdate.do" method="post">
+				<form action="visitCarUpdate.do" method="post">
 				<input type="hidden" name="visitNo" value="${vo.visitNo}">
 				
 				<table class="table">
@@ -37,7 +37,7 @@ ${vo}ddd
 					</tr>
 					<tr>
 						<th width="100">방문목적</th>
-						<td width="300"><input type="text" id="purpose" name="purpose" value="${vo.carNum}"/></td>
+						<td width="300"><input type="text" id="purpose" name="purpose" value="${vo.purpose}"/></td>
 					</tr>
 					<tr>
 						<th width="100">시작일</th>

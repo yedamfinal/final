@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+${vo}ddd
 	<div class="container">
 	<div>
 		<h1>택배조회</h1>
@@ -47,10 +48,12 @@
 			
 		</tbody>
 		</table>
+		
 		<form  hidden="hidden" action = "mget.do" method ="post" id="mget"> 
 		<input name="postNo" id="postNo" />
 		<input name="get" id="get" />
 		</form>
+		
 		<my:paging paging="${paging}" jsFunc="goList" /> <!-- 페이징 구현기능 --> 
 		
 		<form action="mPostBox.do" method="post" id='pageSearchForm'>

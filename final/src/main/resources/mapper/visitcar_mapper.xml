@@ -6,7 +6,7 @@
   
   
   	<select id="visitList" resultType="VisitCarVo" parameterType="VisitCarVo">
-		SELECT * from visitcar where id=#{id}
+		SELECT c.*,r.dong,r.ho FROM visitcar c, resident r where c.id = r.id and c.id=#{id}
 		
 	</select>
   	
@@ -44,19 +44,28 @@
 	</delete>
   	
   	<update id="visitCarUpdate" parameterType="VisitCarVo">
-		update postbox set carNum=#{carNum},
+		update visitcar set carnum=#{carNum},
 			purpose = #{purpose},
-			startDate = #{startDate},
-			endDate = #{endDate} 
-			where visitNo = #{visitNo}
+			startdate = #{startDate},
+			enddate = #{endDate}
+			where visitno = #{visitNo}
 	</update>
   
   	<select id="mVisitList" resultType="VisitCarVo" parameterType="VisitCarVo">
-		SELECT * from visitcar
-		
+		SELECT c.*,r.dong,r.ho FROM visitcar c, resident r where c.id = r.id
 	</select>
   	
-  	
+	<update id="ming" parameterType="VisitCarVo"> 
+		update visitcar set vcget = 'ming' where visitno = #{visitNo}
+	</update>
+		
+	<update id="ref" parameterType="VisitCarVo"> 
+		update visitcar set vcget = 'ref' where visitno = #{visitNo}
+	</update>
+	
+	<update id="cpl" parameterType="VisitCarVo"> 
+		update visitcar set vcget = 'cpl' where visitno = #{visitNo}
+	</update>
 
   </mapper>
   

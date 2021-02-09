@@ -15,6 +15,7 @@ public interface PostBoxMapper {
 	public int mafter(PostBoxVo vo);
 	public int mbefore(PostBoxVo vo);
 	public int pagingCount(PostBoxVo vo); 
+	public int rpagingCount(PostBoxVo vo);
 	
 
 }

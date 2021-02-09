@@ -96,7 +96,7 @@
 				</tr>
 			</table>
 			<div align="right">
-				<button type="submit" class="btn btn-outline-secondary">등록하기</button>
+				<button type="submit" class="btn btn-outline-secondary">신청하기</button>
 				&nbsp;&nbsp;&nbsp;
 				<button type="button" class="btn btn-outline-secondary" onclick="location.href='visitList.do'">목록보기</button>
 				&nbsp;&nbsp;&nbsp;

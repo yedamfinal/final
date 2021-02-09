@@ -80,8 +80,8 @@
 					<tr>
 						<th width="100">수령여부</th>
 						<td width="300"><select class="form-control" id="get" name="get">
-								<option value="brfore">수령전</option>
-								<option value="after">수령완료</option>
+								<option value="brfore"<c:if test="${vo.get eq 'brfore' }">selected</c:if>>수령전</option>
+								<option value="after"<c:if test="${vo.get eq 'after' }">selected</c:if>>수령완료</option>
 
 						</select></td>
 					</tr>

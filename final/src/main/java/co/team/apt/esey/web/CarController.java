@@ -16,6 +16,7 @@ import co.team.apt.common.vo.BoardVoteVo;
 import co.team.apt.common.vo.CarVo;
 import co.team.apt.common.vo.PostBoxVo;
 import co.team.apt.common.vo.ResidentVo;
+
 import co.team.apt.esey.service.CarService;
 
 @Controller
@@ -73,7 +74,10 @@ public class CarController {
 	}
 		
 	@RequestMapping("carUpdateForm.do")
-	public String carUpdateForm(Model model) {
+	public String carUpdateForm(Model model, CarVo vo) {
+		vo = carService.selectOne(vo);
+		model.addAttribute("vo",vo);
+		
 		return "esey/carUpdateForm";
 	}
 	@RequestMapping("carUpdate.do")
@@ -90,6 +94,19 @@ public class CarController {
 			return "esey/mCarList"; 
 				
 	}
+	// 택배 상태변경 
+				@RequestMapping("cmget.do")
+				public String mget(Model model, CarVo vo) {
+					if(vo.getCget().equals("mcing")) {
+						carService.cming(vo);
+					} else if(vo.getCget().equals("cref")) {
+						carService.cref(vo);
+					}	else if(vo.getCget().equals("ccpl")) {
+						carService.ccpl(vo);
+					}
+					return "redirect:mCarList.do";
+				}
+		
 	
 	
 	

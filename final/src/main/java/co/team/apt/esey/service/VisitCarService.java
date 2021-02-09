@@ -14,6 +14,8 @@ public interface VisitCarService {
 	public int visitCarDelect(VisitCarVo vo);
 	public int visitCarUpdate(VisitCarVo vo);
 	public List<VisitCarVo> mVisitList(VisitCarVo vo);
-	
+	public int ming(VisitCarVo vo);
+	public int ref(VisitCarVo vo);
+	public int cpl(VisitCarVo vo);
 		
 }

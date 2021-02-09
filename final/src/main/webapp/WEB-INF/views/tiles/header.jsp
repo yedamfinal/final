@@ -90,8 +90,8 @@
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 									<c:if test ="${person.type ne 'm'}">
 									<a class="dropdown-item" href="postBoxList.do">택배조회</a> <a
-										class="dropdown-item" href="carList.do">입주자 차량등록</a> <a
-										class="dropdown-item" href="visitList.do">방문자 차량등록</a> 
+										class="dropdown-item" href="carList.do">입주자 차량신청</a> <a
+										class="dropdown-item" href="visitList.do">방문자 차량신청</a> 
 										</c:if>
 										<c:if test ="${person.type eq 'm'}">
 										<a class="dropdown-item" href="mPostBox.do">택배관리</a> <a

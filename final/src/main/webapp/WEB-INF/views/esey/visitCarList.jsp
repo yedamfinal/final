@@ -26,6 +26,7 @@
 				<th scope="col">방문목적</th>
 				<th scope="col">시작일</th>
 				<th scope="col">종료일</th>
+				<th scope="col">승인여부</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -39,12 +40,16 @@
 				<th scope="col">${vo.purpose}</th>
 				<th scope="col">${vo.startDate}</th>
 				<th scope="col">${vo.endDate}</th>
+				<td scope="col"><c:if test = "${vo.vcget eq 'ming'}">처리중</c:if>
+								<c:if test = "${vo.vcget eq 'ref'}">승인거부</c:if>
+								<c:if test = "${vo.vcget eq 'cpl'}">승인완료</c:if>
+					</td>
 			</tr> 
 			</c:forEach>
 		</tbody>
 		</table>
 
-		<button class="btn btn-outline-secondary" onclick="location.href='visitInsert.do'">차량 등록하기</button>
+		<button class="btn btn-outline-secondary" onclick="location.href='visitInsert.do'">방문자차량 신청하기</button>
 		</div>		
 	</div>
 </body>

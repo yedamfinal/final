@@ -40,12 +40,15 @@ ${vo},${vo.cget}
 				 <c:if test = "${vo.carType eq 'M'}">중형</c:if>
 				 <c:if test = "${vo.carType eq 'L'}">대형</c:if>
 				</td>
-				 <td scope="col">${vo.cget}</td>
+				 <td scope="col"><c:if test = "${vo.cget eq 'cming'}">처리중</c:if>
+								<c:if test = "${vo.cget eq 'cref'}">승인거부</c:if>
+								<c:if test = "${vo.cget eq 'ccpl'}">승인완료</c:if>
+								</td>
 			</tr> 
 			</c:forEach>
 		</tbody>
 		</table>
-		<button class="btn btn-outline-secondary" onclick="location.href='carInsertFrom.do?id=${person.id}'">차량 등록하기</button>
+		<button class="btn btn-outline-secondary" onclick="location.href='carInsertFrom.do?id=${person.id}'">차량 신청하기</button>
 		</div>		
 	</div>
 	<script type="text/javascript">

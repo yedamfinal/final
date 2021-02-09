@@ -6,6 +6,7 @@ import java.util.List;
 import co.team.apt.common.vo.CarVo;
 
 
+
 public interface CarService {
 		
 	public List<CarVo> carList(CarVo vo);
@@ -15,5 +16,8 @@ public interface CarService {
 	public int carDelete(CarVo vo);
 	public int carUpdate(CarVo vo);
 	public List<CarVo> mCarList(CarVo vo);
+	public int cming(CarVo vo);
+	public int cref(CarVo vo);
+	public int ccpl(CarVo vo);
 		
 }

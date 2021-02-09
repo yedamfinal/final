@@ -43,7 +43,10 @@ ${vo}ddd
 					</tr>
 					<tr>
 						<th width="100">수령여부</th>
-						<td width="300">${vo.get}</td>
+						<td width="300">
+								<c:if test = "${vo.get eq 'after'}">수령완료</c:if>
+								<c:if test = "${vo.get eq 'before'}">수령전</c:if>
+						</td>
 					</tr>
 				</table>
 				<div align="right">

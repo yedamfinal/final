@@ -32,7 +32,7 @@
 			
 			
 			<c:forEach var="vo" items="${mCarList}">
-			<tr  onclick="location.href='carRead.do?cno=${vo.cno }'">
+			<tr>
 				<td scope="col">${vo.cno}</td>
 				<td scope="col">${vo.dong}</td>
 				<td scope="col">${vo.ho}</td>	
@@ -43,16 +43,37 @@
 				 <c:if test = "${vo.carType eq 'L'}">대형</c:if>
 				 </td>
 				 <td scope="col" class = "stopevent"><select class="form-control getselect"
-							name="get" onchange = "getselect('${vo.cno}')">
-							<option value="cbefore" <c:if test="${vo.cget eq 'cbefore' }">selected</c:if>>승인처리중</option>
-							<option value="cafter"<c:if test="${vo.cget eq 'cafter' }">selected</c:if>>승인완료</option>							
+							name="cget" onchange = "getselect('${vo.cno}')">
+							<option value="cming"<c:if test="${vo.cget eq 'cming' }">selected</c:if>>처리중</option>
+							<option value="cref"<c:if test="${vo.cget eq 'cref' }">selected</c:if>>승인거부</option>
+							<option value="ccpl"<c:if test="${vo.cget eq 'ccpl' }">selected</c:if>>승인완료</option>							
 							</select></td>
 			</tr> 
 			</c:forEach>
 		</tbody>
 		</table>
-		<button class="btn btn-outline-secondary" onclick="location.href='carInsertFrom.do?id=${person.id}'">차량 등록하기</button>
+		<form  hidden="hidden" action = "cmget.do" method ="post" id="cmget"> 
+		<input name="cno" id="cno" />
+		<input name="cget" id="cget" />
+		</form>
+		
+		
 		</div>		
 	</div>
+	
+	
+	<script type="text/javascript">
+	$(".stopevent").on("click",function(event){
+		event.stopPropagation();
+		
+	})
+	
+	function getselect(visitNo) {
+		/* console.log(postNo,event.target.value) */
+		$("#cno").val(visitNo);
+		$("#cget").val(event.target.value); 
+		$("#cmget").submit();
+	}
+	</script>
 </body>
 </html>

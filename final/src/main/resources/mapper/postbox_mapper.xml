@@ -5,8 +5,11 @@
 
 <select id="postBoxList" resultType="PostBoxVo" parameterType="PostBoxVo">
 		select a.* from( select b.*, rownum rm from (
-		SELECT * FROM POSTBOX where dong=#{dong} and ho=#{ho}
-		<include refid="searchQuery"></include>
+		SELECT * FROM POSTBOX 
+		where dong=#{dong} and ho=#{ho}
+		<if test="search != null and search != ''">
+			and ${searchType} like '%' || #{search} || '%'
+		</if>
 		) b ) a where rm between #{start} and #{end}
 </select>
 
@@ -28,6 +31,17 @@
 		FROM postbox 
 		<include refid="searchQuery"></include>
 	</select>
+	
+	<select id="rpagingCount" resultType="int">
+
+		SELECT count(*) FROM POSTBOX 
+		where dong=#{dong} and ho=#{ho}
+		<if test="search != null and search != ''">
+			and ${searchType} like '%' || #{search} || '%'
+		</if>
+		
+	</select>
+	
 	<sql id = "searchQuery">
 		<!-- <choose>
 			<when test="searchType == 'all' ">

@@ -44,6 +44,21 @@ public class VisitCarServiceimpl implements VisitCarService {
 		// TODO Auto-generated method stub
 		return dao.mVisitList(vo);
 	}
+	@Override
+	public int ming(VisitCarVo vo) {
+		// TODO Auto-generated method stub
+		return dao.ming(vo);
+	}
+	@Override
+	public int ref(VisitCarVo vo) {
+		// TODO Auto-generated method stub
+		return dao.ref(vo);
+	}
+	@Override
+	public int cpl(VisitCarVo vo) {
+		// TODO Auto-generated method stub
+		return dao.cpl(vo);
+	}
 	
 }
 

@@ -55,6 +55,24 @@ public class CarServiceimpl implements CarService {
 		return dao.mCarList(vo);
 	}
 
+	@Override
+	public int cming(CarVo vo) {
+		// TODO Auto-generated method stub
+		return dao.cming(vo);
+	}
+
+	@Override
+	public int cref(CarVo vo) {
+		// TODO Auto-generated method stub
+		return dao.cref(vo);
+	}
+
+	@Override
+	public int ccpl(CarVo vo) {
+		// TODO Auto-generated method stub
+		return dao.ccpl(vo);
+	}
+
 
 }
 

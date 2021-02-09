@@ -35,8 +35,7 @@ where id in ( select id
 <update id="carUpdate" parameterType="CarVo">
 	update car set carnum=#{carNum},
 			cartype = #{carType},
-			cno = #{cno},
-			Id = #{Id},
+			cno = #{cno}
 			where cno = #{cno}
 </update> 
 
@@ -44,4 +43,16 @@ where id in ( select id
 	<select id="mCarList" resultType="CarVo" parameterType="CarVo">
 	SELECT c.*,r.dong,r.ho FROM CAR c, resident r where c.id = r.id
 	</select>
+	
+	<update id="cming" parameterType="CarVo"> 
+		update car set cget = 'cming' where cno = #{cno}
+	</update>
+		
+	<update id="cref" parameterType="CarVo"> 
+		update car set cget = 'cref' where cno = #{cno}
+	</update>
+	
+	<update id="ccpl" parameterType="CarVo"> 
+		update car set cget = 'ccpl' where cno = #{cno}
+	</update>
 </mapper>

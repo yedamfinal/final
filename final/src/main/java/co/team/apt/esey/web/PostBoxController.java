@@ -31,6 +31,7 @@ public class PostBoxController {
 		if(resiVo == null){
 			return "home/needLogin";
 		}else if (resiVo.getType().equals("m")) {
+		vo.setHo(resiVo.getHo());
 			return "redirect:mPostBox.do";
 		}else {
 			//페이징처리
@@ -38,21 +39,22 @@ public class PostBoxController {
 			paging.setPageSize(10);	//페이지넘버 자체를 지정
 			// 페이지번호 파라미터
 			if( paging.getPage() == null) {
-				paging.setPage(1); 
+				paging.setPage(1); 	
+			}		
 			}		
 			// 시작/마지막 레코드 번호
 			vo.setStart(paging.getFirst());
 			vo.setEnd(paging.getLast());		
 			// 전체 건수
-			paging.setTotalRecord(dao.pagingCount(vo));		//전체레코드건수	
+			vo.setDong(resiVo.getDong());
+			vo.setHo(resiVo.getHo());
+			paging.setTotalRecord(dao.rpagingCount(vo));		//전체레코드건수	
 		
-		vo.setDong(resiVo.getDong());
-		vo.setHo(resiVo.getHo());
 		List<PostBoxVo> list = postBoxService.postBoxList(vo);
 		model.addAttribute("postBoxList",list);
 		return "esey/postBox";
 		}
-	}
+	
 	@RequestMapping("postBoxRead.do")
 	public String postBoxRead(Model model, PostBoxVo vo,HttpSession session) {
 		ResidentVo resiVo = (ResidentVo) session.getAttribute("person");

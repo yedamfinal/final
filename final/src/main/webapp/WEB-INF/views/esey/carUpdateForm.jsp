@@ -20,7 +20,8 @@ ${vo}ddd
 		<div>	
 				<form action="carUpdate.do" method="post">
 				<input type="hidden" name="cno" value="${vo.cno}">
-				<input type="hidden" name="Id" value="${vo.Id}">
+				
+				
 				<table class="table">
 
 					<tr>
@@ -39,9 +40,9 @@ ${vo}ddd
 						<th width="100">차종</th>
 						<td width="300"><select class="form-control" id="carType"
 							name="carType">
-						<option value="소형" <c:if test = "${vo.carType eq 'S'}">selected</c:if>>소형</option>
-				 		<option value="중형" <c:if test = "${vo.carType eq 'M'}">selected</c:if>>중형</option>
-				 		<option value="대형" <c:if test = "${vo.carType eq 'L'}">selected</c:if>>대형</option>
+						<option value="S" <c:if test = "${vo.carType eq 'S'}">selected</c:if>>소형</option>
+				 		<option value="M" <c:if test = "${vo.carType eq 'M'}">selected</c:if>>중형</option>
+				 		<option value="L" <c:if test = "${vo.carType eq 'L'}">selected</c:if>>대형</option>
 				 		</select></td>
 					</tr>
 

@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import co.team.apt.common.vo.CarVo;
+import co.team.apt.common.vo.PostBoxVo;
 import co.team.apt.common.vo.ResidentVo;
 import co.team.apt.common.vo.VisitCarVo;
 import co.team.apt.esey.mapper.VisitCarMapper;
@@ -62,6 +63,8 @@ public class VisitCarController {
 	}
 	@RequestMapping("visitCarupdateForm.do") 
 		public String visitCarupdateForm(Model model, VisitCarVo vo) {
+		vo = visitCarService.selectOne(vo);
+		model.addAttribute("vo", vo);
 		return "esey/visitCarUpdate";
 	}
 	@RequestMapping("visitCarUpdate.do")
@@ -78,6 +81,18 @@ public class VisitCarController {
 			return "esey/mVisitCarList"; 
 		
 	}
+	// 택배 상태변경 
+			@RequestMapping("mvcget.do")
+			public String mget(Model model, VisitCarVo vo) {
+				if(vo.getVcget().equals("ming")) {
+					visitCarService.ming(vo);
+				} else if(vo.getVcget().equals("ref")) {
+					visitCarService.ref(vo);
+				}	else if(vo.getVcget().equals("cpl")) {
+					visitCarService.cpl(vo);
+				}
+				return "redirect:mVisitList.do";
+			}
 	
 	
 

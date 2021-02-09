@@ -8,7 +8,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <!-- Bootstrap CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 </head>
 <body>
 	<div class="container">
@@ -28,26 +27,51 @@
 				<th scope="col">방문목적</th>
 				<th scope="col">시작일</th>
 				<th scope="col">종료일</th>
+				<th scope="col">승인여부</th>
 			</tr>
 		</thead>
 		<tbody>
 			
 			<c:forEach var="vo" items="${mVisitList}">
-			<tr onclick="location.href='visitCarRead.do?visitNo=${vo.visitNo}'">
-				<th scope="col">${vo.visitNo}</th>
-				<th scope="col">${person.dong}</th>
-				<th scope="col">${person.ho}</th>	
-				<th scope="col">${vo.carNum}</th>
-				<th scope="col">${vo.purpose}</th>
-				<th scope="col">${vo.startDate}</th>
-				<th scope="col">${vo.endDate}</th>
+			<tr >
+				<td scope="col">${vo.visitNo}</td>
+				<td scope="col">${vo.dong}</td>
+				<td scope="col">${vo.ho}</td>	
+				<td scope="col">${vo.carNum}</td>
+				<td scope="col">${vo.purpose}</td>
+				<td scope="col">${vo.startDate}</td>
+				<td scope="col">${vo.endDate}</td>
+				<td scope="col" class = "stopevent"><select class="form-control getselect"
+							name="vcget" onchange = "getselect('${vo.visitNo}')">
+							<option value="ming" <c:if test="${vo.vcget eq 'ming' }">selected</c:if>>처리중</option>
+							<option value="ref"<c:if test="${vo.vcget eq 'ref' }">selected</c:if>>승인거부</option>
+							<option value="cpl"<c:if test="${vo.vcget eq 'cpl' }">selected</c:if>>승인완료</option>							
+							</select></td>
 			</tr> 
 			</c:forEach>
 		</tbody>
 		</table>
+		
+		<form  hidden="hidden" action = "mvcget.do" method ="post" id="mvcget"> 
+		<input name="visitNo" id="visitNo" />
+		<input name="vcget" id="vcget" />
+		</form>
 
-		<button class="btn btn-outline-secondary" onclick="location.href='visitInsert.do'">차량 등록하기</button>
+	
 		</div>		
 	</div>
+	<script type="text/javascript">
+	$(".stopevent").on("click",function(event){
+		event.stopPropagation();
+		
+	})
+	
+	function getselect(visitNo) {
+		/* console.log(postNo,event.target.value) */
+		$("#visitNo").val(visitNo);
+		$("#vcget").val(event.target.value); 
+		$("#mvcget").submit();
+	}
+	</script>
 </body>
 </html>
