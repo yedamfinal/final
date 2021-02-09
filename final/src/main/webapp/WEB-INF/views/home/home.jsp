@@ -61,39 +61,18 @@
 					<div class="tab_board_wrap">
 						<ul class="tab_cate" id="notice_ul">
 							<li class="on" id="li_inform"><a
-								href="javascript:board_latest_list('inform','notice')">아파트
+								href="noticeList.do">아파트
 									공지사항</a></li>
 						</ul>
 						<div class="tab_noti_list m_noti_list">
-							<ul id="notice_latest_ul1">
-
-								<%-- <c:forEach var="vo" items="${noticeList}">
-								<li onclick="location.href='noticeRead.do?defno=${vo.defno}'">
-									<li><a>${vo.title}
+							<c:forEach var="vo" items="${noticeList}">
+							<ul id="community_latest_ul" onclick="location.href='noticeRead.do?defno=${vo.defno}'">
+								<li title="${vo.title}"><a
+									href="noticeRead.do?defno=${vo.defno}">${vo.title}
 									<small title="작성일">${vo.defdate}</small>
-									</a>
-									
-								</c:forEach> --%>
-								
-								
-								<li><a
-									href="javascript:post_to_url('/board/view/inform/',{'wr_id':'784323'})">로그인을
-										하셔야 확인 가능합니다. <small title="작성일">2021-01-17</small>
-								</a></li>
-								<li><a
-									href="javascript:post_to_url('/board/view/inform/',{'wr_id':'783661'})">로그인을
-										하셔야 확인 가능합니다. <small title="작성일">2021-01-16</small>
-								</a></li>
-								<li><a
-									href="javascript:post_to_url('/board/view/inform/',{'wr_id':'777544'})">로그인을
-										하셔야 확인 가능합니다. <small title="작성일">2021-01-11</small>
-								</a></li>
-								<li><a
-									href="javascript:post_to_url('/board/view/inform/',{'wr_id':'777543'})">로그인을
-										하셔야 확인 가능합니다. <small title="작성일">2021-01-11</small>
 								</a></li>
 							</ul>
-
+							</c:forEach>
 						</div>
 						<a href="/board/lists/inform" class="tab_more blind_txt"
 							id="notice_more">더보기</a>
