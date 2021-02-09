@@ -240,10 +240,10 @@
 			   b.id, 
 			   c.dong, 
 			   c.ho
-		from (select id,sum(case when status ='no' then 1 else 0 end) no, 
-		              sum(case when status ='ing' then 1 else 0 end)  ing,
-		              sum(case when status ='yes' then 1 else 0 end) yes,
-		              max(case when status ='yes' then payid else 0 end) payid
+		from (select id,sum(case when lower(status) ='no' then 1 else 0 end) no, 
+		              sum(case when lower(status) ='ing' then 1 else 0 end)  ing,
+		              sum(case when lower(status) ='yes' then 1 else 0 end) yes,
+		              max(case when lower(status) ='yes' then payid else 0 end) payid
 		      from payment
 		      group by id) a, payment b, resident c
 		where a.payid = b.payid
@@ -302,4 +302,8 @@
         	#{lrepair},
         	#{representative})
     </insert>
+    <!-- 납부내역조회 -->
+    <select id="ditailList" resultType="PaymentVo">
+    	select * from payment where id=#{id} order by paymonth desc
+    </select>
 </mapper>

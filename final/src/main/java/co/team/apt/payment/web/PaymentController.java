@@ -67,6 +67,7 @@ public class PaymentController {
 		
 		List<PaymentVo> list = paymentService.payRead(vo);
 		List<PaymentVo> monthList = paymentService.monthList(vo);
+		List<PaymentVo> detailList = paymentService.detailList(vo);
 		
 		//vo -> json 파싱
 //		ObjectMapper mapper = new ObjectMapper();
@@ -92,6 +93,7 @@ public class PaymentController {
 		map.put("monthList", monthList);
 		model.addAttribute("payList",list);
 		model.addAttribute("payMap",map);
+		model.addAttribute("detailList",detailList);
 		
 		return "payment/read";
 	}
