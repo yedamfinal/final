@@ -42,16 +42,90 @@
 				 <c:if test = "${vo.carType eq 'M'}">중형</c:if>
 				 <c:if test = "${vo.carType eq 'L'}">대형</c:if>
 				 </td>
-				 <td scope="col" class = "stopevent"><select class="form-control getselect"
+				 <td scope="col" class = "stopevent">
+				 <select class="form-control getselect"
+				 			data-carnum="${vo.carNum }"
+							data-carType="${vo.carType }" 
+							data-cno="${vo.cno }"
+							data-cget="${vo.cget }"
+							data-dong="${vo.dong }" 
+							data-ho="${vo.ho }"
 							name="cget" onchange = "getselect('${vo.cno}')">
 							<option value="cming"<c:if test="${vo.cget eq 'cming' }">selected</c:if>>처리중</option>
-							<option value="cref"<c:if test="${vo.cget eq 'cref' }">selected</c:if>>승인거부</option>
+							<option value="cref" <c:if test="${vo.cget eq 'cref' }">selected</c:if>>승인거부</option>
+							
 							<option value="ccpl"<c:if test="${vo.cget eq 'ccpl' }">selected</c:if>>승인완료</option>							
 							</select></td>
+		
+			
 			</tr> 
 			</c:forEach>
 		</tbody>
 		</table>
+		
+		<!-- Modal -->
+		<div class="modal fade" id="cancelModal" data-backdrop="static"
+			data-keyboard="false" tabindex="-1"
+			aria-labelledby="staticBackdropLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="staticBackdropLabel">차량거절</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="input-group flex-nowrap">
+							<div class="input-group-prepend">
+								<span class="input-group-text" id="dong">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;동&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+							</div>
+							<input id="modaldong" name="cancelCost2" type="text" value="${vo.dong }" class="form-control" 
+								aria-label="Username" aria-describedby="addon-wrapping">
+						</div>
+						<br>
+						<div class="input-group flex-nowrap">
+							<div class="input-group-prepend">
+								<span class="input-group-text" id="addon-wrapping">&nbsp;&nbsp;&nbsp;호수&nbsp;&nbsp;&nbsp;&nbsp;</span>
+							</div>
+							<input id="modalho" name="cancelPayNo" type="text" value="${vo.ho }" class="form-control" 
+								aria-label="Username" aria-describedby="addon-wrapping">
+						</div>
+						<br>
+						<div class="input-group flex-nowrap">
+							<div class="input-group-prepend">
+								<span class="input-group-text" id="addon-wrapping">차량번호</span>
+							</div>
+							<input id="modalcarNum" name="cancelId" type="text" value="${vo.carNum }" class="form-control" 
+								aria-label="Username" aria-describedby="addon-wrapping">
+						</div>
+						<br>
+						<div class="input-group flex-nowrap">
+							<div class="input-group-prepend">
+								<span class="input-group-text" id="addon-wrapping">거절사유</span>
+							</div>
+							<input id="modalcontnet" name="content" type="text" class="form-control" placeholder="거절사유를 작성해주세요"
+								aria-label="Username" aria-describedby="addon-wrapping">
+						</div>
+						
+						
+					</div>
+					<div class="modal-footer">
+						<form action="cancelManage" method="post">
+						    <button class="btn btn-danger">거부</button>
+						    <input hidden name="dong" id="dong">
+							<input hidden name="ho" id="ho">
+							<input hidden name="carNum" id="carNum">
+							<input hidden name="content" id="cancelType">
+						</form>
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">닫기</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
 		<form  hidden="hidden" action = "cmget.do" method ="post" id="cmget"> 
 		<input name="cno" id="cno" />
 		<input name="cget" id="cget" />
@@ -63,17 +137,36 @@
 	
 	
 	<script type="text/javascript">
+	$('#cancel').hide();
+	
 	$(".stopevent").on("click",function(event){
 		event.stopPropagation();
-		
+	
 	})
 	
-	function getselect(visitNo) {
+	function getselect(cno) {
 		/* console.log(postNo,event.target.value) */
-		$("#cno").val(visitNo);
+		if(event.target.value == 'cref') {
+			console.log($(event.target).data('carnum'));
+			$('#modaldong').val($(event.target).data('dong'));
+			$('#modalho').val($(event.target).data('ho'));
+			$('#modalcarNum').val($(event.target).data('carnum'));
+			//$('#cancelContent').val($(event.target).data('content'));
+			
+			$('#cancelModal').modal('show');
+			
+		}else{
+			
+		
+		$("#cno").val(cno);
 		$("#cget").val(event.target.value); 
 		$("#cmget").submit();
+		}
 	}
+	
+	
+	
+	
 	</script>
 </body>
 </html>

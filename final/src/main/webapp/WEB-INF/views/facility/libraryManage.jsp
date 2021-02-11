@@ -41,7 +41,7 @@
 				<tbody>
 				<c:forEach items="${list }" var="vo">
 					<tr>
-						<th scope="row">${vo.id }</th>
+						<th scope="row">${vo.id 	}</th>
 						<td>${vo.name }</td>
 						<td>${vo.phone }</td>
 						<c:if test="${faType eq 'library' }">

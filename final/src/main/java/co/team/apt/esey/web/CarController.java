@@ -97,7 +97,7 @@ public class CarController {
 	// 택배 상태변경 
 				@RequestMapping("cmget.do")
 				public String mget(Model model, CarVo vo) {
-					if(vo.getCget().equals("mcing")) {
+					if(vo.getCget().equals("cming")) {
 						carService.cming(vo);
 					} else if(vo.getCget().equals("cref")) {
 						carService.cref(vo);

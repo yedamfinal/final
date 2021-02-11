@@ -13,5 +13,6 @@ public class CarVo {
    private String cget;
    private String dong;
    private String ho;
+   private String content;
    
 }

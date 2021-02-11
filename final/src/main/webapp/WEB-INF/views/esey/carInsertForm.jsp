@@ -7,7 +7,24 @@
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<script type="text/javascript">
+  function checkcarNum2(){
+ 	val = document.form1.carnum2.value;
+ 	re = /^[0-9]{2}[\s]*[가~힣]{1}[\s]*[0-9]{4}/gi;
+ 	if (!re.test(val)) {
+  alert("잘못된 형식2");
+  return;
+  }
+ 	else {
+ 	 alert("전송2")
+ }
+}
+  </script>
+
+
 </head>
+
 <body>
     <div class="container-fluid">
       <div class="row d-flex d-md-block flex-nowrap wrapper">
@@ -16,7 +33,7 @@
             <h2>입주자 차량 신청</h2>
           </div>
           <hr>
-         		<form action="carInsert.do" method="post" onsubmit='return checkPlate'>
+         		<form action="carInsert.do" method="post" onsubmit="return checkPlate()">
 			<input type="hidden" id="Id" name="Id" value="${person.id}">
 			<table class="table">
 				<tr>
@@ -52,10 +69,11 @@
       </div>
   
   </body>
-  <script type="text/javascript">
+  
+ <script type="text/javascript">
  	
   
- /*  function checkPlate() {
+   function checkPlate() {
 	  var carc = checkplat();
 	  
 	  if(carc == false) {
@@ -66,7 +84,7 @@
 	  }
 	  
   }
-   */
+   
    function checkPlate (){
 	   
 	var value = carNum.value;	   
@@ -101,7 +119,7 @@
        +"국,합,육,해,공";
    var arrCheckUse = checkUse.split(',');
    var resultUse = 0;
-   
+   	
    for(var j = 0; j < arrCheckUse.length; j++){
     if(use==arrCheckUse[j]){
      resultUse = 1;
