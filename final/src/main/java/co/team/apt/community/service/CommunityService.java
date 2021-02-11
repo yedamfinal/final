@@ -16,4 +16,5 @@ public interface CommunityService {
 	public List<BcommentVo> commentList(BoardVo vo);
 	public int commentDelete(BcommentVo vo);
 	public int commentUpdate(BcommentVo vo);
+	public int addReComment(BcommentVo vo);
 }

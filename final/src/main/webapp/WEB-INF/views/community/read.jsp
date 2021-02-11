@@ -54,22 +54,32 @@
 
 		<div id="commentIn">
 			<p>
-				<textarea rows="5" cols="50" id="comment"></textarea>
+				<textarea rows="5" cols="100" id="comment"></textarea>
 			</p>
 			<p>
 				<button id="commentButton">댓글 작성</button>
 			</p>
 		</div>
-		<div id="commentUpdate">
-			<p>
-				<textarea rows="5" cols="50" id="updateTextarea"></textarea>
-			</p>
-			<p>
-				<button id="updateButton">수정</button>
-				<button id="updateCancel">취소</button>
-			</p>
+		
+		<div id="commentUpdateHome">
+			<div id="commentUpdate">
+				<p>
+					<textarea rows="5" cols="100" id="updateTextarea"></textarea>
+				</p>
+				<p>
+					<button id="updateButton">수정</button>
+					<button id="updateCancel">취소</button>
+				</p>
+			</div>
+			<div id="recommentIn">
+				<p>
+					<textarea rows="5" cols="100" id="recomment"></textarea>
+				</p>
+				<p>
+					<button id="recommentButton">답댓글 작성</button>
+				</p>
+			</div>
 		</div>
-		<div id="commentUpdateHome"></div>
 		<!-- 댓글 -->
 		
 </div>        
@@ -79,11 +89,18 @@
 <script type="text/javascript">
 //버튼이벤트
 $("#commentButton").on('click',addComment);
+$("#recommentButton").on('click',addReComment);
 $("#updateButton").on('click',commentUpdate);
 $("#updateCancel").on('click',updateCancel);
 
 //댓글 수정창 숨김
-$('#commentUpdate').hide();
+$('#commentUpdateHome').hide();
+
+function formHide(){
+	$('#commentUpdateHome').append($('#commentUpdate'));
+	$('#commentUpdateHome').append($('#recommentIn'));
+}
+
 //댓글 리스트
 let commentStart = ${comment};
 for(var c of commentStart){
@@ -99,7 +116,7 @@ function commentList(){
 			defno : '${vo.defno}'
 		},
 		success:function(list){
-			$('#commentUpdateHome').append($('#commentUpdate').hide());
+			formHide();
 			$('#reUl').empty();
 			for(var c of list){
 				makeComment(c);
@@ -137,8 +154,20 @@ function makeComment(re){
 		top.append($('<button />').addClass('pull-right').html('수정').click(function(){
 			reUpdateForm(re.reno,re.recontent)
 		}))
+		
 	}
-	body = $('<h4 />').attr('id','body'+re.reno).addClass('text-body').html(re.recontent);
+	top.append($('<button />').addClass('pull-right').html('답댓글').click(function(){
+		rereInsertForm(re);
+	}))
+	let tap = '';
+	for(var i=0; i<Number(re.reClass); i++){
+		
+		tap += '&nbsp&nbsp&nbsp&nbsp';
+	}
+	if(Number(re.reClass)>0){
+		tap += 'ㄴ';
+	}
+	body = $('<h4 />').attr('id','body'+re.reno).addClass('text-body').html(tap+re.recontent);
 	div = $('<div />').attr('id','re'+re.reno).append(top,body);
 	$('#reUl').append(div);
 	$('#comment').val('')
@@ -162,6 +191,7 @@ function reDelete(no){
 
 //댓글 수정폼
 function reUpdateForm(no,content){
+	formHide();
 	$('#updateTextarea').data('no',no).val(content);
 	$('#re'+no).after($('#commentUpdate'));
 	$('#commentUpdate').show();
@@ -182,7 +212,7 @@ function commentUpdate(){
 		success:function(result){
 			if(result=='success'){
 				commentList();
-				$('#commentUpdate').hide();
+				formHide();
 			}
 		}
 	});
@@ -191,7 +221,36 @@ function commentUpdate(){
 //수정 취소
 function updateCancel(){
 	$('#updateTextarea').val('');
-	$('#commentUpdate').hide();
+	formHide();
+}
+
+//답댓글 
+function rereInsertForm(re){
+	formHide();
+	$('#recomment').data('re',re);
+	$('#re'+re.reno).after($('#recommentIn'));
+}
+//답댓글 등록
+function addReComment(){
+	let comment= $('#recomment').val();
+	let re = $('#recomment').data('re');
+	let writer ='${person.id}';
+	re.recontent=comment;
+	re.writer=writer;
+	delete re.redate;
+	console.log(re,comment);
+	
+	$.ajax({
+		url:'addReComment.do',
+		type:'post',
+		data:re,
+		success:function(result){
+			if(result=='success'){
+				commentList();
+				formHide();
+			}
+		}
+	});
 }
 
 </script>

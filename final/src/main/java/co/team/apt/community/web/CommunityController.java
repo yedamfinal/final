@@ -173,15 +173,28 @@ public class CommunityController {
 			return null;
 	}
 	
-	//댓글삭제
-		@RequestMapping("commentUpdate.do")
-		@ResponseBody
-		public String commentUpdate(BcommentVo vo) {
-			int n = communityService.commentUpdate(vo);
-			
-			if(n!=0)
-				return "success";
-			else
-				return null;
-		}
+	//댓글 수정
+	@RequestMapping("commentUpdate.do")
+	@ResponseBody
+	public String commentUpdate(BcommentVo vo) {
+		int n = communityService.commentUpdate(vo);
+		
+		if(n!=0)
+			return "success";
+		else
+			return null;
+	}
+	
+	//답댓글 작성
+	@RequestMapping("addReComment.do")
+	@ResponseBody
+	public String addReComment(BcommentVo vo) {
+		int n = communityService.addReComment(vo);
+		
+		if(n!=0)
+			return "success";
+		else
+			return null;
+	
+	}
 }

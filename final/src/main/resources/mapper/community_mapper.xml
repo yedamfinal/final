@@ -98,7 +98,7 @@
 		from bcomment
 		where defno = #{defno}
 		and del = 'ing'	
-		order by 1	
+		order by groupno, rereno	
 	</select>
 	
 	<!-- 댓글 삭제 -->
@@ -117,4 +117,45 @@
 			redate = sysdate
 		where reno = #{reno}
 	</update>
+	
+	<!-- 답댓글 작성 -->
+	<select id="getRereno" resultType="string" parameterType="BcommentVo">
+        select max(rereno)+1 rereno
+ 		from bcomment 
+		where defno=#{defno}
+   		and groupno=#{groupNo}
+   		and rereno between #{reReno} and nvl((select min(rereno)-1 
+										      from bcomment 
+										      where defno=#{defno}
+										      and groupno=#{groupNo}
+										      and reclass = #{reClass}
+										      and rereno  >  #{reReno}),
+											  nvl((select max(rereno) 
+												   from bcomment 
+													where defno=#{defno}
+													and groupno=#{groupNo}
+													and reclass <![CDATA[>=]]> ${reClass}+1
+													and rereno  >  #{reReno}),${reReno}))      
+    </select>
+	<update id="addReCommentBefore" parameterType="BcommentVo" >
+    	update bcomment 
+    	set rereno = rereno+1 
+    	where defno = #{defno}
+   		and groupno = #{groupNo}
+   		and rereno <![CDATA[>=]]> #{reReno}
+	</update>
+	<insert id="addReComment" parameterType="BcommentVo">
+		insert into bcomment
+		values (
+			re_seq.nextval,
+			#{recontent},
+			sysdate,
+			#{defno},
+			#{writer},
+			${reClass}+1,
+			#{reReno},
+			#{groupNo},
+			default
+		)
+	</insert>
 </mapper>
