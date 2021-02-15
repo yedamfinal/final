@@ -54,12 +54,30 @@
 		where id = #{id}
 	</update>
 	
-	<select id="manageLibrary" resultType="FacilityVo" parameterType="ResidentVo">
-		select r.name, r.phone, r.dong ||'동 '|| r.ho||'호' address, l.*
-		from resident r, ${type} l
-		where r.id = l.id
-		order by cancel desc, enddate
+	<select id="manageLibrary" resultType="FacilityVo" parameterType="FacilityVo">
+		select a.* from( select b.*, rownum rn from (
+			select r.name, r.phone, r.dong ||'동 '|| r.ho||'호' address, l.*
+			from resident r, ${type} l
+			where r.id = l.id
+			<include refid="searchQuery"></include>
+			order by cancel desc, enddate
+		) b ) a where rn between #{start} and #{end}
 	</select>
+	
+	<select id="pagingCount" resultType="int" parameterType="FacilityVo">
+			select count(*)
+			from resident r, ${type} l
+			where r.id = l.id
+			<include refid="searchQuery"></include>
+	</select>
+	
+	<sql id = "searchQuery">
+		<if test="search != null and search != ''">
+			and (r.name like '%' || #{search} || '%'
+				or r.dong = #{search}
+				or r.ho = #{search})
+		</if>
+	</sql>
 	
 	<delete id="deleteLibrary">
 		delete from ${type} where id=#{id}

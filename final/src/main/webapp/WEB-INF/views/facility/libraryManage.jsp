@@ -28,7 +28,7 @@
 		<table class="table">
 				<thead>
 					<tr>
-						<th scope="col">ID</th>
+						<th scope="col">주소</th>
 						<th scope="col">이름</th>
 						<th scope="col">전화번호</th>
 						<c:if test="${faType eq 'library' }">
@@ -42,7 +42,7 @@
 				<tbody>
 				<c:forEach items="${list }" var="vo">
 					<tr>
-						<th scope="row">${vo.id 	}</th>
+						<th scope="row">${vo.address 	}</th>
 						<td>${vo.name }</td>
 						<td>${vo.phone }</td>
 						<c:if test="${faType eq 'library' }">
@@ -73,17 +73,10 @@
 			<div align="center">
 				<my:paging paging="${paging}" jsFunc="goList" />
 				<form action="libraryManager.do" method="post" id='pageSearchForm'>
-					<select name="searchType" id="searchType" size="1">
-						<option value="title" <c:if test="${paging.searchType == 'title'}">selected</c:if>>제목</option>
-						<option value="content" <c:if test="${paging.searchType == 'content'}">selected</c:if>>내용</option>
-						<option value="writer" <c:if test="${paging.searchType == 'writer'}">selected</c:if>>작성자</option>
-						<option value="all" <c:if test="${paging.searchType == 'all'}">selected</c:if>>제목+내용+작성자</option>
-					</select>
 					<input name="search" value="${paging.search}"> 
 					<input hidden name="page" id="page" value=""> 
 					<input hidden name="type" value="${faType}"> 
 					<input class="btn btn-outline-secondary btn-sm" type="submit" value="검색">
-					
 				</form>
 				<br><br>
 			</div>

@@ -10,10 +10,10 @@ public interface FacilityMapper {
 	public List<FacilityVo> getSeat(FacilityVo vo);
 	public FacilityVo getLibrary(ResidentVo vo);
 	public int cancelLibrary(FacilityVo vo);
-	public List<FacilityVo> manageLibrary(ResidentVo vo);
+	public List<FacilityVo> manageLibrary(FacilityVo vo);
 	public int deleteLibrary(FacilityVo vo);
 	public void terminateLibrary();
 	public void terminateFitness();
-	public int pagingCount(ResidentVo vo);
+	public int pagingCount(FacilityVo vo);
 
 }

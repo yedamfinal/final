@@ -43,7 +43,7 @@ public class FacilityServiceImpl implements FacilityService {
 	}
 
 	@Override
-	public List<FacilityVo> manageLibrary(ResidentVo vo) {
+	public List<FacilityVo> manageLibrary(FacilityVo vo) {
 		// TODO Auto-generated method stub
 		return dao.manageLibrary(vo);
 	}
@@ -158,7 +158,7 @@ public class FacilityServiceImpl implements FacilityService {
 	}
 
 	@Override
-	public int pagingCount(ResidentVo vo) {
+	public int pagingCount(FacilityVo vo) {
 		// TODO Auto-generated method stub
 		return dao.pagingCount(vo);
 	}

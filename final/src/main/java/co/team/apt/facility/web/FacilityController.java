@@ -115,7 +115,7 @@ public class FacilityController {
 	//관리인항목
 	//관리인페이지 이동
 	@RequestMapping("libraryManager.do")
-	public String manageFacility(Model model, Paging paging, ResidentVo vo) {
+	public String manageFacility(Model model, Paging paging, FacilityVo vo) {
 		//페이징처리
 		paging.setPageUnit(10);
 		paging.setPageSize(10);	//페이지넘버 자체를 지정
