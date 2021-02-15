@@ -30,10 +30,10 @@
 			<tbody>
 				<c:forEach var="vo" items="${boardList}">
 					<tr onclick="location.href='communityRead.do?defno=${vo.defno}&type=${type }'">
-						<td scope="col">${vo.defno}</th>
-						<td scope="col">${vo.title}</th>
-						<td scope="col">${vo.writer}</th>
-						<td scope="col">${vo.defdate}</th>
+						<td scope="col">${vo.defno}</td>
+						<td scope="col">${vo.title}</td>
+						<td scope="col">${vo.writer}</td>
+						<td scope="col">${vo.defdate}</td>
 					</tr>
 				</c:forEach>
 			</tbody>

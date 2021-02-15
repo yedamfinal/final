@@ -18,7 +18,10 @@
                    		<td colspan="2" align="right">
                            <button type="button" onclick="location.href='qnaUpdateForm.do?qnano=${vo.qnano}' ">글수정</button>
                            <button type="button" onclick="location.href='qnaDelete.do?qnano=${vo.qnano}' ">글삭제</button>
-                           <button type="button" onclick="location.href='replyInsertForm.do?qnano=${vo.qnano}' ">답변</button>
+                           <c:if test="${person.type=='m' or person.auth=='yes'}">
+								<button type="button" onclick="location.href='replyInsertForm.do?qnano=${vo.qnano}' ">답변</button>
+							</c:if>
+                           
                        </td>
                    </tr>
                    <tr>

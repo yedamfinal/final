@@ -198,7 +198,8 @@ error: function (response) {
 
     $(".fc-body").unbind('click');
     $(".fc-body").on('click', 'td', function (e) {
-
+	
+	if (auth=='m' || auth2=='yes') {
       $("#contextMenu")
         .addClass("contextOpened")
         .css({
@@ -206,9 +207,11 @@ error: function (response) {
           left: e.pageX,
           top: e.pageY
         });
+        }
+        
       return false;
     });
-
+	
     var today = moment();
 
     if (view.name == "month") {
