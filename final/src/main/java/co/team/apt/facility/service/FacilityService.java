@@ -15,4 +15,5 @@ public interface FacilityService {
 	public int deleteLibrary(FacilityVo vo);
 	public List<FacilityVo> getSeat(FacilityVo vo);
 	public void deleteFacility();
+	public int pagingCount(ResidentVo vo);
 }

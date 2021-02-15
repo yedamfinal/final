@@ -250,9 +250,9 @@ public class PaymentServiceImpl implements PaymentService{
 	
 	//매니저화면 리스트
 	@Override
-	public List<PaymentVo> managerList() {
+	public List<PaymentVo> managerList(PaymentVo vo) {
 		// TODO Auto-generated method stub
-		return dao.managerList();
+		return dao.managerList(vo);
 	}
 	
 	//엑셀 업로드
@@ -315,6 +315,12 @@ public class PaymentServiceImpl implements PaymentService{
 	public List<PaymentVo> detailList(PaymentVo vo) {
 		// TODO Auto-generated method stub
 		return dao.ditailList(vo);
+	}
+
+	@Override
+	public int pagingCount(PaymentVo vo) {
+		// TODO Auto-generated method stub
+		return dao.pagingCount(vo);
 	}
 
 	

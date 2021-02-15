@@ -18,7 +18,13 @@
 		<button onclick="cancel()">환불신청</button> --%>
 
 		<div class="jumbotron">
-			<h1 class="display-4">독서실 이용중</h1>
+			<h1 class="display-4">
+			<c:if test="${not empty vo.seat }">
+					독서실
+			</c:if>
+			<c:if test="${empty vo.seat }">
+					헬스장
+			</c:if> 이용중</h1>
 			<br>
 			<br>
 			<p class="lead text-dark">

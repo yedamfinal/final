@@ -14,5 +14,6 @@ public interface FacilityMapper {
 	public int deleteLibrary(FacilityVo vo);
 	public void terminateLibrary();
 	public void terminateFitness();
+	public int pagingCount(ResidentVo vo);
 
 }

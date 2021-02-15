@@ -16,8 +16,8 @@
                		
                    <tr>
                    		<td colspan="2" align="right">
-                           <button type="button" onclick="location.href='communityUpdateForm.do?defno=${vo.defno}' ">글수정</button>
-                           <button type="button" onclick="location.href='communityDelete.do?defno=${vo.defno}' ">글삭제</button>
+                           <button class="btn btn-outline-secondary" type="button" onclick="location.href='communityUpdateForm.do?defno=${vo.defno}' ">글수정</button>
+                           <button class="btn btn-outline-secondary" type="button" onclick="location.href='communityDelete.do?defno=${vo.defno}' ">글삭제</button>
                        </td>
                    </tr>
                    <tr>
@@ -42,7 +42,7 @@
 			   </c:if>
 			   <hr />
                <div align="right">
-               <button type="button" onclick="location.href='communityList?type=free' ">글목록</button>
+               <button type="button" class="btn btn-outline-secondary" onclick="location.href='communityList?type=free' ">글목록</button>
                </div>
 		</div>
 		
@@ -57,7 +57,7 @@
 				<textarea rows="5" cols="100" id="comment"></textarea>
 			</p>
 			<p>
-				<button id="commentButton">댓글 작성</button>
+				<button class="btn btn-outline-secondary" id="commentButton">댓글 작성</button>
 			</p>
 		</div>
 		
@@ -67,8 +67,8 @@
 					<textarea rows="5" cols="100" id="updateTextarea"></textarea>
 				</p>
 				<p>
-					<button id="updateButton">수정</button>
-					<button id="updateCancel">취소</button>
+					<button class="btn btn-outline-secondary" id="updateButton">수정</button>
+					<button class="btn btn-outline-secondary" id="updateCancel">취소</button>
 				</p>
 			</div>
 			<div id="recommentIn">
@@ -76,7 +76,7 @@
 					<textarea rows="5" cols="100" id="recomment"></textarea>
 				</p>
 				<p>
-					<button id="recommentButton">답댓글 작성</button>
+					<button class="btn btn-outline-secondary" id="recommentButton">답댓글 작성</button>
 				</p>
 			</div>
 		</div>
@@ -148,24 +148,24 @@ function makeComment(re){
 		$().after() 대댓글
 	})) */
 	if(re.writer=='${person.id}'){//글쓴이랑 로그인id랑 같으면 수정삭제
-		top.append($('<button />').addClass('pull-right').html('삭제').click(function(){
+		top.append($('<button />').addClass('pull-right btn btn-outline-secondary btn-sm').html('삭제').click(function(){
 			reDelete(re.reno)
 		}))
-		top.append($('<button />').addClass('pull-right').html('수정').click(function(){
+		top.append($('<button />').addClass('pull-right btn btn-outline-secondary btn-sm').html('수정').click(function(){
 			reUpdateForm(re.reno,re.recontent)
 		}))
 		
 	}
-	top.append($('<button />').addClass('pull-right').html('답댓글').click(function(){
+	top.append($('<button />').addClass('pull-right btn btn-outline-secondary btn-sm').html('답댓글').click(function(){
 		rereInsertForm(re);
 	}))
 	let tap = '';
-	for(var i=0; i<Number(re.reClass); i++){
+	/* for(var i=0; i<Number(re.reClass); i++){
 		
 		tap += '&nbsp&nbsp&nbsp&nbsp';
-	}
+	} */
 	if(Number(re.reClass)>0){
-		tap += 'ㄴ';
+		tap += '&nbsp&nbsp&nbsp&nbspㄴ';
 	}
 	body = $('<h4 />').attr('id','body'+re.reno).addClass('text-body').html(tap+re.recontent);
 	div = $('<div />').attr('id','re'+re.reno).append(top,body);
@@ -247,6 +247,7 @@ function addReComment(){
 		success:function(result){
 			if(result=='success'){
 				commentList();
+				$('#recomment').val('');
 				formHide();
 			}
 		}

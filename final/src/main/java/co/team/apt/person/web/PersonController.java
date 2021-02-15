@@ -81,7 +81,7 @@ public class PersonController {
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String getRegister() throws Exception {
 
-		return "sign/register";
+		return "sign/resiRegister";
 	}
 
 	// 입주민가입페이지 get 2

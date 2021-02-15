@@ -54,7 +54,7 @@
 				<input name="search" value="${paging.search}"> 
 				<input hidden name="page" id="page" value=""> 
 				<input hidden name="type" value="${type}"> 
-				<input type="submit" value="검색">
+				<input class="btn btn-outline-secondary btn-sm" type="submit" value="검색">
 				
 			</form>
 			<br><br>

@@ -157,4 +157,10 @@ public class FacilityServiceImpl implements FacilityService {
 		dao.terminateLibrary();
 	}
 
+	@Override
+	public int pagingCount(ResidentVo vo) {
+		// TODO Auto-generated method stub
+		return dao.pagingCount(vo);
+	}
+
 }

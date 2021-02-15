@@ -38,4 +38,8 @@ public class PaymentVo {
 	
 	//엑셀업로드
 	private String excelFile;
+	
+	//페이징
+	private int start;//조회시작
+	private int end;//조회끝
 }
