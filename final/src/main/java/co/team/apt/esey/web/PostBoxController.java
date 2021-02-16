@@ -50,7 +50,8 @@ public class PostBoxController {
 			vo.setDong(resiVo.getDong());
 			vo.setHo(resiVo.getHo());
 			paging.setTotalRecord(dao.rpagingCount(vo));		//전체레코드건수	
-		
+			model.addAttribute("paging", paging);
+			
 		List<PostBoxVo> list = postBoxService.postBoxList(vo);
 		model.addAttribute("postBoxList",list);
 		return "esey/postBox";

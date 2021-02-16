@@ -14,5 +14,9 @@ public class CarVo {
    private String dong;
    private String ho;
    private String cancel;
+   private int start;
+   private int end;
+   private String search;//검색어
+   private String searchType;//검색타입
    
 }

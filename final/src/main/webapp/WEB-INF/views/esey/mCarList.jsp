@@ -130,9 +130,23 @@
 		<input name="cget" id="cget" />
 		</form>
 		
+			<my:paging paging="${paging}" jsFunc="goList" /> <!-- 페이징 구현기능 --> 
+	
+			<form action="mCarList.do" method="post" id='pageSearchForm'>
+				<select name="searchType" id="searchType" size="1">
+					<option value="carNum" <c:if test="${paging.searchType == 'carNum'}">selected</c:if>>차량번호</option>
+					<option value="dong" <c:if test="${paging.searchType == 'dong'}">selected</c:if>>동/호수</option>
+						</select>
+				<input name="search" value="${paging.search}"> 
+				<input hidden name="page" id="page" value=""> 
+				<input type="submit" value="검색">
+				
+			</form>
 		
 		</div>		
 	</div>
+		
+	
 	
 	
 	<script type="text/javascript">
@@ -164,7 +178,11 @@
 		}
 	}
 	
-	
+	function goList(p) {
+		//location.href = "mPostBox.do?page=" + p;
+		$('#page').val(p);
+		$ ('#pageSearchForm').submit();
+	}
 	
 	
 	</script>

@@ -65,6 +65,11 @@ public class VisitCarServiceimpl implements VisitCarService {
 		dao.terVisitcar();
 		
 	}
+	@Override
+	public int cancel(VisitCarVo vo) {
+		// TODO Auto-generated method stub
+		return dao.cancel(vo);
+	}
 	
 }
 
