@@ -1,6 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="my"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,36 +25,42 @@
 					</tr>
 				</thead>
 				<tbody>
-				<c:forEach var="vo" items="${boardVoteList }">
-					<tr onclick="location.href='userBoardVoteRead.do?seq=${vo.seq }&endDate=${vo.endDate} '">
-						<td>${vo.seq}</td>
-						<td>${vo.title}</td>
-						<td>${vo.startDate}</td>
-						<td>${vo.endDate}</td>
-					</tr>
-				</c:forEach>
-				</tbody>			
+					<c:forEach var="vo" items="${boardVoteList }">
+						<tr
+							onclick="location.href='userBoardVoteRead.do?seq=${vo.seq }&endDate=${vo.endDate} '">
+							<td>${vo.seq}</td>
+							<td>${vo.title}</td>
+							<td>${vo.startDate}</td>
+							<td>${vo.endDate}</td>
+						</tr>
+					</c:forEach>
+				</tbody>
 			</table>
 		</div>
+		<div class="row justify-content-center">
+			<my:paging paging="${paging}" jsFunc="goList" />
+		</div>
+
 	</div>
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<div class="row justify-content-center" style="padding-left: 50px">
+		<form action="voteStart.do" method="post" id="pageSearchForm">
+			<input name="search" value="${paging.search}"> <input
+				type="hidden" name="type" value="${type}"> <input
+				type="hidden" name="page" id="page" value=""> <input
+				class="btn btn-outline-secondary btn-sm" type="submit" value="검색">
+		</form>
+	</div>
+	</div>
 </body>
-<script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.37/dist/web3.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.37/dist/web3.min.js"></script>
 <script src="resources/js/vote/abi.js"></script>
 <script src="resources/js/vote/index.js"></script>
 
 <script>
-
-
-
-/* $("button").on('click', function(e){
-	var seq=$(this).data("seq")
-	var endDate=$(this).data("enddate")
-	location.href="result.do?seq="+seq +"&endDate=" +endDate;
-	
-	 
-	e.stopPropagation();
-}) */
-
+	function goList(p) {
+		$('#page').val(p);
+		$('#pageSearchForm').submit();
+	}
 </script>
 </html>

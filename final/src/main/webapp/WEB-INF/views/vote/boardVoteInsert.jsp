@@ -37,7 +37,7 @@
 			<div align="right">
 				<button type="submit" class="btn btn-outline-secondary">등록하기</button>
 				&nbsp;&nbsp;&nbsp;
-				<button type="button" class="btn btn-outline-secondary" onclick="location.href='boardVoteList.do'">목록보기</button>
+				<button type="button" class="btn btn-outline-secondary" onclick="location.href='voteStart.do'">목록보기</button>
 				&nbsp;&nbsp;&nbsp;
 			</div>
 			</form>

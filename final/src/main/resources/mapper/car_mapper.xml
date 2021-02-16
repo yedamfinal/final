@@ -55,4 +55,7 @@ where id in ( select id
 	<update id="ccpl" parameterType="CarVo"> 
 		update car set cget = 'ccpl' where cno = #{cno}
 	</update>
+	<update id="cancel" parameterType="CarVo">
+		update car set cancel = #{cancel}, cget = 'cref' where cno = #{cno}
+	</update>
 </mapper>

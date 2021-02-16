@@ -90,7 +90,7 @@
 				</table>
 				<div align="right">
 					<button type="button" class="btn btn-outline-secondary"
-						onclick="location.href='boardVoteList.do'">목록보기</button>
+						onclick="location.href='voteStart.do'">목록보기</button>
 					&nbsp;&nbsp;&nbsp;
 					<button type="submit" class="btn btn-outline-secondary">수정
 						완료</button>

@@ -66,6 +66,10 @@
 	<update id="cpl" parameterType="VisitCarVo"> 
 		update visitcar set vcget = 'cpl' where visitno = #{visitNo}
 	</update>
+	
+	<delete id="terVisitcar">
+		<![CDATA[delete from visitcar where enddate < sysdate]]>
+	</delete>
 
   </mapper>
   

@@ -177,9 +177,9 @@ input:focus{outline:0;}
 .quick .quick_icon{width:470px;float:left;}
 .quick .quick_icon li{float:left;width:60px;padding:30px 48px;background:url(../../img/homepage/quick_bar.gif) right center no-repeat}
 .quick .quick_icon li a{padding-top:80px;width:60px;display:inline-block;text-align:center;}
-.quick .quick_icon .qu_01 a{background:url(../../img/homepage/quick_01.jpg) 0 0 no-repeat;}
-.quick .quick_icon .qu_02 a{background:url(../../img/homepage/quick_02.jpg) 0 0 no-repeat;}
-.quick .quick_icon .qu_03 a{background:url(../../img/homepage/quick_03.jpg) 0 0 no-repeat;}
+.quick .quick_icon .qu_01 a{background:url(../resources/img/quick_01.jpg) 0 0 no-repeat;}
+.quick .quick_icon .qu_02 a{background:url(resources/img/quick_02.jpg) 0 0 no-repeat;}
+.quick .quick_icon .qu_03 a{background:url(resources/img/quick_03.jpg) 0 0 no-repeat;}
 .quick .quick_icon .qu_04 a{background:url(../../img/homepage/quick_04.png) 10px 15px no-repeat;}
 .quick .call_num{width:450px;padding:30px 40px;float:left;}
 .quick .quick_icon ul, .quick .call_num ul{overflow:hidden;}
@@ -188,7 +188,7 @@ input:focus{outline:0;}
 .quick .call_num li .s_tit{margin-bottom:10px;font-size:15px;color:#525252;}
 .quick .call_num li .num{font-size:22px;color:#3264bf;}
 .quick .call_num li .fax{font-size:22px;color:#222;}
-.quick .call_num .time{margin-top:20px;background:url(../../img/homepage/time_ico.gif) 0 0 no-repeat;padding-left:25px;line-height:16px;}
+.quick .call_num .time{margin-top:20px;background:url(resources/img/time_ico.gif) 0 0 no-repeat;padding-left:25px;line-height:16px;}
 
 /* footer */
 #footer{margin-top:50px;}

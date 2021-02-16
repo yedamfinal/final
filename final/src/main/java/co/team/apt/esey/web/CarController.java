@@ -108,6 +108,11 @@ public class CarController {
 				}
 		
 	
-	
+	//거부 상태일때 
+	@RequestMapping("mCancel.do")
+	public String cancelModal(Model model, CarVo vo) {
+		int n = carService.cancel(vo);
+		return "redirect:carList.do";
+	}
 	
 }

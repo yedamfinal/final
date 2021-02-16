@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import co.team.apt.common.vo.Paging;
 import co.team.apt.common.vo.PostBoxVo;
@@ -83,8 +84,15 @@ public class PostBoxController {
 			vo.setStart(paging.getFirst());
 			vo.setEnd(paging.getLast());		
 			// 전체 건수
+			
+//			vo.setDong("0");
+//			vo.setHo("0");
+//			if(vo.getSearchType() != null && vo.getSearchType().equals("dong")) {
+//				String[] a = vo.getSearch().split("/");
+//				vo.setDong(a[0]);
+//				vo.setHo(a[1]);
+//			}
 			paging.setTotalRecord(dao.pagingCount(vo));		//전체레코드건수
-
 
 			model.addAttribute("paging", paging);
 			
@@ -127,13 +135,14 @@ public class PostBoxController {
 		}
 		// 택배 상태변경 
 		@RequestMapping("mget.do")
-		public String mget(Model model, PostBoxVo vo) {
+		@ResponseBody
+		public PostBoxVo mget(Model model, PostBoxVo vo) {
 			if(vo.getGet().equals("after")) {
-			  postBoxService.mafter(vo);
+				postBoxService.mafter(vo);
 			} else if(vo.getGet().equals("before")) {
 				postBoxService.mbefore(vo);
 			}
-			return "redirect:mPostBox.do";
+			return postBoxService.selectOne(vo);
 		}
 		
 }

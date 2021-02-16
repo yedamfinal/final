@@ -73,6 +73,12 @@ public class CarServiceimpl implements CarService {
 		return dao.ccpl(vo);
 	}
 
+	@Override
+	public int cancel(CarVo vo) {
+		// TODO Auto-generated method stub
+		return dao.cancel(vo);
+	}
+
 
 }
 

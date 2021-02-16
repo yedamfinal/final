@@ -16,6 +16,7 @@ public interface VisitCarMapper {
 	public int ming(VisitCarVo vo);
 	public int ref(VisitCarVo vo);
 	public int cpl(VisitCarVo vo);
+	public void terVisitcar();
 	//입주자 차량조회 등록 
 	
 

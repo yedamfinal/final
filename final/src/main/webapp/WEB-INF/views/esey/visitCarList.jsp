@@ -19,7 +19,7 @@
 		<table class="table">
 		<thead>
 			<tr>
-				<th scope="col">no</th>
+				<!-- <th scope="col">no</th> -->
 				<th scope="col">동</th>
 				<th scope="col">호수</th>
 				<th scope="col">차량번호</th>
@@ -33,7 +33,7 @@
 			
 			<c:forEach var="vo" items="${visitList}">
 			<tr onclick="location.href='visitCarRead.do?visitNo=${vo.visitNo}'">
-				<th scope="col">${vo.visitNo}</th>
+				<%-- <th scope="col">${vo.visitNo}</th> --%>
 				<th scope="col">${person.dong}</th>
 				<th scope="col">${person.ho}</th>	
 				<th scope="col">${vo.carNum}</th>

@@ -22,8 +22,9 @@
 		select a.* from( select b.*, rownum rm from (
 		SELECT rownum rn,a.* FROM POSTBOX a 
 		<include refid="searchQuery"></include>
-		order by rn
+		order by get desc, ARRIVEDATE desc
 		) b ) a where rm between #{start} and #{end}
+		
 		
 </select>
 	<select id="pagingCount" resultType="int">
@@ -61,7 +62,14 @@
 		</choose> -->
 		<where>
 			<if test="search != null and search != ''">
-				${searchType} like '%' || #{search} || '%'
+				<choose>
+				<when test="searchType == 'dong'">
+					dong||'/'||ho = #{search}
+				</when>
+				<otherwise>
+					${searchType} like '%' || #{search} || '%'
+				</otherwise>
+				</choose>
 			</if>
 		</where>
 		
@@ -90,6 +98,7 @@
 <update id="mafter" parameterType="PostBoxVo"> 
 	update postbox set get = 'after' , getTime = sysdate where postno = #{postNo}
 </update>
+
 
 <update id="mbefore" parameterType="PostBoxVo"> 
 	update postbox set get = 'before' , getTime = null where postno = #{postNo}

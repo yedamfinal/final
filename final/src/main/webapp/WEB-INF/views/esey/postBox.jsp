@@ -20,7 +20,7 @@
 			<tr>
 				<th scope="col">동</th>
 				<th scope="col">호수</th>
-				<th scope="col">택배번호</th>
+				<!-- <th scope="col">택배번호</th> -->
 				<th scope="col">제품명</th>
 				<th scope="col">도착시간</th>
 				<th scope="col">수령시간</th>
@@ -33,7 +33,7 @@
 			<tr onclick="location.href='postBoxRead.do?postNo=${vo.postNo }'">
 				<td scope="col">${vo.dong}</td>
 				<td scope="col">${vo.ho}</td>	
-				<td scope="col">${vo.postNo}</td>
+				<%-- <td scope="col">${vo.postNo}</td> --%>
 				<td scope="col">${vo.product}</td>
 				<td scope="col">${vo.arriveDate}</td>
 				<td scope="col">${vo.getTime}</td>

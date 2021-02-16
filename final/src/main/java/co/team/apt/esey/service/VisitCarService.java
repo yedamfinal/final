@@ -17,5 +17,6 @@ public interface VisitCarService {
 	public int ming(VisitCarVo vo);
 	public int ref(VisitCarVo vo);
 	public int cpl(VisitCarVo vo);
+	public void deletevisitCar();
 		
 }
