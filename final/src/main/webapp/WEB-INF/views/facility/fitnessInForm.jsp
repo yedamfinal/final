@@ -9,6 +9,9 @@
 </head>
 <body>
 	<div class="container">
+		<br>
+			<h1>헬스장 등록</h1>
+		<br>	
 		<form id="frm" name="frm" action="insertFitness.do">
 			<div class="row">
 				<div class="col-sm-8" align="center">

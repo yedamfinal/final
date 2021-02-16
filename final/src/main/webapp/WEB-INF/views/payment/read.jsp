@@ -145,16 +145,20 @@
 				<div class="miniButton" align="center">
 					<button type="button" class="btn btn-outline-dark btn-lg"
 						data-toggle="modal" data-target="#detail">상세 내역 조회</button>
-					<button type="button" class="btn btn-outline-dark btn-lg"
-						data-toggle="modal" data-target="#comparison btn-lg">전월 비교 조회</button>
+					<c:if test="${person.type ne 'm' }">
+						<button type="button" class="btn btn-outline-dark btn-lg"
+							data-toggle="modal" data-target="#comparison">전월 비교 조회</button>
+					</c:if>
 					<button type="button" class="btn btn-outline-dark btn-lg"
 						data-toggle="modal" data-target="#payment">납부 내역 조회</button>
 
 				</div>
-				<button type="button" id="paymentButton"
-					class="btn btn-outline-dark btn-block btn-lg">관리비 납부하기</button>
-				<button type="button" data-toggle="modal" data-target="#regularPayment"
-					class="btn btn-outline-dark btn-block btn-lg">관리비 정기결제</button>
+				<c:if test="${person.type ne 'm' }">
+					<button type="button" id="paymentButton"
+						class="btn btn-outline-dark btn-block btn-lg">관리비 납부하기</button>
+					<button type="button" data-toggle="modal" data-target="#regularPayment"
+						class="btn btn-outline-dark btn-block btn-lg">관리비 정기결제</button>
+				</c:if>
 			</div>
 		</div>
 

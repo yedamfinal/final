@@ -44,8 +44,7 @@
 			<br>
 			<br>
 			<p class="lead">
-				<button class="btn btn-danger btn-lg" onclick="
-()">환불안내</button>
+				<button class="btn btn-danger btn-lg" onclick="cancel()">환불안내</button>
 			</p>
 		</div>
 
@@ -124,11 +123,12 @@
 			let start = new Date('${vo.startDate}');
 			let end = new Date('${vo.endDate}');
 			let total = Math.round((end - start) / (1000 * 60 * 60 * 24));
-			let other = Math.round((end - Date.now()) / (1000 * 60 * 60 * 24));
+			let other = Math.round((end - Date.now()) / (1000 * 60 * 60 * 24))+1;
 			let a = other / total;
 			let str = '${vo.cost}';
 			let cost = Number(str.replace('만원','0000'));
 			//let cost = Number('${vo.cost}');
+			console.log(start,end,a, total, other, Date.now())
 			if('${vo.cancel}'=='yes'){
 				$('#cost2').val('이미 환불신청 중 입니다.');
 				$('#content').attr('disabled','disabled').val('이미 환불신청 중 입니다.');

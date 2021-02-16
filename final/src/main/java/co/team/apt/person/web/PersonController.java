@@ -34,8 +34,8 @@ public class PersonController {
 		if (person != null) {
 			session.setAttribute("person", person);
 		}
-		// return "sign/loginResult";
 		return "redirect:"+path;
+		// return "sign/loginResult";
 	}
 	
 	// 로그인 아작스

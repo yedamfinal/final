@@ -212,7 +212,7 @@ public class PaymentController {
 							"장기수선 충당금",
 							"대표회의 운영비"};
 		map.put("headers", header);
-		map.put("filename", "excel_dept");
+		map.put("filename", "payment");
 		map.put("datas", list);
 		return new ModelAndView("commonExcelView", map);
 	}
