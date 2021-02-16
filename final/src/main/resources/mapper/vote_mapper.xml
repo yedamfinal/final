@@ -4,56 +4,79 @@
 
 <mapper namespace="co.team.apt.vote.mapper.BoardVoteMapper">
 
-	<select id="searchName" resultType="ResidentVo" parameterType="ResidentVo">
-		select id, name, dong, ho 
+	<select id="searchName" resultType="ResidentVo"
+		parameterType="ResidentVo">
+		select id, name, dong, ho
 		from resident
 		where name= #{name}
 	</select>
-	
+
 	<insert id="registerId" parameterType="candidateVo">
 		insert into candidate(id)
 		values (#{id})
 	</insert>
-	
-	<select id="boardVoteList" resultType="BoardVoteVo" parameterType="BoardVoteVo">
-		select *
-		from boardvote
+	<sql id = "searchQuery">
+			<where>
+			<if test="search != null and search != ''">
+				and title like '%' || #{search} || '%'
+			</if>
+			</where>
+			
+		
+	</sql>
+
+	<!-- <select id="boardVoteList" resultType="BoardVoteVo" parameterType="BoardVoteVo"> 
+		select * 
+		from boardvote 
+		order by seq desc </select> -->
+
+	<select id="boardVoteList" resultType="BoardVoteVo"
+		parameterType="BoardVoteVo">
+		select a.* from( select b.*, rownum rn from (
+		SELECT *
+		FROM boardvote
+		<include refid="searchQuery" />
 		order by seq desc
+		) b ) a where rn between #{start} and #{end}
 	</select>
-	
-	<select id="selectOne" resultType="BoardVoteVo" parameterType="BoardVoteVo">
+
+	<select id="selectOne" resultType="BoardVoteVo"
+		parameterType="BoardVoteVo">
 		select *
 		from boardvote
 		where seq=#{seq}
 	</select>
+	<select id="pagingCount" resultType="int">
+		select count(*)
+		from boardvote
+		<include refid="searchQuery"></include>
+	</select>
 	
 	<insert id="voteInsert" parameterType="BoardVoteVo">
 		insert into boardvote(
-								seq,
-								title,
-								startdate,
-								enddate )
+		seq,
+		title,
+		startdate,
+		enddate )
 		values(
-				seq_vote.nextval,
-				#{title},
-				#{startDate},
-				#{endDate} )
+		seq_vote.nextval,
+		#{title},
+		#{startDate},
+		#{endDate} )
 	</insert>
-	
+
 	<update id="voteUpdate" parameterType="BoardVoteVo">
 		update boardvote
-		set title=#{title},		
-			startdate=#{startDate},
-			enddate=#{endDate}
-		where seq = #{seq}
+		set
+		title=#{title},
+		startdate=#{startDate},
+		enddate=#{endDate}
+		where seq =
+		#{seq}
 	</update>
 
 	<delete id="voteDelete" parameterType="BoardVoteVo">
 		delete from boardvote
 		where seq = #{seq}
 	</delete>
-	
-	
-
-	
 </mapper>

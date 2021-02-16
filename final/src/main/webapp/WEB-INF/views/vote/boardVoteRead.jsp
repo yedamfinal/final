@@ -61,7 +61,7 @@
 						class="btn btn-outline-secondary">후보자 등록</button>
 					&nbsp;&nbsp;&nbsp;
 					<button type="button" class="btn btn-outline-secondary"
-						onclick="location.href='boardVoteList.do'">목록보기</button>
+						onclick="location.href='voteStart.do'">목록보기</button>
 					&nbsp;&nbsp;&nbsp;
 					<button type="button"
 						onclick="location.href='boardVoteDelete.do?seq=${vo.seq}'"

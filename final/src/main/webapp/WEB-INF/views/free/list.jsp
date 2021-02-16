@@ -42,8 +42,11 @@
 		<div align="right">
 		<a href="communityInsertForm.do?type=${type }">글쓰기</a>
 		</div>
-		<div align="center">
+		<div class="row justify-content-center">
 			<my:paging paging="${paging}" jsFunc="goList" />
+		</div>
+
+		<div class="row justify-content-center">
 			<form action="communityList" method="post" id='pageSearchForm'>
 				<select name="searchType" id="searchType" size="1">
 					<option value="title" <c:if test="${paging.searchType == 'title'}">selected</c:if>>제목</option>
