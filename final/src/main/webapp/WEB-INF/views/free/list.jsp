@@ -30,10 +30,10 @@
 			<tbody>
 				<c:forEach var="vo" items="${boardList}">
 					<tr onclick="location.href='communityRead.do?defno=${vo.defno}&type=${type }'">
-						<td scope="col">${vo.defno}</th>
-						<td scope="col">${vo.title}</th>
-						<td scope="col">${vo.writer}</th>
-						<td scope="col">${vo.defdate}</th>
+						<td scope="col">${vo.defno}</td>
+						<td scope="col">${vo.title}</td>
+						<td scope="col">${vo.writer}</td>
+						<td scope="col">${vo.defdate}</td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -54,7 +54,7 @@
 				<input name="search" value="${paging.search}"> 
 				<input hidden name="page" id="page" value=""> 
 				<input hidden name="type" value="${type}"> 
-				<input type="submit" value="검색">
+				<input class="btn btn-outline-secondary btn-sm" type="submit" value="검색">
 				
 			</form>
 			<br><br>

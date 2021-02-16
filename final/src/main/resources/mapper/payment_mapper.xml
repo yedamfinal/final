@@ -231,25 +231,70 @@
 	
 	<!-- 관리자페이지 리스트 조회 -->
 	<select id="managerList" resultType="PaymentVo">
-		
-		select case when no<![CDATA[>]]>0 then '연체중' 
-					when ing<![CDATA[>]]>0 then '납입전' 
-					else '납입완' end as status, 
-			   b.paydate, 
-			   b.cost, 
-			   b.id, 
-			   c.dong, 
-			   c.ho
-		from (select id,sum(case when lower(status) ='no' then 1 else 0 end) no, 
-		              sum(case when lower(status) ='ing' then 1 else 0 end)  ing,
-		              sum(case when lower(status) ='yes' then 1 else 0 end) yes,
-		              max(case when lower(status) ='yes' then payid else 0 end) payid
-		      from payment
-		      group by id) a, payment b, resident c
-		where a.payid = b.payid
-		and a.id = c.id
-		order by dong, ho
+		select a.* from( select b.*, rownum rn from (
+			select case when no<![CDATA[>]]>0 then '연체중' 
+						when ing<![CDATA[>]]>0 then '납입전' 
+						else '납입완' end as status, 
+				   b.paydate, 
+				   b.cost, 
+				   b.id, 
+				   c.dong, 
+				   c.ho
+			from (select id,sum(case when lower(status) ='no' then 1 else 0 end) no, 
+			              sum(case when lower(status) ='ing' then 1 else 0 end)  ing,
+			              sum(case when lower(status) ='yes' then 1 else 0 end) yes,
+			              max(case when lower(status) ='yes' then payid else 0 end) payid
+			      from payment
+			      group by id) a, payment b, resident c
+			where a.payid = b.payid
+			and a.id = c.id
+			order by dong, ho
+
+		) b <include refid="searchQuery"/>
+		) a where rn between #{start} and #{end}
 	</select>
+	
+	<select id="pagingCount" resultType="int">
+		select count(*)
+		from  (select case when no<![CDATA[>]]>0 then '연체중' 
+							when ing<![CDATA[>]]>0 then '납입전' 
+							else '납입완' end as status, 
+					   b.paydate, 
+					   b.cost, 
+					   b.id, 
+					   c.dong, 
+					   c.ho
+				from (select id,sum(case when lower(status) ='no' then 1 else 0 end) no, 
+				              sum(case when lower(status) ='ing' then 1 else 0 end)  ing,
+				              sum(case when lower(status) ='yes' then 1 else 0 end) yes,
+				              max(case when lower(status) ='yes' then payid else 0 end) payid
+				      from payment
+				      group by id) a, payment b, resident c
+				where a.payid = b.payid
+				and a.id = c.id
+				)
+		<include refid="searchQuery"/>
+	</select>
+	
+	<sql id = "searchQuery">
+		<where>
+		<if test="dong != null and dong != ''">
+			and dong = #{dong}
+			and ho = #{ho}
+		</if>
+		<choose>
+			<when test="status == 'ing'">
+				and status = '납입전'
+			</when>
+			<when test="status == 'no'">
+				and status = '연체중'
+			</when>
+			<when test="status == 'yes'">
+				and status = '납입완'
+			</when>
+		</choose>
+		</where>
+	</sql>
 	
 	<insert id="insertPayment" parameterType="java.util.Map">
 		insert into payment(payid,

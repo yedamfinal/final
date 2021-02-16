@@ -72,9 +72,9 @@ public class communityServiceImpl implements CommunityService {
 	@Override
 	public int addReComment(BcommentVo vo) {
 		// TODO Auto-generated method stub
-		String n  = dao.getRereno(vo);
-		vo.setReReno(n);
-		dao.addReCommentBefore(vo);
+		//String n  = dao.getRereno(vo);
+		//vo.setReReno(n);
+		//dao.addReCommentBefore(vo);
 		return dao.addReComment(vo);
 	}
 

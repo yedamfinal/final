@@ -31,6 +31,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 import co.team.apt.common.vo.BoardVo;
 import co.team.apt.common.vo.CardInfo;
+import co.team.apt.common.vo.Paging;
 import co.team.apt.common.vo.PaymentVo;
 import co.team.apt.common.vo.ResidentVo;
 import co.team.apt.payment.service.PaymentService;
@@ -47,7 +48,7 @@ public class PaymentController {
 	PaymentService paymentService;
 	
 	@RequestMapping("payRead.do")
-	public String payRead(Model model, PaymentVo vo, HttpServletRequest request) throws JsonProcessingException {
+	public String payRead(Model model, PaymentVo vo, Paging paging, HttpServletRequest request) throws JsonProcessingException {
 		//권한별 페이지이동 시작
 		HttpSession session =  request.getSession(false);
 		ResidentVo resiVo = (ResidentVo) session.getAttribute("person");
@@ -55,8 +56,25 @@ public class PaymentController {
 		if(resiVo == null) { //로그인 안한상태
 			return "home/needLogin";
 		}else if(resiVo.getType().equals("m")){//관리자로 로그인
-			List<PaymentVo> managerList = paymentService.managerList();
+			//페이징처리
+			paging.setPageUnit(10);
+			paging.setPageSize(10);	//페이지넘버 자체를 지정
+			// 페이지번호 파라미터
+			if( paging.getPage() == null) {
+				paging.setPage(1); 
+			}		
+			// 시작/마지막 레코드 번호
+			vo.setStart(paging.getFirst());
+			vo.setEnd(paging.getLast());		
+			// 전체 건수
+			paging.setTotalRecord(paymentService.pagingCount(vo));		//전체레코드건수
+
+
+			model.addAttribute("paging", paging);
+			
+			List<PaymentVo> managerList = paymentService.managerList(vo);
 			model.addAttribute("payList",managerList);
+			model.addAttribute("payVo", vo);
 			
 			return "payment/payManager";
 		}else if(resiVo.getOwner().equals("owner")) {//세대주로 로그인
@@ -94,6 +112,41 @@ public class PaymentController {
 		model.addAttribute("payList",list);
 		model.addAttribute("payMap",map);
 		model.addAttribute("detailList",detailList);
+		
+		return "payment/read";
+	}
+	
+	@RequestMapping("managerRead.do")
+	public String managerRead(Model model, ResidentVo rvo ) {
+		PaymentVo vo = new PaymentVo();
+		vo.setId(paymentService.getOwner(rvo));
+		
+		List<PaymentVo> list = paymentService.payRead(vo);
+		List<PaymentVo> monthList = paymentService.monthList(vo);
+		List<PaymentVo> detailList = paymentService.detailList(vo);
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		int total = 0;
+		int tax = 0;
+		int delay = 0;
+		for(PaymentVo v : list) {
+			total += Integer.parseInt(v.getCost());
+			if(v.getStatus().equals("no")) {
+				delay += Integer.parseInt(v.getCost());
+				tax += Integer.parseInt(v.getDelayTax());
+			}
+		}
+		
+		map.put("total", total);
+		map.put("delay", delay);
+		map.put("tax", tax);
+		map.put("id", vo.getId());
+		map.put("monthList", monthList);
+		model.addAttribute("payList",list);
+		model.addAttribute("payMap",map);
+		model.addAttribute("detailList",detailList);
+		model.addAttribute("rvo", rvo);
 		
 		return "payment/read";
 	}

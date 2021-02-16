@@ -22,7 +22,8 @@ public interface PaymentService {
 	public List<PaymentVo> monthList(PaymentVo vo);
 	public PaymentVo payComparison(PaymentVo vo);
 	public void payDelay();
-	public List<PaymentVo> managerList();
+	public List<PaymentVo> managerList(PaymentVo vo);
 	public List<?> getExcelUpload(File file);
 	public List<PaymentVo> detailList(PaymentVo vo);
+	public int pagingCount(PaymentVo vo);
 }

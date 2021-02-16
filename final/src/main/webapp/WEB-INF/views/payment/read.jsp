@@ -43,6 +43,14 @@
 
 .mid2 {
 	height: 80px;
+	padding-top: 7px;
+}
+.mainTable{
+	padding-top: 60px;
+}
+.miniButton{
+	padding-top: 100px;
+	padding-bottom: 80px;
 }
 </style>
 </head>
@@ -81,7 +89,11 @@
 		</div>
 		<div class="mid row">
 			<div class="col-sm">
-				<div class="mid2" align="center"></div>
+				<div class="mid2" align="center">
+					<c:if test="${not empty rvo.dong }">
+						<h2>${rvo.dong }동 ${rvo.ho }호</h2>
+					</c:if>
+				</div>
 			</div>
 			<div class="col-sm">
 				<div class="mid2" align="right">
@@ -91,8 +103,8 @@
 			</div>
 		</div>
 		<div class="bottom row">
-			<div class="col-sm">
-				<div>
+			<div class="col-sm ">
+				<div class="mainTable">
 					<table class="table">
 						<tbody>
 							<tr>
@@ -130,19 +142,19 @@
 				</div>
 			</div>
 			<div class="col-sm">
-				<div>
-					<button type="button" class="btn btn-outline-dark"
+				<div class="miniButton" align="center">
+					<button type="button" class="btn btn-outline-dark btn-lg"
 						data-toggle="modal" data-target="#detail">상세 내역 조회</button>
-					<button type="button" class="btn btn-outline-dark"
-						data-toggle="modal" data-target="#comparison">전월 비교 조회</button>
-					<button type="button" class="btn btn-outline-dark"
+					<button type="button" class="btn btn-outline-dark btn-lg"
+						data-toggle="modal" data-target="#comparison btn-lg">전월 비교 조회</button>
+					<button type="button" class="btn btn-outline-dark btn-lg"
 						data-toggle="modal" data-target="#payment">납부 내역 조회</button>
 
 				</div>
 				<button type="button" id="paymentButton"
-					class="btn btn-outline-dark btn-block">관리비 납부하기</button>
+					class="btn btn-outline-dark btn-block btn-lg">관리비 납부하기</button>
 				<button type="button" data-toggle="modal" data-target="#regularPayment"
-					class="btn btn-outline-dark btn-block">관리비 정기결제</button>
+					class="btn btn-outline-dark btn-block btn-lg">관리비 정기결제</button>
 			</div>
 		</div>
 
@@ -445,7 +457,6 @@
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary"
 							data-dismiss="modal">닫기</button>
-						<button type="button" class="btn btn-primary">Understood</button>
 					</div>
 				</div>
 			</div>
@@ -588,7 +599,7 @@
 			pg : "html5_inicis",
 			merchant_uid : payNo, //결제번호
 			name : $('#voMonth').html()+" 관리비", //헬스장, 독서실, x월 관리비 결제명
-			amount : 1200, //가격
+			amount : cost, //가격
 			buyer_name : '${person.name}', // 회원이름
 			buyer_tel :  '${person.phone}'//회원전화번호
 		}

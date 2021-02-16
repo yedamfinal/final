@@ -18,8 +18,9 @@ public interface PaymentMapper {
 	public List<PaymentVo> monthList(PaymentVo vo);
 	public PaymentVo payComparison(PaymentVo vo);
 	public void payDelay();
-	public List<PaymentVo> managerList();
+	public List<PaymentVo> managerList(PaymentVo vo);
 	public void insertPayment(Map<String, Object> map);
 	public void insertPayPublic(Map<String, Object> map);
 	public List<PaymentVo> ditailList(PaymentVo vo);
+	public int pagingCount(PaymentVo vo);
 }

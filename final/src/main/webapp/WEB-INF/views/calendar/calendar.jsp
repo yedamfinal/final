@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,9 +40,9 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
+                   		 <h4 class="modal-title"></h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title"></h4>
                     </div>
                     <div class="modal-body">
 						<div class="row" style="display: none;">
@@ -98,12 +99,17 @@
                     </div>
                     <div class="modal-footer modalBtnContainer-addEvent">
                         <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-                        <button type="button" class="btn btn-primary" id="save-event">저장</button>
+                        <c:if test="${person.type=='m' or person.auth=='yes'}">
+                        	<button type="button" class="btn btn-primary" id="save-event">저장</button>
+                        </c:if>
                     </div>
                     <div class="modal-footer modalBtnContainer-modifyEvent">
                         <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-                        <button type="button" class="btn btn-danger" id="deleteEvent">삭제</button>
-                        <button type="button" class="btn btn-primary" id="updateEvent">저장</button>
+                        <c:if test="${person.type=='m' or person.auth=='yes'}">
+							<button type="button" class="btn btn-danger" id="deleteEvent">삭제</button>
+	                        <button type="button" class="btn btn-primary" id="updateEvent">저장</button>
+						</c:if>
+                        
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
@@ -113,7 +119,10 @@
         
     </div>
     <!-- /.container -->
-
+	<script type="text/javascript">
+	var auth = '${person.type }'
+	var auth2 = '${person.auth }'
+		</script>
     <script src="resources/vendor/js/jquery.min.js"></script>
     <script src="resources/vendor/js/bootstrap.min.js"></script>
     <script src="resources/vendor/js/moment.min.js"></script>

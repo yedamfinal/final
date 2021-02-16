@@ -18,4 +18,8 @@ public class FacilityVo {
 	private String name;
 	private String phone;
 	private String address;
+	
+	private int start;
+	private int end;
+	private String search;
 }

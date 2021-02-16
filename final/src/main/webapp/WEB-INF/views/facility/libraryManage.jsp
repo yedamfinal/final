@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="my" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,7 +28,7 @@
 		<table class="table">
 				<thead>
 					<tr>
-						<th scope="col">ID</th>
+						<th scope="col">주소</th>
 						<th scope="col">이름</th>
 						<th scope="col">전화번호</th>
 						<c:if test="${faType eq 'library' }">
@@ -41,7 +42,7 @@
 				<tbody>
 				<c:forEach items="${list }" var="vo">
 					<tr>
-						<th scope="row">${vo.id 	}</th>
+						<th scope="row">${vo.address 	}</th>
 						<td>${vo.name }</td>
 						<td>${vo.phone }</td>
 						<c:if test="${faType eq 'library' }">
@@ -68,6 +69,17 @@
 				</c:forEach>
 				</tbody>
 			</table>
+			
+			<div align="center">
+				<my:paging paging="${paging}" jsFunc="goList" />
+				<form action="libraryManager.do" method="post" id='pageSearchForm'>
+					<input name="search" value="${paging.search}"> 
+					<input hidden name="page" id="page" value=""> 
+					<input hidden name="type" value="${faType}"> 
+					<input class="btn btn-outline-secondary btn-sm" type="submit" value="검색">
+				</form>
+				<br><br>
+			</div>
 	</div>
 	<!-- Modal -->
 		<div class="modal fade" id="cancelModal" data-backdrop="static"
@@ -124,6 +136,12 @@
 			
 			$('#cancelModal').modal('show');
 		})
+		
+		function goList(p) {
+			//location.href = "communityList.do?page=" + p+"&type=${type}";
+			$('#page').val(p);
+			$('#pageSearchForm').submit();
+		}
 	</script>
 </body>
 </html>

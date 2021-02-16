@@ -119,7 +119,7 @@
 	</update>
 	
 	<!-- 답댓글 작성 -->
-	<select id="getRereno" resultType="string" parameterType="BcommentVo">
+	<!-- <select id="getRereno" resultType="string" parameterType="BcommentVo">
         select max(rereno)+1 rereno
  		from bcomment 
 		where defno=#{defno}
@@ -143,8 +143,11 @@
     	where defno = #{defno}
    		and groupno = #{groupNo}
    		and rereno <![CDATA[>=]]> #{reReno}
-	</update>
+	</update> -->
 	<insert id="addReComment" parameterType="BcommentVo">
+	<selectKey resultType="BcommentVo" keyProperty="reReno" order="BEFORE">
+        select max(rereno)+1 reReno  from bcomment where defno = #{defno} and groupno=#{groupNo}   
+    </selectKey>
 		insert into bcomment
 		values (
 			re_seq.nextval,

@@ -45,6 +45,11 @@
 </script>
 <div class="top_place section_padding">
 	<div class="container">
+	<button type="button" class="btn btn-outline-primary btn-lg" 
+		onclick="location.href='resiRegister'">입주자 가입</button>
+	<button type="button" class="btn btn-primary btn-lg" 
+		onclick="location.href='maneRegister'">관리자 가입</button>
+		<br><br><br>
 		<form action="maneRegister" method="post">
 			<div class="form-group has-feedback">
 			

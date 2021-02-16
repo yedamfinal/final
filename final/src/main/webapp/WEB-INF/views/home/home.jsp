@@ -54,19 +54,18 @@
 
 			</div>
 			<div class="mBoard_box">
-				<div class="mBoard noti_board" style="width: 500px">
+				<div class="mBoard noti_board" style="width: 350px">
 					<p class="title">
 						공지사항 <span>아파트 새 소식을 확인해주세요!</span>
 					</p>
 					<div class="tab_board_wrap">
 						<ul class="tab_cate" id="notice_ul">
-							<li class="on" id="li_inform"><a
-								href="noticeList.do">아파트
+							<li class="on" id="li_inform"><a>아파트
 									공지사항</a></li>
 						</ul>
 						<div class="tab_noti_list m_noti_list">
 							<c:forEach var="vo" items="${noticeList}">
-							<ul id="community_latest_ul" onclick="location.href='noticeRead.do?defno=${vo.defno}'">
+							<ul id="community_latest_ul" >
 								<li title="${vo.title}"><a
 									href="noticeRead.do?defno=${vo.defno}">${vo.title}
 									<small title="작성일">${vo.defdate}</small>
@@ -74,45 +73,67 @@
 							</ul>
 							</c:forEach>
 						</div>
-						<a href="/board/lists/inform" class="tab_more blind_txt"
-							id="notice_more">더보기</a>
 					</div>
 				</div>
-				<div class="mBoard comu_board">
+				<div class="mBoard noti_board" style="width: 350px">
 					<p class="title">
 						커뮤니티 <span> 입주민간 자유로운 소통 공간!</span>
 					</p>
+					
 					<div class="tab_board_wrap">
-						<ul class="tab_cate" id="community_ul">
-							<li class="on" id="li_free"><a
-								href="javascript:board_latest_list('free','community')">자유게시판</a></li>
-							<li id="li_suggest"><a
-								href="javascript:board_latest_list('suggest','community')">하자보수</a></li>
+						<ul class="tab_cate" id="community_ul" role="tablist">
+							<li class="on" id="li_free" role="presentation"><a
+								onclick="free();">자유게시판</a></li>
+							<li class="on" id="li_suggest" role="presentation"><a
+								onclick="def();">하자보수</a></li>
 						</ul>
 						<div class="tab_noti_list m_cumu_list">
-							<ul id="community_latest_ul">
-
-								<li><a
-									href="javascript:post_to_url('/board/view/free/',{'wr_id':'780935'})">로그인을
-										하셔야 확인 가능합니다. <small title="작성일">2021-01-14</small>
-								</a></li>
-								<li><a
-									href="javascript:post_to_url('/board/view/free/',{'wr_id':'772216'})">로그인을
-										하셔야 확인 가능합니다. <small title="작성일">2021-01-07</small>
-								</a></li>
-								<li><a
-									href="javascript:post_to_url('/board/view/free/',{'wr_id':'760761'})">로그인을
-										하셔야 확인 가능합니다. <small title="작성일">2020-12-27</small>
-								</a></li>
-								<li><a
-									href="javascript:post_to_url('/board/view/free/',{'wr_id':'751598'})">로그인을
-										하셔야 확인 가능합니다. <small title="작성일">2020-12-18</small>
+						<div id="free">
+							<c:forEach var="vo" items="${freeList}">
+							<ul id="free">
+								<li title="${vo.title}"><a
+									href="communityRead.do?defno=${vo.defno}&type=${type }">${vo.title}
+									<small title="작성일">${vo.defdate}</small>
 								</a></li>
 							</ul>
+							</c:forEach>
 						</div>
-						<a href="/board/lists/free" class="tab_more blind_txt"
-							id="community_more">더보기</a>
+						<div id="def">
+							<c:forEach var="vo" items="${defList}">
+							<ul id="def">
+								<li title="${vo.title}"><a
+									href="communityRead.do?defno=${vo.defno}&type=${type }">${vo.title}
+									<small title="작성일">${vo.defdate}</small>
+								</a></li>
+							</ul>
+							</c:forEach>
+						</div>	
+						</div>
 					</div>
+					</div>
+					
+					<div class="mBoard noti_board" style="width: 350px">
+					<p class="title">
+						전자투표 <span>입주민의 권리! 많은 참여바랍니다!</span>
+					</p>
+					<div class="tab_board_wrap">
+						<ul class="tab_cate" id="notice_ul">
+							<li class="on" id="li_inform"><a>전자투표</a></li>
+						</ul>
+						<div class="tab_noti_list m_noti_list">
+							<c:forEach var="vo" items="${noticeList}">
+							<ul id="community_latest_ul" >
+								<li title="${vo.title}"><a
+									href="noticeRead.do?defno=${vo.defno}">${vo.title}
+									<small title="작성일">${vo.defdate}</small>
+								</a></li>
+							</ul>
+							</c:forEach>
+						</div>
+					</div>
+				</div>
+					
+					
 				</div>
 			</div>
 
@@ -143,5 +164,18 @@
 				</div>
 			</div>
 		</div>
-</div>
+
+<script type="text/javascript">
+	$('#def').hide();
+	
+	function def() {
+		$('#free').hide();
+		$('#def').show();	
+	}
+	
+	function free() {
+		$('#def').hide();
+		$('#free').show();
+	}
+</script>
 

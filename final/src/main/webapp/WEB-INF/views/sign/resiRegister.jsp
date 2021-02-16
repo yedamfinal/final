@@ -177,8 +177,13 @@
 
 	})
 </script>
-<div class="top_place section_padding">
+<br><br><br>
 	<div class="container">
+	<button type="button" class="btn btn-primary btn-lg" 
+		onclick="location.href='resiRegister'">입주자 가입</button>
+	<button type="button" class="btn btn-outline-primary btn-lg" 
+		onclick="location.href='maneRegister'">관리자 가입</button>
+		<br><br><br><br>
 		<form action="resiRegister" method="post">
 
 			<div class="form-group has-feedback">
@@ -246,13 +251,12 @@
 			</div>
 
 			<div class="form-group has-feedback">
-				<button class="btn btn-success" type="submit" id="submit">회원가입</button>
-				<button class="cencle btn btn-danger" type="button">취소</button>
+				<button class="btn btn-outline-primary" type="submit">회원가입</button>
+				<button class="btn btn-outline-primary" type="reset">취소</button>
+			<input class="btn btn-outline-primary" type="button" value="추가" onclick="add_div()"><br />
 			</div>
 
-			<input type="button" value="추가" onclick="add_div()"><br />
 
 
 		</form>
-	</div>
 </div>
