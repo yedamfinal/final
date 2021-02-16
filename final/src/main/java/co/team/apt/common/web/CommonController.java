@@ -21,16 +21,25 @@ public class CommonController {
 	@Autowired 
 	CommunityService communityService;
 	
+	@Autowired
+	BoardVoteService voteService;
+	
 	
 	@RequestMapping("/home")
-	public String home(Model model, BoardVo vo) {
+	public String home(Model model, BoardVo vo, BoardVoteVo vvo) {
 		vo.setEnd(4);
+		vvo.setEnd(4);
 		List<BoardVo> list = noticeService.noticeList(vo);
+		List<BoardVoteVo> vlist= voteService.boardVoteList(vvo);
+		
+		
 		vo.setType("free");
 		List<BoardVo> list2 = communityService.boardList(vo);
 		vo.setType("def");
 		List<BoardVo> list3 = communityService.boardList(vo);
 		
+		
+		model.addAttribute("boardVoteList", vlist);
 		model.addAttribute("noticeList", list);
 		model.addAttribute("freeList", list2);
 		model.addAttribute("defList", list3);
@@ -38,4 +47,6 @@ public class CommonController {
 				
 		return "home/home";
 	}
+	
+	
 }

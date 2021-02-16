@@ -121,11 +121,11 @@
 							<li class="on" id="li_inform"><a>전자투표</a></li>
 						</ul>
 						<div class="tab_noti_list m_noti_list">
-							<c:forEach var="vo" items="${noticeList}">
+							<c:forEach var="vo" items="${boardVoteList}">
 							<ul id="community_latest_ul" >
 								<li title="${vo.title}"><a
-									href="noticeRead.do?defno=${vo.defno}">${vo.title}
-									<small title="작성일">${vo.defdate}</small>
+									href="userBoardVoteRead.do?seq=${vo.seq}&endDate=${vo.endDate}">${vo.title}
+									<small title="작성일">~${vo.endDate}</small>
 								</a></li>
 							</ul>
 							</c:forEach>
@@ -143,16 +143,15 @@
 				<p class="title">자주찾는 서비스</p>
 				<div class="quick_icon">
 					<ul>
-						<li class='qu_01'><a href=/board/lists/free>자유게시판</a></li>
-						<li class='qu_02'><a href=/board/lists/free>일정표</a></li>
-						<li class='qu_03'><a href=javascript:checkApti()>관리비조회</a></li>
+						<li class='qu_01'><a style="background:url(resources/img/quick_01.jpg) 0 0 no-repeat;" href=noticeList.do?type=notice>자유게시판</a></li>
+						<li class='qu_02'><a style="background:url(resources/img/quick_02.jpg) 0 0 no-repeat;" href=calendar.do>일정표</a></li>
+						<li class='qu_03'><a style="background:url(resources/img/quick_03.jpg) 0 0 no-repeat;" href=payRead.do>관리비조회</a></li>
 					</ul>
 				</div>
 				<div class="call_num">
 					<ul>
 						<li>
-							<p class="s_tit">관리사무소 전화번호</p>
-
+							<p class="s_tit" >관리사무소 전화번호</p>
 							<p class="num">053-111-1111</p>
 						</li>
 						<li>
@@ -160,11 +159,11 @@
 							<p class="fax">053-333-3333</p>
 						</li>
 					</ul>
-					<p class="time">09:00 ~ 18:00 (주말/ 공휴일 휴무)</p>
+					<p class="time" style="background:url(resources/img/time_ico.gif) 0 0 no-repeat;">09:00 ~ 18:00 (주말/ 공휴일 휴무)</p>
 				</div>
 			</div>
+			
 		</div>
-
 <script type="text/javascript">
 	$('#def').hide();
 	

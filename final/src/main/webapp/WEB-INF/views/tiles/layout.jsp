@@ -10,8 +10,13 @@
 <meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Martine</title>
+<title>Apt 4 U 홈페이지입니다.</title>
 <link rel="icon" href="resources/img/favicon.png">
+
+<!-- hoho -->
+<link rel="stylesheet" type="text/css" href="resources/css/style2.css">
+
+
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="resources/css/bootstrap.min.css">
 <!-- animate CSS -->

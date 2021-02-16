@@ -37,15 +37,19 @@
 				</tbody>
 			</table>
 		</div>
-		<div align="right">
+		<div class="row justify-content-center">
 			<my:paging paging="${paging}" jsFunc="goList" />
-			<form action="voteStart.do" method="post" id="pageSearchForm">
-				<input name="search" value="${paging.search}"> <input
-					type="hidden" name="type" value="${type}"> <input
-					type="hidden" name="page" id="page" value=""> <input
-					class="btn btn-outline-secondary btn-sm" type="submit" value="검색">
-			</form>
 		</div>
+
+	</div>
+	<div class="row justify-content-center" style="padding-left: 50px">
+		<form action="voteStart.do" method="post" id="pageSearchForm">
+			<input name="search" value="${paging.search}"> <input
+				type="hidden" name="type" value="${type}"> <input
+				type="hidden" name="page" id="page" value=""> <input
+				class="btn btn-outline-secondary btn-sm" type="submit" value="검색">
+		</form>
+	</div>
 	</div>
 </body>
 <script

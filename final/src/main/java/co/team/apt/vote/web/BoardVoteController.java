@@ -163,14 +163,14 @@ public class BoardVoteController {
 	@RequestMapping("/boardVoteUpdate.do")
 	public String boardVoteUpdate(BoardVoteVo vo) {
 		int n = boardVoteService.voteUpdate(vo);
-		return "redirect:boardVoteList.do";
+		return "redirect:voteStart.do";
 	}
 
 	@RequestMapping("/boardVoteDelete.do")
 	public String boardVoteDelete(BoardVoteVo vo) {
 		System.out.println(vo);
 		int n = boardVoteService.voteDelete(vo);
-		return "redirect:boardVoteList.do";
+		return "redirect:voteStart.do";
 	}
 
 	// 후보자 1명 등록
