@@ -20,7 +20,7 @@
 		<table class="table">
 		<thead>
 			<tr>
-				<th scope="col">no</th>
+				<!-- <th scope="col">no</th> -->
 				<th scope="col">동</th>
 				<th scope="col">호수</th>
 				<th scope="col">차량번호</th>
@@ -33,7 +33,7 @@
 			
 			<c:forEach var="vo" items="${mCarList}">
 			<tr>
-				<td scope="col">${vo.cno}</td>
+				<%-- <td scope="col">${vo.cno}</td> --%>
 				<td scope="col">${vo.dong}</td>
 				<td scope="col">${vo.ho}</td>	
 				<td scope="col">${vo.carNum}</td>
@@ -76,12 +76,14 @@
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
+				<form action="mCancel.do" method="post">
+				<input hidden name="cno" id="modalcno" value="${vo.cno }">
 					<div class="modal-body">
 						<div class="input-group flex-nowrap">
 							<div class="input-group-prepend">
 								<span class="input-group-text" id="dong">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;동&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 							</div>
-							<input id="modaldong" name="cancelCost2" type="text" value="${vo.dong }" class="form-control" 
+							<input id="modaldong" name="dong" type="text" value="" class="form-control" 
 								aria-label="Username" aria-describedby="addon-wrapping">
 						</div>
 						<br>
@@ -89,7 +91,7 @@
 							<div class="input-group-prepend">
 								<span class="input-group-text" id="addon-wrapping">&nbsp;&nbsp;&nbsp;호수&nbsp;&nbsp;&nbsp;&nbsp;</span>
 							</div>
-							<input id="modalho" name="cancelPayNo" type="text" value="${vo.ho }" class="form-control" 
+							<input id="modalho" name="ho" type="text" value="" class="form-control" 
 								aria-label="Username" aria-describedby="addon-wrapping">
 						</div>
 						<br>
@@ -97,7 +99,7 @@
 							<div class="input-group-prepend">
 								<span class="input-group-text" id="addon-wrapping">차량번호</span>
 							</div>
-							<input id="modalcarNum" name="cancelId" type="text" value="${vo.carNum }" class="form-control" 
+							<input id="modalcarNum" name="carNum" type="text" value="" class="form-control" 
 								aria-label="Username" aria-describedby="addon-wrapping">
 						</div>
 						<br>
@@ -105,23 +107,20 @@
 							<div class="input-group-prepend">
 								<span class="input-group-text" id="addon-wrapping">거절사유</span>
 							</div>
-							<input id="modalcontnet" name="content" type="text" class="form-control" placeholder="거절사유를 작성해주세요"
+							<input id="modalcontnet" name="cancel" type="text" class="form-control" placeholder="거절사유를 작성해주세요"
 								aria-label="Username" aria-describedby="addon-wrapping">
 						</div>
 						
 						
 					</div>
 					<div class="modal-footer">
-						<form action="cancelManage" method="post">
+
 						    <button class="btn btn-danger">거부</button>
-						    <input hidden name="dong" id="dong">
-							<input hidden name="ho" id="ho">
-							<input hidden name="carNum" id="carNum">
-							<input hidden name="content" id="cancelType">
-						</form>
+						   
 						<button type="button" class="btn btn-secondary"
 							data-dismiss="modal">닫기</button>
 					</div>
+				</form>
 				</div>
 			</div>
 		</div>
@@ -147,7 +146,8 @@
 	function getselect(cno) {
 		/* console.log(postNo,event.target.value) */
 		if(event.target.value == 'cref') {
-			console.log($(event.target).data('carnum'));
+			
+			$('#modalcno').val($(event.target).data('cno'));
 			$('#modaldong').val($(event.target).data('dong'));
 			$('#modalho').val($(event.target).data('ho'));
 			$('#modalcarNum').val($(event.target).data('carnum'));

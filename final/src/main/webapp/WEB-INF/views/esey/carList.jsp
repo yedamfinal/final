@@ -10,7 +10,7 @@
 <!-- Bootstrap CSS -->
 </head>
 <body>
-${vo},${vo.cget}
+
 	<div class="container">
 	<div>
 		<h1>입주자차량신청</h1>
@@ -19,7 +19,7 @@ ${vo},${vo.cget}
 		<table class="table">
 		<thead>
 			<tr>
-				<th scope="col">no</th>
+				<!-- <th scope="col">no</th> -->
 				<th scope="col">동</th>
 				<th scope="col">호수</th>
 				<th scope="col">차량번호</th>
@@ -31,7 +31,7 @@ ${vo},${vo.cget}
 			
 			<c:forEach var="vo" items="${carList}">
 			<tr  onclick="location.href='carRead.do?cno=${vo.cno }'">
-				<td scope="col">${vo.cno}</td>
+				<%-- <td scope="col">${vo.cno}</td> --%>
 				<td scope="col">${person.dong}</td>
 				<td scope="col">${person.ho}</td>	
 				<td scope="col">${vo.carNum}</td>
@@ -42,6 +42,7 @@ ${vo},${vo.cget}
 				</td>
 				 <td scope="col"><c:if test = "${vo.cget eq 'cming'}">처리중</c:if>
 								<c:if test = "${vo.cget eq 'cref'}">승인거부</c:if>
+								
 								<c:if test = "${vo.cget eq 'ccpl'}">승인완료</c:if>
 								</td>
 			</tr> 

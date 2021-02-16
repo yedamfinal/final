@@ -12,7 +12,7 @@
 <title>페이지 읽기</title>
 </head>
 <body>
-${vo}ddd
+
 	<div class="container">
 		<div>
 			<h1>조회</h1>
@@ -41,7 +41,12 @@ ${vo}ddd
 				 		<c:if test = "${vo.carType eq 'M'}">중형</c:if>
 				 		<c:if test = "${vo.carType eq 'L'}">대형</c:if></td>
 					</tr>
-
+					<c:if test = "${vo.cget eq 'cref' }">
+					<tr>
+						<th width="100">거절사유</th>
+						<td width="300">${vo.cancel}</td>
+					</tr>
+					</c:if>
 				</table>
 				<div align="right">
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

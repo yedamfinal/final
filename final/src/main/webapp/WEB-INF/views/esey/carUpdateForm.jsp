@@ -12,7 +12,7 @@
 <title>페이지 읽기</title>
 </head>
 <body>
-${vo}ddd
+
 	<div class="container">
 		<div>
 			<h1>tnwjd</h1>

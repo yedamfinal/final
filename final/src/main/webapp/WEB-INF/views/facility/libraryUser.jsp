@@ -44,8 +44,7 @@
 			<br>
 			<br>
 			<p class="lead">
-				<button class="btn btn-danger btn-lg" onclick="
-()">환불안내</button>
+				<button class="btn btn-danger btn-lg" onclick="cancel()">환불안내</button>
 			</p>
 		</div>
 

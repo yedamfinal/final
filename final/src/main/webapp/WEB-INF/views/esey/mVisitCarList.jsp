@@ -20,7 +20,7 @@
 		<table class="table">
 		<thead>
 			<tr>
-				<th scope="col">no</th>
+				<!-- <th scope="col">no</th> -->
 				<th scope="col">동</th>
 				<th scope="col">호수</th>
 				<th scope="col">차량번호</th>
@@ -34,7 +34,7 @@
 			
 			<c:forEach var="vo" items="${mVisitList}">
 			<tr >
-				<td scope="col">${vo.visitNo}</td>
+				<%-- <td scope="col">${vo.visitNo}</td> --%>
 				<td scope="col">${vo.dong}</td>
 				<td scope="col">${vo.ho}</td>	
 				<td scope="col">${vo.carNum}</td>

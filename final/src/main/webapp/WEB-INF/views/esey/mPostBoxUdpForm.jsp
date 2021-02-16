@@ -12,7 +12,7 @@
 <title>페이지수정</title>
 </head>
 <body>
-	${vo}ddd
+
 	<div class="container">
 		<div>
 			<h1>수정</h1>
