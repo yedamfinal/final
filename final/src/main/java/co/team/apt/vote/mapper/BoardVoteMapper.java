@@ -13,6 +13,7 @@ public interface BoardVoteMapper {
 	int voteUpdate(BoardVoteVo vo);
 	int voteDelete(BoardVoteVo vo);
 	List<ResidentVo> searchName(ResidentVo vo);
+	public int pagingCount(BoardVoteVo vo);
 	
 	
 	

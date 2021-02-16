@@ -75,7 +75,7 @@ article{
 	<header class="main_menu">
 		<tiles:insertAttribute name="header" />
 	</header>
-	<div class="container">
+	<div class="container" style="margin-bottom: 50px">
 	<article>
 		<tiles:insertAttribute name="content"/>
 	</article>
