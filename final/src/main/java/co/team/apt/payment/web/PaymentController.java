@@ -260,12 +260,6 @@ public class PaymentController {
 			File file = new File(path, excelFile.getOriginalFilename());
 			excelFile.transferTo(file);
 			
-			/*
-			 * FileInputStream aa = null; try { aa = new FileInputStream((File)excelFile); }
-			 * catch (FileNotFoundException e) { System.out.println("이게뜨면 ㄴ안대 아아아아ㅏ아");
-			 * throw new RuntimeException(e.getMessage(), e); }
-			 */
-			
 			paymentService.getExcelUpload(file);
 			
 		}
