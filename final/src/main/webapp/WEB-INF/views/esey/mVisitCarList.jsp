@@ -12,7 +12,7 @@
 <body>
 	<div class="container">
 		<div>
-		<h1>방문자차량등록</h1>
+		<h1>방문자차량조회</h1>
 		</div>
 		<button class="btn btn-outline-secondary" onclick="location.href='mCarList.do'">입자주차량</button>
 		<button class="btn btn-outline-secondary" onclick="location.href='mVisitList.do'">방문자차량</button>
