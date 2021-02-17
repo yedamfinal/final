@@ -12,7 +12,7 @@
 <body>
 	<div class="container">
 		<div>
-		<h1>방문자차량등록</h1>
+		<h1>방문자차량조회</h1>
 		</div>
 		<button class="btn btn-outline-secondary" onclick="location.href='mCarList.do'">입자주차량</button>
 		<button class="btn btn-outline-secondary" onclick="location.href='mVisitList.do'">방문자차량</button>
@@ -35,6 +35,7 @@
 			<c:forEach var="vo" items="${mVisitList}">
 			<tr >
 				<%-- <td scope="col">${vo.visitNo}</td> --%>
+				
 				<td scope="col">${vo.dong}</td>
 				<td scope="col">${vo.ho}</td>	
 				<td scope="col">${vo.carNum}</td>
@@ -44,7 +45,7 @@
 				<td scope="col" class = "stopevent"><select class="form-control getselect"
 							data-carnum="${vo.carNum }"
 							data-purpose="${vo.purpose }" 
-							data-visitno="${vo.visitNo }"
+							data-visitNo="${vo.visitNo }"
 							data-vcget="${vo.vcget }"
 							data-dong="${vo.dong }" 
 							data-ho="${vo.ho }"
@@ -74,7 +75,7 @@
 						</button>
 					</div>
 				<form action="mccancel.do" method="post">
-				<input hidden name="visitNo" id="modalvisitNo" value="${vo.visitNo }">
+				<input hidden name="visitNo" id="modalvisitNo" value="">
 					<div class="modal-body">
 						<div class="input-group flex-nowrap">
 							<div class="input-group-prepend">
@@ -149,11 +150,10 @@
 	})
 	
 	function getselect(visitNo) {
-		
+		console.log(visitNo);
 		
 		if(event.target.value == 'ref') {
-			
-			$('#modalvisitNo').val($(event.target).data('visitNo'));
+			$('#modalvisitNo').val(visitNo);
 			$('#modaldong').val($(event.target).data('dong'));
 			$('#modalho').val($(event.target).data('ho'));
 			$('#modalcarNum').val($(event.target).data('carnum'));

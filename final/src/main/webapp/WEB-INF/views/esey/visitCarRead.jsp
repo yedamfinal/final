@@ -46,7 +46,12 @@
 						<th width="100">종료일</th>
 						<td width="300">${vo.endDate}</td>
 					</tr>
-					
+					<c:if test = "${vo.vcget eq 'ref' }">
+					<tr>
+						<th width="100">거절사유</th>
+						<td width="300">${vo.cancel}</td>
+					</tr>
+					</c:if>
 
 				</table>
 				<div align="right">

@@ -30,9 +30,9 @@ App = {
 
 		App.contract = new web3.eth.Contract(abi);
 		//발표용 ropston
-		//App.contract.options.address = "0xC7eD0849Dd656cbAEA8771D1f3AE7Eb2C76baB80";
+		App.contract.options.address = "0xC7eD0849Dd656cbAEA8771D1f3AE7Eb2C76baB80";
 		//test용 가나슈
-		App.contract.options.address = "0xC1548228AeC8D02C381B16bc3eCC671F869fbb3a";
+		//App.contract.options.address = "0xC1548228AeC8D02C381B16bc3eCC671F869fbb3a";
 
 		App.voting();
 		if(result != ""){
@@ -46,10 +46,6 @@ App = {
 			if (!candidateId) {
 				return alert('후보자를 선택하세요.')
 			}*/
-			
-			
-			
-			
 			
 			/*App.contracts.Election.deployed()
 				.then(function(instance) {

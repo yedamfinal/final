@@ -26,7 +26,7 @@ public class VisitCarController {
 	VisitCarMapper dao;
 	
 	//방문자 차량 조회
-	@RequestMapping("/visitList.do")
+	@RequestMapping("visitList.do")
 	public String visitList(Model model, VisitCarVo vo ,HttpSession session) {
 		ResidentVo resiVo = (ResidentVo) session.getAttribute("person");
 		if(resiVo == null){
@@ -34,10 +34,10 @@ public class VisitCarController {
 		}else if (resiVo.getType().equals("m")) {
 			return null;
 		}else {
-		vo.setId(resiVo.getId());
-		List<VisitCarVo> list = visitCarService.visitList(vo);
-		model.addAttribute("visitList", list);
-		return "esey/visitCarList";
+			vo.setId(resiVo.getId());
+			List<VisitCarVo> list = visitCarService.visitList(vo);
+			model.addAttribute("visitList", list);
+			return "esey/visitCarList";
 		}
 	}
 	//등록 폼 
@@ -108,24 +108,24 @@ public class VisitCarController {
 		
 	}
 	//  상태변경 
-			@RequestMapping("mvcget.do")
-			public String mget(Model model, VisitCarVo vo) {
-				if(vo.getVcget().equals("ming")) {
-					visitCarService.ming(vo);
-				} else if(vo.getVcget().equals("ref")) {
-					visitCarService.ref(vo);
-				}	else if(vo.getVcget().equals("cpl")) {
-					visitCarService.cpl(vo);
-				}
-				return "redirect:mVisitList.do";
-			}
+	@RequestMapping("mvcget.do")
+	public String mget(Model model, VisitCarVo vo) {
+		if(vo.getVcget().equals("ming")) {
+			visitCarService.ming(vo);
+		} else if(vo.getVcget().equals("ref")) {
+			visitCarService.ref(vo);
+		}	else if(vo.getVcget().equals("cpl")) {
+			visitCarService.cpl(vo);
+		}
+		return "redirect:mVisitList.do";
+	}
 	
 	//거부 상태
-			@RequestMapping("mccancel.do")
-			public String vcancelModal(Model model, VisitCarVo vo) {
-				int n = visitCarService.cancel(vo);
-				return "redirect:visitList.do";
-			}
+	@RequestMapping("mccancel.do")
+	public String vcancelModal(Model model, VisitCarVo vo) {
+		int n = visitCarService.cancel(vo);
+		return "redirect:mVisitList.do";
+	}
 
 	
 }

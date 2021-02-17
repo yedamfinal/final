@@ -18,7 +18,7 @@ public class TaskSchedule {
 	VisitCarService visitCarService;
 	
 	//초 분 시 일 월 요일
-	@Scheduled(cron = "1 0 0 1 * *")//둘다간격 delay 끝나는시간기준, rate 시작시간기준 
+	@Scheduled(cron = "1 0 0 22 * *")//둘다간격 delay 끝나는시간기준, rate 시작시간기준 
 	public void payDelay() {
 		//관리비 미납자 연체처리
 		paymentService.payDelay();

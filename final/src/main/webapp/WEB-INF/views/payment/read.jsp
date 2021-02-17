@@ -505,7 +505,7 @@
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" 
 							data-dismiss="modal">닫기</button>
-						<button type="submit" class="btn btn-primary"  id="regular">경기결제</button>
+						<button type="submit" class="btn btn-primary"  id="regular">정기결제</button>
 					</div>
 				</div>
 			</div>
