@@ -16,6 +16,11 @@ public class VisitCarVo {
    private String vcget;
    private String dong;
    private String ho;
+   private int start;
+   private int end;
+   private String search;//검색어
+   private String searchType;//검색타입
+   private String cancel;
    
    
 }

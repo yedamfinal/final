@@ -3,6 +3,7 @@ package co.team.apt.esey.service;
 
 import java.util.List;
 
+
 import co.team.apt.common.vo.VisitCarVo;
 
 
@@ -18,5 +19,6 @@ public interface VisitCarService {
 	public int ref(VisitCarVo vo);
 	public int cpl(VisitCarVo vo);
 	public void deletevisitCar();
+	public int cancel(VisitCarVo vo);
 		
 }
