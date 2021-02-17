@@ -50,29 +50,36 @@
 			enddate = #{endDate}
 			where visitno = #{visitNo}
 	</update>
+	
+  	<select id="mVisitList" resultType="VisitCarVo" parameterType="VisitCarVo">
+		select a.* from( select b.*, rownum rn from (
+			SELECT c.*,r.dong,r.ho 
+			FROM visitcar c, resident r 
+			where c.id = r.id
+			<include refid="searchQuery"></include>
+		) b ) a where rn between #{start} and #{end}
+	</select>
+	
 	<select id="pagingCount" resultType="int">
 	    SELECT count(*) 
-		FROM visitcar 
+		FROM visitcar c, resident r 
+		where c.id = r.id
 		<include refid="searchQuery"></include>
 	</select>
-	<sql id = "searchQuery">	
-  	<where>
+	
+	<sql id = "searchQuery">
+		
 			<if test="search != null and search != ''">
 				<choose>
 				<when test="searchType == 'dong'">
-					dong||'/'||ho = #{search}
+					and r.dong||'/'||r.ho = #{search}
 				</when>
 				<otherwise>
-					${searchType} like '%' || #{search} || '%'
+					and c.carnum like '%' || #{search} || '%'
 				</otherwise>
 				</choose>
 			</if>
-		</where>
-		
 	</sql>
-  	<select id="mVisitList" resultType="VisitCarVo" parameterType="VisitCarVo">
-		SELECT c.*,r.dong,r.ho FROM visitcar c, resident r where c.id = r.id
-	</select>
   	
 	<update id="ming" parameterType="VisitCarVo"> 
 		update visitcar set vcget = 'ming' where visitno = #{visitNo}
