@@ -25,7 +25,7 @@
 				</thead>
 
 				<tbody>
-					<c:forEach var="vo" items="${boardVoteList }">
+					<c:forEach var="vo" items="${boardVoteList }" varStatus="">
 						<tr onclick="location.href='boardVoteRead.do?seq=${vo.seq }'">
 							<td>${vo.seq}</td>
 							<td>${vo.title}</td>
