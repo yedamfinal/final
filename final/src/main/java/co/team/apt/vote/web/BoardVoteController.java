@@ -80,7 +80,7 @@ public class BoardVoteController {
 	@RequestMapping("/boardVoteInsert.do")
 	public String boardVoteInsert(Model model, BoardVoteVo vo) {
 		boardVoteService.voteInsert(vo);
-		return "redirect:boardVoteList.do";
+		return "redirect:voteStart.do";
 	}
 
 	@RequestMapping("/boardVoteInsertForm.do")
