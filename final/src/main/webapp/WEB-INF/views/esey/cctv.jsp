@@ -66,7 +66,7 @@
   'newWindow','width=1000px, height=500px');">앞마당</button>
   
   <button class="btn btn-outline-secondary" onclick="javascript:window.open('http://192.168.1.78:33773/browserfs.html',
-  'newWindow','width=1000px, height=500px');">뒷마당</button>
+  'newWindow','width=1600px, height=900px');">뒷마당</button>
 		<button class="btn btn-outline-secondary" onclick="OpenWin_variety('http://192.168.1.78:33773/browserfs.html','창이름',width=1000px, height=500px,'150','100')">놀이터</button>
 		</div>	
 		
