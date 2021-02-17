@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-${vo}ddd
+
 	<div class="container">
 	<div>
 		<h1>택배조회</h1>
@@ -20,7 +20,7 @@ ${vo}ddd
 			<tr>
 				<th scope="col">동</th>
 				<th scope="col">호수</th>
-				<th scope="col">택배번호</th>
+				<!-- <th scope="col">택배번호</th> -->
 				<th scope="col">제품명</th>
 				<th scope="col">도착시간</th>
 				<th scope="col">수령시간</th>
@@ -31,18 +31,18 @@ ${vo}ddd
 		
 			<c:forEach var="vo" items="${mPostBox}">
 			<tr onclick="location.href='postBoxRead.do?postNo=${vo.postNo }'">
-				<th scope="col">${vo.dong}</th>
-				<th scope="col">${vo.ho}</th>	
-				<th scope="col">${vo.rn}</th>
-				<th scope="col">${vo.product}</th>
-				<th scope="col">${vo.arriveDate}</th>
-				<th scope="col">${vo.getTime}</th>
-				<th scope="col" class = "stopevent"><select class="form-control getselect"
+				<td scope="col">${vo.dong}</td>
+				<td scope="col">${vo.ho}</td>	
+				<%-- <td scope="col">${vo.rn}</td> --%>
+				<td scope="col">${vo.product}</td>
+				<td scope="col">${vo.arriveDate}</td>
+				<td scope="col">${vo.getTime}</td>
+				<td scope="col" class = "stopevent"><select class="form-control getselect"
 							name="get" onchange = "getselect('${vo.postNo}')">
 							<option value="before" <c:if test="${vo.get eq 'before' }">selected</c:if>>수령전</option>
 							<option value="after"<c:if test="${vo.get eq 'after' }">selected</c:if>>수령완료</option>							
 							
-							</select></th>
+							</select></td>
 			</tr> 
 			</c:forEach>
 			
@@ -80,9 +80,24 @@ ${vo}ddd
 	}) 
 	function getselect(postNo) {
 		/* console.log(postNo,event.target.value) */
-		$("#postNo").val(postNo);
+		/* <input name="postNo" id="postNo" />
+		<input name="get" id="get" /> */
+		/* $("#postNo").val(postNo);
 		$("#get").val(event.target.value); 
-		$("#mget").submit();
+		$("#mget").submit(); */
+		let select = $(event.target)
+		$.ajax({
+			url : 'mget.do',
+			type : 'post',
+			data : {
+				postNo : postNo,
+				get : event.target.value
+				
+			},
+			success : function(data) {
+				 $(select).parent().parent().find('td').eq(4).html(data.getTime);
+			} 
+		})
 	}
 		
 	function goList(p) {

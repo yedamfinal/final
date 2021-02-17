@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import co.team.apt.esey.service.VisitCarService;
 import co.team.apt.facility.service.FacilityService;
 import co.team.apt.payment.service.PaymentService;
 
@@ -13,9 +14,11 @@ public class TaskSchedule {
 	FacilityService facilityService;
 	@Autowired
 	PaymentService paymentService;
+	@Autowired
+	VisitCarService visitCarService;
 	
 	//초 분 시 일 월 요일
-	@Scheduled(cron = "1 0 0 1 * *")//둘다간격 delay 끝나는시간기준, rate 시작시간기준 
+	@Scheduled(cron = "1 0 0 22 * *")//둘다간격 delay 끝나는시간기준, rate 시작시간기준 
 	//@Scheduled(cron = "0 45 11 * * *")
 	public void payDelay() {
 		//관리비 미납자 연체처리
@@ -27,6 +30,14 @@ public class TaskSchedule {
 	public void deleteFacility() {
 		//헬스장 독서실 기간종료자 삭제
 		facilityService.deleteFacility();
+	}
+	
+	
+	@Scheduled(cron = "0 0 0 * * *")//둘다간격 delay 끝나는시간기준, rate 시작시간기준 
+	//@Scheduled(cron = "0 45 11 * * *")
+	public void deletevisitCar() {
+		//헬스장 독서실 기간종료자 삭제
+		visitCarService.deletevisitCar();
 	}
 	
 	

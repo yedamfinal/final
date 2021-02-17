@@ -19,5 +19,6 @@ public interface CarService {
 	public int cming(CarVo vo);
 	public int cref(CarVo vo);
 	public int ccpl(CarVo vo);
+	public int cancel(CarVo vo);
 		
 }

@@ -9,7 +9,9 @@
 </head>
 <body>
 	<div class="container">
-		${person }
+		<br>
+			<h1>독서실 등록</h1>
+		<br>	
 		<form id="frm" name="frm" action="insertLibrary.do">
 			<div class="row">
 				<div class="col-sm-8" align="center">
@@ -44,7 +46,7 @@
 						value="등록">
 				</div>
 				
-				<div class="form-group" id="seatDiv">
+				<div class="form-group" id="seatDiv" align="center">
 					<%-- <c:forEach items="${seatList }" var="seat" varStatus="i">
 						<div class="form-check-inline">
 							<c:if test="${seat eq false }">
@@ -67,7 +69,7 @@
 						<tbody>
 						<c:forEach items="${seatList }" var="seat" varStatus="i">
 							<c:if test="${i.count%6==1 }"><tr></c:if>
-								<td style="width: 200px; height: 50px">
+								<td style="width: 180px; height: 50px">
 									<c:if test="${seat eq false }">
 										<input class="form-check-input seat" type="radio" name="seat"
 											id='s${i.count }' value="${i.count}" />

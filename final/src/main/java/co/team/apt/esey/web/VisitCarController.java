@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import co.team.apt.common.vo.CarVo;
+import co.team.apt.common.vo.Paging;
 import co.team.apt.common.vo.PostBoxVo;
 import co.team.apt.common.vo.ResidentVo;
 import co.team.apt.common.vo.VisitCarVo;
@@ -21,6 +22,8 @@ public class VisitCarController {
 	
 	@Autowired
 	VisitCarService visitCarService;
+	@Autowired
+	VisitCarMapper dao;
 	
 	//방문자 차량 조회
 	@RequestMapping("/visitList.do")
@@ -75,13 +78,36 @@ public class VisitCarController {
 	}
 	//관리자 차량조회
 	@RequestMapping("mVisitList.do")
-	public String mVisitList(Model model, VisitCarVo vo) {
+	public String mVisitList(Model model,Paging paging , VisitCarVo vo) {
+		
+		//페이징처리
+		paging.setPageUnit(10);
+		paging.setPageSize(10);	//페이지넘버 자체를 지정
+		// 페이지번호 파라미터
+		if( paging.getPage() == null) {
+			paging.setPage(1); 
+		}		
+		// 시작/마지막 레코드 번호
+		vo.setStart(paging.getFirst());
+		vo.setEnd(paging.getLast());		
+		// 전체 건수
+		
+//		vo.setDong("0");
+//		vo.setHo("0");
+//		if(vo.getSearchType() != null && vo.getSearchType().equals("dong")) {
+//			String[] a = vo.getSearch().split("/");
+//			vo.setDong(a[0]);
+//			vo.setHo(a[1]);
+//		}
+		paging.setTotalRecord(dao.pagingCount(vo));		//전체레코드건수
+
+		model.addAttribute("paging", paging);
 		List<VisitCarVo> list = visitCarService.mVisitList(vo);
 		model.addAttribute("mVisitList",list);
 			return "esey/mVisitCarList"; 
 		
 	}
-	// 택배 상태변경 
+	//  상태변경 
 			@RequestMapping("mvcget.do")
 			public String mget(Model model, VisitCarVo vo) {
 				if(vo.getVcget().equals("ming")) {
@@ -94,7 +120,12 @@ public class VisitCarController {
 				return "redirect:mVisitList.do";
 			}
 	
-	
+	//거부 상태
+			@RequestMapping("mccancel.do")
+			public String vcancelModal(Model model, VisitCarVo vo) {
+				int n = visitCarService.cancel(vo);
+				return "redirect:visitList.do";
+			}
 
 	
 }

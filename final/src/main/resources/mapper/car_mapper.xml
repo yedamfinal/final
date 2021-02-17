@@ -38,6 +38,26 @@ where id in ( select id
 			cno = #{cno}
 			where cno = #{cno}
 </update> 
+	<select id="pagingCount" resultType="int">
+	    SELECT count(*) 
+		FROM car 
+		<include refid="searchQuery"></include>
+	</select>
+	<sql id = "searchQuery">
+	<where>
+			<if test="search != null and search != ''">
+				<choose>
+				<when test="searchType == 'dong'">
+					dong||'/'||ho = #{search}
+				</when>
+				<otherwise>
+					${searchType} like '%' || #{search} || '%'
+				</otherwise>
+				</choose>
+			</if>
+		</where>
+		
+	</sql>
 
 <!-- 관리자 입주자 차량조회 -->
 	<select id="mCarList" resultType="CarVo" parameterType="CarVo">
@@ -54,5 +74,8 @@ where id in ( select id
 	
 	<update id="ccpl" parameterType="CarVo"> 
 		update car set cget = 'ccpl' where cno = #{cno}
+	</update>
+	<update id="cancel" parameterType="CarVo">
+		update car set cancel = #{cancel}, cget = 'cref' where cno = #{cno}
 	</update>
 </mapper>

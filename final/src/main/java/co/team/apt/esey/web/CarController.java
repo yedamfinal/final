@@ -14,9 +14,10 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 import co.team.apt.common.vo.BoardVoteVo;
 import co.team.apt.common.vo.CarVo;
+import co.team.apt.common.vo.Paging;
 import co.team.apt.common.vo.PostBoxVo;
 import co.team.apt.common.vo.ResidentVo;
-
+import co.team.apt.esey.mapper.CarMapper;
 import co.team.apt.esey.service.CarService;
 
 @Controller
@@ -25,7 +26,8 @@ public class CarController {
 	
 	@Autowired
 	CarService carService;
-	
+	@Autowired
+	CarMapper dao;
 	
 	
 	//방문자 차량 조회
@@ -88,7 +90,31 @@ public class CarController {
 
 	//관리자 차량조회
 	@RequestMapping("mCarList.do")
-	public String mCarList(Model model, CarVo vo) {
+	public String mCarList(Model model, Paging paging , CarVo vo) {
+		
+		//페이징처리
+		paging.setPageUnit(10);
+		paging.setPageSize(10);	//페이지넘버 자체를 지정
+		// 페이지번호 파라미터
+		if( paging.getPage() == null) {
+			paging.setPage(1); 
+		}		
+		// 시작/마지막 레코드 번호
+		vo.setStart(paging.getFirst());
+		vo.setEnd(paging.getLast());		
+		// 전체 건수
+		
+//		vo.setDong("0");
+//		vo.setHo("0");
+//		if(vo.getSearchType() != null && vo.getSearchType().equals("dong")) {
+//			String[] a = vo.getSearch().split("/");
+//			vo.setDong(a[0]);
+//			vo.setHo(a[1]);
+//		}
+		paging.setTotalRecord(dao.pagingCount(vo));		//전체레코드건수
+
+		model.addAttribute("paging", paging);
+		
 		List<CarVo> list = carService.mCarList(vo);
 		model.addAttribute("mCarList",list);
 			return "esey/mCarList"; 
@@ -108,6 +134,11 @@ public class CarController {
 				}
 		
 	
-	
+	//거부 상태일때 
+	@RequestMapping("mCancel.do")
+	public String cancelModal(Model model, CarVo vo) {
+		int n = carService.cancel(vo);
+		return "redirect:carList.do";
+	}
 	
 }

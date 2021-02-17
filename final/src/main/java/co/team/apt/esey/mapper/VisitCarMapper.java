@@ -2,7 +2,7 @@ package co.team.apt.esey.mapper;
 
 import java.util.List;
 
-import co.team.apt.common.vo.PostBoxVo;
+
 import co.team.apt.common.vo.VisitCarVo;
 
 public interface VisitCarMapper {
@@ -16,6 +16,10 @@ public interface VisitCarMapper {
 	public int ming(VisitCarVo vo);
 	public int ref(VisitCarVo vo);
 	public int cpl(VisitCarVo vo);
+	public void terVisitcar();
+	public int pagingCount(VisitCarVo vo);
+	public int cancel(VisitCarVo vo);
+	
 	//입주자 차량조회 등록 
 	
 
