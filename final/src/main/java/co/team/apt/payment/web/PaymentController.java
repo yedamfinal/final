@@ -151,24 +151,24 @@ public class PaymentController {
 		return "payment/read";
 	}
 
-	@RequestMapping("payInsertForm.do")
-	public String payRead(Model model) {
-		return "payment/insertForm";
-	}
-	
-	@RequestMapping("payInsert.do")
-	public String payInsert(Model model, PaymentVo vo) {
-		
-		paymentService.payInsert(vo);
-		
-		return "payment/test";
-	}
-	
-	@RequestMapping("payTotal.do")
-	public String payTotal(Model model, PaymentVo vo) {
-		
-		return "";
-	}
+//	@RequestMapping("payInsertForm.do")
+//	public String payRead(Model model) {
+//		return "payment/insertForm";
+//	}
+//	
+//	@RequestMapping("payInsert.do")
+//	public String payInsert(Model model, PaymentVo vo) {
+//		
+//		paymentService.payInsert(vo);
+//		
+//		return "payment/test";
+//	}
+//	
+//	@RequestMapping("payTotal.do")
+//	public String payTotal(Model model, PaymentVo vo) {
+//		
+//		return "";
+//	}
 	
 	//결제
 	@RequestMapping("payOneSuccess.do")
@@ -272,41 +272,41 @@ public class PaymentController {
 		return "redirect:payRead.do";
 	}
 	
-	public void payExcelUpload2(HttpServletRequest request,
-			@RequestParam(required = false) MultipartFile uploadFile, HttpServletResponse rep) 
-					throws IllegalStateException, IOException {
-		
-		 
-        Map returnObject = new HashMap(); 
-        
-        try { // MultipartHttpServletRequest 생성 
-            MultipartHttpServletRequest mhsr = (MultipartHttpServletRequest) request; 
-            Iterator iter = mhsr.getFileNames(); 
-            MultipartFile mfile = null; 
-            String fieldName = ""; 
-            
-            // 값이 나올때까지
-            while (iter.hasNext()) { 
-                fieldName = iter.next().toString(); // 내용을 가져와서 
-                mfile = mhsr.getFile(fieldName); 
-                String origName; 
-                origName = new String(mfile.getOriginalFilename().getBytes("8859_1"), "UTF-8"); //한글꺠짐 방지 // 파일명이 없다면 
-                
-                returnObject.put("params", mhsr.getParameterMap()); 
-                
-                
-                //위치 및 파일
-                System.out.println(origName);
-                //paymentService.getExcelUpload("D:\\"+origName);
-            }
-            
-            } catch (UnsupportedEncodingException e) { // TODO Auto-generated catch block 
-                e.printStackTrace(); 
-            }catch (IllegalStateException e) { // TODO Auto-generated catch block 
-                e.printStackTrace(); 
-            } catch (IOException e) { // TODO Auto-generated catch block 
-                e.printStackTrace(); 
-            }
-       
-	}
+//	public void payExcelUpload2(HttpServletRequest request,
+//			@RequestParam(required = false) MultipartFile uploadFile, HttpServletResponse rep) 
+//					throws IllegalStateException, IOException {
+//		
+//		 
+//        Map returnObject = new HashMap(); 
+//        
+//        try { // MultipartHttpServletRequest 생성 
+//            MultipartHttpServletRequest mhsr = (MultipartHttpServletRequest) request; 
+//            Iterator iter = mhsr.getFileNames(); 
+//            MultipartFile mfile = null; 
+//            String fieldName = ""; 
+//            
+//            // 값이 나올때까지
+//            while (iter.hasNext()) { 
+//                fieldName = iter.next().toString(); // 내용을 가져와서 
+//                mfile = mhsr.getFile(fieldName); 
+//                String origName; 
+//                origName = new String(mfile.getOriginalFilename().getBytes("8859_1"), "UTF-8"); //한글꺠짐 방지 // 파일명이 없다면 
+//                
+//                returnObject.put("params", mhsr.getParameterMap()); 
+//                
+//                
+//                //위치 및 파일
+//                System.out.println(origName);
+//                //paymentService.getExcelUpload("D:\\"+origName);
+//            }
+//            
+//            } catch (UnsupportedEncodingException e) { // TODO Auto-generated catch block 
+//                e.printStackTrace(); 
+//            }catch (IllegalStateException e) { // TODO Auto-generated catch block 
+//                e.printStackTrace(); 
+//            } catch (IOException e) { // TODO Auto-generated catch block 
+//                e.printStackTrace(); 
+//            }
+//       
+//	}
 }

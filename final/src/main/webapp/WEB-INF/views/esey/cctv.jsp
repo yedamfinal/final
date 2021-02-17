@@ -39,15 +39,14 @@
 		<h1>cctv</h1>
 	</div>
 		 	<video
-     		 src="./videos/Gaulois.mp4"
+     		 src="blob:https://my.ivideon.com/69475694-9783-467f-b64b-d559a89e204f"
       		width="500px"
       		height="360px"
-     		controls
-      		autoplay
-      		loop
+     		autoplay
+      		
       		id="video1"></video>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <video
-      src="./videos/Gaulois2.mp4"
+      src="blob:https://my.ivideon.com/e1499914-29f3-4faa-a704-eca7626c786c"
       width="500px"
       height="360px"
       controls
@@ -63,7 +62,8 @@
           
         <img id="img1" class="video-image" alt="video" src="/shot.jpg?rnd=547278" style="visibility: visible;"><img id="img2" class="video-image" style="display: block; z-index: -1; visibility: visible; margin-top: -576px;" alt="video" src="/shot.jpg?rnd=569550"></div>
 		
-		<button class="btn btn-outline-secondary" onclick="location.href='http://192.168.0.25:8080/browserfs.html'">앞마당</button>
+		<button class="btn btn-outline-secondary" onclick="javascript:window.open('http://192.168.219.106:8080/browserfs.html',
+  'newWindow','width=500px, height=200px');">앞마당</button>
 		<button class="btn btn-outline-secondary" onclick="location.href='http://192.168.0.2:33773/browserfs.html'">놀이터</button>
 		</div>		
 	</div>
