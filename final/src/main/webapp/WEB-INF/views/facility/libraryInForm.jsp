@@ -183,6 +183,12 @@
 	IMP.init("imp17111120"); // "imp00000000" 대신 발급받은 "가맹점 식별코드"를 사용합니다.
 	
 	function payment() {
+		if(!$('input:radio[name="seat"]').is(':checked')){
+			alert("좌석을 선택해주세요.");		
+			return;
+		}
+		
+		
 		let frm = $("#frm").serializeObject();
 		let cost = frm.cost.replace("만원","0000");
 		let payNo = Date.now();
@@ -194,6 +200,7 @@
 			merchant_uid : payNo, //결제번호
 			name : "독서실", //헬스장, 독서실, x월 관리비 결제명
 			amount : cost, //가격
+			buyer_email: "duqrlwjstk@Naver.com",
 			buyer_name : frm.name, // 회원이름
 			buyer_tel : frm.phone //회원전화번호
 		}

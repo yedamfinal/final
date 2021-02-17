@@ -30,9 +30,11 @@ App = {
 
 		App.contract = new web3.eth.Contract(abi);
 		//발표용 ropston
-		App.contract.options.address = "0xC7eD0849Dd656cbAEA8771D1f3AE7Eb2C76baB80";
+		//App.contract.options.address = "0xC7eD0849Dd656cbAEA8771D1f3AE7Eb2C76baB80";
 		//test용 가나슈
 		//App.contract.options.address = "0xC1548228AeC8D02C381B16bc3eCC671F869fbb3a";
+		//승호 테스트용
+		App.contract.options.address = "0x238569D8EBd039C72f8E4730219E9EBD6461e1dF";
 
 		App.voting();
 		if(result != ""){
@@ -117,16 +119,24 @@ App = {
 			//let num = $('#num').val() //후보자 번호
 			let num= Number($('#selectCandidate').find('input[name="name"]:checked').data('num'));
 			
-			App.contract.methods.vote(seq2, num)// 글번호, 투표번호
-						  .send({from:account})
-						  		
+			App.contract.methods.checkVote(seq2)// 글번호
+						  .call({from:account})
 						  .then(function(result){
-							alert(num+'번 후보에 투표하셨습니다.')
-							
-							location.href="voteStart.do"
-							
-						});
-							
+							 console.log(result);
+							 if(!result){
+								App.contract.methods.vote(seq2, num)// 글번호, 투표번호
+									  .send({from:account})	
+									  .then(function(result){
+										console.log(result);
+										alert(num+'번 후보에 투표하셨습니다.')
+										
+										location.href="voteStart.do"
+										
+									   });
+							 }else{
+								alert("이미 투표 하셨습니다.");
+							}
+						   });
 		
 		})
 	},

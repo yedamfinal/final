@@ -1,0 +1,54 @@
+pragma solidity ^0.5.11;
+pragma experimental ABIEncoderV2;
+
+contract Election{
+    
+    
+    //Candidate model
+    struct Candidate {
+        uint id;
+        string name;
+        uint voteCount; //get count
+    }
+    
+    
+    struct NumList{
+        uint candidatesCount; // candidate count
+        mapping(uint => Candidate)  candidates;
+        mapping(address => bool)  voters;
+    }
+    
+    mapping(uint=> NumList) public NumLists;
+    
+    //dankook source
+    //register candidate
+    function addCandidate (uint _seq ,string memory _name) public {
+        NumLists[_seq].candidatesCount++;
+        uint count= NumLists[_seq].candidatesCount;
+        NumLists[_seq].candidates[count] = Candidate(count, _name, 0);
+    }
+
+    
+    function vote(uint _seq, uint _candidateId) public {
+        require(! NumLists[_seq].voters[msg.sender]); // when duplicating voted, it occured
+        require(_candidateId > 0 && _candidateId <= NumLists[_seq].candidatesCount); // unlisted candidate, error
+        NumLists[_seq].voters[msg.sender] = true; // one person, one right
+        NumLists[_seq].candidates[_candidateId].voteCount ++; //get voting +1
+    }
+    
+    function checkVote(uint _seq) public view returns (bool _vote) {
+        _vote = NumLists[_seq].voters[msg.sender];
+    }
+    
+    // Calls winningProposal() function to get the index
+    // of the winner contained in the proposals array and then
+    // returns the name of the winner
+    function winnerName(uint _seq) public view returns (Candidate[] memory _result) {
+        _result= new Candidate[](NumLists[_seq].candidatesCount);
+        for(uint i=0; i < NumLists[_seq].candidatesCount; i++){
+            _result[i]=  NumLists[_seq].candidates[i+1];
+            
+        }
+    }
+
+}

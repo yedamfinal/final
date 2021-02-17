@@ -96,7 +96,7 @@
 						<span class="input-group-text" id="addon-wrapping">환불사유</span>
 					</div>
 					<input id="content" name="content" type="text" class="form-control" placeholder="환불사유를 작성해주세요"
-						aria-label="Username" aria-describedby="addon-wrapping">
+						aria-label="Username" aria-describedby="addon-wrapping" required>
 				</div>
 				<br>
 				<button class="btn btn-danger btn-block" id="finalButton">환불신청</button>
