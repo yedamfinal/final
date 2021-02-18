@@ -15,8 +15,10 @@
             <br/>
             <br/>
             <div align="right">
-            <button type="button" onclick="location.href='noticeUpdateForm.do?defno=${vo.defno}' ">글수정</button>
+            <c:if test="${person.type=='m' or person.auth=='yes'}">
+				<button type="button" onclick="location.href='noticeUpdateForm.do?defno=${vo.defno}' ">글수정</button>
             <button type="button" onclick="location.href='noticeDelete.do?defno=${vo.defno}' ">글삭제</button>
+			</c:if>
             </div>
             	<table class="table" >
                		

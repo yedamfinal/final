@@ -53,7 +53,7 @@
 			<my:paging paging="${paging}" jsFunc="goList" />
 		</div>
 
-		<div class="row justify-content-center" style="padding-right: 130px">
+		<div class="row justify-content-center" style="padding-right: 130px" align="right">
 			<form action="qnaList.do" method="post" id='pageSearchForm'>
 				<select name="searchType" size="1">
 					<option value="title"
